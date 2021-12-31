@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./static/logo.png" width="300" alt="ElectroAAC">
+  <img src="./frontend/static/logo.png" width="300" alt="ElectroAAC">
 
   A free and open-source Automatic Account Creator (AAC) written in Javascript Stack.
   <br>
