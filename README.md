@@ -13,27 +13,20 @@
 <br>
 
 <h2> 👨🏾‍💻 Techs </h2>
-<li> Nuxt.js </li>
-<li> Vuetify.js </li>
-<li> Typescript </li>
+<h3> Front-end </h3>
+<ul>
+  <li> Vue.js </li>
+  <li> Nuxt.js </li>
+  <li> Vuetify.js </li>
+  <li> Typescript </li>
+</ul>
+<h3> Backend </h3>
+<ul>
+  <li> Node.js </li>
+  <li> Adonis.js </li>
+  <li> Typescript </li>
+</ul>
 <br>
-
-<h2> 🍸 Build Setup </h2>
-
-```bash
-# install dependencies
-$ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn dev
-
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
-```
 
 <h2> 👤 Author </h2>
 
