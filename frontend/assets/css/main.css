@@ -2,10 +2,11 @@
   --heading-color: #ffffff;
   --text-color: #ffffff;
   --main-color: #05c3de;
+  --title-color: #9cabb9;
   --second-main-color: #2196F3;
   --bg-main-color: #0b1822;
-  --bg-second-color: #061217;
-  --bg-third-color: #202066;
+  --bg-second-color: #334459;
+  --bg-third-color: #061217;
 }
 
 #app {
@@ -36,22 +37,34 @@
 }
 
 .header-list {
-  background-color: #061217 !important;
-  border: 1px solid #334459 !important;
+  background-color: var(--bg-third-color) !important;
+  border: 1px solid var(--bg-second-color) !important;
 }
 
 .content {
   color: var(--text-color);
   background-color: rgba(6, 18, 23, 0.9);
-  border: 1px solid #334459;
+  border: 1px solid var(--bg-second-color);
   display: flex;
   justify-content: center;
 }
 
 .side-bar {
   color: var(--text-color);
+}
+
+.widget {
   background-color: rgba(6, 18, 23, 0.9);
-  border: 1px solid #334459;
-  display: flex;
-  justify-content: center;
+  border: 1px solid var(--bg-second-color);
+}
+
+.widget-title {
+  padding: 1.1rem 1.8rem 0.95rem;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: .72px;
+  background: url('~assets/images/top-header.jpg') !important;
+  border-bottom: 1px solid var(--bg-second-color);
+  color: var(--title-color);
 }

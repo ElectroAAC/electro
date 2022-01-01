@@ -8,7 +8,9 @@
         <v-col cols="6" class="content">
           <Nuxt/>
         </v-col>
-        <v-col cols="2" class="side-bar ml-5"> Menu lateral <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></v-col>
+        <v-col cols="2" class="side-bar ml-5 pa-0">
+          <SearchPlayer />
+        </v-col>
         <v-col cols="2"></v-col>
       </v-row>
     </v-main>
