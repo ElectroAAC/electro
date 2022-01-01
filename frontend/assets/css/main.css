@@ -1,0 +1,39 @@
+:root {
+  --heading-color: #ffffff;
+  --text-color: #ffffff;
+  --main-color: #05c3de;
+  --second-main-color: #2196F3;
+  --bg-main-color: #0b1822;
+  --bg-second-color: #061217;
+  --bg-third-color: #202066;
+}
+
+#app {
+  background-color: var(--bg-main-color);
+}
+
+#header {
+  background: url('~assets/images/top-header.jpg') !important;
+}
+
+#main {
+  background-image: url('~assets/images/background.jpg') !important;
+  background-position-x: center;
+  background-size: cover;
+}
+
+.content {
+  color: var(--text-color);
+  background-color: rgba(6, 18, 23, 0.9);
+  border: 1px solid #334459;
+  display: flex;
+  justify-content: center;
+}
+
+.side-bar {
+  color: var(--text-color);
+  background-color: rgba(6, 18, 23, 0.9);
+  border: 1px solid #334459;
+  display: flex;
+  justify-content: center;
+}

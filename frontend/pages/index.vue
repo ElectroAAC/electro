@@ -1,5 +1,7 @@
 <template>
-  <Tutorial />
+  <v-container>
+    Testa
+  </v-container>
 </template>
 
 <script lang="ts">
