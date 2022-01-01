@@ -22,6 +22,24 @@
   background-size: cover;
 }
 
+.header-text > a {
+  color: var(--heading-color);
+  font-style: normal;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+
+.header-text > a:hover {
+  color: var(--main-color);
+}
+
+.header-list {
+  background-color: #061217 !important;
+  border: 1px solid #334459 !important;
+}
+
 .content {
   color: var(--text-color);
   background-color: rgba(6, 18, 23, 0.9);

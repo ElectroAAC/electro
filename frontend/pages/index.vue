@@ -1,7 +1,7 @@
 <template>
-  <v-container>
-    Testa
-  </v-container>
+  <div>
+    Conteúdo
+  </div>
 </template>
 
 <script lang="ts">
