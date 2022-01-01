@@ -10,6 +10,7 @@
         </v-col>
         <v-col cols="2" class="side-bar ml-5 pa-0">
           <SearchPlayer />
+          <StatusServer class="mt-2"/>
         </v-col>
         <v-col cols="2"></v-col>
       </v-row>
