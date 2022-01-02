@@ -3,14 +3,15 @@
     <Header/>
     
     <v-main id="main">
-      <v-row class="mt-15">
+      <v-row class="ma-0 mt-15">
         <v-col cols="2"></v-col>
         <v-col cols="6" class="content">
           <Nuxt/>
         </v-col>
         <v-col cols="2" class="side-bar ml-5 pa-0">
-          <SearchPlayer />
-          <StatusServer class="mt-2"/>
+          <SearchPlayerWidget />
+          <StatusServerWidget class="mt-2"/>
+          <HighscoresWidget class="mt-2"/>
         </v-col>
         <v-col cols="2"></v-col>
       </v-row>

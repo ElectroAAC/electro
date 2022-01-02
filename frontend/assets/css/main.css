@@ -62,6 +62,7 @@
   padding: 1.1rem 1.8rem 0.95rem;
   font-size: 18px;
   font-weight: 500;
+  text-transform: uppercase;
   line-height: 30px;
   letter-spacing: .72px;
   background: url('~assets/images/top-header.jpg') !important;
