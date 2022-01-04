@@ -31,7 +31,7 @@
             </v-list-item>
           </v-list>
         </v-menu>
-        <NuxtLink to="/" class="pa-5"> HIGHSCORES </NuxtLink>
+        <NuxtLink to="/highscores" class="pa-5"> HIGHSCORES </NuxtLink>
         <NuxtLink to="/">
           <Logo class="mt-8" width="130px"/>
         </NuxtLink>

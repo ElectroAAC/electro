@@ -1,7 +1,7 @@
 :root {
   --heading-color: #ffffff;
   --text-color: #ffffff;
-  --main-color: #05c3de;
+  --main-color: #03fff2;
   --title-color: #9cabb9;
   --second-main-color: #2196F3;
   --bg-main-color: #0b1822;
@@ -68,4 +68,50 @@
   background: url('~assets/images/top-header.jpg') !important;
   border-bottom: 1px solid var(--bg-second-color);
   color: var(--title-color);
+}
+
+.theme--light.v-data-table {
+  background: none !important;
+  color: var(--title-color) !important;
+}
+
+.theme--light.v-data-table.v-data-table--fixed-header thead th {
+  background: rgb(3 255 243 / 45%) !important;
+  color: var(--heading-color) !important;
+}
+
+.v-application--is-ltr .v-data-table--fixed-header .v-data-footer {
+  background: rgb(3 255 243 / 45%) !important;
+  color: var(--heading-color) !important;
+  margin-right: 0px !important;
+}
+
+.theme--light.v-data-table > .v-data-table__wrapper > table > tbody > tr:hover:not(.v-data-table__expanded__content):not(.v-data-table__empty-wrapper) {
+  background: rgb(3 255 243 / 45%) !important;
+  color: var(--heading-color) !important;
+}
+
+.theme--light.v-text-field > .v-input__control > .v-input__slot:before {
+  border-color: var(--heading-color) !important;
+}
+
+.v-text-field > .v-input__control > .v-input__slot:after {
+  border-color: var(--main-color) !important;
+}
+
+.theme--light.v-label {
+  color: var(--heading-color) !important;
+}
+
+.theme--light.v-icon {
+  color: var(--heading-color) !important;
+}
+
+.theme--light.v-input input, .theme--light.v-input textarea {
+  color: var(--heading-color) !important;
+}
+
+.v-application .primary--text {
+  color: var(--main-color) !important;
+  caret-color: var(--main-color) !important;
 }

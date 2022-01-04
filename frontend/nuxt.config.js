@@ -16,6 +16,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '@/assets/css/vuetify.css',
     '@/assets/css/main.css'
   ],
 
@@ -40,7 +41,14 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     // https://vuetifyjs.com/en/getting-started/installation/#nuxt-install
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    // https://github.com/nuxt-community/router-module
+    [
+      '@nuxtjs/router',
+      {
+        fileName: "nuxt.router.js"
+      }
+    ]
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -55,8 +63,26 @@ export default {
     baseURL: '/',
   },
 
+  // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
+  vuetify: {
+    icons: {
+      iconfont: 'mdi'
+    },
+    theme: {
+      dark: false,
+      themes: {
+        light: {
+          primary: '#03fff2',
+        }
+      }
+    }
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 
+  router: {
+    base: process.env.ROUTE || '/'
+  },
+  
   ssr: true
 }

@@ -4,8 +4,8 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "lib": [
-      "ESNext", 
-      "ESNext.AsyncIterable", 
+      "ESNext",
+      "ESNext.AsyncIterable",
       "DOM"
     ],
     "esModuleInterop": true,
@@ -14,17 +14,28 @@
     "strict": true,
     "noEmit": true,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "importHelpers":true,
+    "noEmitHelpers": false,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./*"],
-      "@/*": ["./*"]
+      "~/*": [
+        "./*"
+      ],
+      "@/*": [
+        "./*"
+      ]
     },
     "types": [
-      "@nuxt/types", 
-      "@nuxtjs/axios", 
+      "@nuxt/types",
+      "@nuxtjs/axios",
       "@types/node",
       "@nuxtjs/vuetify"
     ]
   },
-  "exclude": ["node_modules", ".nuxt", "dist"]
+  "exclude": [
+    "node_modules",
+    ".nuxt",
+    "dist"
+  ]
 }
