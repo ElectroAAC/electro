@@ -8,7 +8,7 @@
   >
     <v-text-field
       :rules="rules.required"
-      label="Usuário"
+      label="Username"
       type="text"
       dense
       outlined
@@ -49,7 +49,7 @@ export default Vue.extend({
       showPassword: false,
       rules: {
         required: [
-          (v: string) => !!v || 'Campo obrigatório',
+          (v: string) => !!v || 'Required field',
         ],
       },
     }
