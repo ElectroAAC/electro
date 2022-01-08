@@ -1,7 +1,7 @@
 :root {
   --heading-color: #ffffff;
   --text-color: #ffffff;
-  --main-color: #03fff2;
+  --main-color: #0385ff;
   --title-color: #9cabb9;
   --second-main-color: #2196F3;
   --bg-main-color: #0b1822;
@@ -23,16 +23,16 @@
   background-size: cover;
 }
 
-.header-text > a {
-  color: var(--heading-color);
-  font-style: normal;
-  font-weight: bold;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: .6px;
+.header-text > a, .header-text > span {
+  color: var(--heading-color) !important;
+  font-style: normal !important;
+  font-weight: bold !important;
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+  letter-spacing: .6px !important;
 }
 
-.header-text > a:hover {
+.header-text > a:hover, .header-text > span:hover {
   color: var(--main-color);
 }
 
@@ -43,7 +43,7 @@
 
 .content {
   color: var(--text-color);
-  background-color: rgba(6, 18, 23, 0.9);
+  background-color: #141f36;
   border: 1px solid var(--bg-second-color);
   display: flex;
   justify-content: center;
@@ -77,6 +77,10 @@
 
 .theme--light.v-data-table.v-data-table--fixed-header thead th {
   background: rgb(3 255 243 / 45%) !important;
+  color: var(--heading-color) !important;
+}
+
+.theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state) > .v-input__control > .v-input__slot fieldset {
   color: var(--heading-color) !important;
 }
 
@@ -114,4 +118,46 @@
 .v-application .primary--text {
   color: var(--main-color) !important;
   caret-color: var(--main-color) !important;
+}
+
+.auth-box {
+  background: #2d3d54 !important;
+  border-radius: .925rem;
+  padding: 2.5rem 2rem;
+  color: var(--heading-color) !important;
+}
+
+.auth-title {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  display: grid;
+  grid-gap: 0.6rem;
+}
+
+.auth-redirect {
+  margin: 2rem auto 0;
+  text-align: center;
+  font-size: .9rem;
+  font-weight: 400;
+  color: rgba(236,236,246,.5);
+}
+
+.login-welcome {
+  border-radius: 22px 0px 0px 22px;
+}
+
+/* Buttons */
+.btn {
+  text-transform: none;
+  font-weight: bold;
+  border-radius: 4px;
+  border: 1px solid transparent !important;
+  letter-spacing: 0;
+  min-width: 150px !important;
+}
+
+.btn-success-primary {
+  background: var(--main-color) !important;
+  color: var(--heading-color) !important;
+  border: 1px solid var(--main-color) !important;
 }

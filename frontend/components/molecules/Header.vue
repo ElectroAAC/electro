@@ -1,8 +1,13 @@
 <template>
   <v-app-bar
-    app
     id="header"
+    app
   >
+    <LoginDialog
+      :dialog="dialog"
+      @update-dialog="updateDialog"
+    />
+
     <v-row class="d-flex align-center justify-center header-text">
         <NuxtLink to="/" class="pa-5"> HOME </NuxtLink>
         <v-menu
@@ -10,13 +15,13 @@
           bottom
           offset-y
         >
-          <template v-slot:activator="{ on, attrs }">
+          <template #activator="{ on, attrs }">
             <span
+              class="header-text"
               v-bind="attrs"
               v-on="on"
-              class="header-text"
             >
-              <NuxtLink to="/" class="pa-5"> ACCOUNT </NuxtLink>
+              <NuxtLink to="/login" class="pa-5"> ACCOUNT </NuxtLink>
             </span>
           </template>
 
@@ -39,6 +44,32 @@
         <NuxtLink to="/" class="pa-5"> SHOP </NuxtLink>
         <NuxtLink to="/" class="pa-5"> DOWNLOAD </NuxtLink>
     </v-row>
+    <v-spacer></v-spacer>
+
+    <v-menu
+      open-on-hover
+      bottom
+      offset-y
+    >
+      <template #activator="{ on, attrs }">
+        <v-btn
+          text
+          v-bind="attrs"
+          v-on="on"
+        >
+          <v-icon>mdi-account</v-icon> 
+        </v-btn>
+      </template>
+      
+      <v-list class="header-list">
+        <v-list-item>
+          <v-list-item-title class="header-text">
+            <span style="cursor: pointer;" @click="updateDialog(true)"> Login </span>
+          </v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+    
   </v-app-bar>
 </template>
 
@@ -47,10 +78,11 @@
 export default {
   data() {
     return {
+      dialog: false,
       menu_account: [
         {
           text: "Login",
-          to: "/"
+          to: "/login"
         },
         {
           text: "Create Account",
@@ -61,6 +93,12 @@ export default {
           to: "/"
         },
       ]
+    }
+  },
+  
+  methods: {
+    updateDialog(status: boolean): void {
+      this.$set(this, 'dialog', status);
     }
   }
 }

@@ -17,8 +17,16 @@
         <v-col cols="1"></v-col>
       </v-row>
     </v-main>
+    
   </v-app>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  name: 'DefaultLayout'
+})
+</script>
 
 <style lang="scss" scoped>
 #app {
