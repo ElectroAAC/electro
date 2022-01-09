@@ -1,6 +1,6 @@
-import Hash from '@ioc:Adonis/Core/Hash'
 import { column, beforeSave, BaseModel, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import { AccountKey } from 'App/Models'
+import crypto from 'crypto';
 
 export default class Account extends BaseModel {
   @column({ isPrimary: true })
@@ -105,7 +105,7 @@ export default class Account extends BaseModel {
   @beforeSave()
   public static async hashPassword (account: Account) {
     if (account.$dirty.password) {
-      account.password = await Hash.make(account.password)
+      account.password = crypto.createHash('sha1').update(account.password).digest('hex');
     }
   }
 
