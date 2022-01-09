@@ -63,6 +63,12 @@ That means, we use:
 
 <br>
 
+## 👨🏾‍💻 Commits
+
+This repository follows the semantic commit pattern. <a href="https://www.conventionalcommits.org/en/v1.0.0/#specification"> More Information </a>
+
+<br>
+
 ## 👤 Author 
 
 <h3> <b> Waliston Belles </b></h3>
