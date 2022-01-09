@@ -8,16 +8,21 @@
       @update-dialog="updateDialog"
     />
 
+     <CreateAccountDialog
+      :dialog="!dialog"
+      @update-dialog="updateDialog"
+    />
+
     <v-row class="d-flex align-center justify-center header-text">
-        <NuxtLink to="/" class="pa-5"> HOME </NuxtLink>
-        <NuxtLink to="/" class="pa-5"> COMMUNITY </NuxtLink>
-        <NuxtLink to="/highscores" class="pa-5"> HIGHSCORES </NuxtLink>
-        <NuxtLink to="/">
-          <Logo class="mt-8" width="130px"/>
-        </NuxtLink>
-        <NuxtLink to="/" class="pa-5"> GUILDS </NuxtLink>
-        <NuxtLink to="/" class="pa-5"> SHOP </NuxtLink>
-        <NuxtLink to="/" class="pa-5"> DOWNLOAD </NuxtLink>
+      <NuxtLink to="/" class="pa-5"> HOME </NuxtLink>
+      <NuxtLink to="/" class="pa-5"> COMMUNITY </NuxtLink>
+      <NuxtLink to="/highscores" class="pa-5"> HIGHSCORES </NuxtLink>
+      <NuxtLink to="/">
+        <Logo class="mt-8" width="130px"/>
+      </NuxtLink>
+      <NuxtLink to="/" class="pa-5"> GUILDS </NuxtLink>
+      <NuxtLink to="/" class="pa-5"> SHOP </NuxtLink>
+      <NuxtLink to="/" class="pa-5"> DOWNLOAD </NuxtLink>
     </v-row>
 
     <v-menu
@@ -67,6 +72,7 @@
 
 <script lang="ts">
 import { auth, account } from '@/store'
+import { Accounts } from '@/models'
 export default {
   data() {
     return {
@@ -85,13 +91,13 @@ export default {
   },
 
   watch: {
-    $token(v) {
+    $token(this: any) {
       this.updateDialog(false);
     }
   },
 
   computed: {
-    $account(): Object {
+    $account(): Accounts {
       return account.$account;
     },
     
@@ -105,7 +111,7 @@ export default {
       this.$set(this, 'dialog', status);
     },
 
-    onLogout(): void {
+    onLogout(this: any): void {
       auth.destroy();
       if (!this.$route && this.$route.fullPath === "/")
         this.$route.push("/")

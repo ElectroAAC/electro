@@ -15,6 +15,7 @@
       outlined
       rounded
       required
+      validate-on-blur
     />
 
     <v-text-field
@@ -26,6 +27,7 @@
       rounded
       required
       hide-details="auto"
+      validate-on-blur
       :type="showPassword ? 'text' : 'password'"
       :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
       @click:append="showPassword = !showPassword"
@@ -71,7 +73,7 @@ export default Vue.extend({
   },
 
   methods: {
-    async onLogin() {
+    async onLogin(this: any): Promise<void> {
       try {
         const res = await auth.create({
           name: this.name,
@@ -79,6 +81,10 @@ export default Vue.extend({
           rememberMe: this.rememberMe
         })
         if (res === 200) {
+          this.$set(this, 'name', "");
+          this.$set(this, 'password', "");
+          this.$set(this, 'rememberMe', false);
+
           this.$toast.success(
             'Successfully authenticated',
             {

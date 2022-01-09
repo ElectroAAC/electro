@@ -7,7 +7,7 @@ import {
 
 import { $axios } from '@/utils/nuxt-instance'
 
-type Account = Array<Object>
+import { Accounts } from '@/models'
 
 @Module({
   name: 'account',
@@ -15,15 +15,15 @@ type Account = Array<Object>
   namespaced: true
 })
 
-export default class Accounts extends VuexModule {
-  private account = {} as Account;
+export default class Account extends VuexModule {
+  private account = {} as Accounts;
 
   public get $account() {
     return this.account;
   }
 
   @Mutation
-  private UPDATE_ACCOUNT(account: Account) {
+  private UPDATE_ACCOUNT(account: Accounts) {
     this.account = account
   }
 

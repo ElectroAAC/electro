@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <Header/>
+    <HeaderTemplate />
     
     <v-main id="main">
       <v-row class="ma-0 mt-15">
