@@ -12,20 +12,38 @@
 
 <br>
 
-<h2> 👨🏾‍💻 Techs </h2>
+## 👨🏾‍💻 Techs 
+
 <h3> Front-end </h3>
+
 <ul>
   <li> Vue.js </li>
-  <li> Nuxt.js </li>
   <li> Vuetify.js </li>
+  <li> Nuxt.js </li>
+  <ul>
+    <li> <a href="https://go.nuxtjs.dev/axios"> Axios </a> </li>
+    <li> <a href="https://github.com/nuxt-community/router-module"> Router </a> </li>
+  </ul>
   <li> Typescript </li>
 </ul>
+
 <h3> Backend </h3>
 <ul>
   <li> Node.js </li>
   <li> Adonis.js </li>
+  <ul>
+    <li> <a href="https://docs.adonisjs.com/guides/auth/introduction"> Auth </a> </li>
+    <li> <a href="https://docs.adonisjs.com/guides/database/introduction"> Lucid ORM </a> </li>
+    <li> <a href="https://docs.adonisjs.com/guides/mailer"> Mailer </a> </li>
+    <li> <a href="https://docs.adonisjs.com/guides/views/introduction"> Views & Templates </a> </li>
+  </ul>
   <li> Typescript </li>
 </ul>
+
+<h3> Services used </h3>
+<li> Email service used for testing: </li>
+<ul>
+  <li> <a href="https://mailtrap.io/"> Mailtrap </a></li></ul>
 <br>
 
 <h2> 👤 Author </h2>
