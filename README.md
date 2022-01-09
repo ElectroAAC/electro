@@ -18,11 +18,16 @@
 
 <ul>
   <li> Vue.js </li>
+  <ul>
+    <li> <a href="https://github.com/championswimmer/vuex-module-decorators"> Vuex-module-decorators </a> </li>
+  </ul>
   <li> Vuetify.js </li>
   <li> Nuxt.js </li>
   <ul>
     <li> <a href="https://go.nuxtjs.dev/axios"> Axios </a> </li>
     <li> <a href="https://github.com/nuxt-community/router-module"> Router </a> </li>
+    <li> <a href="https://www.npmjs.com/package/cookie-universal-nuxt"> Cookie-Universal </a> </li>
+    <li> <a href="https://www.npmjs.com/package/@nuxtjs/toast"> Toast </a> </li>
   </ul>
   <li> Typescript </li>
 </ul>
@@ -46,7 +51,25 @@
   <li> <a href="https://mailtrap.io/"> Mailtrap </a></li></ul>
 <br>
 
-<h2> 👤 Author </h2>
+## 👨🏾‍💻 Branchs
+
+This project follows the framework based on git-flow, a release-based software workflow. <a href="https://platform.deloitte.com.au/articles/semantic-versioning-with-conventional-commits"> More Information </a>
+
+That means, we use:
+
+<li> <strong> Master branch</strong>, for current stable release </li>
+<li> <strong> Develop branch</strong>, for development version (next release) </li>
+<li> <strong> Feature branch</strong>, for features etc </li>
+
+<br>
+
+## 👨🏾‍💻 Commits
+
+This repository follows the semantic commit pattern. <a href="https://www.conventionalcommits.org/en/v1.0.0/#specification"> More Information </a>
+
+<br>
+
+## 👤 Author 
 
 <h3> <b> Waliston Belles </b></h3>
 

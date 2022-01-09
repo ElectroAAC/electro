@@ -4,17 +4,17 @@
     width="850"
   >
     <div cols="9" class="d-flex auth-box pa-0">
-      <LoginWelcome width="450px"/>
+      <CreateAccountImage width="450px"/>
       
       <div class="d-flex align-content-center justify-center flex-wrap">
         <HeaderDialog 
-          small_text="Welcome back"
-          big_text="Login to your account"
+          small_text="Welcome to the game"
+          big_text="Create your account"
         />
 
-        <LoginForm />
+        <CreateAccountForm />
 
-        <LoginAuth />
+        <CreateAccountAuth />
       </div>
     </div>
   </v-dialog>

@@ -35,7 +35,7 @@
 }
 
 .header-text > a:hover, .header-text > span:hover {
-  color: var(--main-color);
+  color: var(--second-main-color) !important;;
 }
 
 .header-list {
@@ -184,4 +184,9 @@
   .container {
     max-width: 95% !important
   }
+}
+
+.text-register {
+  text-decoration: underline;
+  color: var(--second-main-color);
 }
