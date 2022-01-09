@@ -18,11 +18,16 @@
 
 <ul>
   <li> Vue.js </li>
+  <ul>
+    <li> <a href="https://github.com/championswimmer/vuex-module-decorators"> Vuex-module-decorators </a> </li>
+  </ul>
   <li> Vuetify.js </li>
   <li> Nuxt.js </li>
   <ul>
     <li> <a href="https://go.nuxtjs.dev/axios"> Axios </a> </li>
     <li> <a href="https://github.com/nuxt-community/router-module"> Router </a> </li>
+    <li> <a href="https://www.npmjs.com/package/cookie-universal-nuxt"> Cookie-Universal </a> </li>
+    <li> <a href="https://www.npmjs.com/package/@nuxtjs/toast"> Toast </a> </li>
   </ul>
   <li> Typescript </li>
 </ul>

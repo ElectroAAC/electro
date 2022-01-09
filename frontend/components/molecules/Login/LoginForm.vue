@@ -7,6 +7,7 @@
     @keyup.native.enter="validate"
   >
     <v-text-field
+      v-model="name"
       :rules="rules.required"
       label="Username"
       type="text"
@@ -17,20 +18,29 @@
     />
 
     <v-text-field
+      v-model="password"
       :rules="rules.required"
       label="Password"
       dense
       outlined
       rounded
       required
+      hide-details="auto"
       :type="showPassword ? 'text' : 'password'"
       :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
       @click:append="showPassword = !showPassword"
     />
 
+    <v-checkbox
+      v-model="rememberMe"
+      label="Mantenha-me conectado"
+      color="success"
+      hide-details
+    ></v-checkbox>
+
     <v-btn
       depressed
-      class="btn btn-success-primary"
+      class="mt-5 btn btn-success-primary"
       width="100%"
       rounded
       @click="validate"
@@ -42,9 +52,14 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { auth } from '@/store'
+
 export default Vue.extend({
   data() {
     return {
+      name: '',
+      password: '',
+      rememberMe: false,
       valid: true,
       showPassword: false,
       rules: {
@@ -56,8 +71,44 @@ export default Vue.extend({
   },
 
   methods: {
-    async validate(): Promise<void> {
+    async onLogin() {
+      try {
+        const res = await auth.create({
+          name: this.name,
+          password: this.password,
+          rememberMe: this.rememberMe
+        })
+        if (res === 200) {
+          this.$toast.success(
+            'Successfully authenticated',
+            {
+              keepOnHover: true,
+              duration: 2000,
+              theme: "bubble",
+            }
+          )
+          this.$router.push('/accounts')
+        }
+          
+        else
+          throw new Error("Failed to authentication");
+      } catch (error) {
+        console.log(error);
+        this.$toast.error(
+          'Error while authenticating',
+          {
+            keepOnHover: true,
+            duration: 2000,
+            theme: "bubble",
+          }
+        )
+      }
+    },
+
+    async validate(this: any): Promise<void> {
       await this.$refs.form.validate();
+      if (this.valid)
+        await this.onLogin();
     }
   }
 })

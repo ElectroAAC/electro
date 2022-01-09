@@ -23,8 +23,17 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { $cookies } from '@/utils/nuxt-instance'
+import { account } from '@/store'
 export default Vue.extend({
-  name: 'DefaultLayout'
+  name: 'DefaultLayout',
+
+  async created() {
+    if ($cookies.get('token')) {
+      await account.get();
+      console.log(account.$account);
+    }
+  }
 })
 </script>
 

@@ -14,4 +14,9 @@ module.exports = {
   rules: {
     "vue/multi-word-component-names": false
   },
+  parserOptions: {
+    project: "tsconfig.json",
+    tsconfigRootDir: __dirname,
+    sourceType: "module",
+  },
 }
