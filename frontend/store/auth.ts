@@ -55,9 +55,7 @@ export default class Auth extends VuexModule {
         this.context.commit('UPDATE_TOKEN', res.token);
         return 200;
       })
-      .catch((err) => {
-        // eslint-disable-next-line no-console
-        console.log(err);
+      .catch(() => {
         return 400;
       });
     

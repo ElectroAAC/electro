@@ -69,7 +69,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { auth } from '@/store'
+import { accountRegister } from '@/store'
 
 export default Vue.extend({
   data() {
@@ -93,8 +93,51 @@ export default Vue.extend({
   },
 
   methods: {
+    async onSubmit(this: any): Promise<void> {
+      try {
+        const res = await accountRegister.create({
+          email: this.email,
+          name: this.name,
+          password: this.password
+        })
+
+        console.log(res);
+
+        if (res === 200) {
+          this.$set(this, 'email', "");
+          this.$set(this, 'name', "");
+          this.$set(this, 'password', "");
+
+          this.$toast.success(
+            'Successfully created',
+            {
+              keepOnHover: true,
+              duration: 2000,
+              theme: "bubble",
+            }
+          )
+          this.$router.push('/accounts')
+        }
+          
+        else
+          throw new Error("Failed to create account");
+      } catch (error) {
+        console.log(error);
+        this.$toast.error(
+          'Error while create account',
+          {
+            keepOnHover: true,
+            duration: 2000,
+            theme: "bubble",
+          }
+        )
+      }
+    },
+
     async validate(this: any): Promise<void> {
       await this.$refs.form.validate();
+      if (this.valid)
+        await this.onSubmit();
     }
   }
 })

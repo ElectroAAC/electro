@@ -37,9 +37,7 @@ export default class Account extends VuexModule {
 
         return 200;
       })
-      .catch((err) => {
-        // eslint-disable-next-line no-console
-        console.log(err);
+      .catch(() => {
         return 400;
       });
     return 200;

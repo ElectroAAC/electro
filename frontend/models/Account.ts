@@ -1,4 +1,5 @@
 export interface Accounts {
-	name: "waliston",
-	email: "waliston@superia.global",
+	name: String,
+	email: String,
+	password: String
 }

@@ -3,13 +3,8 @@
     id="header"
     app
   >
-    <LoginDialog
+    <CreateAccountDialog
       :dialog="dialog"
-      @update-dialog="updateDialog"
-    />
-
-     <CreateAccountDialog
-      :dialog="!dialog"
       @update-dialog="updateDialog"
     />
 
