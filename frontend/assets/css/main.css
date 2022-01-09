@@ -1,12 +1,14 @@
 :root {
   --heading-color: #ffffff;
   --text-color: #ffffff;
-  --main-color: #0385ff;
   --title-color: #9cabb9;
-  --second-main-color: #2196F3;
+  --main-color: #0385ff;
+  --second-main-color: #03fff2;
   --bg-main-color: #0b1822;
   --bg-second-color: #334459;
   --bg-third-color: #061217;
+  --bg-dashboard-main-color: #1f2128;
+  --bg-dashboard-content-color: #2a2d38;
 }
 
 #app {
@@ -160,4 +162,26 @@
   background: var(--main-color) !important;
   color: var(--heading-color) !important;
   border: 1px solid var(--main-color) !important;
+}
+
+.container {
+  width: 95% !important;
+}
+
+@media (min-width: 960px) {
+  .container {
+    max-width: 95% !important;
+  }
+}
+
+@media (min-width: 1264px) {
+  .container {
+    max-width: 95% !important;
+  }
+}
+
+@media (min-width: 1904px) {
+  .container {
+    max-width: 95% !important
+  }
 }

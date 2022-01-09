@@ -17,13 +17,13 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/css/vuetify.css',
-    '@/assets/css/main.css'
+    '@/assets/css/main.css',
+    '@/assets/css/dashboard.css',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: [
     {

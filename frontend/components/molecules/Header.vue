@@ -44,7 +44,6 @@
         <NuxtLink to="/" class="pa-5"> SHOP </NuxtLink>
         <NuxtLink to="/" class="pa-5"> DOWNLOAD </NuxtLink>
     </v-row>
-    <v-spacer></v-spacer>
 
     <v-menu
       open-on-hover

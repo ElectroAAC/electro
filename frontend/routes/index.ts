@@ -1,5 +1,6 @@
 import IndexPage from '~/pages/index.vue';
 import Highscores from '~/pages/highscores.vue';
+import Dashboard from '~/routes/dashboard/index'
 
 export default [
   {
@@ -9,5 +10,6 @@ export default [
   {
     path: '/highscores',
     component: Highscores
-  }
+  },
+  ...Dashboard,
 ]

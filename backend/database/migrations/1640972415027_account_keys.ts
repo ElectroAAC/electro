@@ -9,7 +9,6 @@ export default class AccountKeys extends BaseSchema {
       table.string('key').unique()
       table
         .integer('account_id')
-        .unsigned()
         .references('id')
         .inTable('accounts')
         .onUpdate('CASCADE')
