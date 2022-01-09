@@ -51,7 +51,19 @@
   <li> <a href="https://mailtrap.io/"> Mailtrap </a></li></ul>
 <br>
 
-<h2> 👤 Author </h2>
+## 👨🏾‍💻 Branchs
+
+This project follows the framework based on git-flow, a release-based software workflow. <a href="https://platform.deloitte.com.au/articles/semantic-versioning-with-conventional-commits"> More Information </a>
+
+That means, we use:
+
+<li> <strong> Master branch</strong>, for current stable release </li>
+<li> <strong> Develop branch</strong>, for development version (next release) </li>
+<li> <strong> Feature branch</strong>, for features etc </li>
+
+<br>
+
+## 👤 Author 
 
 <h3> <b> Waliston Belles </b></h3>
 
