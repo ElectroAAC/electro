@@ -185,3 +185,8 @@
     max-width: 95% !important
   }
 }
+
+.text-register {
+  text-decoration: underline;
+  color: var(--second-main-color);
+}

@@ -3,7 +3,14 @@
     id="header"
     app
   >
-    <CreateAccountDialog
+     <CreateAccountDialog
+      v-if="$isRegistering"
+      :dialog="dialog"
+      @update-dialog="updateDialog"
+    />
+
+    <LoginDialog
+      v-else
       :dialog="dialog"
       @update-dialog="updateDialog"
     />
@@ -66,7 +73,7 @@
 </template>
 
 <script lang="ts">
-import { auth, account } from '@/store'
+import { auth, account, accountRegister } from '@/store'
 import { Accounts } from '@/models'
 export default {
   data() {
@@ -98,6 +105,10 @@ export default {
     
     $token() {
       return auth.$token;
+    },
+
+    $isRegistering(): boolean {
+      return accountRegister.$isRegistering;
     }
   },
   

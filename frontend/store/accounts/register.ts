@@ -20,6 +20,17 @@ interface CreatePayload {
 })
 
 export default class AccountRegister extends VuexModule {
+  private isRegistering = false;
+  
+  public get $isRegistering() {
+    return this.isRegistering;
+  }
+  
+  @Mutation
+  private UPDATE_ACCOUNT(payload: boolean) {
+    this.isRegistering = payload
+  }
+
   @Action
   public async create(payload: CreatePayload) {
     const status = await $axios.$post('accounts/register', payload)
@@ -32,5 +43,10 @@ export default class AccountRegister extends VuexModule {
         return 400;
       });
     return status;
+  }
+
+  @Action
+  public async changeRegistering(payload: boolean) {
+    this.context.commit('UPDATE_ACCOUNT', payload);
   }
 }

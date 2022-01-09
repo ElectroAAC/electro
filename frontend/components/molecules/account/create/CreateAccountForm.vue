@@ -101,8 +101,6 @@ export default Vue.extend({
           password: this.password
         })
 
-        console.log(res);
-
         if (res === 200) {
           this.$set(this, 'email', "");
           this.$set(this, 'name', "");
@@ -116,6 +114,7 @@ export default Vue.extend({
               theme: "bubble",
             }
           )
+          accountRegister.changeRegistering(false)
           this.$router.push('/accounts')
         }
           

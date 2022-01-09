@@ -1,6 +1,21 @@
 <template>
-  <p class="auth-redirect">
+  <div class="auth-redirect">
     <span>Don't have an account yet?</span> 
-    <a href="/register" data-v-1e23e30c="" class="">Register</a>
-  </p>
+    <button class="text-register" @click="changeStatus()"> 
+      Register 
+    </button>
+  </div>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+import { accountRegister } from '@/store'
+
+export default Vue.extend({
+  methods: {
+    changeStatus(): void {
+      accountRegister.changeRegistering(true);
+    }
+  }
+})
+</script>
