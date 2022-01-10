@@ -40,7 +40,7 @@
           v-on="on"
         >
           <v-icon>mdi-account</v-icon> 
-          <span> {{ $account.name }} </span>
+          <NuxtLink to="/accounts"> {{ $account.name }} </NuxtLink>
         </v-btn>
       </template>
       
@@ -82,7 +82,7 @@ export default {
       menu_account: [
         {
           text: "Manage account",
-          to: "/account"
+          to: "/accounts"
         },
         {
           text: "Create Character",
@@ -119,8 +119,10 @@ export default {
 
     onLogout(this: any): void {
       auth.destroy();
-      if (!this.$route && this.$route.fullPath === "/")
-        this.$route.push("/")
+      if (this.$route && this.$route.fullPath !== "/") {
+        console.log(this.$route)
+        this.$router.push("/")
+      }
     }
   }
 }

@@ -4,7 +4,7 @@
     width="850"
   >
     <div cols="9" class="d-flex auth-box pa-0">
-      <LoginWelcome width="450px"/>
+      <LoginWelcome width="450px" class="auth-image"/>
       
       <div class="d-flex align-content-center justify-center flex-wrap">
         <HeaderDialog 
@@ -42,3 +42,8 @@ export default Vue.extend({
   },
 })
 </script>
+<style lang="scss" scoped>
+.auth-box {
+  background: rgba(40, 51, 118, 0.871) !important
+}
+</style>

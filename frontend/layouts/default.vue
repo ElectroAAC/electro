@@ -5,7 +5,7 @@
     <v-main id="main">
       <v-row class="ma-0 mt-15">
         <v-col cols="1"></v-col>
-        <v-col cols="7" class="content">
+        <v-col cols="7" class="content pa-0">
           <Nuxt/>
         </v-col>
         <v-col cols="3" class="side-bar ml-5 pa-0">
@@ -31,7 +31,6 @@ export default Vue.extend({
   async created() {
     if ($cookies.get('token')) {
       await account.get();
-      console.log(account.$account);
     }
   }
 })
