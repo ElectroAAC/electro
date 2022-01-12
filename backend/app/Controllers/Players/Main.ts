@@ -7,10 +7,11 @@ export default class PlayersController {
       const player = await Database
         .from('players')
         .select('name', 'sex', 'vocation', 'level', 'maglevel', 'lastlogin', 'healthmax', 'manamax', 'online', 'created')
-        .where('players.id', request.param('id'));
+        .where('id', request.param('id'));
       return response.status(200).send({ result: player});
 
     } catch(err) {
+      console.log('Error getPlayer Query: ', err);
       return response.status(400).send({ message: 'An error occurred, check the api console.'})
     }
   }

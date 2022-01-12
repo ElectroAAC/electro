@@ -12,6 +12,7 @@ export default class PlayerSkillController {
       return response.status(200).send({ result: playerSkills});
 
     } catch(err) {
+      console.log('Error getPlayerSkills Query: ', err);
       return response.status(400).send({ message: 'An error occurred, check the api console.'})
     }
   }

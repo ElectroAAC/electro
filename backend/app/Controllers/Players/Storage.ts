@@ -15,6 +15,7 @@ export default class PlayerStorageController {
       return response.status(200).send({ result: playerStorage});
 
     } catch(err) {
+      console.log('Error getPlayerStorage Query: ', err);
       return response.status(400).send({ message: 'An error occurred, check the api console.'})
     }
   }
