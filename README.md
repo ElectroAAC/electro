@@ -65,8 +65,7 @@ That means, we use:
 
 ## 👨🏾‍💻 Commits
 
-This repository follows the semantic commit pattern. <a href="https://www.conventionalcommits.org/en/v1.0.0/#specification"> More Information </a>
-
+This repository follows the semantic commit pattern, with the addition of the tag [BACK] for a commit related to the backend, and [FRONT] for a commit related to the frontend. <a href="https://www.conventionalcommits.org/en/v1.0.0/#specification"> More Information </a>
 <br>
 
 ## 👤 Author 

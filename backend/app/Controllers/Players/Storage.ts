@@ -1,7 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
 
-export default class PlayersController {
+export default class PlayerStorageController {
   public async show({ request, response }: HttpContextContract) {
     try {
       console.log(request.params());
@@ -15,6 +15,7 @@ export default class PlayersController {
       return response.status(200).send({ result: playerStorage});
 
     } catch(err) {
+      console.log('Error getPlayerStorage Query: ', err);
       return response.status(400).send({ message: 'An error occurred, check the api console.'})
     }
   }
