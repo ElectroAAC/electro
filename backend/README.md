@@ -58,5 +58,6 @@ $ npm run start
 
 | METHOD | ENDPOINT                   | DESCRIPTION                           |
 | :----- | :------------------------- | :------------------------------------ |
+| GET    | /player/:id                | Get Player Infos                      |
 | GET    | /player/:id/skills         | Get Player Skills                     |
 | GET    | /player/:id/storage/:key   | Get Player Storage                    |

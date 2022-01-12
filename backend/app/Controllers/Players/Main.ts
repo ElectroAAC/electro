@@ -4,12 +4,11 @@ import Database from '@ioc:Adonis/Lucid/Database'
 export default class PlayersController {
   public async show({ request, response }: HttpContextContract) {
     try {
-      const playerSkills = await Database
+      const player = await Database
         .from('players')
-        .join('player_skills', 'players.id', '=', 'player_skills.player_id')
-        .select('players.maglevel', 'player_skills.skillid', 'player_skills.value')
+        .select('name', 'sex', 'vocation', 'level', 'maglevel', 'lastlogin', 'healthmax', 'manamax', 'online', 'created')
         .where('players.id', request.param('id'));
-      return response.status(200).send({ result: playerSkills});
+      return response.status(200).send({ result: player});
 
     } catch(err) {
       return response.status(400).send({ message: 'An error occurred, check the api console.'})

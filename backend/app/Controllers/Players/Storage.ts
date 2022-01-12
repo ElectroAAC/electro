@@ -1,7 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
 
-export default class PlayersController {
+export default class PlayerStorageController {
   public async show({ request, response }: HttpContextContract) {
     try {
       console.log(request.params());
