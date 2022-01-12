@@ -4,7 +4,7 @@
   --title-color: #9cabb9;
   --main-color: #0385ff;
   --second-main-color: #03fff2;
-  --bg-main-color: #0b1822;
+  --bg-main-color: #141f36;
   --bg-second-color: #334459;
   --bg-third-color: #061217;
   --bg-dashboard-main-color: #1f2128;
@@ -45,10 +45,8 @@
 
 .content {
   color: var(--text-color);
-  background-color: #141f36;
+  background-color: rgba(20, 31, 54, 0.93);
   border: 1px solid var(--bg-second-color);
-  display: flex;
-  justify-content: center;
 }
 
 .side-bar {
@@ -56,7 +54,7 @@
 }
 
 .widget {
-  background-color: rgba(6, 18, 23, 0.9);
+  background-color: rgba(20, 31, 54, 0.93);
   border: 1px solid var(--bg-second-color);
 }
 
@@ -124,7 +122,7 @@
 
 .auth-box {
   background: #2d3d54 !important;
-  border-radius: .925rem;
+  border-radius: 1.925rem;
   padding: 2.5rem 2rem;
   color: var(--heading-color) !important;
 }
@@ -144,8 +142,8 @@
   color: rgba(236,236,246,.5);
 }
 
-.login-welcome {
-  border-radius: 22px 0px 0px 22px;
+.auth-image {
+  border-radius: 30px 0px 0px 30px;
 }
 
 /* Buttons */
@@ -189,4 +187,42 @@
 .text-register {
   text-decoration: underline;
   color: var(--second-main-color);
+}
+
+.v-dialog {
+  box-shadow: none !important;
+}
+
+.theme--light.v-tabs > .v-tabs-bar {
+  background-color: var(--bg-main-color) !important;
+  color: var(--second-main-color) !important;
+  border-radius: 1.95rem;
+}
+
+.theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active), .theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) > .v-icon, .theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) > .v-btn, .theme--light.v-tabs > .v-tabs-bar .v-tab--disabled {
+  color: var(--text-color) !important;
+}
+
+.theme--light.v-tabs-items {
+  background-color: rgba(20, 31, 54, 0.93) !important;
+  border-radius: 1.95rem;
+}
+
+.bg-second {
+  background-color: var(--bg-second-color) !important;
+  color: var(--text-color) !important;
+  border-radius: 1.95rem;
+}
+
+.v-slide-group__next--disabled, .v-slide-group__prev--disabled {
+  pointer-events: all !important;
+}
+
+.v-icon--disabled {
+  color: var(--text-color) !important;
+}
+
+.bg-character-list {
+  background-color: rgba(20, 31, 54, 0) !important;
+  box-shadow: none !important;
 }

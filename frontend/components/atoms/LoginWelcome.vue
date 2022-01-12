@@ -1,3 +1,3 @@
 <template>
-  <img src="~/assets/images/login-welcome.png" class="login-welcome">
+  <img src="~/assets/images/login-welcome.png">
 </template>
