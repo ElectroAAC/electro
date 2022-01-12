@@ -50,3 +50,12 @@ $ npm run start
 | METHOD | ENDPOINT                   | DESCRIPTION                           |
 | :----- | :------------------------- | :------------------------------------ |
 | GET    | /highscores                | Get Top 5 Players                     |
+
+
+<br>
+
+##  🕵🏾‍♂️  Routes Players
+
+| METHOD | ENDPOINT                   | DESCRIPTION                           |
+| :----- | :------------------------- | :------------------------------------ |
+| GET    | /player/:id/skills         | Get Player Skills                     |
