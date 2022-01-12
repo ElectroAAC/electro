@@ -1,6 +1,7 @@
 import Route from '@ioc:Adonis/Core/Route';
 import './auth';
 import './account';
+import './highscores';
 
 Route.get('/', async () => {
   return { hello: 'world' }
