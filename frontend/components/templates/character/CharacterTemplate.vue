@@ -1,7 +1,10 @@
 <template>
-  <v-row>
-    {{ getCharacterName }}
-  </v-row>
+  <v-container>
+    <CharacterSearchForm v-if="!getCharacterName" />
+    <div v-else> 
+      {{ getCharacterName }}
+    </div>
+  </v-container>
 </template>
 
 <script lang="ts">
