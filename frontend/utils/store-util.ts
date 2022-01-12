@@ -12,12 +12,18 @@ import {
   Character 
 } from '~/store/character'
 
+import { 
+  Highscores 
+} from '~/store/highscores'
+
 let auth: Auth;
 
 let account: Account;
 let accountRegister: AccountRegister;
 
 let character: Character;
+
+let highscores: Highscores;
 
 const initializeStores = (store: Store<any>) => {
   auth = getModule(Auth, store);
@@ -26,6 +32,7 @@ const initializeStores = (store: Store<any>) => {
   accountRegister = getModule(AccountRegister, store);
 
   character = getModule(Character, store);
+  highscores = getModule(Highscores, store);
 };
 
 export {
@@ -33,5 +40,6 @@ export {
   auth,
   account,
   accountRegister,
-  character
+  character,
+  highscores
 };

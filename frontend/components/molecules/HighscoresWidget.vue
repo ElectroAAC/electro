@@ -3,7 +3,7 @@
     <h5 class="widget-title"> Highscores </h5>
     <v-container class="text-center">
       <div
-        v-for="(player, idx) in players"
+        v-for="(player, idx) in $highscores"
         :key="idx"
       >
         <CharacterAvatar :avatar="player.vocation" width="60px"/> <br>
@@ -15,42 +15,24 @@
 </template>
 
 <script lang="ts">
-export default {
-  data() {
-    return {
-      players: [
-        {
-          id: 1,
-          name: 'Orc Sample',
-          level: '8',
-          vocation: 'Orc'
-        },
-        {
-          id: 2,
-          name: 'Witch Sample',
-          level: '8',
-          vocation: 'Witch'
-        },
-        {
-          id: 3,
-          name: 'Lizard Sample',
-          level: '8',
-          vocation: 'Lizard'
-        },
-        {
-          id: 4,
-          name: 'Demon Sample',
-          level: '8',
-          vocation: 'Demon'
-        },
-        {
-          id: 5,
-          name: 'Warrior Sample',
-          level: '8',
-          vocation: 'Warrior'
-        },
-      ]
+import Vue from 'vue'
+import { highscores } from '@/store'
+
+export default Vue.extend({
+  computed: {
+    $highscores(): Object[] {
+      return highscores.$topRank;
+    }
+  },
+
+  mounted() {
+    this.getTopRank();
+  },
+
+  methods: {
+    async getTopRank(): Promise<void> {
+      await highscores.getTopRank();
     }
   }
-}
+})
 </script>
