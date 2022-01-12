@@ -2,6 +2,7 @@ import IndexPage from '~/pages/index.vue';
 import Highscores from '~/pages/highscores.vue';
 import Dashboard from '~/routes/dashboard/index'
 import Account from '~/routes/account'
+import Character from '~/routes/character'
 
 export default [
   {
@@ -14,4 +15,5 @@ export default [
   },
   ...Dashboard,
   ...Account,
+  ...Character,
 ]

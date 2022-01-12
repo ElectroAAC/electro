@@ -10,7 +10,7 @@ import { $axios } from '@/utils/nuxt-instance'
 import { Accounts } from '@/models'
 
 @Module({
-  name: 'account',
+  name: 'accounts/account',
   stateFactory: true,
   namespaced: true
 })
