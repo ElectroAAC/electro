@@ -38,11 +38,11 @@ export default Vue.extend({
   },
   
   async created() {
-    console.log('aiaiai')
-    console.log(this.getCharacterName)
     if (this.getCharacterName) {
-      console.log(this.getCharacterName)
       await this.getPlayer();
+      if (this.$character && this.$character.id) {
+        character.getSkill(this.$character.id)
+      }
     }
   },
 

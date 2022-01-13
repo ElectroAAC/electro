@@ -44,6 +44,7 @@
 }
 
 .content {
+  border-radius: 1rem !important;
   color: var(--text-color);
   background-color: rgba(20, 31, 54, 0.93);
   border: 1px solid var(--bg-second-color);
@@ -56,9 +57,11 @@
 .widget {
   background-color: rgba(20, 31, 54, 0.93);
   border: 1px solid var(--bg-second-color);
+  border-radius: 1rem !important;
 }
 
 .widget-title {
+  border-radius: 1rem 1rem 0px 0px !important;
   padding: 1.1rem 1.8rem 0.95rem;
   font-size: 18px;
   font-weight: 500;
@@ -247,4 +250,8 @@
 
 .toasted.bubble.error {
   background: #f44336d7 !important;
+}
+
+.fs-14 {
+  font-size: 14px !important;
 }

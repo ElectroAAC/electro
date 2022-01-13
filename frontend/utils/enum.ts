@@ -1,10 +1,11 @@
 export const skillName = [
-  { value: 1, text: "Attack Speed" },
-  { value: 2, text: "Club" },
-  { value: 3, text: "Sword" },
-  { value: 4, text: "Axe" },
-  { value: 5, text: "Distance" },
-  { value: 6, text: "Shielding" },
+  { value: 0, text: "Attack Speed" },
+  { value: 1, text: "Club" },
+  { value: 2, text: "Sword" },
+  { value: 3, text: "Axe" },
+  { value: 4, text: "Distance" },
+  { value: 5, text: "Shielding" },
+  { value: 6, text: "Fishing" },
 ]
 
 export const vocations = [

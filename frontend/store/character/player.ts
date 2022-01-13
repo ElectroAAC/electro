@@ -23,6 +23,10 @@ export default class Character extends VuexModule {
     return this.player;
   }
 
+  public get $skills() {
+    return this.skill;
+  }
+
   @Mutation
   private UPDATE_PLAYER(player: Player) {
     this.player = player
