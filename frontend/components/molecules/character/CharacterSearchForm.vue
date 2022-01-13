@@ -42,33 +42,17 @@ export default Vue.extend({
   },
 
   computed: {
-    $player(): Object {
-      return character.$player;
+    $info(): Object {
+      return character.$info;
     }
   },
 
   methods: {
     async onSearch(this: any) {
       try {
-        await character.getPlayer(this.character_name);
-        if (!this.$player || !this.$player.name) {
-          this.$toast.error(
-            'Character Not Found',
-            {
-              keepOnHover: true,
-              duration: 3000,
-              theme: "bubble",
-              singleton: true,
-              position: 'top-right',
-            }
-          );
-          return;
-        }
-        else {
-          this.$router.push('/character/' + this.character_name);
-        }
+        this.$router.push('/character/' + this.character_name);
       } catch(err) {
-
+        console.log(err);
       }
     },
 

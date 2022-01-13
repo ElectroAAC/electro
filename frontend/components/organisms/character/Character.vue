@@ -26,7 +26,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { character } from '@/store'
 
 export default Vue.extend({
   data() {
@@ -40,40 +39,6 @@ export default Vue.extend({
       if (this.$route.params && this.$route.params.name)
         return this.$route.params.name;
     },
-    $character() {
-      return character.$player;
-    }
   },
-
-  mounted() {
-    if (this.getCharacterName) {
-      console.log(this.getCharacterName)
-      this.getPlayer();
-    }
-  },
-
-  methods: {
-    async getPlayer(this: any) {
-      try {
-        await character.getPlayer(this.getCharacterName);
-        if (!this.$character || !this.$character.name) {
-          this.$toast.error(
-            'Character Not Found',
-            {
-              keepOnHover: true,
-              duration: 3000,
-              theme: "bubble",
-              singleton: true,
-              position: 'top-right',
-            }
-          );
-          // this.$router.push('/character');
-          return;
-        }
-      } catch(err) {
-        console.log(err);
-      }
-    },
-  }
 })
 </script>

@@ -19,7 +19,7 @@ export default class Character extends VuexModule {
   private player = {} as Player;
   private skill: Skill[] = [];
 
-  public get $player() {
+  public get $info() {
     return this.player;
   }
 
@@ -69,11 +69,11 @@ export default class Character extends VuexModule {
           return 200;
         })
         .catch(() => {
-          this.context.commit('UPDATE_SKILL', {});
+          this.context.commit('UPDATE_SKILL', null);
           return 400;
         });
     } catch(err) {
-      this.context.commit('UPDATE_SKILL', {});
+      this.context.commit('UPDATE_SKILL', null);
       return 400;
     }
   }

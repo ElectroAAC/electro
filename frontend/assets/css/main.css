@@ -214,6 +214,12 @@
   border-radius: 1.95rem;
 }
 
+.bg-third {
+  background-color: #00ffc43b !important;
+  color: var(--text-color) !important;
+  border-radius: 1.95rem;
+}
+
 .v-slide-group__next--disabled, .v-slide-group__prev--disabled {
   pointer-events: all !important;
 }
