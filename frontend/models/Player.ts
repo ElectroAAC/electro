@@ -1,4 +1,5 @@
 export interface Player {
+	id: Number,
   name: String,
 	sex: Number,
 	vocation: Number,
