@@ -12,19 +12,27 @@ export default class PlayerItemsController {
         .andWhere('pid', '<', 11);
       
       const empty_slots = ["", "no_helmet", "no_necklace", "no_backpack", "no_armor", "no_handright", "no_handleft", "no_legs", "no_boots", "no_ring", "no_ammo"];
-      
-      const equipment: Array<String> | Array<Number> = [];
+
+      const name_slots = ['', 'helmet', 'necklace', 'backpack', 'armor', 'handright', 'handleft', 'legs', 'boots', 'ring', 'ammo'];
+
+      const equipment: Object[] = [];
 
       // It goes through the list of returned items, and added the item's id in the index of its slot,
       items.map(item => {
-        equipment[item['pid']] = item['itemtype'];
-      })
+        equipment[item['pid']] = {
+          id: item['itemtype'],
+          slot: name_slots[item['pid']]
+        };
+      });
       
       // Checks if the item_id is empty or equal to 0, if true, adds the blank image referring to the slot the item is in.
       for(let i = 0; i <= 10; i++)
       {
         if(!equipment[i] || equipment[i] === 0)
-          equipment[i] = empty_slots[i];
+          equipment[i] = {
+            id: empty_slots[i],
+            slot: name_slots[i]
+          };
       }
 
       return response.status(200).send({ result: equipment});
