@@ -1,9 +1,8 @@
 <template>
   <v-container>
     <CharacterSearchForm v-if="!getCharacterName" />
-    <div v-else> 
-      {{ getCharacterName }}
-    </div>
+    
+    <Character v-else />
   </v-container>
 </template>
 

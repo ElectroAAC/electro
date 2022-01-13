@@ -10,3 +10,8 @@ export interface Player {
 	online: Number,
 	created: Number
 }
+
+export interface Skill {
+	skillid: Number,
+	value: Number
+}

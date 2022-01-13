@@ -7,8 +7,8 @@
         :key="idx"
       >
         <CharacterAvatar :avatar="player.vocation" width="60px"/> <br>
-        <span> {{ player.name }} </span> <br>
-        <span> {{ player.level }}. {{ player.vocation }} </span>
+        <span> <NuxtLink :to="`/character/${player.name}`"> {{ player.name }} </NuxtLink> </span> <br>
+        <span> {{ player.level }} </span>
       </div>
     </v-container>
   </aside>

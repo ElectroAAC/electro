@@ -7,7 +7,7 @@ import {
 
 import { $axios } from '@/utils/nuxt-instance'
 
-import { Player } from '@/models'
+import { Player, Skill } from '@/models'
 
 @Module({
   name: 'character/player',
@@ -17,6 +17,7 @@ import { Player } from '@/models'
 
 export default class Character extends VuexModule {
   private player = {} as Player;
+  private skill: Skill[] = [];
 
   public get $player() {
     return this.player;
@@ -27,25 +28,52 @@ export default class Character extends VuexModule {
     this.player = player
   }
 
+  @Mutation
+  private UPDATE_SKILL(skill: Skill[]) {
+    this.skill = skill;
+  }
+
   @Action
   public async getPlayer(name: String) {
     try {
       await $axios.$get(`player/${name}`)
-      .then((res) => {
-        if (!res) 
-          throw new Error("Failed to get player");
+        .then((res) => {
+          if (!res) 
+            throw new Error("Failed to get player");
 
-        this.context.commit('UPDATE_PLAYER', res.result[0]);
+          this.context.commit('UPDATE_PLAYER', res.result[0]);
 
-        return 200;
-      })
-      .catch(() => {
-        this.context.commit('UPDATE_PLAYER', {});
-        return 400;
-      });
-    return 200;
+          return 200;
+        })
+        .catch(() => {
+          this.context.commit('UPDATE_PLAYER', {});
+          return 400;
+        });
+      return 200;
     } catch(err) {
       this.context.commit('UPDATE_PLAYER', {});
+      return 400;
+    }
+  }
+
+  @Action
+  public async getSkill(id: Number) {
+    try {
+      await $axios.$get(`player/${id}/skills`)
+        .then((res) => {
+          if (!res) 
+            throw new Error("Failed to get player skill");
+
+          this.context.commit('UPDATE_SKILL', res.result);
+
+          return 200;
+        })
+        .catch(() => {
+          this.context.commit('UPDATE_SKILL', {});
+          return 400;
+        });
+    } catch(err) {
+      this.context.commit('UPDATE_SKILL', {});
       return 400;
     }
   }
