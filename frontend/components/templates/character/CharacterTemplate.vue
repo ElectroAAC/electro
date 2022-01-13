@@ -41,7 +41,8 @@ export default Vue.extend({
     if (this.getCharacterName) {
       await this.getPlayer();
       if (this.$character && this.$character.id) {
-        character.getSkill(this.$character.id)
+        character.getSkill(this.$character.id);
+        character.getItems(this.$character.id);
       }
     }
   },

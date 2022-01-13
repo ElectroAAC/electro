@@ -44,6 +44,8 @@ export default class PlayerItemsController {
         newEquipment[newOrder[idx]] = equip;
       })
 
+      newEquipment.shift();
+
       return response.status(200).send({ result: newEquipment});
     } catch(err) {
       console.log('Error getPlayerItems Query: ', err);

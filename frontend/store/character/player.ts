@@ -7,7 +7,7 @@ import {
 
 import { $axios } from '@/utils/nuxt-instance'
 
-import { Player, Skill } from '@/models'
+import { Item, Player, Skill } from '@/models'
 
 @Module({
   name: 'character/player',
@@ -18,6 +18,7 @@ import { Player, Skill } from '@/models'
 export default class Character extends VuexModule {
   private player = {} as Player;
   private skill: Skill[] = [];
+  private items = {} as Item[];
 
   public get $info() {
     return this.player;
@@ -25,6 +26,10 @@ export default class Character extends VuexModule {
 
   public get $skills() {
     return this.skill;
+  }
+
+  public get $items() {
+    return this.items;
   }
 
   @Mutation
@@ -35,6 +40,11 @@ export default class Character extends VuexModule {
   @Mutation
   private UPDATE_SKILL(skill: Skill[]) {
     this.skill = skill;
+  }
+
+  @Mutation
+  private UPDATE_ITEMS(items: Item[]) {
+    this.items = items;
   }
 
   @Action
@@ -78,6 +88,28 @@ export default class Character extends VuexModule {
         });
     } catch(err) {
       this.context.commit('UPDATE_SKILL', null);
+      return 400;
+    }
+  }
+
+  @Action
+  public async getItems(id: Number) {
+    try {
+      await $axios.$get(`player/${id}/items`)
+        .then((res) => {
+          if (!res) 
+            throw new Error("Failed to get player items");
+
+          this.context.commit('UPDATE_ITEMS', res.result);
+
+          return 200;
+        })
+        .catch(() => {
+          this.context.commit('UPDATE_ITEMS', []);
+          return 400;
+        });
+    } catch(err) {
+      this.context.commit('UPDATE_ITEMS', []);
       return 400;
     }
   }
