@@ -17,7 +17,7 @@ export default class PlayersController {
 
       const player = await Database
         .from('players')
-        .select('name', 'sex', 'vocation', 'level', 'maglevel', 'lastlogin', 'healthmax', 'manamax', 'online', 'created')
+        .select('id', 'name', 'sex', 'vocation', 'level', 'maglevel', 'lastlogin', 'healthmax', 'manamax', 'online', 'created')
         .where('name', name);
       return response.status(200).send({ result: player});
 

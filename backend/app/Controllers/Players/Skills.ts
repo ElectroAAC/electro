@@ -7,7 +7,7 @@ export default class PlayerSkillController {
       const playerSkills = await Database
         .from('players')
         .join('player_skills', 'players.id', '=', 'player_skills.player_id')
-        .select('players.maglevel', 'player_skills.skillid', 'player_skills.value')
+        .select('player_skills.skillid', 'player_skills.value')
         .where('players.id', request.param('id'));
       return response.status(200).send({ result: playerSkills});
 
