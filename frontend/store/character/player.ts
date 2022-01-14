@@ -19,7 +19,7 @@ export default class Character extends VuexModule {
   private player = {} as Player;
   private skill: Skill[] = [];
   private items = {} as Item[];
-  private death = [] as Death[];
+  private deaths = [] as Death[];
 
   public get $info() {
     return this.player;
@@ -31,6 +31,10 @@ export default class Character extends VuexModule {
 
   public get $items() {
     return this.items;
+  }
+
+  public get $deaths() {
+    return this.deaths;
   }
 
   @Mutation
@@ -50,7 +54,7 @@ export default class Character extends VuexModule {
 
   @Mutation
   private UPDATE_DEATHS(deaths: Death[]) {
-    this.death = deaths;
+    this.deaths = deaths;
   }
 
   @Action

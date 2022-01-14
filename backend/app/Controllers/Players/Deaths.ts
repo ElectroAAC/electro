@@ -54,7 +54,7 @@ export default class PlayerDeathsController {
 
             const url = remote_url + '/' + killer.player_name;
 
-            if(killer.player_exists && killer.player_exists === 0)
+            if(killer.player_exists === 0)
               description += '<a href="'+ url + '">' + killer.player_name + '</a> ';
             else
               description += killer.player_name;

@@ -23,7 +23,6 @@ export interface Item {
 }
 
 export interface Death {
-	id: number,
-	date: number,
-	level: number
+	time: number,
+	description: string
 }
