@@ -61,5 +61,5 @@ $ npm run start
 | GET    | /player/:name              | Get Player Infos                      |
 | GET    | /player/:id/skills         | Get Player Skills                     |
 | GET    | /player/:id/storage/:key   | Get Player Storage                    |
-| GET    | /player/:id/deaths         | Get Player Last 10 Deaths             |
+| POST   | /player/:id/deaths         | Get Player Last 10 Deaths             |
 | GET    | /player/:id/items          | Get Player Items equipment            |
