@@ -5,9 +5,7 @@ export default class PlayerDeathsController {
   public async show({ request, response }: HttpContextContract) {
     try {
       const { remote_url } = request.body();
-
-      console.log(request.body())
-
+      
       const deaths: Object[] = [];
 
       const player_deaths = await Database

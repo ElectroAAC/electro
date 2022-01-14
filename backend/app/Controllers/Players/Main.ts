@@ -5,15 +5,18 @@ export default class PlayersController {
   public async show({ request, response }: HttpContextContract) {
     try {
       let name = request.param('name');
-      name = name
-        .replace("%20", " ")
-        .replace("+", " ")
-        .replace("'", "")
-        .replace("%27", "")
-        .replace("-", "")
-        .replace("/", "")
-        .replace('"', "")
-        .replace('%22', "");
+
+
+      name = await name
+        .replace(/%20/g, " ")
+        .replace(/'+'/g, " ")
+        .replace(/'/g, "")
+        .replace(/%27/g, "")
+        .replace(/-/g, "")
+        .replace(/"/g, "")
+        .replace(/%22/g, "");
+        
+      console.log(name);
 
       const player = await Database
         .from('players')
