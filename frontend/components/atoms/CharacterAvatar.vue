@@ -1,11 +1,14 @@
 <template>
   <img :src="require(`~/assets/images/avatars/${getAvatar}.png`)">
 </template>
+
 <script lang="ts">
-export default {
+import Vue from 'vue'
+
+export default Vue.extend({
   props: {
     avatar: {
-      type: Number,
+      type: String,
       required: true
     }
   },
@@ -20,15 +23,15 @@ export default {
     getAvatar(): String {
 
       let defaultImage = "Default"
-      let path = `@/assets/img/beer-${this.avatar.toString()}.png`
+      let path = `~/assets/img/beer-${this.avatar}.png`
       
       try {
         require(path)
-        return this.avatar.toString();
+        return this.avatar;
       } catch (e) {
         return defaultImage;
       } 
     },
   },
-}
+})
 </script>

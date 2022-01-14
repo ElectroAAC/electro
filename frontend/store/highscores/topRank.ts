@@ -6,6 +6,7 @@ import {
 } from 'vuex-module-decorators'
 
 import { $axios } from '@/utils/nuxt-instance'
+import { HighscoresWidget } from '~/models';
 
 @Module({
   name: 'highscores/topRank',
@@ -14,9 +15,9 @@ import { $axios } from '@/utils/nuxt-instance'
 })
 
 export default class Highscores extends VuexModule {
-  private highscores: Object[] = [];
+  private highscores: HighscoresWidget[] = [];
 
-  public get $topRank() {
+  public get $topRank(): HighscoresWidget[] {
     return this.highscores;
   }
 

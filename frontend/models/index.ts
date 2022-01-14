@@ -1,5 +1,7 @@
 export { Accounts } from './Account';
 
+export { HighscoresWidget } from './Highscores'
+
 export { 
   Player,
   Skill,

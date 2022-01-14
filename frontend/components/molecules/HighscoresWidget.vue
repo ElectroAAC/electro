@@ -17,10 +17,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import { highscores } from '@/store'
+import { HighscoresWidget } from '@/models'
 
 export default Vue.extend({
   computed: {
-    $highscores(): Object[] {
+    $highscores(): HighscoresWidget[] {
       return highscores.$topRank;
     }
   },

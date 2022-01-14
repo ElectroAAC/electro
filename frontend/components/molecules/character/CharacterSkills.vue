@@ -16,6 +16,7 @@
 import Vue from 'vue'
 import { character } from '@/store'
 import { skillName } from '@/utils/enum'
+import { Skill } from '@/models'
 
 export default Vue.extend({
   computed: {
@@ -23,13 +24,13 @@ export default Vue.extend({
       return character.$info;
     },
 
-    $skills() {
+    $skills(): Skill[] {
       return character.$skills;
     }
   },
 
   methods: {
-    getSkillName(id: number): String {
+    getSkillName(id: number): String | undefined {
       return skillName.find((skill) => skill.value === id)?.text
     }
   }
