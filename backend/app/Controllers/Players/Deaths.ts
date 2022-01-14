@@ -39,7 +39,7 @@ export default class PlayerDeathsController {
         
         for(let killer of killers) {
           i++;
-          if(killer.player_name !== "")
+          if(killer.player_name && killer.player_name !== "")
           {
             if(i === 1)
               description += "Killed at level <b> " + death.level + "</b>";
@@ -49,12 +49,12 @@ export default class PlayerDeathsController {
               description += ",";
 
             description += " by ";
-            if(killer.monster_name !== "")
+            if(killer.monster_name && killer.monster_name !== "")
               description += killer.monster_name + " summoned by ";
 
             const url = remote_url + '/' + killer.player_name;
 
-            if(killer.player_exists === 0)
+            if(killer.player_exists && killer.player_exists === 0)
               description += '<a href="'+ url + '">' + killer.player_name + '</a> ';
             else
               description += killer.player_name;
