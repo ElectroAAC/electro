@@ -43,6 +43,7 @@ export default Vue.extend({
       if (this.$character && this.$character.id) {
         character.getSkill(this.$character.id);
         character.getItems(this.$character.id);
+        character.getDeaths(this.$character.id);
       }
     }
   },

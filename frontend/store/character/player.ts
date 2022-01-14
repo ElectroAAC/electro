@@ -7,7 +7,7 @@ import {
 
 import { $axios } from '@/utils/nuxt-instance'
 
-import { Item, Player, Skill } from '@/models'
+import { Item, Death, Player, Skill } from '@/models'
 
 @Module({
   name: 'character/player',
@@ -19,6 +19,7 @@ export default class Character extends VuexModule {
   private player = {} as Player;
   private skill: Skill[] = [];
   private items = {} as Item[];
+  private death = [] as Death[];
 
   public get $info() {
     return this.player;
@@ -45,6 +46,11 @@ export default class Character extends VuexModule {
   @Mutation
   private UPDATE_ITEMS(items: Item[]) {
     this.items = items;
+  }
+
+  @Mutation
+  private UPDATE_DEATHS(deaths: Death[]) {
+    this.death = deaths;
   }
 
   @Action
@@ -110,6 +116,30 @@ export default class Character extends VuexModule {
         });
     } catch(err) {
       this.context.commit('UPDATE_ITEMS', []);
+      return 400;
+    }
+  }
+
+  @Action
+  public async getDeaths(id: Number) {
+    try {
+      await $axios.$post(`player/${id}/deaths`, {
+        remote_url: process.env.REMOTE_URL + '/character'
+      })
+        .then((res) => {
+          if (!res) 
+            throw new Error("Failed to get player deaths");
+
+          this.context.commit('UPDATE_DEATHS', res.result);
+
+          return 200;
+        })
+        .catch(() => {
+          this.context.commit('UPDATE_DEATHS', []);
+          return 400;
+        });
+    } catch(err) {
+      this.context.commit('UPDATE_DEATHS', []);
       return 400;
     }
   }

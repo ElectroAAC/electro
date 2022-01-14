@@ -16,3 +16,14 @@ export interface Skill {
 	skillid: Number,
 	value: Number
 }
+
+export interface Item {
+  id: Number,
+  slot: String
+}
+
+export interface Death {
+	id: number,
+	date: number,
+	level: number
+}

@@ -1,8 +1,8 @@
 export { Accounts } from './Account';
 
-export { Item } from './Items'
-
 export { 
   Player,
-  Skill
+  Skill,
+  Item,
+  Death
 } from './Player';
