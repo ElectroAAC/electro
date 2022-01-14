@@ -51,7 +51,8 @@ export default {
       {
         fileName: "nuxt.router.js"
       }
-    ]
+    ],
+    '@nuxtjs/dotenv'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
