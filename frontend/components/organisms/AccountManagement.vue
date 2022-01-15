@@ -53,6 +53,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { account } from '@/store'
+
 export default Vue.extend({
   data () {
     return {
@@ -72,6 +74,12 @@ export default Vue.extend({
           icon: 'mdi-text-box-outline'
         }
       ]
+    }
+  },
+
+  created() {
+    if (account.$account.id) {
+      account.getCharacters(account.$account.id);
     }
   },
 

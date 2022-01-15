@@ -54,14 +54,14 @@ export default class Account extends VuexModule {
   }
 
   @Action
-  async getCharacters(account_id: number) {
+  async getCharacters(account_id: Number) {
     try {
       await $axios.$get(`accounts/characters/${account_id}`)
         .then((res) => {
           if (!res) 
             throw new Error("Failed to get chracters to account");
 
-          this.context.commit('UPDATE_CHARACTERS', res.result[0]);
+          this.context.commit('UPDATE_CHARACTERS', res.result);
 
           return 200;
         })

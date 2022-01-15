@@ -35,6 +35,10 @@
 <h3> Backend </h3>
 <ul>
   <li> Node.js </li>
+  <ul>
+    <li> <a href="https://www.npmjs.com/package/crypto-js"> Crypto </a> </li>
+    <li> <a href="https://www.npmjs.com/package/js-sha1"> Js-sha1 </a> </li>
+  </ul>
   <li> Adonis.js </li>
   <ul>
     <li> <a href="https://docs.adonisjs.com/guides/auth/introduction"> Auth </a> </li>
@@ -70,8 +74,8 @@ This repository follows the semantic commit pattern, with the addition of the ta
 <br>
 
 ## 👨🏾‍💻 Functionalities
+<span>
 [x] Authentication
-
 [x] View character informations
 <ul>
   <li> [x] Show character info </li>
@@ -80,7 +84,6 @@ This repository follows the semantic commit pattern, with the addition of the ta
   <li> [x] Show character deaths </li>
   <li> [ ] Show character achievements </li>
 </ul>
-
 [x] Widget Top 5 Players
 
 [ ] Manage Account
@@ -112,6 +115,7 @@ This repository follows the semantic commit pattern, with the addition of the ta
 </ul>
 
 [ ] Shop
+</span>
 ## 👤 Author 
 
 <h3> <b> Waliston Belles </b></h3>
