@@ -1,5 +1,5 @@
 <template>
-  <v-container class="dashboard-container">
-    Aooobaaaaa
-  </v-container>
+  <div>
+    <DashboardServerStatus />
+  </div>
 </template>

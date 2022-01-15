@@ -117,7 +117,7 @@ export default Vue.extend({
           to: '/dashboard/players'
         },
         {
-          icon: 'mdi-shield-sun-outline',
+          icon: 'mdi-khanda',
           title: 'Guilds',
           to: '/dashboard/guilds'
         },
