@@ -32,6 +32,7 @@ $ npm run start
 | POST   | /accounts/forgot-password      | Generate code and sent to email       |
 | GET    | /accounts/forgot-password/:key | Validate Code                         |
 | PUT    | /accounts/forgot-password      | Update Password                       |
+| GET    | /accounts/characters/:id       | Get characters to account             |
 
 <br>
 

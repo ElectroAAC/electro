@@ -67,7 +67,51 @@ That means, we use:
 
 This repository follows the semantic commit pattern, with the addition of the tag [BACK] for a commit related to the backend, and [FRONT] for a commit related to the frontend. <a href="https://www.conventionalcommits.org/en/v1.0.0/#specification"> More Information </a>
 <br>
+<br>
 
+## 👨🏾‍💻 Functionalities
+[x] Authentication
+
+[x] View character informations
+<ul>
+  <li> [x] Show character info </li>
+  <li> [x] Show character items </li>
+  <li> [x] Show character skills </li>
+  <li> [x] Show character deaths </li>
+  <li> [ ] Show character achievements </li>
+</ul>
+
+[x] Widget Top 5 Players
+
+[ ] Manage Account
+<ul>
+  <li> [x] Page Account informations </li>
+  <li> [ ] List account characters </li>
+  <li> [ ] Create new character </li>
+  <li> [ ] Delete character </li>
+  <li> [ ] Change character name </li>
+  <li> [ ] Account Logs </li>
+</ul>
+
+[ ] Guilds
+<ul>
+  <li> [ ] List all guilds </li>
+  <li> [ ] Show guild </li>
+    <ul> 
+      <li> [ ] View guild members </li>
+    </ul>
+  <li> [ ] Create guild </li>
+  <li> [ ] Manage guild </li>
+  <li> [ ] View guild wars </li>
+</ul>
+
+[ ] Highscores
+<ul>
+  <li> [ ] Show Highscores </li>
+  <li> [ ] Create/Apply Filters </li>
+</ul>
+
+[ ] Shop
 ## 👤 Author 
 
 <h3> <b> Waliston Belles </b></h3>
