@@ -1,4 +1,7 @@
-export { Accounts } from './Account';
+export { 
+  Accounts,
+  CharactersAccount 
+} from './Account';
 
 export { HighscoresWidget } from './Highscores'
 

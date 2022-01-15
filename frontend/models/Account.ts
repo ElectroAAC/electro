@@ -3,3 +3,10 @@ export interface Accounts {
 	email: String,
 	password: String
 }
+
+export interface CharactersAccount {
+	id: Number,
+	level: Number,
+	name: String,
+	vocation: Number
+}

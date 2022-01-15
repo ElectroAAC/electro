@@ -7,7 +7,7 @@ import {
 
 import { $axios } from '@/utils/nuxt-instance'
 
-import { Accounts } from '@/models'
+import { Accounts, CharactersAccount } from '@/models'
 
 @Module({
   name: 'accounts/account',
@@ -17,14 +17,24 @@ import { Accounts } from '@/models'
 
 export default class Account extends VuexModule {
   private account = {} as Accounts;
+  private characters: CharactersAccount[] = [];
 
   public get $account() {
     return this.account;
   }
 
+  public get $characters() {
+    return this.characters;
+  }
+
   @Mutation
   private UPDATE_ACCOUNT(account: Accounts) {
     this.account = account
+  }
+
+  @Mutation
+  private UPDATE_CHARACTERS(characters: CharactersAccount[]) {
+    this.characters = characters;
   }
 
   @Action
@@ -41,6 +51,29 @@ export default class Account extends VuexModule {
         return 400;
       });
     return 200;
+  }
+
+  @Action
+  async getCharacters(account_id: number) {
+    try {
+      await $axios.$get(`accounts/characters/${account_id}`)
+        .then((res) => {
+          if (!res) 
+            throw new Error("Failed to get chracters to account");
+
+          this.context.commit('UPDATE_CHARACTERS', res.result[0]);
+
+          return 200;
+        })
+        .catch(() => {
+          this.context.commit('UPDATE_CHARACTERS', {});
+          return 400;
+        });
+      return 200;
+    } catch(err) {
+      this.context.commit('UPDATE_CHARACTERS', {});
+      return 400;
+    }
   }
 
   @Action
