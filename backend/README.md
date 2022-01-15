@@ -76,3 +76,4 @@ $ npm run start
 | GET    | /dashboard/players         | Get Total PLayers                         |
 | GET    | /dashboard/guilds          | Get Total Guilds                          |
 | GET    | /dashboard/premium-points  | Get accounts with the most premium points |
+| GET    | /dashboard/vocation        | Get all vocations by id                   |
