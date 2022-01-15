@@ -120,7 +120,6 @@ export default {
     onLogout(this: any): void {
       auth.destroy();
       if (this.$route && this.$route.fullPath !== "/") {
-        // console.log(this.$route)
         this.$router.push("/")
       }
     }

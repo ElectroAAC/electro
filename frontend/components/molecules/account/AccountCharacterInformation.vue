@@ -3,16 +3,18 @@
     <v-col cols="12">
       {{ getCharacter.name }}
     </v-col>
+
     <v-col cols="6">
       <h3> Skills </h3>
+
       <v-col 
-        v-for="(skill, idx) in getCharacter.skills"
+        v-for="(skill, idx) in $characterSkills"
         class="d-flex align-content-start flex-wrap pa-0"
         cols="12"
         :key="idx"
       >
-        <v-col cols="6">  {{ getSkillName(skill.id) }} </v-col>
-        <v-col cols="6"> {{ skill.value}}</v-col>
+        <v-col cols="6">  {{ getSkillName(skill.skillid) }} </v-col>
+        <v-col cols="6"> {{ skill.value}} </v-col>
       </v-col>
     </v-col>
 
@@ -21,7 +23,7 @@
       
       <v-col cols="6" class="d-flex align-content-center flex-wrap pa-0 text-center">
         <v-col 
-          v-for="(item, idx) in getCharacter.equipments" 
+          v-for="(item, idx) in $characterItems" 
           :class="getPaddingItemSlot(item.slot)"
           :key="idx"
           cols="4"
@@ -29,14 +31,14 @@
           <v-tooltip top>
             <template v-slot:activator="{ on, attrs }">
               <img 
-                :src="require(`~/assets/images/items/${getItem(item.item_id, item.slot)}.gif`)"
+                :src="require(`~/assets/images/items/${getItem(item.id, item.slot)}.gif`)"
                 width="32"
                 height="32"
                 v-bind="attrs"
                 v-on="on"
               />
             </template>
-            <span> {{ getItemName(item.item_id, item.slot) }} </span>
+            <span> {{ getItemName(item.id, item.slot) }} </span>
           </v-tooltip>
         </v-col>
       </v-col>
@@ -46,9 +48,10 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { account, character } from '@/store'
 import { items } from '@/utils/fakeData'
 import { skillName } from '@/utils/enum'
-import { Item } from '@/models'
+import { Item, CharactersAccount } from '@/models'
 
 export default Vue.extend({
   props: {
@@ -62,8 +65,14 @@ export default Vue.extend({
     getItemList(): Object[] {
       return items;
     },
-    getCharacter(): Object {
+    getCharacter(): CharactersAccount {
       return this.character;
+    },
+    $characterSkills() {
+      return character.$skills;
+    },
+    $characterItems() {
+      return character.$items;
     }
   },
 

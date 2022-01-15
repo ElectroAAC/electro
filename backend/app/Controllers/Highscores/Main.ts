@@ -12,7 +12,7 @@ export default class HighscoresController {
         .limit(5);
       return response.status(200).send({ result: topRank});
     } catch(err) {
-      console.log(err);
+      console.log('Error getTop5Players Query: ', err);
       return response.status(400).send({ error: 'An error occurred, check the api console.'});
     }
   }

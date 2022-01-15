@@ -211,11 +211,6 @@
   border-radius: 1.95rem;
 }
 
-.bg-second {
-  background-color: var(--bg-second-color) !important;
-  color: var(--text-color) !important;
-  border-radius: 1.95rem;
-}
 
 .bg-third {
   background-color: #00ffc43b !important;
@@ -236,6 +231,12 @@
   box-shadow: none !important;
 }
 
+.bg-second {
+  background-color: var(--bg-second-color) !important;
+  color: var(--text-color) !important;
+  border-radius: 1.95rem;
+}
+
 .toasted-container .toasted {
   align-items: center !important;
   justify-content: center !important;
@@ -254,4 +255,33 @@
 
 .fs-14 {
   font-size: 14px !important;
+}
+
+.v-application .text-left {
+  text-align: left !important;
+}
+
+.v-application .text-right {
+  text-align: right !important;
+}
+
+.v-application .text-center {
+  text-align: center !important;
+  justify-content: center;
+}
+
+.v-sheet.v-card:not(.v-sheet--outlined) {
+  box-shadow: none !important;
+}
+
+.theme--light.v-card {
+  background-color: transparent !important;
+}
+
+.character-avatar-name {
+  background-color: #394c6c9e;
+  position: relative;
+  top: 72px;
+  color: var(--second-main-color);
+  font-weight: bold;
 }

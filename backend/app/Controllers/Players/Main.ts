@@ -15,8 +15,6 @@ export default class PlayersController {
         .replace(/-/g, "")
         .replace(/"/g, "")
         .replace(/%22/g, "");
-        
-      console.log(name);
 
       const player = await Database
         .from('players')

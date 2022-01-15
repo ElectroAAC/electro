@@ -1,3 +1,3 @@
 <template>
-  <img src="~/assets/images/404.svg">
+  <img src="~/assets/images/404.png">
 </template>
