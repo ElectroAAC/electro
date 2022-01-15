@@ -53,7 +53,7 @@ export default Vue.extend({
   },
 
   mounted() {
-    console.log(this.$account);
+    // console.log(this.$account);
   },
 
   computed: {

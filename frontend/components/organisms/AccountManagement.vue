@@ -1,5 +1,11 @@
 <template>
   <v-container>
+    
+    <CreateCharacterDialog
+      :dialog="dialog"
+      @update-dialog="updateDialog"
+    />
+
     <v-tabs
       v-model="tab"
       icons-and-text
@@ -26,9 +32,20 @@
           v-if="item.text === 'General Information'" 
         />
 
-        <CharacterList 
-          v-else-if="item.text === 'Characters'" 
-        />
+        <div v-else-if="item.text === 'Characters'">
+          <v-row>
+            <v-col cols="12" class="mt-4 text-center">
+              <v-btn @click="dialog = true">
+                <v-icon>
+                  mdi-plus
+                </v-icon>
+                Create New Character
+              </v-btn>
+            </v-col>
+          </v-row>
+          
+          <CharacterList />
+        </div>
       </v-tab-item>
     </v-tabs-items>
   </v-container>
@@ -40,6 +57,7 @@ export default Vue.extend({
   data () {
     return {
       tab: null,
+      dialog: false,
       items: [
         {
           text: 'General Information',
@@ -56,5 +74,11 @@ export default Vue.extend({
       ]
     }
   },
+
+  methods: {
+    updateDialog(this: any, status: boolean): void {
+      this.$set(this, 'dialog', status);
+    },
+  }
 })
 </script>

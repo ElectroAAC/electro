@@ -1,3 +1,10 @@
 export { Accounts } from './Account';
 
-export { Item } from './Items'
+export { HighscoresWidget } from './Highscores'
+
+export { 
+  Player,
+  Skill,
+  Item,
+  Death
+} from './Player';

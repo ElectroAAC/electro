@@ -4,8 +4,6 @@ import Database from '@ioc:Adonis/Lucid/Database'
 export default class PlayerStorageController {
   public async show({ request, response }: HttpContextContract) {
     try {
-      console.log(request.params());
-      
       const playerStorage = await Database
         .from('player_storage')
         .select('player_storage.key', 'player_storage.value')

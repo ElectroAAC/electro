@@ -4,10 +4,24 @@ import Database from '@ioc:Adonis/Lucid/Database'
 export default class PlayersController {
   public async show({ request, response }: HttpContextContract) {
     try {
+      let name = request.param('name');
+
+
+      name = await name
+        .replace(/%20/g, " ")
+        .replace(/'+'/g, " ")
+        .replace(/'/g, "")
+        .replace(/%27/g, "")
+        .replace(/-/g, "")
+        .replace(/"/g, "")
+        .replace(/%22/g, "");
+        
+      console.log(name);
+
       const player = await Database
         .from('players')
-        .select('name', 'sex', 'vocation', 'level', 'maglevel', 'lastlogin', 'healthmax', 'manamax', 'online', 'created')
-        .where('id', request.param('id'));
+        .select('id', 'name', 'sex', 'vocation', 'level', 'maglevel', 'lastlogin', 'healthmax', 'manamax', 'online', 'created')
+        .where('name', name);
       return response.status(200).send({ result: player});
 
     } catch(err) {

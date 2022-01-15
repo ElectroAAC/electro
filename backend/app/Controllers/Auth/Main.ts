@@ -1,12 +1,25 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { StoreValidator } from 'App/Validators/Auth'
+import { Account } from 'App/Models'
+import encrypt from 'js-sha1';
 
 export default class AuthController {
   public async store({ request, auth }: HttpContextContract) {
     const { name, password } = await request.validate(StoreValidator);
 
-    const token = await auth.attempt(name, password, {
-      expiresIn: '1 day'
+    const encryptedPassword = encrypt(password);
+    
+    const user = await Account
+      .query()
+      .where('name', name)
+      .where('password', encryptedPassword)
+      .firstOrFail()
+
+    if (!user)
+      return "";
+
+    const token = await auth.use('api').generate(user, {
+      expiresIn: '30mins'
     });
 
     return token;

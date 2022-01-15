@@ -44,6 +44,7 @@
 }
 
 .content {
+  border-radius: 1rem !important;
   color: var(--text-color);
   background-color: rgba(20, 31, 54, 0.93);
   border: 1px solid var(--bg-second-color);
@@ -56,9 +57,11 @@
 .widget {
   background-color: rgba(20, 31, 54, 0.93);
   border: 1px solid var(--bg-second-color);
+  border-radius: 1rem !important;
 }
 
 .widget-title {
+  border-radius: 1rem 1rem 0px 0px !important;
   padding: 1.1rem 1.8rem 0.95rem;
   font-size: 18px;
   font-weight: 500;
@@ -214,6 +217,12 @@
   border-radius: 1.95rem;
 }
 
+.bg-third {
+  background-color: #00ffc43b !important;
+  color: var(--text-color) !important;
+  border-radius: 1.95rem;
+}
+
 .v-slide-group__next--disabled, .v-slide-group__prev--disabled {
   pointer-events: all !important;
 }
@@ -225,4 +234,24 @@
 .bg-character-list {
   background-color: rgba(20, 31, 54, 0) !important;
   box-shadow: none !important;
+}
+
+.toasted-container .toasted {
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: bold !important;
+  font-size: 19px !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  height: 65px !important;
+  transform: none !important;
+  top: -50px !important;
+  right: -50px !important;
+}
+
+.toasted.bubble.error {
+  background: #f44336d7 !important;
+}
+
+.fs-14 {
+  font-size: 14px !important;
 }
