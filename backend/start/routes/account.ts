@@ -8,3 +8,4 @@ Route.get('/accounts/forgot-password/:key', 'Account/ForgotPassword.show')
 Route.put('/accounts/forgot-password', 'Account/ForgotPassword.update')
 
 Route.get('/accounts', 'Account/Main.show').middleware('auth')
+Route.get('/accounts/characters/:id', 'Account/Characters.show').middleware('auth');
