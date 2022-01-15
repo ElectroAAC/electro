@@ -2,6 +2,10 @@
   <v-container class="bg-third text-center">
     Infos
     <v-row>
+      <v-col cols="12">
+        <CharacterAvatar :avatar="getVocation()" width="150px"/>
+      </v-col>
+
       <v-col cols="6">
         Name:
       </v-col>
@@ -55,21 +59,24 @@ export default Vue.extend({
       return "";
     },
 
-    getLevel(): Number | String{
+    getLevel(): Number | String {
       if (this.$character)
         return this.$character?.level;
       return "";
     },
 
-    getMagicLevel(): Number | String{
+    getMagicLevel(): Number | String {
       if (this.$character)
         return this.$character?.maglevel;
       return "";
     },
 
-    getVocation(): String | undefined {
+    getVocation(): String {
       if (this.$character) {
-        return this.vocationList.find((vocation) => vocation.value === this.$character.vocation)?.text;
+        const vocation = this.vocationList.find((vocation) => vocation.value === this.$character.vocation)?.text;
+        if (vocation)
+          return vocation;
+        return "";
       }
       return "";
     },

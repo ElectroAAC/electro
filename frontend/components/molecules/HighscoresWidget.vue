@@ -6,7 +6,7 @@
         v-for="(player, idx) in $highscores"
         :key="idx"
       >
-        <CharacterAvatar :avatar="player.vocation" width="60px"/> <br>
+        <CharacterAvatar :avatar="getVocationName(player.vocation)" width="60px"/> <br>
         <span> <NuxtLink :to="`/character/${player.name}`"> {{ player.name }} </NuxtLink> </span> <br>
         <span> {{ player.level }} </span>
       </div>
@@ -18,6 +18,7 @@
 import Vue from 'vue'
 import { highscores } from '@/store'
 import { HighscoresWidget } from '@/models'
+import { vocations } from '@/utils/enum'
 
 export default Vue.extend({
   computed: {
@@ -33,6 +34,13 @@ export default Vue.extend({
   methods: {
     async getTopRank(): Promise<void> {
       await highscores.getTopRank();
+    },
+
+    getVocationName(vocation_id: Number | number): String | undefined {
+      const vocation = vocations.find((vocation) => vocation.value === vocation_id)?.text;
+      if (vocation)
+        return vocation;
+      return "Default";
     }
   }
 })

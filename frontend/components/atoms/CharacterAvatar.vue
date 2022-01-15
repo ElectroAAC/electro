@@ -20,6 +20,9 @@ export default Vue.extend({
   },
 
   computed: {
+    /**
+     * @TODO => Adicionar 1 tratamento para encontrar a imagem e caso não encontre, tratar o erro de forma adequada
+     */
     getAvatar(): String {
 
       let defaultImage = "Default"
