@@ -3,6 +3,7 @@ import './auth';
 import './account';
 import './highscores';
 import './players';
+import './dashboard';
 
 Route.get('/', async () => {
   return { hello: 'world' }
