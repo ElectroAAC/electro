@@ -70,8 +70,9 @@ $ npm run start
 
 ##  🕵🏾‍♂️  Routes Dashboard
 
-| METHOD | ENDPOINT                   | DESCRIPTION                           |
-| :----- | :------------------------- | :------------------------------------ |
-| GET    | /dashboard/accounts        | Get Total Accounts                    |
-| GET    | /dashboard/players         | Get Total PLayers                     |
-| GET    | /dashboard/guilds          | Get Total Guilds                      |
+| METHOD | ENDPOINT                   | DESCRIPTION                               |
+| :----- | :------------------------- | :-----------------------------------------|
+| GET    | /dashboard/accounts        | Get Total Accounts                        |
+| GET    | /dashboard/players         | Get Total PLayers                         |
+| GET    | /dashboard/guilds          | Get Total Guilds                          |
+| GET    | /dashboard/premium-points  | Get accounts with the most premium points |
