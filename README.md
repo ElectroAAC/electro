@@ -42,6 +42,7 @@
   <li> Adonis.js </li>
   <ul>
     <li> <a href="https://docs.adonisjs.com/guides/auth/introduction"> Auth </a> </li>
+    <li> <a href="https://docs.adonisjs.com/guides/authorization"> Authorization </a> </li>
     <li> <a href="https://docs.adonisjs.com/guides/database/introduction"> Lucid ORM </a> </li>
     <li> <a href="https://docs.adonisjs.com/guides/mailer"> Mailer </a> </li>
     <li> <a href="https://docs.adonisjs.com/guides/views/introduction"> Views & Templates </a> </li>

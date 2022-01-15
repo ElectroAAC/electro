@@ -39,6 +39,7 @@ export default class Account extends VuexModule {
 
   @Action
   public async get() {
+    console.log('chamou')
     await $axios.$get('accounts')
       .then((res) => {
         if (!res) 
