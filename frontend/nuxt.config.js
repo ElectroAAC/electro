@@ -16,7 +16,6 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '@/assets/css/vuetify.css',
     '@/assets/css/main.css',
     '@/assets/css/dashboard.css',
   ],

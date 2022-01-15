@@ -4,6 +4,7 @@
     <v-container class="text-center">
       <div
         v-for="(player, idx) in $highscores"
+        class="text-center"
         :key="idx"
       >
         <CharacterAvatar :avatar="getVocationName(player.vocation)" width="60px"/> <br>

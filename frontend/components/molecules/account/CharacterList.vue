@@ -6,7 +6,6 @@
       <v-slide-group
         v-model="model"
         class="pa-4"
-        active-class="green"
         show-arrows
         @change="changeLastValue($event)"
         @click:next="nextSlide()"
@@ -18,9 +17,8 @@
           v-slot="{ toggle }"
         >
           <v-card
-            class="ma-6"
-            height="150"
-            width="150"
+            height="200"
+            width="200"
             @click="toggle"
           >
             <v-row
@@ -29,14 +27,15 @@
               justify="center"
             >
               <v-scale-transition>
-                <CharacterAvatar 
+                <AccountCharacterAvatar 
                   :avatar="getVocationName(item.vocation)" 
-                  class="mt-2" 
-                  width="150px"
-                  height="155px"
+                  :text="item.name"
+                  :level="item.level"
+                  class="mt-3" 
+                  width_image="160px"
+                  height="165px"
                 />
               </v-scale-transition>
-              {{ item.name }}
             </v-row>
           </v-card>
         </v-slide-item>
@@ -84,6 +83,12 @@ export default Vue.extend({
     getCharacters(): CharactersAccount[] {
       return account.$characters;
     },
+  },
+
+  created() {
+    if (account.$account.id) {
+      account.getCharacters(account.$account.id);
+    }
   },
 
   watch: {
