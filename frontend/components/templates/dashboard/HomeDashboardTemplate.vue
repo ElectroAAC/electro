@@ -1,6 +1,7 @@
 <template>
   <div>
     <DashboardServerStatus />
+    <DashboardAccountsInfo />
   </div>
 </template>
 
@@ -14,7 +15,8 @@ export default Vue.extend({
     const promises = [
       dashboardHome.getTotalAccounts(),
       dashboardHome.getTotalPlayers(),
-      dashboardHome.getTotalGuilds()
+      dashboardHome.getTotalGuilds(),
+      dashboardHome.getTopPremiumPoints(),
     ];
 
     await Promise.all(promises);

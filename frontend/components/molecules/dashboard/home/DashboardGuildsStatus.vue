@@ -2,7 +2,7 @@
   <v-container class="dashboard-container">
     <v-row class="pa-0">
       <v-col cols="4" class="text-center">
-        <v-icon size="96" color="cyan">
+        <v-icon size="96">
           mdi-khanda
         </v-icon>
       </v-col>
