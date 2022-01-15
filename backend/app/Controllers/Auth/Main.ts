@@ -5,7 +5,7 @@ import encrypt from 'js-sha1';
 
 export default class AuthController {
   public async store({ request, auth }: HttpContextContract) {
-    const { name, password } = await request.validate(StoreValidator);
+    const { name, password, rememberMe } = await request.validate(StoreValidator);
 
     const encryptedPassword = encrypt(password);
     
@@ -13,13 +13,13 @@ export default class AuthController {
       .query()
       .where('name', name)
       .where('password', encryptedPassword)
-      .firstOrFail()
+      .firstOrFail();
 
     if (!user)
       return "";
 
     const token = await auth.use('api').generate(user, {
-      expiresIn: '30mins'
+      expiresIn: rememberMe ? '7 days' : '30mins'
     });
 
     return token;
