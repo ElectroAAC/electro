@@ -35,6 +35,7 @@
 
 .v-list .v-list-item--active {
   color: var(--second-main-color) !important;
+  border-radius: 1rem;
 }
 
 .theme--light.v-list-item--active:hover::before, .theme--light.v-list-item--active::before {
@@ -43,4 +44,5 @@
 
 .v-list-item--link:before {
   background-color: var(--second-main-color) !important;
+  border-radius: 1rem;
 }

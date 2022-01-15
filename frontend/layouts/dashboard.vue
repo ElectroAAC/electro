@@ -15,6 +15,7 @@
             text
             v-bind="attrs"
             v-on="on"
+            @click="onLogout()"
           >
             <v-icon> mdi-logout </v-icon>
           </v-btn>
@@ -37,7 +38,7 @@
         </NuxtLink>
       </div>
       
-      <v-list>
+      <v-list class="ml-4 mr-4">
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
@@ -73,13 +74,15 @@
       :absolute="!fixed"
       app
     >
-      <span> &copy; {{ new Date().getFullYear() }}</span>
+      <span> {{ getVersion }} &copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { auth } from '@/store'
+
 export default Vue.extend({
   middleware: 'dashboard',
   data () {
@@ -145,5 +148,20 @@ export default Vue.extend({
       title: 'Claria'
     }
   },
+
+  computed: {
+    getVersion(): any {
+      return process.env.version;
+    }
+  },
+
+  methods: {
+    onLogout(this: any): void {
+      auth.destroy();
+      if (this.$route && this.$route.fullPath !== "/") {
+        this.$router.push("/")
+      }
+    }
+  }
 })
 </script>

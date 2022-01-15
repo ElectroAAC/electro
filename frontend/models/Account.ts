@@ -2,7 +2,8 @@ export interface Accounts {
 	id: Number,
 	name: String,
 	email: String,
-	password: String
+	password: String,
+	group_id: Number
 }
 
 export interface CharactersAccount {
