@@ -121,8 +121,6 @@ export default Vue.extend({
         else
           throw new Error("Failed to create account");
       } catch (error) {
-        console.log(error);
-        
         this.$toast.error(
           'Error while create account',
           {

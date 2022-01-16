@@ -9,7 +9,8 @@ import {
 
 import {
   Account,
-  Register as AccountRegister
+  Register as AccountRegister,
+  Character as CreateCharacter
 } from '@/store/accounts'
 
 import { 
@@ -26,6 +27,7 @@ let dashboardHome: DashboardHome;
 
 let account: Account;
 let accountRegister: AccountRegister;
+let createCharacter: CreateCharacter;
 
 let character: Character;
 
@@ -40,6 +42,7 @@ const initializeStores = (store: Store<any>) => {
   // Store Accounts
   account = getModule(Account, store);
   accountRegister = getModule(AccountRegister, store);
+  createCharacter = getModule(CreateCharacter, store);
 
   // Store Character
   character = getModule(Character, store);
@@ -54,6 +57,7 @@ export {
   auth,
   account,
   accountRegister,
+  createCharacter,
   character,
   highscores
 };

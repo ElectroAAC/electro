@@ -75,10 +75,9 @@ This repository follows the semantic commit pattern, with the addition of the ta
 <br>
 
 ## 👨🏾‍💻 Functionalities
-<span>
-Authentication
+### Authentication
 
-View character informations
+### View character informations
 <ul>
   <li> [x] Show character info </li>
   <li> [x] Show character items </li>
@@ -87,9 +86,7 @@ View character informations
   <li> [ ] Show character achievements </li>
 </ul>
 
-Widget Top 5 Players
-
-Manage Account
+### Manage Account
 <ul>
   <li> [x] Page Account informations </li>
   <li> [x] List account characters </li>
@@ -99,27 +96,14 @@ Manage Account
   <li> [ ] Account Logs </li>
 </ul>
 
-Guilds
-<ul>
-  <li> [ ] List all guilds </li>
-  <li> [ ] Show guild </li>
-    <ul> 
-      <li> [ ] View guild members </li>
-    </ul>
-  <li> [ ] Create guild </li>
-  <li> [ ] Manage guild </li>
-  <li> [ ] View guild wars </li>
-</ul>
-
-Highscores
+### Highscores
 <ul>
   <li> [x] Widget Highscores </li>
   <li> [ ] Show Highscores </li>
   <li> [ ] Create/Apply Filters </li>
 </ul>
 
-[ ] Shop
-</span>
+
 ## 👤 Author 
 
 <h3> <b> Waliston Belles </b></h3>

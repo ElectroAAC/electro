@@ -1,5 +1,5 @@
 <template>
-  <img :src="require(`~/assets/images/avatars/${getAvatar}.png`)">
+  <img :src="require(`~/assets/images/vocations/${getAvatar}.png`)" width="450px" height="450px">
 </template>
 
 <script lang="ts">
@@ -7,7 +7,7 @@ import Vue from 'vue'
 
 export default Vue.extend({
   props: {
-    avatar: {
+    vocation_name: {
       type: String,
       required: true
     }
@@ -24,16 +24,7 @@ export default Vue.extend({
      * @TODO => Adicionar 1 tratamento para encontrar a imagem e caso não encontre, tratar o erro de forma adequada
      */
     getAvatar(): String {
-      
-      let defaultImage = "Default"
-      let path = `~/assets/images/avatars/${this.avatar}.png`
-      
-      try {
-        require(path)
-        return this.avatar;
-      } catch (e) {
-        return defaultImage;
-      } 
+      return this.vocation_name;
     },
   },
 })

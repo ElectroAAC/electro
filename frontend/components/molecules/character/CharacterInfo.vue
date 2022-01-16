@@ -40,15 +40,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import { character } from '@/store'
-import { vocations } from '@/utils/enum'
+import { getVocationName } from '@/utils/methods'
 
 export default Vue.extend({
   computed: {
     $character() {
       return character.$info;
-    },
-    vocationList() {
-      return vocations;
     }
   },
 
@@ -72,13 +69,7 @@ export default Vue.extend({
     },
 
     getVocation(): String {
-      if (this.$character) {
-        const vocation = this.vocationList.find((vocation) => vocation.value === this.$character.vocation)?.text;
-        if (vocation)
-          return vocation;
-        return "";
-      }
-      return "";
+      return getVocationName(this.$character.vocation);
     },
   }
 })

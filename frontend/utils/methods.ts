@@ -5,5 +5,5 @@ export const getVocationName = (vocation_id: Number | number): String => {
 
   if (vocation && vocation.text)
     return vocation.text;
-  return "";
+  return "Default";
 }

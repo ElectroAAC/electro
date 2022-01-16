@@ -28,21 +28,36 @@ export const vocations = [
   { 
     initial_id: 1, 
     last_id: 17, 
-    text: "Orc" 
+    text: "Dragon_Slayer" 
   }, 
   { 
     initial_id: 18, 
     last_id: 31, 
-    text: "With" 
+    text: "Winter" 
   }, 
   { 
     initial_id: 32, 
     last_id: 46, 
-    text: "Demon" 
+    text: "Barbarian" 
   }, 
   { 
     initial_id: 47, 
     last_id: 58, 
-    text: "Lizard" 
+    text: "Mage" 
   },
+  { 
+    initial_id: 59, 
+    last_id: 67, 
+    text: "Mercenary" 
+  },
+  { 
+    initial_id: 68, 
+    last_id: 71, 
+    text: "Warrior" 
+  },
+]
+
+export const sex = [
+  { value: 0, text: "Male" },
+  { value: 1, text: "Female" }
 ]
