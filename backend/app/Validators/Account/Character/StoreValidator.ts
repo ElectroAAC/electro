@@ -27,8 +27,9 @@ export default class StoreValidator {
   public messages = {
     required: 'The {{ field }} is required to create a new character',
     number: 'The {{ field }} inválid',
-    minLength: 'Name is too long. Min length <b> {{ options.minLength }} </b> letters',
+    minLength: 'Name is too long. Min length {{ options.minLength }} letters',
     maxLength: 'Name is too short. Max length {{ options.maxLength }} letters',
+    alpha: 'Invalid character name.',
     'name.unique': 'Character name not available',
     'name.notIn': 'The name contains an invalid name.',
   }
