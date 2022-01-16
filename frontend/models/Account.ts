@@ -12,3 +12,9 @@ export interface CharactersAccount {
 	name: String,
 	vocation: Number
 }
+
+export interface CreateCharacter {
+	name: String,
+	sex: Number,
+	vocation: Number
+}

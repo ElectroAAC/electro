@@ -1,6 +1,7 @@
 export { 
   Accounts,
-  CharactersAccount 
+  CharactersAccount,
+  CreateCharacter
 } from './Account';
 
 export { HighscoresWidget } from './Highscores'

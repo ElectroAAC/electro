@@ -1,5 +1,5 @@
 import Accounts from '@/pages/accounts/index.vue'
-import CreateCharacter from '@/pages/accounts/createCharacter.vue'
+import CreateCharacter from '~/pages/accounts/create.vue'
 
 export default [
   {
