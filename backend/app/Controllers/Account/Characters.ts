@@ -2,8 +2,18 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { StoreValidator } from 'App/Validators/Account/Character'
 import Database from '@ioc:Adonis/Lucid/Database'
 import { Vocations } from 'Contracts/enums/Vocations'
+import Env from '@ioc:Adonis/Core/Env'
 
 export default class CharactersAccount {
+  
+  private async getCharacters(account_id: number) {
+    return await Database
+      .from('players')
+      .select('players.id', 'players.level', 'players.name', 'players.vocation')
+      .where('players.account_id', account_id)
+      .orderBy('players.experience', 'desc');
+  }
+
   public async store({ request, response, auth }: HttpContextContract) {
     const data = await request.validate(StoreValidator);
 
@@ -11,6 +21,12 @@ export default class CharactersAccount {
 
     if (!account || !account.id) {
       return response.unauthorized();
+    }
+
+    const characters = await this.getCharacters(account.id);
+    
+    if (characters.length >= Env.get('CHARACTERS_PER_ACCOUNT')) {
+      return response.status(404).send({ message: 'You have too many characters on your account ' + characters.length + '/' + Env.get('CHARACTERS_PER_ACCOUNT')});
     }
 
     const vocation = Vocations.find((vocation) => vocation.vocation_id === data.vocation);
@@ -79,11 +95,7 @@ export default class CharactersAccount {
 
   public async show({ request, response }: HttpContextContract) {
     try {
-      const characters = await Database
-        .from('players')
-        .select('players.id', 'players.level', 'players.name', 'players.vocation')
-        .where('players.account_id', request.param('id'))
-        .orderBy('players.experience', 'desc');
+      const characters = await this.getCharacters(request.param('id'));
 
       return response.status(200).send({ result: characters});
     } catch(err) {

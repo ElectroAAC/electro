@@ -33,6 +33,7 @@ $ npm run start
 | GET    | /accounts/forgot-password/:key | Validate Code                         |
 | PUT    | /accounts/forgot-password      | Update Password                       |
 | GET    | /accounts/characters/:id       | Get characters to account             |
+| POST   | /accounts/create-character     | Create new character                  |
 
 <br>
 
