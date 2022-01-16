@@ -12,6 +12,7 @@
         required
         hide-details="auto"
         @change="($event) => {
+          character.name = $event;
           updateCharacter();
         }"
       />
@@ -56,8 +57,7 @@ export default Vue.extend({
     return {
       character: {
         name: "",
-        sex: 0,
-        vocation: null
+        sex: 0
       },
       required: [
         (v: string) => !!v || 'Required field',

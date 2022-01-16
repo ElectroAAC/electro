@@ -8,9 +8,9 @@ import {
 import { $axios } from '@/utils/nuxt-instance'
 
 interface CreatePayload {
-	name: String,
-	sex: Number,
-	vocation: Number
+	name: String | null,
+	sex: Number | null,
+	vocation: Number | null
   town_id?: Number
 }
 
@@ -29,7 +29,7 @@ export default class CreateCharacter extends VuexModule {
   private character = {
     name: null,
     sex: null,
-    vocation: null
+    vocation: 1
   };
   
   public get $character() {
@@ -38,19 +38,27 @@ export default class CreateCharacter extends VuexModule {
 
   @Mutation
   private UPDATE(this: any, character: UpdatePayload) {
-    this.character = character
+    this.character = Object.assign(this.character, character);
   }
 
   @Action
   public async create(payload: CreatePayload) {
+    if (!payload.vocation) {
+      payload.vocation = 1;
+      console.log('Entrou aqui');
+    }
+
     const status = await $axios.$post('accounts/create-character', payload)
-      .then((res) => {
-        if (!res) 
+      .then(( response ) => {
+        if (response.status !== 200) 
           throw new Error("Failed to create character");
-        return 200;
+        return response;
       })
-      .catch(() => {
-        return 400;
+      .catch(({ response }) => {
+        return {
+          message: response.data.errors[0].message,
+          status: response.status
+        };
       });
     return status;
   }

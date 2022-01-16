@@ -101,6 +101,12 @@ export default Vue.extend({
     }
   },
 
+  watch: {
+    onboarding(v) {
+      createCharacter.update({ vocation: this.getVocationList[v].value });
+    }
+  },
+
   methods: {
     next () {
       this.onboarding = this.onboarding + 1 === this.getVocationList.length
