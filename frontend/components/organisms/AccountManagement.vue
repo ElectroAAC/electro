@@ -1,11 +1,5 @@
 <template>
   <v-container>
-    
-    <CreateCharacterDialog
-      :dialog="dialog"
-      @update-dialog="updateDialog"
-    />
-
     <v-tabs
       v-model="tab"
       icons-and-text
@@ -35,11 +29,11 @@
         <div v-else-if="item.text === 'Characters'">
           <v-row>
             <v-col cols="12" class="mt-4 text-center">
-              <v-btn @click="dialog = true">
+              <v-btn text @click="dialog = true" class="header-text">
                 <v-icon>
                   mdi-plus
                 </v-icon>
-                Create New Character
+                <NuxtLink to="/accounts/create-character"> Create New Character </NuxtLink>
               </v-btn>
             </v-col>
           </v-row>
@@ -75,11 +69,5 @@ export default Vue.extend({
       ]
     }
   },
-
-  methods: {
-    updateDialog(this: any, status: boolean): void {
-      this.$set(this, 'dialog', status);
-    },
-  }
 })
 </script>
