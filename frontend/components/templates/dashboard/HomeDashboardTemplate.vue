@@ -17,6 +17,7 @@ export default Vue.extend({
       dashboardHome.getTotalPlayers(),
       dashboardHome.getTotalGuilds(),
       dashboardHome.getTopPremiumPoints(),
+      dashboardHome.getTotalVocationId()
     ];
 
     await Promise.all(promises);

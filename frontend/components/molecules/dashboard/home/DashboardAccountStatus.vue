@@ -8,7 +8,7 @@
       </v-col>
 
       <v-col cols="8" class="d-flex justify-center align-center flex-wrap text-center">
-        <h2> Total Accounts </h2>
+        <v-col cols="12"> <h2> Total Accounts </h2> </v-col>
         <h3> {{ getTotalAccounts }} </h3>
       </v-col>
     </v-row>

@@ -5,6 +5,9 @@
         :items="getTopPremiumPoints"
       />
     </v-col>
+    <v-col cols="6">
+      <DashboardDoughnutVocations />
+    </v-col>
   </v-row>
 </template>
 

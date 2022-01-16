@@ -7,8 +7,8 @@
         </v-icon>
       </v-col>
 
-      <v-col cols="7" class="d-flex justify-center align-center flex-wrap text-center">
-        <h2> Total Players </h2>
+      <v-col cols="8" class="d-flex justify-center align-center flex-wrap text-center">
+        <v-col cols="12"> <h2> Total Players </h2> </v-col>
         <h3 color="cyan"> {{ getTotalPlayers }} </h3>
       </v-col>
     </v-row>

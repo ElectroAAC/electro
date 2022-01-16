@@ -14,16 +14,35 @@ export const skillName = [
 ]
 
 /**
- * Value = VOCATION_ID
- * Text = Name Vocation
- * Example to register: { value: 1, text: "Knight Sample" }
+ * @initial_id (Number)   =   INITIAL VOCATION ID
+ * @last_id    (Number)   =   LAST VOCATION ID
+ * @Text       (String)   =   NAME VOCATION
+ * The initial_value_id is the 1st id of your vocations, 
+ * the last_vocation_id is the last id referring to that vocation, 
+ * in ascending order. Example: If my Knight vocation 
+ * starts at id 1 and goes up to 9, 
+ * my initial_value_id will be 1 and last_vocation_id will be 9.
+ * Example to register: { initial_id: 1, last_id: 17, text: "Knight Sample" }
  */
 export const vocations = [
-  { value: 1, text: "Orc" }, 
-  { value: 2, text: "With" }, 
-  { value: 3, text: "Demon" }, 
-  { value: 4, text: "Lizard" }, 
-  { value: 5, text: "Spider" }, 
-  { value: 6, text: "Ancian" }, 
-  { value: 7, text: "Warrior" }, 
+  { 
+    initial_id: 1, 
+    last_id: 17, 
+    text: "Orc" 
+  }, 
+  { 
+    initial_id: 18, 
+    last_id: 31, 
+    text: "With" 
+  }, 
+  { 
+    initial_id: 32, 
+    last_id: 46, 
+    text: "Demon" 
+  }, 
+  { 
+    initial_id: 47, 
+    last_id: 58, 
+    text: "Lizard" 
+  },
 ]
