@@ -47,11 +47,19 @@ export default Vue.extend({
       return dashboardHome.$vocations;
     }
   },
+  
+  watch: {
+    getTotalVocations(this: any): void {
+      this.updateChart();
+      this.$refs.skills_chart.update();      
+    }
+  },
 
   mounted(this: any) {
-    this.updateChart();
-    this.$refs.skills_chart.update();
-    console.log(this.chartData);
+    if (!this.getTotalVocations.length) {
+      this.updateChart();
+      this.$refs.skills_chart.update();
+    }
   },
 
   methods: {
