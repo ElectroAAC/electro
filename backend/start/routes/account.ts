@@ -9,3 +9,5 @@ Route.put('/accounts/forgot-password', 'Account/ForgotPassword.update')
 
 Route.get('/accounts', 'Account/Main.show').middleware('auth')
 Route.get('/accounts/characters/:id', 'Account/Characters.show').middleware('auth');
+
+Route.post('/accounts/create-character', 'Account/Characters.store').middleware('auth');
