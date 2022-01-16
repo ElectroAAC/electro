@@ -15,6 +15,7 @@
             text
             v-bind="attrs"
             v-on="on"
+            @click="onLogout()"
           >
             <v-icon> mdi-logout </v-icon>
           </v-btn>
@@ -37,7 +38,7 @@
         </NuxtLink>
       </div>
       
-      <v-list>
+      <v-list :class="miniVariant ? '' : 'ml-4 mr-4'">
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
@@ -48,6 +49,7 @@
           <v-tooltip right>
             <template v-slot:activator="{ on, attrs }">
               <v-list-item-action
+                class="text-center"
                 v-bind="attrs"
                 v-on="on"
               >
@@ -73,14 +75,17 @@
       :absolute="!fixed"
       app
     >
-      <span> &copy; {{ new Date().getFullYear() }}</span>
+      <span> {{ getVersion }} &copy; {{ new Date().getFullYear() }} - {{ getProjectName }} </span>
     </v-footer>
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { auth } from '@/store'
+
 export default Vue.extend({
+  middleware: 'dashboard',
   data () {
     return {
       clipped: false,
@@ -113,7 +118,7 @@ export default Vue.extend({
           to: '/dashboard/players'
         },
         {
-          icon: 'mdi-shield-sun-outline',
+          icon: 'mdi-khanda',
           title: 'Guilds',
           to: '/dashboard/guilds'
         },
@@ -144,5 +149,24 @@ export default Vue.extend({
       title: 'Claria'
     }
   },
+
+  computed: {
+    getVersion(): any {
+      return process.env.version;
+    },
+
+    getProjectName(): String | undefined {
+      return process.env.PROJECT_NAME;
+    }
+  },
+
+  methods: {
+    onLogout(this: any): void {
+      auth.destroy();
+      if (this.$route && this.$route.fullPath !== "/") {
+        this.$router.push("/")
+      }
+    }
+  }
 })
 </script>

@@ -6,7 +6,6 @@ export default class PlayersController {
     try {
       let name = request.param('name');
 
-
       name = await name
         .replace(/%20/g, " ")
         .replace(/'+'/g, " ")

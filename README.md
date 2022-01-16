@@ -42,6 +42,7 @@
   <li> Adonis.js </li>
   <ul>
     <li> <a href="https://docs.adonisjs.com/guides/auth/introduction"> Auth </a> </li>
+    <li> <a href="https://docs.adonisjs.com/guides/authorization"> Authorization </a> </li>
     <li> <a href="https://docs.adonisjs.com/guides/database/introduction"> Lucid ORM </a> </li>
     <li> <a href="https://docs.adonisjs.com/guides/mailer"> Mailer </a> </li>
     <li> <a href="https://docs.adonisjs.com/guides/views/introduction"> Views & Templates </a> </li>
@@ -75,8 +76,9 @@ This repository follows the semantic commit pattern, with the addition of the ta
 
 ## 👨🏾‍💻 Functionalities
 <span>
-[x] Authentication
-[x] View character informations
+Authentication
+
+View character informations
 <ul>
   <li> [x] Show character info </li>
   <li> [x] Show character items </li>
@@ -84,19 +86,20 @@ This repository follows the semantic commit pattern, with the addition of the ta
   <li> [x] Show character deaths </li>
   <li> [ ] Show character achievements </li>
 </ul>
-[x] Widget Top 5 Players
 
-[ ] Manage Account
+Widget Top 5 Players
+
+Manage Account
 <ul>
   <li> [x] Page Account informations </li>
-  <li> [ ] List account characters </li>
+  <li> [x] List account characters </li>
   <li> [ ] Create new character </li>
   <li> [ ] Delete character </li>
   <li> [ ] Change character name </li>
   <li> [ ] Account Logs </li>
 </ul>
 
-[ ] Guilds
+Guilds
 <ul>
   <li> [ ] List all guilds </li>
   <li> [ ] Show guild </li>
@@ -108,8 +111,9 @@ This repository follows the semantic commit pattern, with the addition of the ta
   <li> [ ] View guild wars </li>
 </ul>
 
-[ ] Highscores
+Highscores
 <ul>
+  <li> [x] Widget Highscores </li>
   <li> [ ] Show Highscores </li>
   <li> [ ] Create/Apply Filters </li>
 </ul>

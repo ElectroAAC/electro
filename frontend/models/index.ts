@@ -11,3 +11,8 @@ export {
   Item,
   Death
 } from './Player';
+
+export { 
+  TopPremiumPoints,
+  Vocations
+} from './Dashboard'

@@ -94,7 +94,7 @@
 }
 
 .theme--light.v-data-table > .v-data-table__wrapper > table > tbody > tr:hover:not(.v-data-table__expanded__content):not(.v-data-table__empty-wrapper) {
-  background: rgb(3 255 243 / 45%) !important;
+  background: rgba(3, 255, 242, 0.301) !important;
   color: var(--heading-color) !important;
 }
 

@@ -64,3 +64,16 @@ $ npm run start
 | GET    | /player/:id/storage/:key   | Get Player Storage                    |
 | POST   | /player/:id/deaths         | Get Player Last 10 Deaths             |
 | GET    | /player/:id/items          | Get Player Items equipment            |
+
+
+<br>
+
+##  🕵🏾‍♂️  Routes Dashboard
+
+| METHOD | ENDPOINT                   | DESCRIPTION                               |
+| :----- | :------------------------- | :-----------------------------------------|
+| GET    | /dashboard/accounts        | Get Total Accounts                        |
+| GET    | /dashboard/players         | Get Total PLayers                         |
+| GET    | /dashboard/guilds          | Get Total Guilds                          |
+| GET    | /dashboard/premium-points  | Get accounts with the most premium points |
+| GET    | /dashboard/vocation        | Get all vocations by id                   |

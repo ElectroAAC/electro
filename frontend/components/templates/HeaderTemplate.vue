@@ -45,6 +45,12 @@
       </template>
       
       <v-list class="header-list">
+        <v-list-item v-if="$account.name && $account.group_id === 6">
+          <v-list-item-title class="header-text">
+            <NuxtLink to="/dashboard"> Dashboard </NuxtLink>
+          </v-list-item-title>
+        </v-list-item>
+        
         <v-list-item v-if="!$account.name">
           <v-list-item-title class="header-text">
             <span style="cursor: pointer;" @click="updateDialog(true)"> Login </span>
