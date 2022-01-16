@@ -1,6 +1,6 @@
 <template>
   <div>
-    Aiai
+    <CreateCharacterTemplate />
   </div>
 </template>
 

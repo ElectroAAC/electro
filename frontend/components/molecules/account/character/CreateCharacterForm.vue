@@ -1,90 +1,90 @@
 <template>
-  <v-form
-    ref="form"
-    v-model="valid"
-    @submit.prevent="validate"
-    @keyup.native.enter="validate"
-  >
-    <v-row class="pl-4 mr-4">
+  <v-row>
+    <v-col cols="8">
+      <v-text-field
+        :value="character.name"
+        :rules="required"
+        label="Character Name"
+        type="text"
+        dense
+        outlined
+        rounded
+        required
+        hide-details="auto"
+        @change="($event) => {
+          updateCharacter();
+        }"
+      />
+    </v-col>
 
-      <v-col cols="12">
-        <v-text-field
-          v-model="name"
-          :rules="required"
-          label="Character Name"
-          type="text"
-          dense
-          outlined
-          rounded
-          required
-          hide-details="auto"
-        />
-      </v-col>
-
-      <v-col cols="6">
-        <v-text-field
-          v-model="sex"
-          :rules="required"
-          label="Sex"
-          type="text"
-          dense
-          outlined
-          rounded
-          required
-          hide-details="auto"
-        />
-      </v-col>
-
-      <v-col cols="6">
-        <v-text-field
-          v-model="vocation"
-          :rules="required"
-          label="Vocation"
-          type="text"
-          dense
-          outlined
-          rounded
-          required
-          hide-details="auto"
-        />
-      </v-col>
-
-      <v-col cols="12">
-        <v-btn
-          depressed
-          class="mt-5 btn btn-success-primary"
-          width="100%"
-          rounded
-          @click="validate"
-        >
-          Create Account
-        </v-btn>
-      </v-col>
-
-    </v-row>
-  </v-form>
+    <v-col cols="4">
+      <v-autocomplete
+        :value="
+          getSexList.some((item) => item.value === character.sex)
+            ? {
+                value: character.sex,
+                text: getSexList.find(
+                  (item) => item.value === character.sex,
+                ).text
+              }
+            : 0"
+        :rules="required"
+        :items="getSexList"
+         class="character-sex-list"
+        label="Sex"
+        dense
+        rounded
+        outlined
+        hide-details="auto"
+        @change="($event) => {
+          character.sex = $event;
+          updateCharacter();
+        }"
+      />
+    </v-col>
+  </v-row>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { createCharacter } from '@/store'
+import { CreateCharacter } from '@/models'
+import { sex as sexList } from '@/utils/enum'
 
 export default Vue.extend({
   data() {
     return {
-      name: '',
-      sex: '',
-      vocation: 0,
-      valid: true,
+      character: {
+        name: "",
+        sex: 0,
+        vocation: null
+      },
       required: [
         (v: string) => !!v || 'Required field',
       ],
     }
   },
 
+  computed: {
+    $character(): CreateCharacter {
+      return createCharacter.$character;
+    },
+    getSexList(): { value: number, text: string }[] {
+      return sexList;
+    },
+  },
+
   methods: {
-    async validate(this: any): Promise<void> {
-      await this.$refs.form.validate();
-    }
+    updateCharacter(this: any) {
+      createCharacter.update(this.character);
+    },
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.theme--light.v-list {
+  background: transparent !important;
+  color: var(--heading-color) !important;
+}
+</style>

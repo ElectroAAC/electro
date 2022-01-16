@@ -25,6 +25,10 @@
   background-size: cover;
 }
 
+.header-text {
+  color: var(--second-main-color) !important;;
+}
+
 .header-text > a, .header-text > span {
   color: var(--heading-color) !important;
   font-style: normal !important;
@@ -284,4 +288,8 @@
   top: 72px;
   color: var(--second-main-color);
   font-weight: bold;
+}
+
+.theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
+  color: var(--heading-color) !important;
 }

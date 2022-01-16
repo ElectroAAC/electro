@@ -7,8 +7,6 @@ import {
 
 import { $axios } from '@/utils/nuxt-instance'
 
-import { CreateCharacter } from '@/models'
-
 interface CreatePayload {
 	name: String,
 	sex: Number,
@@ -16,17 +14,31 @@ interface CreatePayload {
   town_id?: Number
 }
 
+interface UpdatePayload {
+  name?: String,
+  sex?: Number,
+  vocation?: Number
+}
 @Module({
-  name: 'accounts/register',
+  name: 'accounts/character',
   stateFactory: true,
   namespaced: true
 })
 
-export default class AccountRegister extends VuexModule {
-  private character = {} as CreateCharacter;
+export default class CreateCharacter extends VuexModule {
+  private character = {
+    name: null,
+    sex: null,
+    vocation: null
+  };
   
   public get $character() {
     return this.character;
+  }
+
+  @Mutation
+  private UPDATE(this: any, character: UpdatePayload) {
+    this.character = character
   }
 
   @Action
@@ -41,5 +53,10 @@ export default class AccountRegister extends VuexModule {
         return 400;
       });
     return status;
+  }
+
+  @Action
+  public async update(payload: UpdatePayload) {
+    this.context.commit('UPDATE', payload);
   }
 }

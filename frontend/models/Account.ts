@@ -14,7 +14,7 @@ export interface CharactersAccount {
 }
 
 export interface CreateCharacter {
-	name: String,
-	sex: Number,
-	vocation: Number
+	name: String | null,
+	sex: Number | null,
+	vocation: Number | null
 }
