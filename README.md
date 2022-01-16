@@ -90,9 +90,9 @@ This repository follows the semantic commit pattern, with the addition of the ta
 <ul>
   <li> [x] Page Account informations </li>
   <li> [x] List account characters </li>
-  <li> [ ] Create new character </li>
-  <li> [ ] Delete character </li>
+  <li> [x] Create new character </li>
   <li> [ ] Change character name </li>
+  <li> [ ] Delete character </li>
   <li> [ ] Account Logs </li>
 </ul>
 
@@ -103,6 +103,30 @@ This repository follows the semantic commit pattern, with the addition of the ta
   <li> [ ] Create/Apply Filters </li>
 </ul>
 
+### Dashboard - ADMIN
+<ul>
+  <li> [x] Validate permissions </li>
+  <li> [x] Home Page </li>
+  <li> [ ] Show Highscores </li>
+  <li> [ ] Create/Apply Filters </li>
+</ul>
+
+## Show-Off
+
+<br>
+
+### Create Character Page
+<br>
+
+<img src="./assets/create-character.gif">
+
+<br>
+
+### Dashboard - ADMIN - Home Page
+
+<br>
+
+<img src="./assets/home.png">
 
 ## 👤 Author 
 
