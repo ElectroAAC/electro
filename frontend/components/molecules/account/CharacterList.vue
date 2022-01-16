@@ -28,7 +28,7 @@
             >
               <v-scale-transition>
                 <AccountCharacterAvatar 
-                  :avatar="getVocationName(item.vocation)" 
+                  :avatar="getVocation(item.vocation)" 
                   :text="item.name"
                   :level="item.level"
                   class="mt-3" 
@@ -68,7 +68,7 @@
 import Vue from 'vue'
 import { account, character } from '@/store'
 import { CharactersAccount } from '@/models'
-import { vocations } from '@/utils/enum'
+import { getVocationName } from '@/utils/methods'
 
 export default Vue.extend({
   data() {
@@ -155,11 +155,8 @@ export default Vue.extend({
       }
     },
 
-    getVocationName(vocation_id: Number | number): String | undefined {
-      const vocation = vocations.find((vocation) => vocation.value === vocation_id)?.text;
-      if (vocation)
-        return vocation;
-      return "Default";
+    getVocation(vocation_id: Number | number): String | undefined {
+      return getVocationName(vocation_id);
     }
   }
 })

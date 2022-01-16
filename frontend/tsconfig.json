@@ -31,7 +31,8 @@
       "@nuxtjs/axios",
       "@types/node",
       "@nuxtjs/vuetify",
-      "@nuxtjs/toast"
+      "@nuxtjs/toast",
+      "@types/randomcolor"
     ]
   },
   "exclude": [
