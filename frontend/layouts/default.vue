@@ -9,10 +9,7 @@
           <Nuxt/>
         </v-col>
         <v-col cols="3" class="side-bar ml-5 pa-0">
-          <SearchPlayerWidget />
-          <StatusServerWidget class="mt-2"/>
-          <TrailerWidget class="mt-2"/>
-          <HighscoresWidget class="mt-2"/>
+          <Sidebar />
         </v-col>
         <v-col cols="1"></v-col>
       </v-row>
