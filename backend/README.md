@@ -26,14 +26,15 @@ $ npm run start
 
 ##  🕵🏾‍♂️  Routes Account
 
-| METHOD | ENDPOINT                       | DESCRIPTION                           |
-| :----- | :------------------------------| :------------------------------------ |
-| POST   | /accounts/register             | Register new account                  |
-| POST   | /accounts/forgot-password      | Generate code and sent to email       |
-| GET    | /accounts/forgot-password/:key | Validate Code                         |
-| PUT    | /accounts/forgot-password      | Update Password                       |
-| GET    | /accounts/characters/:id       | Get characters to account             |
-| POST   | /accounts/create-character     | Create new character                  |
+| METHOD | ENDPOINT                        | DESCRIPTION                           |
+| :----- | :-------------------------------| :------------------------------------ |
+| POST   | /accounts/register              | Register new account                  |
+| POST   | /accounts/forgot-password       | Generate code and sent to email       |
+| GET    | /accounts/forgot-password/:key  | Validate Code                         |
+| PUT    | /accounts/forgot-password       | Update Password                       |
+| GET    | /accounts/characters/:id        | Get characters to account             |
+| POST   | /accounts/create-character      | Create new character                  |
+| POST   | /accounts/change-character-name | Change character name                 |
 
 <br>
 
