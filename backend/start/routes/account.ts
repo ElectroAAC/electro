@@ -12,10 +12,13 @@ Route.get('/accounts', 'Account/Main.show').middleware('auth')
 
 Route.get('/accounts/characters/:id', 'Account/Characters.show').middleware('auth');
 Route.post('/accounts/create-character', 'Account/Characters.store').middleware('auth');
+
 Route.get('/accounts/change-character-name', ({ response }) => {
   response.status(200).send({ 
     enabled: Env.get('CHANGE_NAME'),
     points: Env.get('POINTS_TO_CHANGE_NAME')
   });
 }).middleware('auth');
+
 Route.post('/accounts/change-character-name', 'Account/Characters.update').middleware('auth');
+Route.post('/accounts/delete-character', 'Account/Characters.destroy').middleware('auth');

@@ -36,6 +36,7 @@ $ npm run start
 | POST   | /accounts/create-character      | Create new character                  |
 | GET    | /accounts/change-character-name | Status system                         |
 | POST   | /accounts/change-character-name | Change character name                 |
+| POST   | /accounts/delete-character      | Delete character                      |
 
 <br>
 

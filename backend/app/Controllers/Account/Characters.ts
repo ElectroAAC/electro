@@ -1,8 +1,10 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { StoreValidator, UpdateValidator } from 'App/Validators/Account/Character'
-import Database from '@ioc:Adonis/Lucid/Database'
+import { DeleteValidator, StoreValidator, UpdateValidator } from 'App/Validators/Account/Character'
 import { Vocations } from 'Contracts/enums/Vocations'
+import { Account } from 'App/Models'
+import Database from '@ioc:Adonis/Lucid/Database'
 import Env from '@ioc:Adonis/Core/Env'
+import encrypt from 'js-sha1'
 
 export default class CharactersAccount {
   
@@ -146,6 +148,55 @@ export default class CharactersAccount {
     } catch(err) {
       console.log('Error Change Character Name Query: ', err);
       return response.badRequest(err.messages);
+    }
+  }
+
+  public async destroy({ request, response, auth }: HttpContextContract) {
+    try {
+      const data = await request.validate(DeleteValidator);
+
+      const account = auth.user;
+
+      if (!account || !account.id) 
+        return response.unauthorized();
+
+      const verifyPassword = await Account
+        .query()
+        .where('name', account.name)
+        .where('password', encrypt(data.password))
+        .firstOrFail();
+      
+      if (!verifyPassword)
+       return response.status(404).send({ message: 'Wrong password.' });
+      
+      const character = await Database
+        .from('players')
+        .select('name', 'deleted', 'online')
+        .where('id', '=', data.character_id)
+        .andWhere('account_id', '=', account.id);
+
+      if (!character.length)
+        return response.status(404).send({ message: 'The character does not belong to your account.' });
+      
+      if (character[0].online === 1)
+        return response.status(404).send({ message: 'You cannot delete a character that is online.' });
+      
+      if (character[0].deleted === 1)
+        return response.status(404).send({ message: 'This character is already deleted.' });
+      
+      const house = await Database.from('houses').select('id').where('owner', '=', data.character_id);
+
+      if (house.length) 
+        return response.status(404).send({ message: 'You cannot delete a character that has a house.' });
+      
+      const updateCharacter = await Database.from('players').where('id', '=', data.character_id).update({ deleted: 1 });
+
+      if (!updateCharacter)
+        return response.status(404).send({ message: "Error. Unable to delete character. Probably problem with database. Please try again later or contact with admin." });
+      
+      return response.status(200).send({ status: 200, message: "The character " + character[0].name + " has been deleted." });
+    } catch (err) {
+
     }
   }
 }

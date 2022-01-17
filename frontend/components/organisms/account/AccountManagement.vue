@@ -30,16 +30,24 @@
           <v-row>
             <v-col cols="12" class="mt-4 text-center">
               <v-btn text @click="dialog = true" class="header-text">
-                <v-icon>
+                <v-icon color="green">
                   mdi-plus
                 </v-icon>
-                <NuxtLink to="/accounts/create-character"> Create New Character </NuxtLink>
+                <NuxtLink to="/accounts/create-character"> New Character </NuxtLink>
               </v-btn>
+
               <v-btn v-if="$changeName.enabled" text @click="dialog = true" class="header-text">
-                <v-icon>
+                <v-icon color="orange">
                   mdi-pencil
                 </v-icon>
-                <NuxtLink to="/accounts/change-name"> Change Character Name </NuxtLink>
+                <NuxtLink to="/accounts/change-name"> Change Name </NuxtLink>
+              </v-btn>
+              
+              <v-btn v-if="$changeName.enabled" text @click="dialog = true" class="header-text">
+                <v-icon color="red">
+                  mdi-delete-outline
+                </v-icon>
+                <NuxtLink to="/accounts/delete-character"> Delete Character </NuxtLink>
               </v-btn>
             </v-col>
           </v-row>
