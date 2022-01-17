@@ -10,9 +10,15 @@ import { $axios } from '@/utils/nuxt-instance'
 import { Accounts, CharactersAccount } from '@/models'
 
 interface ChangeNamePayload {
-  status: boolean,
-  premium_points: number
+  enabled: boolean,
+  points: number
 }
+
+interface UpdatePayload {
+  new_name: String | null,
+  character_id: Number | null
+}
+
 @Module({
   name: 'accounts/account',
   stateFactory: true,
@@ -23,8 +29,12 @@ export default class Account extends VuexModule {
   private account = {} as Accounts;
   private characters: CharactersAccount[] = [];
   private changeName = {
-    status: false,
-    premium_points: 0
+    enabled: false,
+    points: 0
+  }
+  private name = {
+    new_name: null,
+    character_id: null
   }
 
   public get $account() {
@@ -37,6 +47,10 @@ export default class Account extends VuexModule {
 
   public get $changeName() {
     return this.changeName;
+  }
+
+  public get $newName() {
+    return this.name;
   }
 
   @Mutation
@@ -52,6 +66,11 @@ export default class Account extends VuexModule {
   @Mutation
   private UPDATE_CHANGE_NAME(payload: ChangeNamePayload) {
     this.changeName = payload;
+  }
+
+  @Mutation
+  private UPDATE_NEW_NAME(this: any, payload: UpdatePayload) {
+    this.name = Object.assign(this.name, payload);
   }
 
   @Action
@@ -71,7 +90,7 @@ export default class Account extends VuexModule {
   }
 
   @Action
-  async getCharacters(account_id: Number) {
+  public async getCharacters(account_id: Number) {
     try {
       await $axios.$get(`accounts/characters/${account_id}`)
         .then((res) => {
@@ -94,7 +113,7 @@ export default class Account extends VuexModule {
   }
 
   @Action
-  async getChangeNameStatus() {
+  public async getChangeNameStatus() {
     try {
       await $axios.$get('accounts/change-character-name')
         .then((response) => {
@@ -111,6 +130,28 @@ export default class Account extends VuexModule {
       this.context.commit('UPDATE_CHANGE_NAME', {});
       return 400;
     }
+  }
+
+  @Action
+  public async setNewName(payload: UpdatePayload) {
+    this.context.commit('UPDATE_NEW_NAME', payload);
+  }
+  
+  @Action
+  public async changeNameCharacter(payload: UpdatePayload) {
+    const status = await $axios.$post('accounts/change-character-name', payload)
+      .then(( response ) => {
+        if (response.status !== 200) 
+          throw new Error("Failed to change name character");
+        return response;
+      })
+      .catch(({ response }) => {
+        return {
+          message: response.data.message ? response.data.message : response.data.errors[0].message,
+          status: response.status
+        };
+      });
+    return status;
   }
 
   @Action

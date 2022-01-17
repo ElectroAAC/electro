@@ -18,5 +18,9 @@ export default Vue.extend({
       return account.$changeName.enabled;
     }
   },
+
+  mounted(){ 
+    account.getChangeNameStatus();
+  },
 })
 </script>

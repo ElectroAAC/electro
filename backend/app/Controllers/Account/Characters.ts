@@ -142,7 +142,7 @@ export default class CharactersAccount {
         return response.status(404).send({ message: "Error. Can't change character name. Probably problem with database. Please try again later or contact with admin." });
       }
 
-      return response.status(200).send({ message: "The character " + character[0].name + " name has been changed to " + data.new_name + "." });
+      return response.status(200).send({ status: 200, message: "The character " + character[0].name + " name has been changed to " + data.new_name + "." });
     } catch(err) {
       console.log('Error Change Character Name Query: ', err);
       return response.badRequest(err.messages);

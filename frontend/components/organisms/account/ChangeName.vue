@@ -36,6 +36,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { account } from '@/store'
+import { Accounts } from '@/models'
 
 export default Vue.extend({
   data() {
@@ -45,7 +46,7 @@ export default Vue.extend({
   },
 
   computed: {
-    $account() {
+    $account(): Accounts {
       return account.$account;
     },
 
@@ -55,8 +56,37 @@ export default Vue.extend({
   },
   
   methods: {
+    async onChangeName(this: any): Promise<void> {
+      const result: { status: Number, message: String} = await account.changeNameCharacter(account.$newName);
+
+      if (result.status === 200) {
+        this.$toast.success(
+          'Character Name Changed',
+          {
+            keepOnHover: true,
+            duration: 2000,
+            theme: "bubble",
+          }
+        )
+        this.$router.push('/accounts');
+      }
+        
+      else {
+        this.$toast.error(
+          result.message,
+          {
+            keepOnHover: true,
+            duration: 2000,
+            theme: "bubble",
+          }
+        )
+      }
+    },
+
     async validate(this: any): Promise<void> {
       await this.$refs.form.validate();
+      if (this.valid)
+        await this.onChangeName();
     }
   }
 })
