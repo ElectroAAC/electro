@@ -9,6 +9,10 @@ import { $axios } from '@/utils/nuxt-instance'
 
 import { Accounts, CharactersAccount } from '@/models'
 
+interface ChangeNamePayload {
+  status: boolean,
+  premium_points: number
+}
 @Module({
   name: 'accounts/account',
   stateFactory: true,
@@ -18,6 +22,10 @@ import { Accounts, CharactersAccount } from '@/models'
 export default class Account extends VuexModule {
   private account = {} as Accounts;
   private characters: CharactersAccount[] = [];
+  private changeName = {
+    status: false,
+    premium_points: 0
+  }
 
   public get $account() {
     return this.account;
@@ -25,6 +33,10 @@ export default class Account extends VuexModule {
 
   public get $characters() {
     return this.characters;
+  }
+
+  public get $changeName() {
+    return this.changeName;
   }
 
   @Mutation
@@ -35,6 +47,11 @@ export default class Account extends VuexModule {
   @Mutation
   private UPDATE_CHARACTERS(characters: CharactersAccount[]) {
     this.characters = characters;
+  }
+
+  @Mutation
+  private UPDATE_CHANGE_NAME(payload: ChangeNamePayload) {
+    this.changeName = payload;
   }
 
   @Action
@@ -72,6 +89,26 @@ export default class Account extends VuexModule {
       return 200;
     } catch(err) {
       this.context.commit('UPDATE_CHARACTERS', {});
+      return 400;
+    }
+  }
+
+  @Action
+  async getChangeNameStatus() {
+    try {
+      await $axios.$get('accounts/change-character-name')
+        .then((response) => {
+          if (!response) 
+            throw new Error("Failed to get status to change name");
+
+          this.context.commit('UPDATE_CHANGE_NAME', response);
+        })
+        .catch(() => {
+          this.context.commit('UPDATE_CHANGE_NAME', {});
+        });
+      return 200;
+    } catch(err) {
+      this.context.commit('UPDATE_CHANGE_NAME', {});
       return 400;
     }
   }
