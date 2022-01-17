@@ -19,6 +19,10 @@ interface UpdatePayload {
   character_id: Number | null
 }
 
+interface DeletePayload {
+  password: String | null,
+  character_id: Number | null
+}
 @Module({
   name: 'accounts/account',
   stateFactory: true,
@@ -154,6 +158,22 @@ export default class Account extends VuexModule {
     return status;
   }
 
+  @Action
+  public async deleteCharacter(payload: DeletePayload) {
+    const status = await $axios.$post('accounts/delete-character', payload)
+      .then(( response ) => {
+        if (response.status !== 200) 
+          throw new Error("Failed to delete character");
+        return response;
+      })
+      .catch(({ response }) => {
+        return {
+          message: response.data.message ? response.data.message : response.data.errors[0].message,
+          status: response.status
+        };
+      });
+    return status;
+  }
   @Action
   async destroy() {
     this.context.commit('UPDATE_ACCOUNT', {});
