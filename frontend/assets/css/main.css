@@ -3,6 +3,7 @@
   --text-color: #ffffff;
   --title-color: #9cabb9;
   --main-color: #0385ff;
+  --red: #f56969;
   --second-main-color: #03fff2;
   --bg-main-color: #141f36;
   --bg-second-color: #334459;
@@ -167,6 +168,12 @@
   background: var(--main-color) !important;
   color: var(--heading-color) !important;
   border: 1px solid var(--main-color) !important;
+}
+
+.btn-danger-primary {
+  background: var(--red) !important;
+  color: var(--text-color) !important;
+  border-color: var(--red) !important;
 }
 
 .container {

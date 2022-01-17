@@ -36,9 +36,15 @@ export default class Account extends VuexModule {
     enabled: false,
     points: 0
   }
+
   private name = {
     new_name: null,
     character_id: null
+  }
+
+  private dataDeleteCharacter = {
+    character_id: null,
+    password: null
   }
 
   public get $account() {
@@ -55,6 +61,10 @@ export default class Account extends VuexModule {
 
   public get $newName() {
     return this.name;
+  }
+
+  public get $dataDeleteCharacter() {
+    return this.dataDeleteCharacter;
   }
 
   @Mutation
@@ -75,6 +85,11 @@ export default class Account extends VuexModule {
   @Mutation
   private UPDATE_NEW_NAME(this: any, payload: UpdatePayload) {
     this.name = Object.assign(this.name, payload);
+  }
+
+  @Mutation
+  private UPDATE_PASSWORD_DELETE(this: any, payload: UpdatePayload) {
+    this.dataDeleteCharacter = Object.assign(this.dataDeleteCharacter, payload);
   }
 
   @Action
@@ -139,6 +154,11 @@ export default class Account extends VuexModule {
   @Action
   public async setNewName(payload: UpdatePayload) {
     this.context.commit('UPDATE_NEW_NAME', payload);
+  }
+
+  @Action
+  public async setPasswordToDelete(payload: DeletePayload) {
+    this.context.commit('UPDATE_PASSWORD_DELETE', payload);
   }
   
   @Action
