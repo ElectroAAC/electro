@@ -35,6 +35,12 @@
                 </v-icon>
                 <NuxtLink to="/accounts/create-character"> Create New Character </NuxtLink>
               </v-btn>
+              <v-btn v-if="$changeName.enabled" text @click="dialog = true" class="header-text">
+                <v-icon>
+                  mdi-pencil
+                </v-icon>
+                <NuxtLink to="/accounts/change-name"> Change Character Name </NuxtLink>
+              </v-btn>
             </v-col>
           </v-row>
           
@@ -47,6 +53,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { account } from '@/store'
 
 export default Vue.extend({
   data () {
@@ -69,5 +76,15 @@ export default Vue.extend({
       ]
     }
   },
+
+  computed: {
+    $changeName() {
+      return account.$changeName;
+    }
+  },
+
+  mounted() {
+    account.getChangeNameStatus();
+  }
 })
 </script>

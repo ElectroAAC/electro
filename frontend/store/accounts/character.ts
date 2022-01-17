@@ -45,7 +45,6 @@ export default class CreateCharacter extends VuexModule {
   public async create(payload: CreatePayload) {
     if (!payload.vocation) {
       payload.vocation = 1;
-      console.log('Entrou aqui');
     }
 
     const status = await $axios.$post('accounts/create-character', payload)

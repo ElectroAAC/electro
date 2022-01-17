@@ -18,7 +18,7 @@ export default class Account extends BaseModel {
   @column()
   public rememberMeToken?: string
 
-  @column()
+  @column({ serializeAs: null })
   public salt: string
 
   @column()
@@ -27,79 +27,79 @@ export default class Account extends BaseModel {
   @column()
   public lastday: number
 
-  @column()
+  @column({ serializeAs: null })
   public key: string
 
-  @column()
+  @column({ serializeAs: null })
   public blocked: number
 
-  @column()
+  @column({ serializeAs: null })
   public warnings: number
 
   @column()
   public group_id: number
 
-  @column()
+  @column({ serializeAs: null })
   public vip_time: number
 
-  @column()
+  @column({ serializeAs: null })
   public web_lastlogin: number
 
-  @column()
+  @column({ serializeAs: null })
   public web_flags: number
 
-  @column()
+  @column({ serializeAs: null })
   public email_hash: string
 
-  @column()
+  @column({ serializeAs: null })
   public email_verified: number
 
-  @column()
+  @column({ serializeAs: null })
   public email_new: string
 
-  @column()
+  @column({ serializeAs: null })
   public email_new_time: number
 
   @column()
   public created: number
 
-  @column()
+  @column({ serializeAs: null })
   public rlname: string
 
-  @column()
+  @column({ serializeAs: null })
   public location: string
 
-  @column()
+  @column({ serializeAs: null })
   public country: string
 
-  @column()
+  @column({ serializeAs: null })
   public page_access: number
 
-  @column()
+  @column({ serializeAs: null })
   public email_code: string
 
-  @column()
+  @column({ serializeAs: null })
   public email_next: number
 
   @column()
   public premium_points: number
 
-  @column()
+  @column({ serializeAs: null })
   public vote: number
 
-  @column()
+  @column({ serializeAs: null })
   public last_post: number
 
-  @column()
+  @column({ serializeAs: null })
   public flag: string
 
-  @column()
+  @column({ serializeAs: null })
   public nickname: string
 
-  @column()
+  @column({ serializeAs: null })
   public avatar: string
 
-  @column()
+  @column({ serializeAs: null })
   public about_me: string
 
   @beforeSave()

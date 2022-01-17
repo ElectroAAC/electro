@@ -3,7 +3,8 @@ export interface Accounts {
 	name: String,
 	email: String,
 	password: String,
-	group_id: Number
+	group_id: Number,
+	premium_points: Number
 }
 
 export interface CharactersAccount {

@@ -59,28 +59,28 @@ export default class Player extends BaseModel {
   @column()
   public manamax: number
   
-  @column()
+  @column({ serializeAs: null })
   public manaspent: number
   
-  @column()
+  @column({ serializeAs: null })
   public soul: number
   
-  @column()
+  @column({ serializeAs: null })
   public town_id: number
   
-  @column()
+  @column({ serializeAs: null })
   public posx: number
   
-  @column()
+  @column({ serializeAs: null })
   public posy: number
   
-  @column()
+  @column({ serializeAs: null })
   public posz: number
   
-  @column()
+  @column({ serializeAs: null })
   public conditions: string
   
-  @column()
+  @column({ serializeAs: null })
   public cap: number
   
   @column()
@@ -89,7 +89,7 @@ export default class Player extends BaseModel {
   @column()
   public lastlogin: number
   
-  @column()
+  @column({ serializeAs: null })
   public lastip: number
   
   @column()
@@ -110,7 +110,7 @@ export default class Player extends BaseModel {
   @column()
   public blessings: number
   
-  @column()
+  @column({ serializeAs: null })
   public pvp_blessing: number
   
   @column()
@@ -119,13 +119,13 @@ export default class Player extends BaseModel {
   @column()
   public stamina: number
   
-  @column()
+  @column({ serializeAs: null })
   public direction: number
   
   @column()
   public loss_experience: number
   
-  @column()
+  @column({ serializeAs: null })
   public loss_mana: number
   
   @column()
@@ -137,136 +137,136 @@ export default class Player extends BaseModel {
   @column()
   public loss_items: number
   
-  @column()
+  @column({ serializeAs: null })
   public premend: number
   
   @column()
   public online: number
   
-  @column()
+  @column({ serializeAs: null })
   public marriage: number
   
-  @column()
+  @column({ serializeAs: null })
   public marrystatus: number
   
-  @column()
+  @column({ serializeAs: null })
   public promotion: number
   
   @column()
   public deleted: number
   
-  @column()
+  @column({ serializeAs: null })
   public description: string
   
   @column()
   public created: number
   
-  @column()
+  @column({ serializeAs: null })
   public nick_verify: number
   
-  @column()
+  @column({ serializeAs: null })
   public old_name: string
   
-  @column()
+  @column({ serializeAs: null })
   public hidden: number
   
-  @column()
+  @column({ serializeAs: null })
   public worldtransfer: number
   
-  @column()
+  @column({ serializeAs: null })
   public comment: string
   
-  @column()
+  @column({ serializeAs: null })
   public show_outfit:number
   
-  @column()
+  @column({ serializeAs: null })
   public show_eq:number
   
-  @column()
+  @column({ serializeAs: null })
   public show_bars:number
   
-  @column()
+  @column({ serializeAs: null })
   public show_skills:number
   
-  @column()
+  @column({ serializeAs: null })
   public show_quests:number
   
-  @column()
+  @column({ serializeAs: null })
   public exphist_lastexp: number
   
-  @column()
+  @column({ serializeAs: null })
   public exphist1: number
   
-  @column()
+  @column({ serializeAs: null })
   public exphist2: number
   
-  @column()
+  @column({ serializeAs: null })
   public exphist3: number
   
-  @column()
+  @column({ serializeAs: null })
   public exphist4: number
   
-  @column()
+  @column({ serializeAs: null })
   public exphist5: number
   
-  @column()
+  @column({ serializeAs: null })
   public exphist6: number
   
-  @column()
+  @column({ serializeAs: null })
   public exphist7: number
   
-  @column()
+  @column({ serializeAs: null })
   public onlinetimetoday: number
   
-  @column()
+  @column({ serializeAs: null })
   public onlinetime1: number
   
-  @column()
+  @column({ serializeAs: null })
   public onlinetime2: number
   
-  @column()
+  @column({ serializeAs: null })
   public onlinetime3: number
   
   @column()
   public onlinetime4: number
   
-  @column()
+  @column({ serializeAs: null })
   public onlinetime5: number
   
-  @column()
+  @column({ serializeAs: null })
   public onlinetime6: number
   
-  @column()
+  @column({ serializeAs: null })
   public onlinetime7: number
   
-  @column()
+  @column({ serializeAs: null })
   public onlinetimeall: number
   
-  @column()
+  @column({ serializeAs: null })
   public ip: string
   
-  @column()
+  @column({ serializeAs: null })
   public cast: number
   
-  @column()
+  @column({ serializeAs: null })
   public filed_list: string
   
-  @column()
+  @column({ serializeAs: null })
   public castViewers: number
   
-  @column()
+  @column({ serializeAs: null })
   public castDescription: string
   
   @column()
   public frags: number
   
-  @column()
+  @column({ serializeAs: null })
   public offlinetraining_time: number
   
-  @column()
+  @column({ serializeAs: null })
   public offlinetraining_skill: number
   
-  @column()
+  @column({ serializeAs: null })
   public broadcasting: number
   
   @column()

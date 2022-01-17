@@ -1,5 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { StoreValidator } from 'App/Validators/Account/Character'
+import { StoreValidator, UpdateValidator } from 'App/Validators/Account/Character'
 import Database from '@ioc:Adonis/Lucid/Database'
 import { Vocations } from 'Contracts/enums/Vocations'
 import Env from '@ioc:Adonis/Core/Env'
@@ -106,6 +106,46 @@ export default class CharactersAccount {
     } catch(err) {
       console.log('Error getPlayersAccount Query: ', err);
       return response.status(400).send({ message: 'An error occurred, check the api console.'})
+    }
+  }
+
+  public async update({ request, response, auth }: HttpContextContract) {
+    try {
+      if (!Env.get('CHANGE_NAME')) {
+        return response.status(404).send({ message: 'Change character name is disabled.' });
+      }
+
+      const data = await request.validate(UpdateValidator);
+
+      const account = auth.user;
+
+      if (!account || !account.id) {
+        return response.unauthorized();
+      }
+
+      if (account.premium_points < Env.get('POINTS_TO_CHANGE_NAME')) {
+        return response.status(404).send({ message: "You don't have the points needed to change the name. It is necessary: " + Env.get('POINTS_TO_CHANGE_NAME') + " points." });
+      }
+
+      const character = await Database.from('players').select('name').where('id', '=', data.character_id).andWhere('account_id', '=', account.id);
+
+      if (!character.length)
+      {
+        return response.status(404).send({ message: 'The character does not belong to your account.' });
+      }
+      
+      const updateCharacter = await Database.from('players').where('id', '=', data.character_id).update({ name: data.new_name });
+      
+      await Database.from('accounts').where('id', '=', account.id).update({ premium_points: account.premium_points - Env.get('POINTS_TO_CHANGE_NAME')});
+      
+      if (!updateCharacter) {
+        return response.status(404).send({ message: "Error. Can't change character name. Probably problem with database. Please try again later or contact with admin." });
+      }
+
+      return response.status(200).send({ status: 200, message: "The character " + character[0].name + " name has been changed to " + data.new_name + "." });
+    } catch(err) {
+      console.log('Error Change Character Name Query: ', err);
+      return response.badRequest(err.messages);
     }
   }
 }
