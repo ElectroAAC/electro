@@ -113,18 +113,13 @@ This repository follows the semantic commit pattern, with the addition of the ta
 
 ## Show-Off
 
-<br>
-
 ### Create Character Page
-<br>
 
 <img src="./assets/create-character.gif">
 
 <br>
 
 ### Dashboard - ADMIN - Home Page
-
-<br>
 
 <img src="./assets/home.png">
 

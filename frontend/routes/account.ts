@@ -1,5 +1,6 @@
 import Accounts from '@/pages/accounts/index.vue'
-import CreateCharacter from '~/pages/accounts/create.vue'
+import CreateCharacter from '~/pages/accounts/character/create.vue'
+import ChangeName from '~/pages/accounts/character/changeName.vue'
 
 export default [
   {
@@ -16,6 +17,14 @@ export default [
     name: 'Create Character',
     meta: {
       name: 'create-character'
+    }
+  },
+  {
+    path: '/accounts/change-name',
+    component: ChangeName,
+    name: 'Change Name',
+    meta: {
+      name: 'change-name'
     }
   },
 ]

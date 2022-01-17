@@ -92,7 +92,7 @@ export default {
         },
         {
           text: "Create Character",
-          to: "/account/create-character"
+          to: "/accounts/create-character"
         },
       ]
     }
