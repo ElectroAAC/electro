@@ -34,6 +34,7 @@ $ npm run start
 | PUT    | /accounts/forgot-password       | Update Password                       |
 | GET    | /accounts/characters/:id        | Get characters to account             |
 | POST   | /accounts/create-character      | Create new character                  |
+| GET    | /accounts/change-character-name | Status system                         |
 | POST   | /accounts/change-character-name | Change character name                 |
 
 <br>
