@@ -4,6 +4,7 @@
   --title-color: #9cabb9;
   --main-color: #0385ff;
   --red: #f56969;
+  --green: #41c683;
   --second-main-color: #03fff2;
   --bg-main-color: #141f36;
   --bg-second-color: #334459;
@@ -24,6 +25,11 @@
   background-image: url('~assets/images/background.jpg') !important;
   background-position-x: center;
   background-size: cover;
+}
+
+.theme--light.v-list {
+  background: var(--bg-third-color) !important;
+  color: var(--heading-color) !important;
 }
 
 .header-text {
@@ -83,8 +89,13 @@
   color: var(--title-color) !important;
 }
 
-.theme--light.v-data-table.v-data-table--fixed-header thead th {
-  background: rgb(3 255 243 / 45%) !important;
+.theme--light.v-data-table thead th {
+  background: rgba(3, 255, 242, 0.45) !important;
+  color: var(--heading-color) !important;
+}
+
+.v-data-footer {
+  background: rgba(3, 255, 242, 0.45) !important;
   color: var(--heading-color) !important;
 }
 
@@ -299,4 +310,12 @@
 
 .theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
   color: var(--heading-color) !important;
+}
+
+.color-green {
+  color: var(--green) !important;
+}
+
+.color-red {
+  color: var(--red) !important;
 }

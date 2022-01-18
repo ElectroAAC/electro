@@ -6,7 +6,7 @@ export default class HighscoresController {
     try {
       const topRank = await Database
         .from('players')
-        .select('id', 'name', 'level', 'vocation', 'experience')
+        .select('id', 'name', 'level', 'vocation', 'experience', 'online')
         .orderBy('experience', 'desc')
         .limit(5);
       return response.status(200).send({ result: topRank});
@@ -20,11 +20,11 @@ export default class HighscoresController {
     try {
       const rank = await Database
         .from('players')
-        .select('name', 'vocation', 'level', 'experience')
+        .select('name', 'vocation', 'level', 'experience', 'online')
         .orderBy('experience', 'desc')
         .paginate(request.param('page', 1), request.param('limit'));
       
-      return response.status(200).send({ result: rank});
+      return response.status(200).send({ status: 200, result: rank});
     } catch (err) {
       console.log('Error getRanking Query: ', err);
       return response.status(404).send({ error: 'An error ocurred, check the api console.' });
