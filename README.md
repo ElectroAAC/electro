@@ -99,7 +99,7 @@ This repository follows the semantic commit pattern, with the addition of the ta
 ### Highscores
 <ul>
   <li> [x] Widget Highscores </li>
-  <li> [ ] Show Highscores </li>
+  <li> [x] Show Highscores </li>
   <li> [ ] Create/Apply Filters </li>
 </ul>
 
@@ -107,8 +107,6 @@ This repository follows the semantic commit pattern, with the addition of the ta
 <ul>
   <li> [x] Validate permissions </li>
   <li> [x] Home Page </li>
-  <li> [ ] Show Highscores </li>
-  <li> [ ] Create/Apply Filters </li>
 </ul>
 
 ## Show-Off
