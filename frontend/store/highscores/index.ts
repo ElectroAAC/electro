@@ -1,1 +1,2 @@
-export { default as Highscores } from './topRank';
+export { default as Top5Players } from './top5Players';
+export { default as Ranking } from './ranking';

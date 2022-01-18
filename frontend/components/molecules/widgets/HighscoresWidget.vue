@@ -3,7 +3,7 @@
     <h5 class="widget-title"> Highscores </h5>
     <v-container class="text-center">
       <div
-        v-for="(player, idx) in $highscores"
+        v-for="(player, idx) in $top5Players"
         class="text-center"
         :key="idx"
       >
@@ -17,15 +17,14 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { highscores } from '@/store'
-import { HighscoresWidget } from '@/models'
-import { vocations } from '@/utils/enum'
+import { top5Players } from '@/store'
+import { Top5Players } from '@/models'
 import { getVocationName } from '@/utils/methods'
 
 export default Vue.extend({
   computed: {
-    $highscores(): HighscoresWidget[] {
-      return highscores.$topRank;
+    $top5Players(): Top5Players[] {
+      return top5Players.$topRank;
     }
   },
 
@@ -35,7 +34,7 @@ export default Vue.extend({
 
   methods: {
     async getTopRank(): Promise<void> {
-      await highscores.getTopRank();
+      await top5Players.getTopRank();
     },
 
     getVocation(vocation_id: Number | number): String {

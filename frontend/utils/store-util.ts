@@ -18,7 +18,8 @@ import {
 } from '~/store/character'
 
 import { 
-  Highscores 
+  Top5Players,
+  Ranking
 } from '~/store/highscores'
 
 let auth: Auth;
@@ -31,7 +32,8 @@ let createCharacter: CreateCharacter;
 
 let character: Character;
 
-let highscores: Highscores;
+let top5Players: Top5Players;
+let ranking: Ranking;
 
 const initializeStores = (store: Store<any>) => {
   auth = getModule(Auth, store);
@@ -47,8 +49,9 @@ const initializeStores = (store: Store<any>) => {
   // Store Character
   character = getModule(Character, store);
 
-  // Store Highscores
-  highscores = getModule(Highscores, store);
+  // Store Top5Players
+  top5Players = getModule(Top5Players, store);
+  ranking = getModule(Ranking, store);
 };
 
 export {
@@ -59,5 +62,6 @@ export {
   accountRegister,
   createCharacter,
   character,
-  highscores
+  top5Players,
+  ranking
 };
