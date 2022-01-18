@@ -19,3 +19,7 @@ export {
   TopPremiumPoints,
   Vocations
 } from './Dashboard'
+
+export {
+  Paginate
+} from './Paginate'

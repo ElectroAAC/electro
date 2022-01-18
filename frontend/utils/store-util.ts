@@ -22,6 +22,10 @@ import {
   Ranking
 } from '~/store/highscores'
 
+import {
+  Guilds
+} from '~/store/guilds'
+
 let auth: Auth;
 
 let dashboardHome: DashboardHome;
@@ -34,6 +38,8 @@ let character: Character;
 
 let top5Players: Top5Players;
 let ranking: Ranking;
+
+let guilds: Guilds;
 
 const initializeStores = (store: Store<any>) => {
   auth = getModule(Auth, store);
@@ -52,6 +58,9 @@ const initializeStores = (store: Store<any>) => {
   // Store Top5Players
   top5Players = getModule(Top5Players, store);
   ranking = getModule(Ranking, store);
+
+  // Store Guilds
+  guilds = getModule(Guilds, store);
 };
 
 export {
@@ -63,5 +72,6 @@ export {
   createCharacter,
   character,
   top5Players,
-  ranking
+  ranking,
+  guilds
 };
