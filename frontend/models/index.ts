@@ -4,7 +4,9 @@ export {
   CreateCharacter
 } from './Account';
 
-export { HighscoresWidget } from './Highscores'
+export { 
+  Top5Players 
+} from './Highscores'
 
 export { 
   Player,
