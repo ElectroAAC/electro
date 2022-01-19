@@ -319,3 +319,11 @@
 .color-red {
   color: var(--red) !important;
 }
+
+.theme--light.v-pagination .v-pagination__navigation {
+  background: none !important;
+}
+
+.v-pagination__navigation {
+  box-shadow: none !important;
+}

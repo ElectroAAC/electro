@@ -9,7 +9,7 @@ import { $axios } from '@/utils/nuxt-instance'
 import { Paginate } from '@/models'
 
 @Module({
-  name: 'highscores/ranking',
+  name: 'guilds/get',
   stateFactory: true,
   namespaced: true
 })
@@ -26,7 +26,7 @@ export default class Guilds extends VuexModule {
           return {
             data: response.result.data,
             status: response.status,
-            total: response.result.meta.total
+            total: response.result.meta.last_page
           };
         })
         .catch(() => {

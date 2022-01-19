@@ -9,7 +9,7 @@ export default class GuildsController {
         .select('id', 'name', 'motd', 'logo_name')
         .paginate(request.param('page', 1), request.param('limit'));
 
-      return response.status(200).send({ result: guilds });
+      return response.status(200).send({ status: 200, result: guilds });
     } catch(err) {
       console.log('Error getGuilds Query: ', err);
       return response.status(400).send({ message: 'An error occurred, check the api console.'})

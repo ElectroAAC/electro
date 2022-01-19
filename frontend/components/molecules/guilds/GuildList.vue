@@ -1,14 +1,77 @@
 <template>
   <v-container>
-    <div class="single-stream-schedule-box not-streaming">
+    <div v-if="isLoading" class="text-center">
+      <v-progress-circular
+        indeterminate
+        color="primary"
+      ></v-progress-circular>
+    </div>
+
+    <div  
+      v-for="(guild, index) in guildsData"
+      v-else
+      :key="index"
+      class="single-stream-schedule-box not-streaming"
+    >
       <span class="date"> LOGO </span>
       <div class="content">
-        <NuxtLink to="/guilds" class="time"> NAME </NuxtLink>
-        <p> Uma descrição aleatória para uma guild aleatória </p>
+        <NuxtLink to="/guilds" class="time"> {{ guild.name }} </NuxtLink>
+        <p> {{ guild.motd }} </p>
       </div>
     </div>
+
+    <v-pagination
+      v-model="page"
+      :length="total"
+    ></v-pagination>
   </v-container>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+import { guilds } from '@/store'
+
+export default Vue.extend({
+  data () {
+    return {
+      page: 1,
+      isLoading: true,
+      guildsData: [],
+      total: 1
+    }
+  },
+
+  watch: {
+    page(v) {
+      this.getGuilds();
+    }
+  },
+
+  async mounted() {
+    await this.getGuilds();
+  },
+
+  methods: {
+    async getGuilds(this: any): Promise<void> {      
+      const response = await guilds.getGuilds({
+        page: this.page,
+        limit: 10
+      });
+
+      if (response.status === 200) {
+        this.$set(this, 'guildsData', response.data);
+        this.total = response.total;
+        this.isLoading = false;
+      }
+
+      else {
+        this.$set(this, 'guildsData', []);
+        this.isLoading = false;
+      }
+    },
+  }
+})
+</script>
 
 <style lang="scss" scoped>
 .single-stream-schedule-box {

@@ -33,6 +33,12 @@ import { account } from '@/store'
 export default Vue.extend({
   name: 'DefaultLayout',
 
+  data() {
+    return {
+      fixed: false,
+    }
+  },
+
   async created() {
     if ($cookies.get('token')) {
       await account.get();

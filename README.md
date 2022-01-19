@@ -106,7 +106,7 @@ This repository follows the semantic commit pattern, with the addition of the ta
 
 ### Guilds
 <ul>
-  <li> [ ] Show all Guilds </li>
+  <li> [x] Show all Guilds </li>
   <li> [ ] View Guilds </li>
   <li> [ ] Manage Guilds </li>
   <ul>
