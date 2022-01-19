@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { guilds } from '@/store'
+import { guildList } from '@/store'
 
 export default Vue.extend({
   data () {
@@ -53,7 +53,7 @@ export default Vue.extend({
 
   methods: {
     async getGuilds(this: any): Promise<void> {      
-      const response = await guilds.getGuilds({
+      const response = await guildList.getGuilds({
         page: this.page,
         limit: 10
       });

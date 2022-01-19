@@ -56,7 +56,7 @@ export default class GuildsController {
         .orderBy('guild_ranks.level', 'desc');
       
       const result = {
-        guild,
+        guild: guild[0],
         guild_rank: guildRanks,
         guild_members: memberList
       }

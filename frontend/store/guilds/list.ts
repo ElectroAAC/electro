@@ -9,12 +9,12 @@ import { $axios } from '@/utils/nuxt-instance'
 import { Paginate } from '@/models'
 
 @Module({
-  name: 'guilds/get',
+  name: 'guilds/list',
   stateFactory: true,
   namespaced: true
 })
 
-export default class Guilds extends VuexModule {
+export default class GuildList extends VuexModule {
   @Action
   public async getGuilds(payload: Paginate) {
     try {

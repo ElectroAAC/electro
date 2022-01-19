@@ -6,7 +6,7 @@ export {
 
 export { 
   Top5Players 
-} from './Highscores'
+} from './Highscores';
 
 export { 
   Player,
@@ -18,8 +18,12 @@ export {
 export { 
   TopPremiumPoints,
   Vocations
-} from './Dashboard'
+} from './Dashboard';
 
 export {
   Paginate
-} from './Paginate'
+} from './Paginate';
+
+export {
+  Guild
+} from './Guild';
