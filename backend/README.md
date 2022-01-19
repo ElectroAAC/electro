@@ -77,8 +77,7 @@ $ npm run start
 | METHOD | ENDPOINT                   | DESCRIPTION                           |
 | :----- | :------------------------- | :------------------------------------ |
 | GET    | /guilds/:page/:limit       | Get all guilds                        |
-
-
+| GET    | /guilds/:name              | Get guild info                        |
 
 <br>
 
