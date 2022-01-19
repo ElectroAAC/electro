@@ -94,6 +94,7 @@ This repository follows the semantic commit pattern, with the addition of the ta
   <li> [x] Change character name </li>
   <li> [x] Delete character </li>
   <li> [ ] Account Logs </li>
+  <li> [ ] Change Password </li>
 </ul>
 
 ### Highscores
@@ -101,6 +102,25 @@ This repository follows the semantic commit pattern, with the addition of the ta
   <li> [x] Widget Highscores </li>
   <li> [x] Show Highscores </li>
   <li> [ ] Create/Apply Filters </li>
+</ul>
+
+### Guilds
+<ul>
+  <li> [ ] Show all Guilds </li>
+  <li> [ ] View Guilds </li>
+  <li> [ ] Manage Guilds </li>
+  <ul>
+    <li> [ ] Invite Player </li>
+    <li> [ ] Remove Player </li>
+    <li> [ ] Promove Player </li>
+    <li> [ ] Demote Player </li>
+    <li> [ ] Add Surname Player </li>
+    <li> [ ] Remove Surname Player </li>
+    <li> [ ] Change Name </li>
+    <li> [ ] Create Role </li>
+    <li> [ ] Change Role </li>
+    <li> [ ] Delete Role </li>
+  </ul>
 </ul>
 
 ### Dashboard - ADMIN

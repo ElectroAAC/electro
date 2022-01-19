@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Title text="Change Name"/>
     <ChangeName v-if="$statusChangeName"/>
 
     <v-container v-else class="mt-15">

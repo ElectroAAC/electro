@@ -1,3 +1,0 @@
-<template>
-  <Highscores />
-</template>

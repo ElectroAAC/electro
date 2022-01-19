@@ -23,7 +23,7 @@
 
 #main {
   background-image: url('~assets/images/background.jpg') !important;
-  background-position-x: center;
+  background-attachment: fixed;
   background-size: cover;
 }
 
@@ -73,7 +73,7 @@
 
 .widget-title {
   border-radius: 1rem 1rem 0px 0px !important;
-  padding: 1.1rem 1.8rem 0.95rem;
+  padding: 0.5rem 1rem 0.5rem;
   font-size: 18px;
   font-weight: 500;
   text-transform: uppercase;
