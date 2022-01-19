@@ -15,7 +15,7 @@
     >
       <span class="date"> LOGO </span>
       <div class="content">
-        <NuxtLink to="/guilds" class="time"> {{ guild.name }} </NuxtLink>
+        <NuxtLink :to="`/guilds/${guild.name}`" class="time"> {{ guild.name }} </NuxtLink>
         <p> {{ guild.motd }} </p>
       </div>
     </div>
