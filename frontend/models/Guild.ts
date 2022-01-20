@@ -1,17 +1,22 @@
 export interface Guild {
-  guild: {
+  info: {
     id: Number,
 		name: String,
-		ownerid: Number,
-		creationdata: Number
+    description: String,
+		creation_data: Number,
+		owner_id: Number,
+    owner_name: String
   },
   guild_rank: {
     id: Number
-  },
+  }[],
   guild_members: {
     level: Number,
 		rank_name: String,
 		id: Number,
-		name: String
-  }
+		name: String,
+    vocation: Number,
+    player_level: Number,
+    online: Number
+  }[];
 }

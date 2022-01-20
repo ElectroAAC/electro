@@ -92,7 +92,11 @@ export default {
   },
 
   toast: {
-    position: 'bottom-right',
+    position: 'top-right',
+    keepOnHover: true,
+    duration: 3000,
+    theme: "bubble",
+    singleton: true,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

@@ -31,8 +31,16 @@ export default class GuildsController {
 
       const guild = await Database
         .from('guilds')
-        .select('id', 'name', 'ownerid', 'creationdata')
-        .where('name', '=', name);
+        .innerJoin('players', 'players.id', 'guilds.ownerid')
+        .select(
+          'guilds.id', 
+          'guilds.name', 
+          'guilds.description', 
+          'guilds.ownerid as owner_id', 
+          'guilds.creationdata as creation_data',
+          'players.name as owner_name',
+        )
+        .where('guilds.name', '=', name);
 
       if (!guild.length) {
         return response.status(404).send({ message: "Guild not found." });
@@ -50,13 +58,16 @@ export default class GuildsController {
           'guild_ranks.level',
           'guild_ranks.name as rank_name',
           'players.id',
-          'players.name'
+          'players.name',
+          'players.vocation',
+          'players.level as player_level',
+          'players.online'
         )
         .where('guilds.id', '=', guild[0].id)
         .orderBy('guild_ranks.level', 'desc');
       
       const result = {
-        guild: guild[0],
+        info: guild[0],
         guild_rank: guildRanks,
         guild_members: memberList
       }

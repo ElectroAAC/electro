@@ -34,12 +34,9 @@ export default class Guild extends VuexModule {
           if (!response) 
             throw new Error(response);
           
-          this.context.commit('UPDATE_GUILD', response.result.data);
+          this.context.commit('UPDATE_GUILD', response.result);
           
-          return {
-            data: response.result,
-            status: response.status
-          };
+          return response.status;
         })
         .catch(() => {
           return 'SEARCH_NOTFOUND';

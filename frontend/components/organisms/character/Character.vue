@@ -23,22 +23,3 @@
     </v-col>
   </v-row>
 </template>
-
-<script lang="ts">
-import Vue from 'vue'
-
-export default Vue.extend({
-  data() {
-    return {
-      character: ''
-    }
-  },
-  
-  computed: {
-    getCharacterName(): string | void {
-      if (this.$route.params && this.$route.params.name)
-        return this.$route.params.name;
-    },
-  },
-})
-</script>

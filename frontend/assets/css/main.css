@@ -327,3 +327,12 @@
 .v-pagination__navigation {
   box-shadow: none !important;
 }
+
+.title {
+  font-weight: bold !important;
+}
+
+.btn-success-secondary {
+  color: var(--green) !important;
+  border: 1px solid var(--green) !important;
+}
