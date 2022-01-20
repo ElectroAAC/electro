@@ -1,5 +1,5 @@
 <template>
-  <v-container>
-    Ahhhhhhhhhh
+  <v-container class="mt-5">
+    <CreateGuild />
   </v-container>
 </template>

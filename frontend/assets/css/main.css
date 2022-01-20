@@ -175,6 +175,11 @@
   min-width: 150px !important;
 }
 
+.btn a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
 .btn-success-primary {
   background: var(--main-color) !important;
   color: var(--heading-color) !important;

@@ -7,19 +7,29 @@
       ></v-progress-circular>
     </div>
 
-    <div  
-      v-for="(guild, index) in guildsData"
-      v-else
-      :key="index"
-      class="single-stream-schedule-box not-streaming"
-    >
-      <span class="date"> LOGO </span>
-      <v-row class="ma-0 content text-center">
-        <v-col class="text-center" cols="6"> <NuxtLink :to="`/guilds/view/${guild.name}`" class="time"> {{ guild.name }} </NuxtLink> </v-col>
-        <v-col class="text-center" cols="12"> <p> {{ guild.motd }} </p> </v-col>
-      </v-row>
-    </div>
+    <div v-else>
+      <v-col class="mb-5 text-center" cols="12">
+        <v-btn 
+          text 
+          class="btn btn-success-secondary"
+        >
+          <NuxtLink to="/guilds/create"> Create Guild </NuxtLink>
+        </v-btn>
+      </v-col>
 
+      <div  
+        v-for="(guild, index) in guildList"
+        :key="index"
+        class="single-stream-schedule-box not-streaming"
+      >
+        <span class="date"> LOGO </span>
+        <v-row class="ma-0 content text-center">
+          <v-col class="text-center" cols="6"> <NuxtLink :to="`/guilds/view/${guild.name}`" class="time"> {{ guild.name }} </NuxtLink> </v-col>
+          <v-col class="text-center" cols="12"> <p> {{ guild.motd }} </p> </v-col>
+        </v-row>
+      </div>
+    </div>
+    
     <v-pagination
       v-model="page"
       :length="total"
@@ -38,6 +48,12 @@ export default Vue.extend({
       isLoading: true,
       guildsData: [],
       total: 1
+    }
+  },
+
+  computed: {
+    guildList(): { name: String, motd: String }[] {
+      return this.guildsData;
     }
   },
 
@@ -81,7 +97,7 @@ export default Vue.extend({
   text-align: center;
   margin-bottom: 30px;
   padding-left: 150px;
-  padding-right: 50px;
+  padding-right: 150px;
 }
 
 .single-stream-schedule-box.not-streaming .date{
@@ -105,6 +121,7 @@ export default Vue.extend({
   background: transparent;
   border: none;
   border-left: 3px solid #00ffb8;
+  border-right: 3px solid #00ffb8;
   border-radius: 60px !important;
   padding-top: 25px;
   padding-bottom: 25px;
