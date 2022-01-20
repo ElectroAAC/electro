@@ -78,6 +78,7 @@ $ npm run start
 | :----- | :------------------------- | :------------------------------------ |
 | GET    | /guilds/:page/:limit       | Get all guilds                        |
 | GET    | /guilds/:name              | Get guild info                        |
+| POST   | /guilds/create-guild       | Create Guild                          |
 
 <br>
 

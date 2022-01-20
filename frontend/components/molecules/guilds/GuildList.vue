@@ -14,10 +14,10 @@
       class="single-stream-schedule-box not-streaming"
     >
       <span class="date"> LOGO </span>
-      <div class="content">
-        <NuxtLink :to="`/guilds/${guild.name}`" class="time"> {{ guild.name }} </NuxtLink>
+      <v-row class="ma-0 content text-center">
+        <v-col class="text-center" cols="6"> <NuxtLink :to="`/guilds/${guild.name}`" class="time"> {{ guild.name }} </NuxtLink> </v-col>
         <p> {{ guild.motd }} </p>
-      </div>
+      </v-row>
     </div>
 
     <v-pagination
