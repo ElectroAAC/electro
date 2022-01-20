@@ -36,4 +36,25 @@ export default class CreateGuild extends VuexModule {
       return err;
     }
   }
+
+  @Action
+  public async getPlayersWithGuild() {
+    return await $axios.$get('guilds/players-with-guild')
+      .then((res) => {
+        if (!res) 
+          throw new Error("Failed to get chracters to account");
+
+        return {
+          status: res.status,
+          characters: res.character
+        };
+      })
+      .catch((err) => {
+        console.log(err);
+        return {
+          status: 404,
+          characters: []
+        }
+      });
+  }
 }

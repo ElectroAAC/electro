@@ -32,8 +32,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { account } from '@/store'
-import { Accounts } from '@/models'
+import { createGuild } from '@/store'
 
 export default Vue.extend({
   data() {
@@ -45,33 +44,35 @@ export default Vue.extend({
       required: [
         (v: string) => !!v || 'Required field',
       ],
+      charactersData: []
     }
   },
 
   computed: {
-    $account(): Accounts {
-      return account.$account;
-    },
-
-    $characters(): Object[] {
-      return account.$characters;
-    },
-
     characterList(): Object[] {
-      return this.$characters.map((character: any) => ({
+      return this.charactersData.map((character: any) => ({
         value: character.id,
         text: character.name
       }))
     }
   },
 
-  mounted() {
-    if (!this.$characters.length) {
-      account.getCharacters(this.$account.id);
-    }
+  async created() {
+    await this.getPlayers();
   },
 
-  methods: { }
+  methods: {
+    async getPlayers(this: any): Promise<void> {
+      const players: { status: number, characters: Object[] } = await createGuild.getPlayersWithGuild();
+
+      if (players.status === 200)
+        this.$set(this, 'charactersData', players.characters);
+
+      else {
+        console.log('error');
+      }
+    }
+  }
 })
 </script>
 
