@@ -1,5 +1,6 @@
 import Guilds from '@/pages/guilds/index.vue'
 import View from '@/pages/guilds/view.vue'
+import Create from '@/pages/guilds/create.vue'
 
 export default [
   {
@@ -11,11 +12,19 @@ export default [
     }
   },
   {
-    path: '/guilds/:name',
+    path: '/guilds/view/:name',
     component: View,
     name: 'View Guild',
     meta: {
       name: 'View Guild'
     }
   },
+  {
+    path: '/guilds/create',
+    component: Create,
+    name: 'Create Guild',
+    meta: {
+      name: 'Create Guild'
+    }
+  }
 ]

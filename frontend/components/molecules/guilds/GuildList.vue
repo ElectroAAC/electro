@@ -15,7 +15,7 @@
     >
       <span class="date"> LOGO </span>
       <v-row class="ma-0 content text-center">
-        <v-col class="text-center" cols="6"> <NuxtLink :to="`/guilds/${guild.name}`" class="time"> {{ guild.name }} </NuxtLink> </v-col>
+        <v-col class="text-center" cols="6"> <NuxtLink :to="`/guilds/view/${guild.name}`" class="time"> {{ guild.name }} </NuxtLink> </v-col>
         <v-col class="text-center" cols="12"> <p> {{ guild.motd }} </p> </v-col>
       </v-row>
     </div>
