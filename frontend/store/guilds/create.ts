@@ -19,6 +19,22 @@ interface CreatePayload {
 })
 
 export default class CreateGuild extends VuexModule {
+  private guild = {};
+
+  public get $info() {
+    return this.guild
+  }
+  
+  @Mutation
+  private UPDATE_GUILD(guild: CreatePayload) {
+    this.guild = Object.assign(this.guild, guild);
+  }
+
+  @Action
+  public updateGuild(payload: CreatePayload) {
+    this.context.commit('UPDATE_GUILD', payload);
+  }
+
   @Action
   public async createGuild(payload: CreatePayload) {
     try {
@@ -27,10 +43,17 @@ export default class CreateGuild extends VuexModule {
           if (!response) 
             throw new Error(response);
           
-          return response.status;
+          return {
+            status: response.status,
+            message: response.message
+          };
         })
-        .catch(() => {
-          return 'SEARCH_NOTFOUND';
+        .catch(({ response }) => {
+          console.log(response);
+          return {
+            status: status,
+            message: response.data.errors[0].message
+          };
         });
     } catch(err) {
       return err;

@@ -10,6 +10,9 @@
         dense
         outlined
         hide-details="auto"
+        @change="($event) => {
+          updateGuild()
+        }"
       />
     </v-col>
 
@@ -24,6 +27,9 @@
         outlined
         required
         hide-details="auto"
+        @change="($event) => {
+          updateGuild()
+        }"
       />
     </v-col>
 
@@ -71,7 +77,12 @@ export default Vue.extend({
       else {
         console.log('error');
       }
+    },
+
+    updateGuild(): void {
+      createGuild.updateGuild(this.guild);
     }
+
   }
 })
 </script>

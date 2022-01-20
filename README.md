@@ -108,6 +108,7 @@ This repository follows the semantic commit pattern, with the addition of the ta
 <ul>
   <li> [x] Show all Guilds </li>
   <li> [x] View Guilds </li>
+  <li> [x] Create Guild </li>
   <li> [ ] Manage Guilds </li>
   <ul>
     <li> [ ] Invite Player </li>
