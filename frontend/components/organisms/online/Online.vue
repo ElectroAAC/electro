@@ -27,7 +27,6 @@ export default Vue.extend({
       if (response.status === 200) {
         this.$set(this, 'playersData', response.data.playersOnline);
       }
-      console.log(response);
     }
   }
 })

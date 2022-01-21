@@ -52,7 +52,6 @@ export default class CreateGuild extends VuexModule {
           };
         })
         .catch(({ response }) => {
-          console.log(response);
           return {
             status: status,
             message: response.data.errors[0].message
