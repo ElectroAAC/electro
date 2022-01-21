@@ -38,7 +38,7 @@ export default class CreateGuild extends VuexModule {
   @Action
   public async createGuild(payload: CreatePayload) {
     try {
-      return await $axios.$post('guilds/create-guild', payload)
+      return await $axios.$post('guild/create-guild', payload)
         .then((response) => {
           if (!response) 
             throw new Error(response);
@@ -62,7 +62,7 @@ export default class CreateGuild extends VuexModule {
 
   @Action
   public async getPlayersWithGuild() {
-    return await $axios.$get('guilds/players-with-guild')
+    return await $axios.$get('guildW/players-with-guild')
       .then((res) => {
         if (!res) 
           throw new Error("Failed to get chracters to account");

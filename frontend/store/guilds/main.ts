@@ -29,7 +29,7 @@ export default class Guild extends VuexModule {
   @Action
   public async getGuild(name: String) {
     try {
-      return await $axios.$get(`guilds/${name}`)
+      return await $axios.$get(`guild/${name}`)
         .then((response) => {
           if (!response) 
             throw new Error(response);

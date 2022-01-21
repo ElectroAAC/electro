@@ -25,8 +25,9 @@
         <span class="date"> LOGO </span>
         <v-row class="ma-0 content text-center">
           <v-col class="text-center" cols="6"> <NuxtLink :to="`/guilds/view/${guild.name}`" class="time"> {{ guild.name }} </NuxtLink> </v-col>
-          <v-col class="text-center" cols="12"> <p> {{ guild.motd }} </p> </v-col>
+          <v-col class="text-center" cols="12"> <p> {{ guild.description }} </p> </v-col>
         </v-row>
+        <span class="date-2"> LOGO </span>
       </div>
     </div>
     
@@ -52,7 +53,7 @@ export default Vue.extend({
   },
 
   computed: {
-    guildList(): { name: String, motd: String }[] {
+    guildList(): { name: String, description: String }[] {
       return this.guildsData;
     }
   },
@@ -100,7 +101,7 @@ export default Vue.extend({
   padding-right: 150px;
 }
 
-.single-stream-schedule-box.not-streaming .date{
+.single-stream-schedule-box.not-streaming .date .date-2{
   text-decoration: line-through;
   color: #00ffb8;
 }
@@ -108,6 +109,18 @@ export default Vue.extend({
 .single-stream-schedule-box .date {
   position: absolute;
   left: 35px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  line-height: 1.2;
+  color: var(--mainColor);
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.single-stream-schedule-box .date-2 {
+  position: absolute;
+  right: 35px;
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
