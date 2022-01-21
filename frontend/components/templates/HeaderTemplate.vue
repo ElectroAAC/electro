@@ -22,7 +22,7 @@
       <NuxtLink to="/">
         <Logo class="mt-8" width="130px"/>
       </NuxtLink>
-      <NuxtLink to="/" class="pa-5"> GUILDS </NuxtLink>
+      <NuxtLink to="/guilds" class="pa-5"> GUILDS </NuxtLink>
       <NuxtLink to="/" class="pa-5"> SHOP </NuxtLink>
       <NuxtLink to="/" class="pa-5"> DOWNLOAD </NuxtLink>
     </v-row>

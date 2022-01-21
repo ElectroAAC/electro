@@ -1,13 +1,7 @@
 <template>
   <div class="container">
     <v-row>
-      <v-col cols="10">
-        <DataTableFilter
-          :search="search"
-          @update-search="updateSearch"
-        />
-      </v-col>
-
+      <v-spacer></v-spacer>
       <v-col cols="2" class="text-right">
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">

@@ -5,10 +5,9 @@
     :footer-props="footerProps"
     :options.sync="options"
     :server-items-length="total"
-    :items-per-page="35"
+    :items-per-page="25"
     :loading="isLoadingGrid"
     disable-items-per-page
-    height="100vh"
     loading-text="Loading Player List..."
     no-data-text="No player found"
   >
@@ -32,7 +31,7 @@ export default Vue.extend({
   data() {
     return {
       footerProps: {
-        "items-per-page-options": [50, 100, 150],
+        "items-per-page-options": [25, 50, 100, 150],
         "items-per-page-text": "Players per page",
       },
       isLoadingGrid: true,

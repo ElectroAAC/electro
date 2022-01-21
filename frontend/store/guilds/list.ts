@@ -7,17 +7,18 @@ import {
 
 import { $axios } from '@/utils/nuxt-instance'
 import { Paginate } from '@/models'
+
 @Module({
-  name: 'highscores/ranking',
+  name: 'guilds/list',
   stateFactory: true,
   namespaced: true
 })
 
-export default class Ranking extends VuexModule {
+export default class GuildList extends VuexModule {
   @Action
-  public async getTopRank(payload: Paginate) {
+  public async getGuilds(payload: Paginate) {
     try {
-      return await $axios.$get(`highscores/${payload.page}/${payload.limit}`)
+      return await $axios.$get(`guilds/${payload.page}/${payload.limit}`)
         .then((response) => {
           if (!response) 
             throw new Error(response);
@@ -25,7 +26,7 @@ export default class Ranking extends VuexModule {
           return {
             data: response.result.data,
             status: response.status,
-            total: response.result.meta.total
+            total: response.result.meta.last_page
           };
         })
         .catch(() => {

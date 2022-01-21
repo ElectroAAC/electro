@@ -129,11 +129,16 @@ export default class CharactersAccount {
         return response.status(404).send({ message: "You don't have the points needed to change the name. It is necessary: " + Env.get('POINTS_TO_CHANGE_NAME') + " points." });
       }
 
-      const character = await Database.from('players').select('name').where('id', '=', data.character_id).andWhere('account_id', '=', account.id);
+      const character = await Database.from('players').select('name', 'online').where('id', '=', data.character_id).andWhere('account_id', '=', account.id);
 
       if (!character.length)
       {
         return response.status(404).send({ message: 'The character does not belong to your account.' });
+      }
+
+      if (character[0].online === 1)
+      {
+        return response.status(404).send({ message: 'The character cannot be online.' });
       }
       
       const updateCharacter = await Database.from('players').where('id', '=', data.character_id).update({ name: data.new_name });

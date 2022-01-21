@@ -23,7 +23,7 @@
 
 #main {
   background-image: url('~assets/images/background.jpg') !important;
-  background-position-x: center;
+  background-attachment: fixed;
   background-size: cover;
 }
 
@@ -73,7 +73,7 @@
 
 .widget-title {
   border-radius: 1rem 1rem 0px 0px !important;
-  padding: 1.1rem 1.8rem 0.95rem;
+  padding: 0.5rem 1rem 0.5rem;
   font-size: 18px;
   font-weight: 500;
   text-transform: uppercase;
@@ -173,6 +173,11 @@
   border: 1px solid transparent !important;
   letter-spacing: 0;
   min-width: 150px !important;
+}
+
+.btn a {
+  text-decoration: none !important;
+  color: inherit !important;
 }
 
 .btn-success-primary {
@@ -318,4 +323,21 @@
 
 .color-red {
   color: var(--red) !important;
+}
+
+.theme--light.v-pagination .v-pagination__navigation {
+  background: none !important;
+}
+
+.v-pagination__navigation {
+  box-shadow: none !important;
+}
+
+.title {
+  font-weight: bold !important;
+}
+
+.btn-success-secondary {
+  color: var(--green) !important;
+  border: 1px solid var(--green) !important;
 }

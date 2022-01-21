@@ -1,18 +1,21 @@
 <template>
-  <v-container>
-    <CharacterSearchForm v-if="!getCharacterName" />
-    
-    <div v-else>
-      <div v-if="isLoading" class="text-center">
-        <v-progress-circular
-          indeterminate
-          color="primary"
-        ></v-progress-circular>
-      </div>
+  <div>
+    <Title text="Characters"/>
+    <v-container>
+      <CharacterSearchForm v-if="!getCharacterName" />
+      
+      <div v-else>
+        <div v-if="isLoading" class="text-center">
+          <v-progress-circular
+            indeterminate
+            color="primary"
+          ></v-progress-circular>
+        </div>
 
-      <Character v-else-if="$character" />
-    </div>
-  </v-container>
+        <Character v-else-if="$character" />
+      </div>
+    </v-container>
+  </div>
 </template>
 
 <script lang="ts">

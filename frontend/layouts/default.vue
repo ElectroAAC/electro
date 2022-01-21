@@ -14,6 +14,14 @@
         <v-col cols="1"></v-col>
       </v-row>
     </v-main>
+
+      <v-footer
+        :absolute="!fixed"
+        app
+        class="text-center"
+      >
+        <span> {{ getVersion }} &copy; {{ new Date().getFullYear() }} - {{ getProjectName }} </span>
+      </v-footer>
     
   </v-app>
 </template>
@@ -25,9 +33,25 @@ import { account } from '@/store'
 export default Vue.extend({
   name: 'DefaultLayout',
 
+  data() {
+    return {
+      fixed: false,
+    }
+  },
+
   async created() {
     if ($cookies.get('token')) {
       await account.get();
+    }
+  },
+
+  computed: {
+    getVersion(): any {
+      return process.env.version;
+    },
+
+    getProjectName(): String | undefined {
+      return process.env.PROJECT_NAME;
     }
   }
 })
@@ -37,5 +61,8 @@ export default Vue.extend({
 #app {
   margin: 0;
   padding: 0;
+}
+.theme--light.v-footer {
+  background: transparent !important;
 }
 </style>

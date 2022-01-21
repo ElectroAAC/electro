@@ -22,6 +22,12 @@ import {
   Ranking
 } from '~/store/highscores'
 
+import {
+  CreateGuild,
+  Guild,
+  GuildList
+} from '~/store/guilds'
+
 let auth: Auth;
 
 let dashboardHome: DashboardHome;
@@ -34,6 +40,10 @@ let character: Character;
 
 let top5Players: Top5Players;
 let ranking: Ranking;
+
+let createGuild: CreateGuild;
+let guild: Guild;
+let guildList: GuildList;
 
 const initializeStores = (store: Store<any>) => {
   auth = getModule(Auth, store);
@@ -52,6 +62,11 @@ const initializeStores = (store: Store<any>) => {
   // Store Top5Players
   top5Players = getModule(Top5Players, store);
   ranking = getModule(Ranking, store);
+
+  // Store Guilds
+  createGuild = getModule(CreateGuild, store);
+  guild = getModule(Guild, store);
+  guildList = getModule(GuildList, store);
 };
 
 export {
@@ -63,5 +78,8 @@ export {
   createCharacter,
   character,
   top5Players,
-  ranking
+  ranking,
+  createGuild,
+  guild,
+  guildList
 };

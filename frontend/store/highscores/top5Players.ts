@@ -6,7 +6,7 @@ import {
 } from 'vuex-module-decorators'
 
 import { $axios } from '@/utils/nuxt-instance'
-import { Top5Players } from '~/models';
+import { Top5Players as TopPlayers } from '~/models';
 
 @Module({
   name: 'highscores/top5Players',
@@ -15,9 +15,9 @@ import { Top5Players } from '~/models';
 })
 
 export default class Top5Players extends VuexModule {
-  private highscores: Top5Players[] = [];
+  private highscores: TopPlayers[] = [];
 
-  public get $topRank(): Top5Players[] {
+  public get $topRank(): TopPlayers[] {
     return this.highscores;
   }
 

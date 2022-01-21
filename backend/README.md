@@ -70,6 +70,16 @@ $ npm run start
 | POST   | /player/:id/deaths         | Get Player Last 10 Deaths             |
 | GET    | /player/:id/items          | Get Player Items equipment            |
 
+<br>
+
+## 🕵🏾‍♂️  Routes Guilds
+
+| METHOD | ENDPOINT                   | DESCRIPTION                           |
+| :----- | :------------------------- | :------------------------------------ |
+| GET    | /guilds/:page/:limit       | Get all guilds                        |
+| GET    | /guild/search/:name        | Get guild info                        |
+| GET    | /guild/players-with-guild  | Get guild info                        |
+| POST   | /guild/create-guild        | Create Guild                          |
 
 <br>
 
