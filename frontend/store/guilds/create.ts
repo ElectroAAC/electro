@@ -8,8 +8,8 @@ import {
 import { $axios } from '@/utils/nuxt-instance'
 
 interface CreatePayload {
-  name: String,
-  character_id: Number
+  name: String | null,
+  character_id: Number | null
 }
 
 @Module({
@@ -19,7 +19,10 @@ interface CreatePayload {
 })
 
 export default class CreateGuild extends VuexModule {
-  private guild = {};
+  private guild = {
+    name: null,
+    character_id: null
+  };
 
   public get $info() {
     return this.guild
