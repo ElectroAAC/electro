@@ -7,7 +7,7 @@ export default class GuildsController {
     try {
       const guilds = await Database
         .from('guilds')
-        .select('id', 'name', 'motd', 'logo_name')
+        .select('id', 'name', 'motd', 'logo_name', 'description')
         .paginate(request.param('page', 1), request.param('limit'));
 
       return response.status(200).send({ status: 200, result: guilds });
