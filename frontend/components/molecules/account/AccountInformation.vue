@@ -52,10 +52,6 @@ export default Vue.extend({
     }
   },
 
-  mounted() {
-    // console.log(this.$account);
-  },
-
   computed: {
     $account() {
       return account.$account;

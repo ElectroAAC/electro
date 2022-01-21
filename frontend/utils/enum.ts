@@ -61,3 +61,21 @@ export const sex = [
   { value: 0, text: "Male" },
   { value: 1, text: "Female" }
 ]
+
+export const routesCommunity = [
+  {
+    text: "Who is online?",
+    to: "/online"
+  },
+]
+
+export const routesAccount = [
+  {
+    text: "Manage account",
+    to: "/accounts"
+  },
+  {
+    text: "Create Character",
+    to: "/accounts/create-character"
+  },
+]
