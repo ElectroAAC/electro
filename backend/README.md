@@ -57,6 +57,13 @@ $ npm run start
 | GET    | /highscores                | Get Top 5 Players                     |
 | POST   | /highscores/:page/:limit   | Ranking Players                       |
 
+<br>
+
+##  🕵🏾‍♂️  Routes Online
+
+| METHOD | ENDPOINT                   | DESCRIPTION                           |
+| :----- | :------------------------- | :------------------------------------ |
+| GET    | /online                    | Get Players Online                    |
 
 <br>
 

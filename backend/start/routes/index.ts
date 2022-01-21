@@ -5,6 +5,7 @@ import './highscores';
 import './players';
 import './dashboard';
 import './guilds';
+import './online';
 
 Route.get('/', async () => {
   return { hello: 'world' }
