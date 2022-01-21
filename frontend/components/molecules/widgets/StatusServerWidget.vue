@@ -2,8 +2,8 @@
   <aside class="widget">
     <h5 class="widget-title"> Status </h5>
     <v-container class="d-flex justify-center text-center">
-      Players Online: <br> 
-      {{ playersOnline }} / {{ maxPlayers}}
+      Players Online: <br> <br> 
+      <NuxtLink to="/online"> {{ playersOnline }} / {{ maxPlayers}} </NuxtLink>
     </v-container>
   </aside>
 </template>

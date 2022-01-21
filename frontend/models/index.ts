@@ -27,3 +27,7 @@ export {
 export {
   Guild
 } from './Guild';
+
+export {
+  Route
+} from './Route';

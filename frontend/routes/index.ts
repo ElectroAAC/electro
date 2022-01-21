@@ -1,5 +1,7 @@
 import IndexPage from '~/pages/index.vue';
 import Highscores from '~/pages/highscores.vue';
+import Online from '~/pages/online.vue';
+
 import Dashboard from '~/routes/dashboard/index'
 import Account from '~/routes/account'
 import Character from '~/routes/character'
@@ -13,6 +15,10 @@ export default [
   {
     path: '/highscores',
     component: Highscores
+  },
+  {
+    path: '/online',
+    component: Online
   },
   ...Dashboard,
   ...Account,
