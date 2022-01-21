@@ -127,7 +127,7 @@ This repository follows the semantic commit pattern, with the addition of the ta
 ### Online
 <ul>
   <li> [x] Online Pages </li>
-  <li> [ ] Widget Players Online </li>
+  <li> [x] Widget Players Online </li>
 </ul>
 
 ### Dashboard - ADMIN

@@ -3,18 +3,33 @@
     <h5 class="widget-title"> Status </h5>
     <v-container class="text-center">
       Players Online: <br>
-      <NuxtLink to="/online"> {{ playersOnline }} / {{ maxPlayers}} </NuxtLink>
+      <NuxtLink to="/online"> {{ playersOnline.length }} / {{ maxPlayers}} </NuxtLink>
     </v-container>
   </aside>
 </template>
 
 <script lang="ts">
+import { online } from '@/store'
+
 export default {
   data() {
     return {
       status: false,
-      playersOnline: 150,
-      maxPlayers: 500
+      maxPlayers: 500,
+      playersOnline: []
+    }
+  },
+
+  async mounted() {
+    await this.getOnline();
+  },
+
+  methods: {
+    async getOnline() {
+      const response = await online.getOnline();
+      if (response.status === 200) {
+        this.$set(this, 'playersOnline', response.data.playersOnline);
+      }
     }
   }
 }
