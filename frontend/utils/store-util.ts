@@ -28,6 +28,10 @@ import {
   GuildList
 } from '~/store/guilds'
 
+import {
+  Online
+} from '~/store/online'
+
 let auth: Auth;
 
 let dashboardHome: DashboardHome;
@@ -44,6 +48,8 @@ let ranking: Ranking;
 let createGuild: CreateGuild;
 let guild: Guild;
 let guildList: GuildList;
+
+let online: Online;
 
 const initializeStores = (store: Store<any>) => {
   auth = getModule(Auth, store);
@@ -67,19 +73,30 @@ const initializeStores = (store: Store<any>) => {
   createGuild = getModule(CreateGuild, store);
   guild = getModule(Guild, store);
   guildList = getModule(GuildList, store);
+
+  // Store Online
+  online = getModule(Online, store);
 };
 
 export {
   initializeStores,
+
   dashboardHome,
+
   auth,
+
   account,
   accountRegister,
   createCharacter,
+
   character,
+
   top5Players,
   ranking,
+
   createGuild,
   guild,
-  guildList
+  guildList,
+  
+  online
 };
