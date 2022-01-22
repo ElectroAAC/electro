@@ -2,6 +2,7 @@ import IndexPage from '~/pages/index.vue';
 import Highscores from '~/pages/highscores.vue';
 import Online from '~/pages/online.vue';
 import Lastkills from '~/pages/lastkills.vue';
+import Download from '~/pages/download.vue';
 
 import Dashboard from '~/routes/dashboard/index'
 import Account from '~/routes/account'
@@ -24,6 +25,10 @@ export default [
   {
     path: '/lastkills',
     component: Lastkills
+  },
+  {
+    path: '/downloads',
+    component: Download
   },
   ...Dashboard,
   ...Account,
