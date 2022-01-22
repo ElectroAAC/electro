@@ -24,7 +24,7 @@
       </NuxtLink>
       <NuxtLink to="/guilds" class="pa-5"> GUILDS </NuxtLink>
       <NuxtLink to="/" class="pa-5"> SHOP </NuxtLink>
-      <NuxtLink to="/" class="pa-5"> DOWNLOAD </NuxtLink>
+      <NuxtLink to="/downloads" class="pa-5"> DOWNLOAD </NuxtLink>
     </v-row>
 
     <AccountRoutes @update-dialog="updateDialog"/>

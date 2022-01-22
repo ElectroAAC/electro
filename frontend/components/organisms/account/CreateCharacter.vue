@@ -11,8 +11,12 @@
           <CreateCharacterForm />
         </v-col>
       
-        <v-col cols="12">
-          <CharacterSelectVocation />
+        <v-col v-if="getTypeCharacterDefault" cols="12">
+          <CharacterSelectDefault />
+        </v-col>
+      
+        <v-col v-else-if="getTypeCharacterCustom" cols="12">
+          <CharacterSelectCustom />
         </v-col>
         
         <v-col class="text-center" cols="12">
@@ -41,10 +45,22 @@ export default Vue.extend({
     }
   },
 
+  computed: {
+    getTypeCharacterDefault() {
+      return process.env.CREATE_CHARACTER_DEFAULT;
+    },
+    getTypeCharacterCustom() {
+      return process.env.CREATE_CHARACTER_CUSTOM;
+    },
+    getTypeCharacterCustomSex() {
+      return process.env.CREATE_CHARACTER_CUSTOM_SEX;
+    },
+  },
+
   methods: {
     async onCreate(this: any): Promise<void> {
       const result: { status: Number, message: String} = await createCharacter.create(createCharacter.$character);
-      
+
       if (result.status === 200) {
         this.$toast.success(
           'Successfully created',
@@ -54,7 +70,7 @@ export default Vue.extend({
             theme: "bubble",
           }
         )
-        this.$router.push('/accounts');
+        this.$router.replace('/accounts');
       }
         
       else {

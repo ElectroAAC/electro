@@ -135,4 +135,4 @@ export const routesDashboard = [
     title: 'Logs',
     to: '/dashboard/logs'
   },
-],
+];

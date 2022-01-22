@@ -85,7 +85,7 @@ export default {
       dark: false,
       themes: {
         light: {
-          primary: '#ffd103',
+          primary: `${process.env.LAYOUT === 'tibia-default' ? '03fff2' : '#ffd103'}`,
         }
       }
     }
