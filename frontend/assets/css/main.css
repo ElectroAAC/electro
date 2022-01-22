@@ -1,32 +1,3 @@
-:root {
-  --heading-color: #ffffff;
-  --text-color: #ffffff;
-  --title-color: #9cabb9;
-  --main-color: #0385ff;
-  --red: #f56969;
-  --green: #41c683;
-  --second-main-color: #03fff2;
-  --bg-main-color: #141f36;
-  --bg-second-color: #334459;
-  --bg-third-color: #061217;
-  --bg-dashboard-main-color: #1f2128;
-  --bg-dashboard-content-color: #2a2d38;
-}
-
-#app {
-  background-color: var(--bg-main-color);
-}
-
-#header {
-  background: url('~assets/images/top-header.jpg') !important;
-}
-
-#main {
-  background-image: url('~assets/images/background.jpg') !important;
-  background-attachment: fixed;
-  background-size: cover;
-}
-
 .theme--light.v-list {
   background: var(--bg-third-color) !important;
   color: var(--heading-color) !important;
@@ -57,7 +28,7 @@
 .content {
   border-radius: 1rem !important;
   color: var(--text-color);
-  background-color: rgba(20, 31, 54, 0.93);
+  background-color: var(--bg-fourth);
   border: 1px solid var(--bg-second-color);
 }
 
@@ -66,7 +37,7 @@
 }
 
 .widget {
-  background-color: rgba(20, 31, 54, 0.93);
+  background-color: var(--bg-fourth);
   border: 1px solid var(--bg-second-color);
   border-radius: 1rem !important;
 }
@@ -79,7 +50,6 @@
   text-transform: uppercase;
   line-height: 30px;
   letter-spacing: .72px;
-  background: url('~assets/images/top-header.jpg') !important;
   border-bottom: 1px solid var(--bg-second-color);
   color: var(--title-color);
 }
@@ -90,12 +60,12 @@
 }
 
 .theme--light.v-data-table thead th {
-  background: rgba(3, 255, 242, 0.45) !important;
+  background: var(--tables) !important;
   color: var(--heading-color) !important;
 }
 
 .v-data-footer {
-  background: rgba(3, 255, 242, 0.45) !important;
+  background: var(--tables) !important;
   color: var(--heading-color) !important;
 }
 
@@ -104,13 +74,13 @@
 }
 
 .v-application--is-ltr .v-data-table--fixed-header .v-data-footer {
-  background: rgb(3 255 243 / 45%) !important;
+  background: var(--tables) !important;
   color: var(--heading-color) !important;
   margin-right: 0px !important;
 }
 
 .theme--light.v-data-table > .v-data-table__wrapper > table > tbody > tr:hover:not(.v-data-table__expanded__content):not(.v-data-table__empty-wrapper) {
-  background: rgba(3, 255, 242, 0.301) !important;
+  background: var(--tables-hover) !important;
   color: var(--heading-color) !important;
 }
 
@@ -181,9 +151,14 @@
 }
 
 .btn-success-primary {
-  background: var(--main-color) !important;
+  background: var(--second-main-color) !important;
   color: var(--heading-color) !important;
-  border: 1px solid var(--main-color) !important;
+  border: 1px solid var(--second-main-color) !important;
+}
+
+.btn-success-secondary {
+  color: var(--second-main-color) !important;
+  border: 1px solid var(--second-main-color) !important;
 }
 
 .btn-danger-primary {
@@ -234,13 +209,12 @@
 }
 
 .theme--light.v-tabs-items {
-  background-color: rgba(20, 31, 54, 0.93) !important;
+  background-color: var(--bg-main-color) !important;
   border-radius: 1.95rem;
 }
 
 
 .bg-third {
-  background-color: #00ffc43b !important;
   color: var(--text-color) !important;
   border-radius: 1.95rem;
 }
@@ -337,7 +311,51 @@
   font-weight: bold !important;
 }
 
-.btn-success-secondary {
-  color: var(--green) !important;
-  border: 1px solid var(--green) !important;
+#dashboard {
+  background-color: var(--bg-dashboard-main-color);
+}
+
+.theme--light.v-navigation-drawer {
+  background-color: var(--bg-dashboard-main-color) !important;
+}
+
+.theme--light.v-app-bar.v-toolbar.v-sheet {
+  background-color: var(--bg-dashboard-main-color) !important;
+}
+
+.theme--light.v-navigation-drawer:not(.v-navigation-drawer--floating) .v-navigation-drawer__border {
+  background-color: #272a31 !important;
+}
+
+.dashboard-menu-text {
+  color: var(--heading-color) !important;
+}
+
+.dashboard-container {
+  background-color: var(--bg-dashboard-content-color) !important;
+  border-radius: 24px !important;
+  box-shadow: 
+    0px 2px 4px -1px rgb(0 0 0 / 28%), 
+    0px 4px 5px 0px rgb(0 0 0 / 0%), 
+    0px 1px 10px 0px rgb(0 0 0 / 17%);
+  color: var(--heading-color) !important;
+}
+
+.theme--light.v-footer {
+  background-color: var(--bg-dashboard-main-color) !important;
+  color: var(--heading-color) !important;
+}
+
+.v-list .v-list-item--active {
+  color: var(--second-main-color) !important;
+  border-radius: 1rem;
+}
+
+.theme--light.v-list-item--active:hover::before, .theme--light.v-list-item--active::before {
+  opacity: 0.30 !important;
+}
+
+.v-list-item--link:before {
+  background-color: var(--second-main-color) !important;
+  border-radius: 1rem;
 }

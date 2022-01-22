@@ -15,14 +15,7 @@
       </v-row>
     </v-main>
 
-      <v-footer
-        :absolute="!fixed"
-        app
-        class="text-center"
-      >
-        <span> {{ getVersion }} &copy; {{ new Date().getFullYear() }} - {{ getProjectName }} </span>
-      </v-footer>
-    
+    <FooterTemplate />
   </v-app>
 </template>
 
