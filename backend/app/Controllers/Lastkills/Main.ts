@@ -89,7 +89,7 @@ export default class LastKillsController {
           world_id: 0
         })
       }
-      return response.status(200).send({ status: 200, last_kills});
+      return response.status(200).send({ status: 200, total: playersDeath.total, last_kills });
     } catch(err) {
       console.log('Error getPlayersDeaths Query: ', err);
       return response.status(400).send({ error: 'An error occurred, check the api console.'});
