@@ -9,9 +9,10 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
 import { online } from '@/store'
 
-export default {
+export default Vue.extend({
   data() {
     return {
       status: false,
@@ -20,7 +21,7 @@ export default {
     }
   },
 
-  async mounted() {
+  async mounted(this: any) {
     await this.getOnline();
   },
 
@@ -32,5 +33,5 @@ export default {
       }
     }
   }
-}
+})
 </script>

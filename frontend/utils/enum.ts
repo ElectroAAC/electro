@@ -67,6 +67,10 @@ export const routesCommunity = [
     text: "Who is online?",
     to: "/online"
   },
+  {
+    text: "Lastkills",
+    to: "/lastkills"
+  },
 ]
 
 export const routesAccount = [
