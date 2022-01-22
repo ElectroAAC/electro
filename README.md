@@ -142,6 +142,11 @@ This repository follows the semantic commit pattern, with the addition of the ta
   <li> [x] Download Page </li>
 </ul>
 
+### Customize Layout
+<ul>
+  <li> [x] Customize Layout Structure</li>
+</ul>
+
 ### Dashboard - ADMIN
 <ul>
   <li> [x] Validate permissions </li>

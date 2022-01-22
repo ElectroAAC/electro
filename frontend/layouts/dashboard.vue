@@ -40,7 +40,7 @@
       
       <v-list :class="miniVariant ? '' : 'ml-4 mr-4'">
         <v-list-item
-          v-for="(item, i) in items"
+          v-for="(item, i) in getItems"
           :key="i"
           :to="item.to"
           router
@@ -71,18 +71,14 @@
       </v-container>
     </v-main>
 
-    <v-footer
-      :absolute="!fixed"
-      app
-    >
-      <span> {{ getVersion }} &copy; {{ new Date().getFullYear() }} - {{ getProjectName }} </span>
-    </v-footer>
+    <FooterTemplate />
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import { auth } from '@/store'
+import { routesDashboard } from '@/utils/enum'
 
 export default Vue.extend({
   middleware: 'dashboard',
@@ -90,59 +86,6 @@ export default Vue.extend({
     return {
       clipped: false,
       drawer: true,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-home',
-          title: 'Home',
-          to: '/dashboard',
-        },
-        {
-          icon: 'mdi-view-dashboard-outline',
-          title: 'Customize',
-          to: '/dashboard/customize'
-        },
-        {
-          icon: 'mdi-newspaper',
-          title: 'News',
-          to: '/dashboard/news'
-        },
-        {
-          icon: 'mdi-account-multiple',
-          title: 'Accounts',
-          to: '/dashboard/accounts'
-        },
-        {
-          icon: 'mdi-account-cowboy-hat',
-          title: 'Players',
-          to: '/dashboard/players'
-        },
-        {
-          icon: 'mdi-khanda',
-          title: 'Guilds',
-          to: '/dashboard/guilds'
-        },
-        {
-          icon: 'mdi-axe',
-          title: 'Items',
-          to: '/dashboard/items'
-        },
-        {
-          icon: 'mdi-rodent',
-          title: 'Monsters',
-          to: '/dashboard/monsters'
-        },
-        {
-          icon: 'mdi-cart',
-          title: 'Shop',
-          to: '/dashboard/shop'
-        },
-        {
-          icon: 'mdi-text-box-outline',
-          title: 'Logs',
-          to: '/dashboard/logs'
-        },
-      ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
@@ -157,6 +100,10 @@ export default Vue.extend({
 
     getProjectName(): String | undefined {
       return process.env.PROJECT_NAME;
+    },
+
+    getItems(): {}[] {
+      return routesDashboard;
     }
   },
 
