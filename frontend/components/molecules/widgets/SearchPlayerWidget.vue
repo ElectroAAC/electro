@@ -16,8 +16,8 @@
         dense
         append-icon="mdi-magnify"
         hide-details="auto"
-        background-color="rgb(255 61 3 / 45%)"
-        color="#ffd103"
+        background-color="var(--main-color)"
+        color="var(--second-main-color)"
       />
     </v-form>
     </v-container>

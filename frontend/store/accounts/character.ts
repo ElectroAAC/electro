@@ -47,7 +47,7 @@ export default class CreateCharacter extends VuexModule {
       payload.vocation = 1;
     }
 
-    const status = await $axios.$post('accounts/create-character', payload)
+    return await $axios.$post('accounts/create-character', payload)
       .then(( response ) => {
         if (response.status !== 200) 
           throw new Error("Failed to create character");
@@ -55,11 +55,10 @@ export default class CreateCharacter extends VuexModule {
       })
       .catch(({ response }) => {
         return {
-          message: response.data.errors[0].message,
+          message: response.data.errors ? response.data.errors[0].message : response.data.message,
           status: response.status
         };
       });
-    return status;
   }
 
   @Action
