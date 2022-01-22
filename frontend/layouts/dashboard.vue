@@ -170,3 +170,9 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.theme--light.v-list {
+  background: inherit !important;
+}
+</style>

@@ -93,8 +93,10 @@ This repository follows the semantic commit pattern, with the addition of the ta
   <li> [x] Create new character </li>
   <li> [x] Change character name </li>
   <li> [x] Delete character </li>
-  <li> [ ] Account Logs </li>
+  <li> [ ] Register Account (RK) </li>
+  <li> [ ] Change Email </li>
   <li> [ ] Change Password </li>
+  <li> [ ] Account Logs </li>
 </ul>
 
 ### Highscores

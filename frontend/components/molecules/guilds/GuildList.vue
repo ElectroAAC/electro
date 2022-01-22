@@ -94,7 +94,7 @@ export default Vue.extend({
 .single-stream-schedule-box {
   border-radius: 60px;
   position: relative;
-  border: 1px solid #00ffb8;
+  border: 1px solid var(--second-main-color);
   text-align: center;
   margin-bottom: 30px;
   padding-left: 150px;
@@ -103,7 +103,7 @@ export default Vue.extend({
 
 .single-stream-schedule-box.not-streaming .date .date-2{
   text-decoration: line-through;
-  color: #00ffb8;
+  color: var(--second-main-color);
 }
 
 .single-stream-schedule-box .date {
@@ -133,15 +133,15 @@ export default Vue.extend({
 .single-stream-schedule-box .content {
   background: transparent;
   border: none;
-  border-left: 3px solid #00ffb8;
-  border-right: 3px solid #00ffb8;
+  border-left: 3px solid var(--second-main-color);
+  border-right: 3px solid var(--second-main-color);
   border-radius: 60px !important;
   padding-top: 25px;
   padding-bottom: 25px;
 }
 
 .single-stream-schedule-box.not-streaming .content .time {
-  color: #00ffb8
+  color: var(--second-main-color);
 }
 
 .single-stream-schedule-box .content .time {

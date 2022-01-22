@@ -15,11 +15,10 @@
           <CharacterSelectVocation />
         </v-col>
         
-        <v-col cols="12">
+        <v-col class="text-center" cols="12">
           <v-btn
             depressed
             class="mt-5 btn btn-success-primary"
-            width="100%"
             rounded
             @click="validate"
           >
