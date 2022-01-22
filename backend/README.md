@@ -67,6 +67,14 @@ $ npm run start
 
 <br>
 
+##  🕵🏾‍♂️  Routes Lastkills
+
+| METHOD | ENDPOINT                   | DESCRIPTION                           |
+| :----- | :------------------------- | :------------------------------------ |
+| POST   | /lastkills/:page/:limit    | Get last kills                        |
+
+<br>
+
 ##  🕵🏾‍♂️  Routes Players
 
 | METHOD | ENDPOINT                   | DESCRIPTION                           |
