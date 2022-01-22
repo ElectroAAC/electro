@@ -135,6 +135,11 @@ This repository follows the semantic commit pattern, with the addition of the ta
   <li> [x] Lastkill Page </li>
 </ul>
 
+### Download
+<ul>
+  <li> [x] Download Page </li>
+</ul>
+
 ### Dashboard - ADMIN
 <ul>
   <li> [x] Validate permissions </li>
