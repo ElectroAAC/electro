@@ -130,6 +130,11 @@ This repository follows the semantic commit pattern, with the addition of the ta
   <li> [x] Widget Players Online </li>
 </ul>
 
+### Lastkills
+<ul>
+  <li> [x] Lastkill Page </li>
+</ul>
+
 ### Dashboard - ADMIN
 <ul>
   <li> [x] Validate permissions </li>

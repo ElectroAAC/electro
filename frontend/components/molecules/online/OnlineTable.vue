@@ -37,9 +37,10 @@ export default Vue.extend({
   },
 
   computed: {
-    getPlayersData(): Object[] {
+    getPlayersData(this: any): Object[] {
       return this.players_data;
     },
+    
     getHeaders(): Object[] {
       return [
         { text: 'Name', value: 'name', align: 'center' },

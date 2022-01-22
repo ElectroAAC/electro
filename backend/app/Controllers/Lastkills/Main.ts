@@ -24,7 +24,9 @@ export default class LastKillsController {
       for(let death of playersDeath) {
         players_deaths_count++;
 
-        let killers_string = death.name;
+        const url_player = remote_url + '/' + death.name;
+        
+        let killers_string = '<a href="'+ url_player + '">' + death.name + '</a> ';
 
         const killers = await Database
           .from('killers')
@@ -89,7 +91,7 @@ export default class LastKillsController {
           world_id: 0
         })
       }
-      return response.status(200).send({ status: 200, total: playersDeath.total, last_kills });
+      return response.status(200).send({ status: 200, total: playersDeath.lastPage, last_kills });
     } catch(err) {
       console.log('Error getPlayersDeaths Query: ', err);
       return response.status(400).send({ error: 'An error occurred, check the api console.'});

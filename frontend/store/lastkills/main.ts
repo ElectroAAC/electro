@@ -17,7 +17,7 @@ export default class Lastkills extends VuexModule {
   @Action
   public async getLastkills(payload: Paginate) {
     try {
-      return await $axios.$get(`lastkills/${payload.page}/${payload.limit}`)
+      return await $axios.$post(`lastkills/${payload.page}/${payload.limit}`, { "remote_url": "http://localhost:3000/character" })
         .then((response) => {
           if (!response) 
             throw new Error(response);
