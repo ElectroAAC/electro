@@ -3,7 +3,8 @@
      <v-row>
       <v-col cols="12">
         <v-text-field
-          v-model="title"
+          v-model="$post.title"
+          :rules="required"
           label="Title"
           type="text"
           validate-on-blur
@@ -17,7 +18,8 @@
       <v-col cols="12">
         <editor
           api-key="waj6mynu6qydcrd3kx0jqz4hpm143zpiyzud6yppdsr91yzf"
-          v-model="text"
+          v-model="$post.description"
+          :rules="required"
           :init="{
             height: 500,
             menubar: true,
@@ -40,18 +42,37 @@
 <script lang="ts">
 import Vue from 'vue'
 import Editor from '@tinymce/tinymce-vue'
+import { dashboardNews } from '@/store'
 
 export default Vue.extend({
-   name: 'app',
-   components: {
-     'editor': Editor
-   },
+  name: 'app',
+  components: {
+    'editor': Editor
+  },
 
-   data() {
-     return {
-       text: "",
-       title: ""
-     }
-   }
+  data() {
+    return {
+      post: {
+        title: null,
+        description: null,
+      },
+      required: [
+        (v: string) => !!v || 'Required field',
+      ],
+    }
+  },
+
+  computed: {
+    $post() {
+      return dashboardNews.$post;
+    }
+  },
+
+  methods: {
+    updatePost(this: any) {
+      console.log('chamou chamou')
+      dashboardNews.update(this.post);
+    }
+  }
 })
 </script>

@@ -8,8 +8,8 @@ import {
 import { $axios } from '@/utils/nuxt-instance'
 
 interface CreatePostPayload {
-  text: String,
-  description: String
+  text: String | null,
+  description: String | null
 }
 
 @Module({
@@ -30,7 +30,12 @@ export default class News extends VuexModule {
   
   @Mutation
   private UPDATE_POST(this: any, payload: CreatePostPayload) {
-    this.newPost = Object.assign(this.newPost, payload);
+    this.post = Object.assign(this.post, payload);
+  }
+
+  @Action
+  public async update(payload: CreatePostPayload) {
+    this.context.commit('UPDATE_POST', payload)
   }
 
   @Action
