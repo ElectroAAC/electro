@@ -1,11 +1,8 @@
 <template>
-  <aside class="widget">
-    <h5 class="widget-title"> Status </h5>
-    <v-container class="text-center">
-      Players Online: <br>
-      <NuxtLink to="/online"> {{ playersOnline.length }} / {{ maxPlayers}} </NuxtLink>
-    </v-container>
-  </aside>
+  <div class="text-center color-green">
+    Players Online: <br>
+    <NuxtLink to="/online"> {{ playersOnline.length }} / {{ maxPlayers}} </NuxtLink>
+  </div>
 </template>
 
 <script lang="ts">
