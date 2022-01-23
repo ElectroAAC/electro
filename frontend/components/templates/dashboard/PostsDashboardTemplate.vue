@@ -1,5 +1,5 @@
 <template>
   <v-container>
-    Muahah
+    <NewsCreate />
   </v-container>
 </template>
