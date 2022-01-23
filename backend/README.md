@@ -24,6 +24,13 @@ $ npm run build
 $ npm run start
 ```
 
+##  🕵🏾‍♂️  Routes News
+
+| METHOD | ENDPOINT                        | DESCRIPTION                           |
+| :----- | :-------------------------------| :------------------------------------ |
+| GET    | /news/:page/:limit              | Get news                              |
+| POST   | /news/create-post               | Create new post                       |
+
 ##  🕵🏾‍♂️  Routes Account
 
 | METHOD | ENDPOINT                        | DESCRIPTION                           |
@@ -92,7 +99,7 @@ $ npm run start
 | METHOD | ENDPOINT                   | DESCRIPTION                           |
 | :----- | :------------------------- | :------------------------------------ |
 | GET    | /guilds/:page/:limit       | Get all guilds                        |
-| GET    | /guild/search/:name        | Get guild info                        |
+| GET    | /guild/view/:name          | Get guild info                        |
 | GET    | /guild/players-with-guild  | Get guild info                        |
 | POST   | /guild/create-guild        | Create Guild                          |
 
