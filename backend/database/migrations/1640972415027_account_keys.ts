@@ -13,8 +13,6 @@ export default class AccountKeys extends BaseSchema {
         .inTable('accounts')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
     })
   }
 
