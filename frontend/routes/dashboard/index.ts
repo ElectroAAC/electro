@@ -1,6 +1,6 @@
 import Dashboard from '~/pages/dashboard/index.vue'
 import Accounts from '~/routes/dashboard/account'
-import Newsa from '~/routes/dashboard/newsa'
+import News from '~/routes/dashboard/news'
 
 export default [
   {
@@ -12,5 +12,5 @@ export default [
     }
   },
   ...Accounts,
-  ...Newsa
+  ...News
 ]
