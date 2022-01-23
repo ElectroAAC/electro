@@ -30,6 +30,7 @@ $ npm run start
 | :----- | :-------------------------------| :------------------------------------ |
 | GET    | /news/:page/:limit              | Get news                              |
 | POST   | /news/create-post               | Create new post                       |
+| POST   | /news/edit                      | Edit post                             |
 
 ##  🕵🏾‍♂️  Routes Account
 

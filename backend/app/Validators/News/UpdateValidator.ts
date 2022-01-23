@@ -5,6 +5,7 @@ export default class StoreValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
+    news_id: schema.number(),
     title: schema.string({ trim: true }),
     description: schema.string({ trim: true })
   })

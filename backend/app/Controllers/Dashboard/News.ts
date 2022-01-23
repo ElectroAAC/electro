@@ -1,5 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { StoreValidator } from 'App/Validators/News'
+import { StoreValidator, UpdateValidator } from 'App/Validators/News'
 import Database from '@ioc:Adonis/Lucid/Database'
 
 export default class AccountsController {
@@ -26,8 +26,6 @@ export default class AccountsController {
 
       const result = await Database.table('electro_news').returning('id').insert(news);
 
-      console.log(result);
-
       return response.status(200).send({ status: 200, message: 'New Post created successfully!'});
     } catch (err) {
       console.log('Error createNewPage Query: ', err);
@@ -39,7 +37,27 @@ export default class AccountsController {
 
   public async edit({}: HttpContextContract) {}
 
-  public async update({}: HttpContextContract) {}
+  public async update({ request, response, auth, bouncer }: HttpContextContract) {
+    await bouncer.with('DashboardPolicy').authorize('viewList');
+
+    const data = await request.validate(UpdateValidator);
+
+    const account = auth.user;
+
+    if (!account || !account.id) {
+      return response.unauthorized();
+    }
+
+    await Database.from('electro_news')
+      .where('id', '=', data.news_id)
+      .update({ 
+        title: data.title,
+        body: data.description,
+        updated_at: new Date()
+      });
+    
+    return response.status(200).send({ status: 200, message: "Post successfully updated." });
+  }
 
   public async destroy({}: HttpContextContract) {}
 }
