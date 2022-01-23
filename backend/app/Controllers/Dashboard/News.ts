@@ -20,7 +20,8 @@ export default class AccountsController {
         account_id: account.id,
         title: data.title,
         body: data.description,
-        hidden: 0
+        hidden: 0,
+        created_at: new Date()
       }
 
       const result = await Database.table('electro_news').returning('id').insert(news);

@@ -6,7 +6,7 @@ export default class NewsController {
     try {
       const news = await Database
         .from('electro_news')
-        .select('title', 'body')
+        .select('title', 'body', 'created_at')
         .where('hidden', '=', 0)
         .orderBy('created_at', 'desc')
         .paginate(request.param('page', 1), request.param('limit'));

@@ -21,11 +21,11 @@ export default class News extends VuexModule {
         .then((response) => {
           if (!response) 
             throw new Error(response);
-
+            
           return {
             data: response.news.data,
             status: response.status,
-            total: response.news.total
+            total: response.news.meta.last_page
           };
         })
         .catch(() => {
