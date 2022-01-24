@@ -1,6 +1,6 @@
-import Posts from '~/pages/dashboard/news/index.vue'
-import CreatePost from '~/pages/dashboard/news/create.vue'
-import EditPost from '~/pages/dashboard/news/edit.vue'
+import Posts from '~/pages/dashboard/news/index.vue';
+import CreatePost from '~/pages/dashboard/news/create.vue';
+import EditPost from '~/pages/dashboard/news/edit.vue';
 
 export default [
   {
@@ -27,4 +27,4 @@ export default [
       name: 'dashboard-posts-edit'
     }
   },
-]
+];

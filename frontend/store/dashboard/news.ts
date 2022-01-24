@@ -12,6 +12,12 @@ interface CreatePostPayload {
   description: String | null
 }
 
+interface UpdatePayload {
+  news_id: Number,
+  text: String | null,
+  description: String | null
+}
+
 @Module({
   name: 'dashboard/news',
   stateFactory: true,
@@ -42,6 +48,27 @@ export default class News extends VuexModule {
   public async createNewPost(payload: CreatePostPayload) {
     try {
       return await $axios.$post(`news/create-post`, payload)
+        .then((response) => {
+          if (!response) 
+            throw new Error(response);
+
+          return response;
+        })
+        .catch(({ response }) => {
+          return {
+            message: response.data.message ? response.data.message : response.data.errors[0].message,
+            status: response.status
+          };
+        });
+    } catch(err) {
+      return err;
+    }
+  }
+
+  @Action
+  public async editPost(payload: UpdatePayload) {
+    try {
+      return await $axios.$post('news/edit', payload)
         .then((response) => {
           if (!response) 
             throw new Error(response);

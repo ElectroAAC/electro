@@ -1,5 +1,5 @@
 <template>
-  <PostsDashboardTemplate />
+  <PostCreateTemplate />
 </template>
 
 <script lang="ts">

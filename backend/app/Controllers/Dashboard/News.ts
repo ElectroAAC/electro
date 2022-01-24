@@ -24,7 +24,7 @@ export default class AccountsController {
         created_at: new Date()
       }
 
-      const result = await Database.table('electro_news').returning('id').insert(news);
+      await Database.table('electro_news').returning('id').insert(news);
 
       return response.status(200).send({ status: 200, message: 'New Post created successfully!'});
     } catch (err) {
