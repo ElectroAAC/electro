@@ -3,6 +3,21 @@ import { StoreValidator, UpdateValidator } from 'App/Validators/News'
 import Database from '@ioc:Adonis/Lucid/Database'
 
 export default class AccountsController {
+  public async index({ request, response }: HttpContextContract) {
+    try {
+      const news = await Database
+        .from('electro_news')
+        .select('id', 'title', 'body', 'created_at')
+        .orderBy('created_at', 'desc')
+        .paginate(request.param('page', 1), request.param('limit'));
+      
+      return response.status(200).send({ status: 200, news });
+    } catch(err) {
+      console.log('Error getNews Query: ', err);
+      return response.status(400).send({ error: 'An error occurred, check the api console.'});
+    }
+  }
+
   public async store({ request, response, auth, bouncer }: HttpContextContract) {
     try {
       await bouncer.with('DashboardPolicy').authorize('viewList');
@@ -64,6 +79,7 @@ export default class AccountsController {
       .update({ 
         title: data.title,
         body: data.description,
+        hidden: data.hidden ? 1 : 0,
         updated_at: new Date()
       });
     

@@ -29,6 +29,7 @@ $ npm run start
 | METHOD | ENDPOINT                        | DESCRIPTION                           |
 | :----- | :-------------------------------| :------------------------------------ |
 | GET    | /news/list/:page/:limit         | Get news                              |
+| GET    | /news/listDashboard/:page/:limit| Get news to Dashboard                 |
 | POST   | /news/create-post               | Create new post                       |
 | GET    | /news/find/:id                  | Find post                             |
 | POST   | /news/edit                      | Edit post                             |
