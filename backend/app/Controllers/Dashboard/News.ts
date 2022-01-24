@@ -33,7 +33,18 @@ export default class AccountsController {
     }
   }
 
-  public async show({}: HttpContextContract) {}
+  public async show({ request, response, bouncer }: HttpContextContract) {
+    await bouncer.with('DashboardPolicy').authorize('viewList');
+
+    const page = await Database
+      .from('electro_news')
+      .select('*')
+      .where('id', '=', request.param('id'))
+    if (!page.length) {
+      return response.status(404).send({ message: 'News not found.' });
+    }
+    return response.status(200).send({ status: 200, page });
+  }
 
   public async edit({}: HttpContextContract) {}
 
