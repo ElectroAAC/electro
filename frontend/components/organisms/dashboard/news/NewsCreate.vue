@@ -43,7 +43,6 @@ export default Vue.extend({
   
   mounted() {
     dashboardNews.update({
-      news_id: null,
       title: "",
       description: ""
     })

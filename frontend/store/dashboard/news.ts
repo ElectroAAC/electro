@@ -7,13 +7,16 @@ import {
 
 import { $axios } from '@/utils/nuxt-instance'
 
+import { Paginate } from '@/models'
+
 interface CreatePostPayload {
   title: String | null,
   description: String | null
 }
 
 interface UpdatePayload {
-  news_id: Number,
+  news_id?: Number,
+  hidden?: Boolean,
   title: String | null,
   description: String | null
 }
@@ -26,9 +29,10 @@ interface UpdatePayload {
 
 export default class News extends VuexModule {
   private post = {
-    news_id: null,
+    news_id: undefined,
     title: "",
-    description: ""
+    description: "",
+    hidden: false
   }
 
   public get $post() {
@@ -38,6 +42,32 @@ export default class News extends VuexModule {
   @Mutation
   private UPDATE_POST(this: any, payload: CreatePostPayload) {
     this.post = Object.assign(this.post, payload);
+  }
+
+  @Action
+  public async getAll(payload: Paginate) {
+    try {
+      return await $axios.$get(`news/listDashboard/${payload.page}/${payload.limit}`)
+        .then((response) => {
+          if (!response) 
+            throw new Error(response);
+            
+          return {
+            data: response.news.data,
+            status: response.status,
+            total: response.news.meta.last_page
+          };
+        })
+        .catch(() => {
+          return {
+            data: 'Error',
+            status: 'SEARCH_NOTFOUND',
+            total: 0
+          };
+        });
+    } catch(err) {
+      return err;
+    }
   }
 
   @Action
@@ -77,7 +107,8 @@ export default class News extends VuexModule {
           this.context.commit('UPDATE_POST', {
             news_id: response.page[0].id,
             title: response.page[0].title,
-            description: response.page[0].body
+            description: response.page[0].body,
+            hidden: response.page[0].hidden
           });
 
           return {

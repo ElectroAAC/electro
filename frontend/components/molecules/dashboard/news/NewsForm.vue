@@ -1,7 +1,7 @@
  <template>
    <div>
      <v-row>
-      <v-col cols="12">
+      <v-col cols="10">
         <v-text-field
           v-model="$post.title"
           :rules="required"
@@ -15,9 +15,19 @@
         />
       </v-col>
 
+      <v-col cols="2">
+        <v-checkbox
+          v-model="$post.hidden"
+          class="ma-2 pa-0"
+          color="primary"
+          label="Hidden"
+          hide-details
+        />
+      </v-col>
+
       <v-col cols="12">
         <editor
-          api-key="waj6mynu6qydcrd3kx0jqz4hpm143zpiyzud6yppdsr91yzf"
+          :api-key="getKeyTiny"
           v-model="$post.description"
           :rules="required"
           :init="{
@@ -52,10 +62,6 @@ export default Vue.extend({
 
   data() {
     return {
-      post: {
-        title: null,
-        description: null,
-      },
       required: [
         (v: string) => !!v || 'Required field',
       ],
@@ -65,6 +71,10 @@ export default Vue.extend({
   computed: {
     $post() {
       return dashboardNews.$post;
+    },
+    
+    getKeyTiny() {
+      return process.env.TINY_KEY;
     }
   },
 })

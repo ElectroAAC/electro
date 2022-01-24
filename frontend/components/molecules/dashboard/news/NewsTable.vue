@@ -26,26 +26,13 @@
         </template>
         <span>Edit</span>
       </v-tooltip>
-
-      <v-tooltip bottom>
-        <template #activator="{ on, attrs }">
-          <v-btn
-            icon
-            v-bind="attrs"
-            v-on="on"
-          >
-            <v-icon color="red"> mdi-delete-outline </v-icon>
-          </v-btn>
-        </template>
-        <span>Delete</span>
-      </v-tooltip>
     </template>
   </v-data-table>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { news } from '@/store'
+import { dashboardNews } from '@/store'
 
 export default Vue.extend({
   data() {
@@ -85,7 +72,7 @@ export default Vue.extend({
 
       const { page, itemsPerPage } = this.options;
       
-      const response = await news.getLastNews({
+      const response = await dashboardNews.getAll({
         page,
         limit: itemsPerPage
       });
