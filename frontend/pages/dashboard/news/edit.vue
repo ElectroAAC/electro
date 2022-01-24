@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    Muauhahah
+    <PostEditTemplate />
   </v-container>
 </template>
 

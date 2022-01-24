@@ -17,7 +17,7 @@ export default class News extends VuexModule {
   @Action
   public async getLastNews(payload: Paginate) {
     try {
-      return await $axios.$get(`news/${payload.page}/${payload.limit}`)
+      return await $axios.$get(`news/list/${payload.page}/${payload.limit}`)
         .then((response) => {
           if (!response) 
             throw new Error(response);

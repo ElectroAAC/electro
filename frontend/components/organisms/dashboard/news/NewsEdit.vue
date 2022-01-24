@@ -15,7 +15,7 @@
           rounded
           @click="validate"
         >
-          Register New Post
+          Update Post
         </v-btn>
         <v-btn 
           text 
@@ -41,21 +41,15 @@ export default Vue.extend({
     }
   },
   
-  mounted() {
-    dashboardNews.update({
-      news_id: null,
-      title: "",
-      description: ""
-    })
-  },
-
   methods: {
-    async onCreate(this: any): Promise<void> {
-      const result: { status: Number, message: String} = await dashboardNews.createNewPost(dashboardNews.$post);
+    async onUpdate(this: any): Promise<void> {
+      console.log(dashboardNews.$post);
+      
+      const result: { status: Number, message: String} = await dashboardNews.editPost(dashboardNews.$post);
 
       if (result.status === 200) {
         this.$toast.success(
-          'Post created successfully',
+          'Post updated successfully',
           {
             keepOnHover: true,
             duration: 2000,
@@ -80,7 +74,7 @@ export default Vue.extend({
     async validate(this: any): Promise<void> {
       await this.$refs.form.validate();
       if (this.valid)
-        await this.onCreate();
+        await this.onUpdate();
     },
 
     back() {

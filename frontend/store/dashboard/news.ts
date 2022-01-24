@@ -8,13 +8,13 @@ import {
 import { $axios } from '@/utils/nuxt-instance'
 
 interface CreatePostPayload {
-  text: String | null,
+  title: String | null,
   description: String | null
 }
 
 interface UpdatePayload {
   news_id: Number,
-  text: String | null,
+  title: String | null,
   description: String | null
 }
 
@@ -26,6 +26,7 @@ interface UpdatePayload {
 
 export default class News extends VuexModule {
   private post = {
+    news_id: null,
     title: "",
     description: ""
   }
@@ -53,6 +54,36 @@ export default class News extends VuexModule {
             throw new Error(response);
 
           return response;
+        })
+        .catch(({ response }) => {
+          return {
+            message: response.data.message ? response.data.message : response.data.errors[0].message,
+            status: response.status
+          };
+        });
+    } catch(err) {
+      return err;
+    }
+  }
+
+  @Action
+  public async findPost(id: number) {
+    try {
+      return await $axios.$get(`news/find/${id}`)
+        .then((response) => {
+          if (!response) 
+            throw new Error(response);
+          
+          this.context.commit('UPDATE_POST', {
+            news_id: response.page[0].id,
+            title: response.page[0].title,
+            description: response.page[0].body
+          });
+
+          return {
+            status: response.status,
+            data: response.page[0]
+          };
         })
         .catch(({ response }) => {
           return {

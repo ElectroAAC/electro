@@ -103,7 +103,7 @@ export default Vue.extend({
     },
 
     editNew(this: any, item: number) {
-      this.$router.replace('/dashboard/news/edit/', item)
+      this.$router.replace('/dashboard/news/edit/' + item)
     }
   }
 })

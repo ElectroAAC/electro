@@ -67,12 +67,5 @@ export default Vue.extend({
       return dashboardNews.$post;
     }
   },
-
-  methods: {
-    updatePost(this: any) {
-      console.log('chamou chamou')
-      dashboardNews.update(this.post);
-    }
-  }
 })
 </script>
