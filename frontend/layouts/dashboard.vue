@@ -122,4 +122,7 @@ export default Vue.extend({
 .theme--light.v-list {
   background: inherit !important;
 }
+#app {
+  background: transparent !important;
+}
 </style>

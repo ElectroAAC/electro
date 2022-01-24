@@ -15,6 +15,8 @@
       @update-dialog="updateDialog"
     />
 
+    <StatusServer />
+    
     <v-row class="d-flex align-center justify-center header-text">
       <NuxtLink to="/" class="pa-5"> HOME </NuxtLink>
       <CommunityRoutes class="pa-5"/>

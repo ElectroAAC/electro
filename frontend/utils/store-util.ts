@@ -4,8 +4,13 @@ import { getModule } from 'vuex-module-decorators';
 import Auth from '@/store/auth';
 
 import {
-  Home as DashboardHome
+  Home as DashboardHome,
+  News as DashboardNews
 } from '@/store/dashboard'
+
+import {
+  News
+} from '~/store/news'
 
 import {
   Account,
@@ -39,6 +44,9 @@ import {
 let auth: Auth;
 
 let dashboardHome: DashboardHome;
+let dashboardNews: DashboardNews;
+
+let news: News;
 
 let account: Account;
 let accountRegister: AccountRegister;
@@ -62,6 +70,10 @@ const initializeStores = (store: Store<any>) => {
 
   // Store Dashboard
   dashboardHome = getModule(DashboardHome, store);
+  dashboardNews = getModule(DashboardNews, store);
+
+  // Store News
+  news = getModule(News, store);
 
   // Store Accounts
   account = getModule(Account, store);
@@ -91,9 +103,12 @@ export {
   initializeStores,
 
   dashboardHome,
+  dashboardNews,
 
   auth,
 
+  news,
+  
   account,
   accountRegister,
   createCharacter,

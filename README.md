@@ -78,7 +78,8 @@ This repository follows the semantic commit pattern, with the addition of the ta
 <br>
 
 ## 👨🏾‍💻 Functionalities
-### Authentication
+### News Page
+<li> [x] Show lastnews </li>
 
 ### View character informations
 <ul>
@@ -154,6 +155,13 @@ This repository follows the semantic commit pattern, with the addition of the ta
 <ul>
   <li> [x] Validate permissions </li>
   <li> [x] Home Page </li>
+  <li> [x] News Page</li>
+  <ul>
+    <li> [x] Create new post </li>
+    <li> [x] List all post </li>
+    <li> [x] Edit post </li>
+    <li> [x] Delete post </li>
+  </ul>
 </ul>
 
 ## Show-Off

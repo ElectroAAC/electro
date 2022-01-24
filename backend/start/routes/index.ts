@@ -7,6 +7,7 @@ import './dashboard';
 import './guilds';
 import './online';
 import './lastkills';
+import './news';
 
 Route.get('/', async () => {
   return { hello: 'world' }

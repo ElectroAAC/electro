@@ -1,5 +1,5 @@
 import { column, beforeSave, BaseModel, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
-import { AccountKey, Player } from 'App/Models'
+import { AccountKey, Player, News } from 'App/Models'
 import crypto from 'crypto';
 
 export default class Account extends BaseModel {
@@ -114,4 +114,7 @@ export default class Account extends BaseModel {
 
   @hasMany(() => Player)
   public players: HasMany<typeof Player>
+
+  @hasMany(() => News)
+  public news: HasMany<typeof News>
 }
