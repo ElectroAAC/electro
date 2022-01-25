@@ -2,15 +2,23 @@
   <aside class="widget">
     <h5 class="widget-title"> Highscores </h5>
     <v-container class="text-center">
-      <div
+      <v-row
         v-for="(player, idx) in $top5Players"
         class="text-center"
         :key="idx"
       >
-        <CharacterAvatar :avatar="getVocation(player.vocation)" width="60px"/> <br>
-        <span> <NuxtLink :to="`/character/${player.name}`"> {{ player.name }} </NuxtLink> </span> <br>
-        <span> {{ player.level }} </span>
-      </div>
+        <v-col cols="4"> 
+          <CharacterAvatar :avatar="getVocation(player.vocation)" width="60px"/>
+        </v-col>
+        <v-col cols="8">
+          <NuxtLink :to="`/character/${player.name}`"> {{ player.name }} </NuxtLink> 
+          <br>
+
+          <span> 
+            {{ player.level }} 
+          </span>
+        </v-col>
+      </v-row>
     </v-container>
   </aside>
 </template>

@@ -23,6 +23,7 @@
   <li> Vue.js </li>
   <ul>
     <li> <a href="https://github.com/championswimmer/vuex-module-decorators"> Vuex-module-decorators </a> </li>
+    <li> <a href="https://www.tiny.cloud/docs/integrations/vue/"> TinyMCE </a> </li>
   </ul>
   <li> Vuetify.js </li>
   <li> Nuxt.js </li>
