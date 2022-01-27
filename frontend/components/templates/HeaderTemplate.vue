@@ -15,7 +15,7 @@
       @update-dialog="updateDialog"
     />
 
-    <v-row v-if="$device.isDesktop" class="d-flex align-center justify-center header-text">
+    <v-row v-if="!$vuetify.breakpoint.mdAndDown" class="d-flex align-center justify-center header-text">
       <StatusServer />
 
       <v-spacer></v-spacer>

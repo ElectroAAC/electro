@@ -22,12 +22,12 @@
         :key="index"
         class="single-stream-schedule-box not-streaming"
       >
-        <span v-if="$device.isDesktop" class="date"> LOGO </span>
+        <span v-if="!$vuetify.breakpoint.mdAndDown" class="date"> LOGO </span>
         <v-row class="ma-0 content text-center">
           <v-col class="text-center" cols="6"> <NuxtLink :to="`/guilds/view/${guild.name}`" class="time"> {{ guild.name }} </NuxtLink> </v-col>
           <v-col class="text-center" cols="12"> <p> {{ guild.description }} </p> </v-col>
         </v-row>
-        <span v-if="$device.isDesktop" class="date-2"> LOGO </span>
+        <span v-if="!$vuetify.breakpoint.mdAndDown" class="date-2"> LOGO </span>
       </div>
     </div>
     

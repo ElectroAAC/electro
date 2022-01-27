@@ -1,7 +1,7 @@
 <template>
   <v-row class="mt-2">
 
-    <v-col :cols="$device.isDesktop ? '6' : '12'">
+    <v-col :cols="!$vuetify.breakpoint.mdAndDown ? '6' : '12'">
       <CharacterInfo />
     </v-col>
     
@@ -9,7 +9,7 @@
       <CharacterItems />
     </v-col>
 
-    <v-col class="pa-1" :cols="$device.isDesktop ? '12' : '6'">
+    <v-col class="pa-1" :cols="!$vuetify.breakpoint.mdAndDown ? '12' : '6'">
       <CharacterSkills />
     </v-col>
     

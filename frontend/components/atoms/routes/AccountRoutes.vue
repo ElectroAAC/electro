@@ -12,7 +12,7 @@
         v-on="on"
       >
         <v-icon>mdi-account</v-icon> 
-        <NuxtLink v-if="$device.isDesktop" to="/accounts"> {{ $account.name }} </NuxtLink>
+        <NuxtLink v-if="!$vuetify.breakpoint.mdAndDown" to="/accounts"> {{ $account.name }} </NuxtLink>
         <span v-else> {{ $account.name }} </span>
       </v-btn>
     </template>

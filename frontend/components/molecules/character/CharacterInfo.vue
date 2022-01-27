@@ -2,11 +2,11 @@
   <v-container class="text-center">
     Infos
     <v-row>
-      <v-col :cols="$device.isDesktop ? '12' : '6'">
+      <v-col :cols="!$vuetify.breakpoint.mdAndDown ? '12' : '6'">
         <CharacterAvatar :avatar="getVocation()" width="150px"/>
       </v-col>
 
-      <v-col :cols="$device.isDesktop ? '12' : '6'">
+      <v-col :cols="!$vuetify.breakpoint.mdAndDown ? '12' : '6'">
         <v-row>
           <v-col class="pa-1" cols="6">
             Name:

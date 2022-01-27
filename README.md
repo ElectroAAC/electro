@@ -32,7 +32,6 @@
     <li> <a href="https://github.com/nuxt-community/router-module"> Router </a> </li>
     <li> <a href="https://www.npmjs.com/package/cookie-universal-nuxt"> Cookie-Universal </a> </li>
     <li> <a href="https://www.npmjs.com/package/@nuxtjs/toast"> Toast </a> </li>
-    <li> <a href="https://github.com/nuxt-community/device-module"> Device </a> </li>
   </ul>
   <li> Typescript </li>
 </ul>

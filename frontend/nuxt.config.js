@@ -56,7 +56,6 @@ export default {
       }
     ],
     '@nuxtjs/dotenv',
-    '@nuxtjs/device',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -90,11 +89,6 @@ export default {
         }
       }
     }
-  },
-
-  // Configuration: https://github.com/nuxt-community/device-module
-  device: {
-    refreshOnResize: true
   },
 
   toast: {
