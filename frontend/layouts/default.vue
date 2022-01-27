@@ -5,19 +5,17 @@
     <v-main id="main">
       <v-row class="ma-0 mt-15">
         <v-col cols="1"></v-col>
-        <v-col cols="7" class="content">
+        <v-col :cols="!$vuetify.breakpoint.mdAndDown ? '8' : '10'" class="content pa-0">
           <Nuxt/>
         </v-col>
-        <v-col cols="3" class="side-bar ml-5 pa-0">
-          <SearchPlayerWidget />
-          <StatusServerWidget class="mt-2"/>
-          <TrailerWidget class="mt-2"/>
-          <HighscoresWidget class="mt-2"/>
+        <v-col v-if="!$vuetify.breakpoint.mdAndDown" cols="2" class="side-bar ml-5 pa-0">
+          <Sidebar />
         </v-col>
         <v-col cols="1"></v-col>
       </v-row>
     </v-main>
-    
+
+    <FooterTemplate />
   </v-app>
 </template>
 
@@ -28,10 +26,25 @@ import { account } from '@/store'
 export default Vue.extend({
   name: 'DefaultLayout',
 
+  data() {
+    return {
+      fixed: false,
+    }
+  },
+
   async created() {
     if ($cookies.get('token')) {
       await account.get();
-      console.log(account.$account);
+    }
+  },
+
+  computed: {
+    getVersion(): any {
+      return process.env.version;
+    },
+
+    getProjectName(): String | undefined {
+      return process.env.PROJECT_NAME;
     }
   }
 })
@@ -41,5 +54,8 @@ export default Vue.extend({
 #app {
   margin: 0;
   padding: 0;
+}
+.theme--light.v-footer {
+  background: transparent !important;
 }
 </style>

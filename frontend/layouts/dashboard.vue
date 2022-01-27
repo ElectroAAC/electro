@@ -5,7 +5,8 @@
       fixed
       app
     > 
-      <v-app-bar-nav-icon @click.stop="miniVariant = !miniVariant" />
+      <v-app-bar-nav-icon v-if="!$vuetify.breakpoint.mdAndDown" @click.stop="miniVariant = !miniVariant" />
+      <v-app-bar-nav-icon v-else @click.stop="drawer = !drawer, miniVariant = false" />
       
       <v-spacer></v-spacer>
       
@@ -15,6 +16,7 @@
             text
             v-bind="attrs"
             v-on="on"
+            @click="onLogout()"
           >
             <v-icon> mdi-logout </v-icon>
           </v-btn>
@@ -27,7 +29,7 @@
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
-      fixed
+      absolute
       app
       class="text-center"
     >
@@ -37,9 +39,9 @@
         </NuxtLink>
       </div>
       
-      <v-list>
+      <v-list :class="miniVariant ? '' : 'ml-4 mr-4'">
         <v-list-item
-          v-for="(item, i) in items"
+          v-for="(item, i) in getItems"
           :key="i"
           :to="item.to"
           router
@@ -48,6 +50,7 @@
           <v-tooltip right>
             <template v-slot:activator="{ on, attrs }">
               <v-list-item-action
+                class="text-center"
                 v-bind="attrs"
                 v-on="on"
               >
@@ -69,80 +72,58 @@
       </v-container>
     </v-main>
 
-    <v-footer
-      :absolute="!fixed"
-      app
-    >
-      <span> &copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
+    <FooterTemplate />
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { auth } from '@/store'
+import { routesDashboard } from '@/utils/enum'
+
 export default Vue.extend({
+  middleware: 'dashboard',
   data () {
     return {
       clipped: false,
       drawer: true,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-home',
-          title: 'Home',
-          to: '/dashboard',
-        },
-        {
-          icon: 'mdi-view-dashboard-outline',
-          title: 'Customize',
-          to: '/dashboard/customize'
-        },
-        {
-          icon: 'mdi-newspaper',
-          title: 'News',
-          to: '/dashboard/news'
-        },
-        {
-          icon: 'mdi-account-multiple',
-          title: 'Accounts',
-          to: '/dashboard/accounts'
-        },
-        {
-          icon: 'mdi-account-cowboy-hat',
-          title: 'Players',
-          to: '/dashboard/players'
-        },
-        {
-          icon: 'mdi-shield-sun-outline',
-          title: 'Guilds',
-          to: '/dashboard/guilds'
-        },
-        {
-          icon: 'mdi-axe',
-          title: 'Items',
-          to: '/dashboard/items'
-        },
-        {
-          icon: 'mdi-rodent',
-          title: 'Monsters',
-          to: '/dashboard/monsters'
-        },
-        {
-          icon: 'mdi-cart',
-          title: 'Shop',
-          to: '/dashboard/shop'
-        },
-        {
-          icon: 'mdi-text-box-outline',
-          title: 'Logs',
-          to: '/dashboard/logs'
-        },
-      ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
       title: 'Claria'
     }
   },
+
+  computed: {
+    getVersion(): any {
+      return process.env.version;
+    },
+
+    getProjectName(): String | undefined {
+      return process.env.PROJECT_NAME;
+    },
+
+    getItems(): {}[] {
+      return routesDashboard;
+    }
+  },
+
+  methods: {
+    onLogout(this: any): void {
+      auth.destroy();
+      if (this.$route && this.$route.fullPath !== "/") {
+        this.$router.push("/")
+      }
+    }
+  }
 })
 </script>
+
+<style lang="scss" scoped>
+.theme--light.v-list {
+  background: inherit !important;
+}
+#app {
+  background: transparent !important;
+}
+</style>

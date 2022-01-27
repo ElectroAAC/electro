@@ -24,7 +24,7 @@ $ yarn install
 $ yarn dev
 ```
 
-<h3> <li> Run for development  </li></h3>
+<h3> <li> Run for production  </li></h3>
 
 ```bash
 $ yarn build

@@ -1,0 +1,41 @@
+:root {
+  --heading-color: #ffffff;
+  --text-color: #ffffff;
+  --title-color: #9cabb9;
+  --red: #f56969;
+  --green: #41c683;
+
+  --main-color: #0385ff;
+  --second-main-color: #03fff2;
+
+  --bg-main-color: #141f36;
+  --bg-second-color: #334459;
+  --bg-third-color: #061217;
+  --bg-fourth: #141f36ed;
+  --tables: #03fff273;
+  --tables-hover: #03fff24d;
+  --bg-dashboard-main-color: #1f2128;
+  --bg-dashboard-content-color: #2a2d38;
+}
+
+#app {
+  background-color: var(--bg-main-color);
+}
+
+#header {
+  background: url('~assets/images/tibia-default/top-header.jpg') !important;
+}
+
+#main {
+  background-image: url('~assets/images/tibia-default/background.jpg') !important;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.widget-title {
+  background: url('~assets/images/tibia-default/top-header.jpg') !important;
+}
+
+.bg-third {
+  background-color: #00ffc43b !important;
+}

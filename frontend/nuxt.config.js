@@ -14,11 +14,14 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }],
   },
 
+  env: {
+    version: process.env.VERSION || 'development'
+  },
+  
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '@/assets/css/vuetify.css',
+    `@/assets/css/${process.env.LAYOUT}.css`,
     '@/assets/css/main.css',
-    '@/assets/css/dashboard.css',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -51,7 +54,8 @@ export default {
       {
         fileName: "nuxt.router.js"
       }
-    ]
+    ],
+    '@nuxtjs/dotenv',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -72,6 +76,8 @@ export default {
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
+    customVariables: ['~/assets/scss/variables.scss'],
+    treeShake: true,
     icons: {
       iconfont: 'mdi'
     },
@@ -79,23 +85,18 @@ export default {
       dark: false,
       themes: {
         light: {
-          primary: '#03fff2',
+          primary: `${process.env.LAYOUT === 'tibia-default' ? '03fff2' : '#ffd103'}`,
         }
       }
     }
   },
 
   toast: {
-    position: 'bottom-right',
-    register: [ // Register custom toasts
-      {
-        name: 'my-error',
-        message: 'Oops...Something went wrong',
-        options: {
-          type: 'error'
-        }
-      }
-    ]
+    position: 'top-right',
+    keepOnHover: true,
+    duration: 3000,
+    theme: "bubble",
+    singleton: true,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -104,6 +105,7 @@ export default {
   router: {
     base: process.env.ROUTE || '/'
   },
+
   
   ssr: true
 }

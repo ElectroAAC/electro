@@ -3,7 +3,7 @@
     id="header"
     app
   >
-     <CreateAccountDialog
+    <CreateAccountDialog
       v-if="$isRegistering"
       :dialog="dialog"
       @update-dialog="updateDialog"
@@ -15,80 +15,50 @@
       @update-dialog="updateDialog"
     />
 
-    <v-row class="d-flex align-center justify-center header-text">
-      <NuxtLink to="/" class="pa-5"> HOME </NuxtLink>
-      <NuxtLink to="/" class="pa-5"> COMMUNITY </NuxtLink>
-      <NuxtLink to="/highscores" class="pa-5"> HIGHSCORES </NuxtLink>
+    <v-row v-if="!$vuetify.breakpoint.mdAndDown" class="d-flex align-center justify-center header-text">
+      <StatusServer />
+
+      <v-spacer></v-spacer>
+
+        <NuxtLink to="/" class="pa-5"> HOME </NuxtLink>
+        <CommunityRoutes class="pa-5"/>
+        <NuxtLink to="/highscores" class="pa-5"> HIGHSCORES </NuxtLink>
+        <NuxtLink to="/">
+          <Logo class="mt-8" width="130px"/>
+        </NuxtLink>
+        <NuxtLink to="/guilds" class="pa-5"> GUILDS </NuxtLink>
+        <NuxtLink to="/" class="pa-5"> SHOP </NuxtLink>
+        <NuxtLink to="/downloads" class="pa-5"> DOWNLOAD </NuxtLink>
+
+      <v-spacer></v-spacer>
+
+      <AccountRoutes @update-dialog="updateDialog"/>
+    </v-row>
+
+    <v-row v-else class="d-flex align-center justify-center header-text">
+      <MobileMenu />
+
+      <v-spacer></v-spacer>
+
       <NuxtLink to="/">
         <Logo class="mt-8" width="130px"/>
       </NuxtLink>
-      <NuxtLink to="/" class="pa-5"> GUILDS </NuxtLink>
-      <NuxtLink to="/" class="pa-5"> SHOP </NuxtLink>
-      <NuxtLink to="/" class="pa-5"> DOWNLOAD </NuxtLink>
+
+      <v-spacer></v-spacer>
+
+      <AccountRoutes @update-dialog="updateDialog"/>
     </v-row>
-
-    <v-menu
-      open-on-hover
-      bottom
-      offset-y
-    >
-      <template #activator="{ on, attrs }">
-        <v-btn
-          text
-          class="header-text"
-          v-bind="attrs"
-          v-on="on"
-        >
-          <v-icon>mdi-account</v-icon> 
-          <span> {{ $account.name }} </span>
-        </v-btn>
-      </template>
-      
-      <v-list class="header-list">
-        <v-list-item v-if="!$account.name">
-          <v-list-item-title class="header-text">
-            <span style="cursor: pointer;" @click="updateDialog(true)"> Login </span>
-          </v-list-item-title>
-        </v-list-item>
-
-        <v-list-item
-          v-for="(item, idx) in menu_account"
-          v-else
-          :key="idx"
-        >
-          <v-list-item-title class="header-text">
-            <NuxtLink :to="item.to"> {{ item.text }} </NuxtLink>
-          </v-list-item-title>
-        </v-list-item>
-
-        <v-list-item v-if="$account.name">
-          <v-list-item-title class="header-text">
-            <span style="cursor: pointer;" @click="onLogout()"> Logout </span>
-          </v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-menu>
-    
   </v-app-bar>
 </template>
 
 <script lang="ts">
 import { auth, account, accountRegister } from '@/store'
 import { Accounts } from '@/models'
+
 export default {
   data() {
     return {
       dialog: false,
-      menu_account: [
-        {
-          text: "Manage account",
-          to: "/account"
-        },
-        {
-          text: "Create Character",
-          to: "/account/create-character"
-        },
-      ]
     }
   },
 
@@ -119,8 +89,9 @@ export default {
 
     onLogout(this: any): void {
       auth.destroy();
-      if (!this.$route && this.$route.fullPath === "/")
-        this.$route.push("/")
+      if (this.$route && this.$route.fullPath !== "/") {
+        this.$router.push("/")
+      }
     }
   }
 }

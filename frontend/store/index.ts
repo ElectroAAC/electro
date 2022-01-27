@@ -11,7 +11,8 @@ const state = () => ({})
 type RootState = ReturnType<typeof state>
 
 export const actions: ActionTree<RootState, RootState> = {
-  nuxtServerInit({ dispatch }) {
-    dispatch('auth/update')
+  async nuxtServerInit({ dispatch }) {
+    dispatch('auth/update'),
+    await dispatch('accounts/account/get')
   }
 }
