@@ -359,3 +359,7 @@
   background-color: var(--second-main-color) !important;
   border-radius: 1rem;
 }
+
+.v-data-table--fixed-header > .v-data-table__wrapper > table > thead > tr > th {
+  z-index: 0 !important;
+}
