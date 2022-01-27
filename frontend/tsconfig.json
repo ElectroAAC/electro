@@ -32,7 +32,8 @@
       "@types/node",
       "@nuxtjs/vuetify",
       "@nuxtjs/toast",
-      "@types/randomcolor"
+      "@types/randomcolor",
+      "@nuxtjs/device"
     ]
   },
   "exclude": [

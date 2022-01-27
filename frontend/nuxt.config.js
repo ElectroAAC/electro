@@ -55,7 +55,8 @@ export default {
         fileName: "nuxt.router.js"
       }
     ],
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxtjs/device',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -91,6 +92,11 @@ export default {
     }
   },
 
+  // Configuration: https://github.com/nuxt-community/device-module
+  device: {
+    refreshOnResize: true
+  },
+
   toast: {
     position: 'top-right',
     keepOnHover: true,
@@ -105,6 +111,7 @@ export default {
   router: {
     base: process.env.ROUTE || '/'
   },
+
   
   ssr: true
 }
