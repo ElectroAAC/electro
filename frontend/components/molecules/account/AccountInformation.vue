@@ -1,9 +1,9 @@
 <template>
   <v-container class="mt-4 mb-2">
-    <v-row v-for="(item, idx) in data" :key="idx">
-      <v-col cols="4" class="bg-second mb-2"> {{ item.text }}: </v-col>
+    <v-row v-for="(item, idx) in data" :key="idx" class="text-center">
+      <v-col cols="3" class="mr-1 pa-1 bg-second mb-2"> {{ item.text }}: </v-col>
 
-      <v-col cols="7" class="bg-second ml-4 mb-2"> 
+      <v-col cols="8" class="pa-1 bg-second mb-2"> 
         {{ 
           item.value === 'premdays'
             ? $account[item.value] > 0 ? 'VIP' : 'Free Account'
@@ -42,7 +42,7 @@ export default Vue.extend({
         },
         {
           value: 'premdays',
-          text: 'Account Status'
+          text: 'Status'
         },
         {
           value: 'key',
