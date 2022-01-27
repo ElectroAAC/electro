@@ -8,6 +8,7 @@
     :items-per-page="25"
     :loading="isLoadingGrid"
     disable-items-per-page
+    mobile-breakpoint="0"
     loading-text="Loading Player List..."
     no-data-text="No player found"
   >

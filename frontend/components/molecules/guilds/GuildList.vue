@@ -22,12 +22,12 @@
         :key="index"
         class="single-stream-schedule-box not-streaming"
       >
-        <span class="date"> LOGO </span>
+        <span v-if="$device.isDesktop" class="date"> LOGO </span>
         <v-row class="ma-0 content text-center">
           <v-col class="text-center" cols="6"> <NuxtLink :to="`/guilds/view/${guild.name}`" class="time"> {{ guild.name }} </NuxtLink> </v-col>
           <v-col class="text-center" cols="12"> <p> {{ guild.description }} </p> </v-col>
         </v-row>
-        <span class="date-2"> LOGO </span>
+        <span v-if="$device.isDesktop" class="date-2"> LOGO </span>
       </div>
     </div>
     
@@ -99,6 +99,13 @@ export default Vue.extend({
   margin-bottom: 30px;
   padding-left: 150px;
   padding-right: 150px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .single-stream-schedule-box {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }
 
 .single-stream-schedule-box.not-streaming .date .date-2{

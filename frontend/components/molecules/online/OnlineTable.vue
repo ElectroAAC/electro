@@ -2,6 +2,7 @@
   <v-data-table
     :headers="getHeaders"
     :items="getPlayersData"
+    mobile-breakpoint="0"
     hide-default-footer
     disable-items-per-page
     no-data-text="No player found"
