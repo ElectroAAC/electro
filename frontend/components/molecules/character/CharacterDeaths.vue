@@ -1,13 +1,13 @@
 <template>
-  <v-container class="bg-third text-center">
+  <v-container class="text-center">
     <v-row 
       v-for="(death, idx) in $deaths"
       :key="idx"
     >
-      <v-col cols="2"> 
+      <v-col class="pa-1" cols="2"> 
         {{ formatDate(death.time) }}
       </v-col>
-      <v-col cols="10"> 
+      <v-col class="pa-1" cols="10"> 
         <span v-html="death.description" />
       </v-col>
     </v-row>

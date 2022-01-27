@@ -1,37 +1,41 @@
 <template>
-  <v-container class="bg-third text-center">
+  <v-container class="text-center">
     Infos
     <v-row>
-      <v-col cols="12">
+      <v-col :cols="$device.isDesktop ? '12' : '6'">
         <CharacterAvatar :avatar="getVocation()" width="150px"/>
       </v-col>
 
-      <v-col cols="6">
-        Name:
-      </v-col>
-      <v-col cols="6">
-        {{ getName() }}
-      </v-col>
+      <v-col :cols="$device.isDesktop ? '12' : '6'">
+        <v-row>
+          <v-col class="pa-1" cols="6">
+            Name:
+          </v-col>
+          <v-col class="pa-1" cols="6">
+            {{ getName() }}
+          </v-col>
 
-      <v-col cols="6">
-        Level:
-      </v-col>
-      <v-col cols="6">
-        {{ getLevel() }}
-      </v-col>
+          <v-col class="pa-1" cols="6">
+            Level:
+          </v-col>
+          <v-col class="pa-1" cols="6">
+            {{ getLevel() }}
+          </v-col>
 
-      <v-col cols="6">
-        Magic Level:
-      </v-col>
-      <v-col cols="6">
-        {{ getMagicLevel() }}
-      </v-col>
+          <v-col class="pa-1" cols="6">
+            Magic Level:
+          </v-col>
+          <v-col class="pa-1" cols="6">
+            {{ getMagicLevel() }}
+          </v-col>
 
-      <v-col cols="6">
-        Vocation:
-      </v-col>
-      <v-col cols="6">
-        {{ getVocation() }}
+          <v-col class="pa-1" cols="6">
+            Vocation:
+          </v-col>
+          <v-col class="pa-1" cols="6">
+            {{ getVocation() }}
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-container>

@@ -1,24 +1,23 @@
 <template>
   <v-row class="mt-2">
-    <v-col cols="12" class="text-center"> <h2> Character Informations </h2> </v-col>
 
-    <v-col cols="6" class="pl-6 pr-0">
+    <v-col :cols="$device.isDesktop ? '6' : '12'">
       <CharacterInfo />
     </v-col>
     
-    <v-col cols="6" class="pr-6 pl-0">
+    <v-col class="pa-1" cols="6" style="display: grid; align-items: center;">
       <CharacterItems />
     </v-col>
 
-    <v-col cols="12">
+    <v-col class="pa-1" :cols="$device.isDesktop ? '12' : '6'">
       <CharacterSkills />
     </v-col>
     
-    <v-col cols="12">
+    <v-col class="pa-1" cols="12">
       <CharacterAchievements />
     </v-col>
     
-    <v-col cols="12">
+    <v-col class="pa-1" cols="12">
       <CharacterDeaths />
     </v-col>
   </v-row>

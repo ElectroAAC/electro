@@ -1,5 +1,5 @@
 <template>
-  <v-container class="bg-third text-center">
+  <v-container class="text-center">
     Achievements
   </v-container>
 </template>
