@@ -5,10 +5,10 @@
     <v-main id="main">
       <v-row class="ma-0 mt-15">
         <v-col cols="1"></v-col>
-        <v-col cols="8" class="content pa-0">
+        <v-col :cols="!$vuetify.breakpoint.mdAndDown ? '8' : '10'" class="content pa-0">
           <Nuxt/>
         </v-col>
-        <v-col cols="2" class="side-bar ml-5 pa-0">
+        <v-col v-if="!$vuetify.breakpoint.mdAndDown" cols="2" class="side-bar ml-5 pa-0">
           <Sidebar />
         </v-col>
         <v-col cols="1"></v-col>

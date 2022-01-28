@@ -7,6 +7,7 @@
     :server-items-length="total"
     :items-per-page="25"
     :loading="isLoadingGrid"
+    mobile-breakpoint="0"
     disable-items-per-page
     loading-text="Loading Page List..."
     no-data-text="No page found"

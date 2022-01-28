@@ -1,11 +1,11 @@
 <template>
   <v-row class="pa-0">
-    <v-col cols="6">
+    <v-col :cols="!$vuetify.breakpoint.mdAndDown ? '6' : '12'">
       <DashboardPremiumPoints
         :items="getTopPremiumPoints"
       />
     </v-col>
-    <v-col cols="6">
+    <v-col :cols="!$vuetify.breakpoint.mdAndDown ? '6' : '12'">
       <DashboardDoughnutVocations />
     </v-col>
   </v-row>

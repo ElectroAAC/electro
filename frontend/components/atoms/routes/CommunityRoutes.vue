@@ -3,7 +3,7 @@
     open-on-hover
     transition="scale-transition"
     bottom
-    left
+    right
     offset-y
   >
     <template #activator="{ on, attrs }">

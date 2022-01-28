@@ -1,13 +1,14 @@
 <template>
-  <v-container class="bg-third text-center">
-    <v-col cols="12" class="text-center">
+  <v-container class="text-center">
+    <v-row class="text-center">
       <v-col cols="12"> <h3> Equipments </h3> </v-col>
       
-      <v-col cols="12" class="d-flex align-content-center flex-wrap pa-0 text-center">
+      <div class="d-flex align-content-center flex-wrap pa-0 text-center" style="width: 200px !important;">
         <v-col 
           v-for="(item, idx) in $items" 
           :class="getPaddingItemSlot(item.slot)"
           :key="idx"
+          class="pa-0"
           cols="4"
         > 
           <v-tooltip top>
@@ -23,8 +24,8 @@
             <span> {{ getItemName(item.id, item.slot) }} </span>
           </v-tooltip>
         </v-col>
-      </v-col>
-    </v-col>
+      </div>
+    </v-row>
   </v-container>
 </template>
 
@@ -49,11 +50,11 @@ export default Vue.extend({
     getPaddingItemSlot(slot: String): String {
       switch(slot) {
         case 'necklace':
-          return 'pt-6';
+          return 'pt-3';
         case 'backpack':
-          return 'pt-6';
+          return 'pt-3';
         case 'armor':
-          return 'pt-0';
+          return 'pb-2';
         case 'legs':
           return 'pt-0';
         case 'boots':

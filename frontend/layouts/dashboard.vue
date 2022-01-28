@@ -5,7 +5,8 @@
       fixed
       app
     > 
-      <v-app-bar-nav-icon @click.stop="miniVariant = !miniVariant" />
+      <v-app-bar-nav-icon v-if="!$vuetify.breakpoint.mdAndDown" @click.stop="miniVariant = !miniVariant" />
+      <v-app-bar-nav-icon v-else @click.stop="drawer = !drawer, miniVariant = false" />
       
       <v-spacer></v-spacer>
       
@@ -28,7 +29,7 @@
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
-      fixed
+      absolute
       app
       class="text-center"
     >

@@ -1,14 +1,17 @@
 <template>
   <v-container class="dashboard-container">
     <v-row class="pa-0">
-      <v-col cols="4" class="text-center">
+      <v-col v-if="!$vuetify.breakpoint.mdAndDown" cols="4" class="text-center">
         <v-icon size="96">
           mdi-khanda
         </v-icon>
       </v-col>
 
-      <v-col cols="8" class="d-flex justify-center align-center flex-wrap text-center">
-        <v-col cols="12"> <h2> Total Guilds </h2> </v-col>
+      <v-col :cols="!$vuetify.breakpoint.mdAndDown ? '8' : '12'" class="d-flex justify-center align-center flex-wrap text-center">
+        <v-col cols="12"> 
+          <h2 v-if="!$vuetify.breakpoint.mdAndDown"> Total Guilds </h2> 
+          <h3 v-else> Total Guilds </h3> 
+        </v-col>
         <h3> {{ getTotalGuilds }} </h3>
       </v-col>
     </v-row>

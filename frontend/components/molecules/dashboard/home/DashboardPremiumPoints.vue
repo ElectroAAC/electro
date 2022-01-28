@@ -6,6 +6,7 @@
         <v-data-table
           :headers="headers"
           :items="getItems"
+          mobile-breakpoint="0"
           hide-default-footer
           no-data-text="Nenhuma conta encontrada"
           fixed-header
