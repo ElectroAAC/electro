@@ -26,8 +26,18 @@ export default class AccountsController {
         .from('accounts')
         .select('id', 'name', 'premdays', 'email', 'group_id', 'web_flags', 'premium_points', 'key')
         .where('name', '=', request.param('name'));
+       
+      if (!account.length) {
+        return response.status(404).send({ message: "Account not found!"});
+      }
 
-      return response.status(200).send({ status: 200, result: account});
+      const characters = await Database
+        .from('players')
+        .select('players.id', 'players.level', 'players.name', 'players.vocation')
+        .where('players.account_id', account[0].id)
+        .orderBy('players.experience', 'desc');
+
+      return response.status(200).send({ status: 200, result: { account, characters }});
     } catch(err) {
       console.log('Error findAccount Query: ', err);
       return response.status(400).send({ message: 'An error occurred, check the api console.'})

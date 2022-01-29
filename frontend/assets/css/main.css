@@ -320,6 +320,10 @@
   background-color: var(--bg-dashboard-main-color);
 }
 
+#dashboard h3 {
+  color: var(--heading-color) !important;
+}
+
 .theme--light.v-navigation-drawer {
   background-color: var(--bg-dashboard-main-color) !important;
 }

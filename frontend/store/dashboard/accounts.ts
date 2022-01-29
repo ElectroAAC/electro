@@ -18,6 +18,13 @@ interface UpdatePayload {
   key?: string
 }
 
+interface CharactersPayload {
+  id: number,
+	level: number,
+	name: string,
+	vocation: number
+}
+
 @Module({
   name: 'dashboard/accounts',
   stateFactory: true,
@@ -36,13 +43,24 @@ export default class Accounts extends VuexModule {
 		key: undefined
   }
 
+  private characters = [];
+
   public get $account() {
     return this.account;
+  }
+
+  public get $characters() {
+    return this.characters;
   }
   
   @Mutation
   private UPDATE_ACCOUNT(this: any, payload: UpdatePayload) {
     this.account = Object.assign(this.account, payload);
+  }
+  
+  @Mutation
+  private UPDATE_CHARACTERS(this: any, payload: CharactersPayload[]) {
+    this.characters = payload;
   }
 
   @Action
@@ -54,19 +72,21 @@ export default class Accounts extends VuexModule {
             throw new Error(response);
           
           this.context.commit('UPDATE_ACCOUNT', {
-            id: response.result[0].id,
-            name: response.result[0].name,
-            premdays: response.result[0].premdays,
-            email: response.result[0].email,
-            group_id: response.result[0].group_id,
-            web_flags: response.result[0].web_flags,
-            premium_points: response.result[0].premium_points,
-            key: response.result[0].key
+            id: response.result.account[0].id,
+            name: response.result.account[0].name,
+            premdays: response.result.account[0].premdays,
+            email: response.result.account[0].email,
+            group_id: response.result.account[0].group_id,
+            web_flags: response.result.account[0].web_flags,
+            premium_points: response.result.account[0].premium_points,
+            key: response.result.account[0].key
           });
+
+          this.context.commit('UPDATE_CHARACTERS', response.result.characters);
 
           return {
             status: response.status,
-            data: response.result
+            data: response.result.account
           };
         })
         .catch(({ response }) => {

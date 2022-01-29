@@ -163,6 +163,12 @@ This repository follows the semantic commit pattern, with the addition of the ta
     <li> [x] Edit post </li>
     <li> [x] Delete post </li>
   </ul>
+  <li> [x] Accounts </li>
+  <ul>
+    <li> [x] Find Account </li>
+    <li> [x] Change account information </li>
+    <li> [x] View all account characters </li>
+  </ul>
 </ul>
 
 ## Show-Off

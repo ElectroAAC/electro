@@ -1,5 +1,5 @@
 <template>
-  <v-container class="dashboard-container">
+  <v-container>
     <v-form 
       class="text-center"
       ref="form"
@@ -7,31 +7,39 @@
       @submit.prevent="validate"
       @keyup.native.enter="validate"
     >
-      <h3> Edit Account </h3>
+      <v-row class="text-center">
+        <v-col cols="12">
+          <h3> Edit Account </h3>
+        </v-col>
 
-      <v-col cols="12">
-        <DashboardAccountForm class="pa-5"/>
-      </v-col>
-      
-      <v-col class="text-center" cols="12">
-        <v-btn
-          class="mt-5 btn btn-success-secondary"
-          text
-          rounded
-          @click="validate"
-        >
-          Update Account
-        </v-btn>
+        <v-col class="dashboard-container ma-3 pa-5" :cols="!$vuetify.breakpoint.smAndDown ? '7' : '12'">
+          <DashboardAccountForm/>
+        </v-col>
+
+        <v-col class="dashboard-container ma-3 pa-5" :cols="!$vuetify.breakpoint.smAndDown ? '3' : '12'">
+          <DashboardCharactersAccount />
+        </v-col>
         
-        <v-btn
-          class="mt-5 btn btn-danger-secondary"
-          text
-          rounded
-          @click="back()"
-        >
-          Back
-        </v-btn>
-      </v-col>
+        <v-col class="text-center" cols="12">
+          <v-btn
+            class="mt-5 btn btn-success-secondary"
+            text
+            rounded
+            @click="validate"
+          >
+            Update Account
+          </v-btn>
+          
+          <v-btn
+            class="mt-5 btn btn-danger-secondary"
+            text
+            rounded
+            @click="back()"
+          >
+            Back
+          </v-btn>
+        </v-col>
+      </v-row>
     </v-form>
   </v-container>
 </template>
