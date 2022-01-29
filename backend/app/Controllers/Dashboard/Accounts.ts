@@ -14,7 +14,7 @@ export default class AccountsController {
       return response.status(200).send({ result: accounts});
     } catch(err) {
       console.log('Error getTotalAccounts Query: ', err);
-      return response.status(400).send({ message: 'An error occurred, check the api console.'})
+      return response.status(400).send({ status: 200, message: 'An error occurred, check the api console.'})
     }
   }
 
@@ -27,7 +27,7 @@ export default class AccountsController {
         .select('id', 'name', 'premdays', 'email', 'group_id', 'web_flags', 'premium_points', 'key')
         .where('name', '=', request.param('name'));
 
-      return response.status(200).send({ result: account});
+      return response.status(200).send({ status: 200, result: account});
     } catch(err) {
       console.log('Error findAccount Query: ', err);
       return response.status(400).send({ message: 'An error occurred, check the api console.'})

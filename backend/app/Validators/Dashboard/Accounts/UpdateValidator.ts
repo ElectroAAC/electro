@@ -8,10 +8,6 @@ export default class UpdateValidator {
     id: schema.number([rules.required(), rules.exists({ table: 'accounts', column: 'id' })]),
     name: schema.string({ escape: true }, [
       rules.required(),
-      rules.unique({
-        table: 'accounts',
-        column: 'name'
-      }),
       rules.alpha(),
       rules.minLength(3),
       rules.maxLength(20),
