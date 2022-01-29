@@ -61,8 +61,6 @@ export default class AccountsController {
     return response.status(200).send({ status: 200, page });
   }
 
-  public async edit({}: HttpContextContract) {}
-
   public async update({ request, response, auth, bouncer }: HttpContextContract) {
     await bouncer.with('DashboardPolicy').authorize('viewList');
 
@@ -85,6 +83,4 @@ export default class AccountsController {
     
     return response.status(200).send({ status: 200, message: "Post successfully updated." });
   }
-
-  public async destroy({}: HttpContextContract) {}
 }

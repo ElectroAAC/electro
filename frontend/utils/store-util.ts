@@ -5,7 +5,8 @@ import Auth from '@/store/auth';
 
 import {
   Home as DashboardHome,
-  News as DashboardNews
+  News as DashboardNews,
+  Accounts as DashboardAccounts
 } from '@/store/dashboard'
 
 import {
@@ -45,6 +46,7 @@ let auth: Auth;
 
 let dashboardHome: DashboardHome;
 let dashboardNews: DashboardNews;
+let dashboardAccounts: DashboardAccounts;
 
 let news: News;
 
@@ -71,6 +73,7 @@ const initializeStores = (store: Store<any>) => {
   // Store Dashboard
   dashboardHome = getModule(DashboardHome, store);
   dashboardNews = getModule(DashboardNews, store);
+  dashboardAccounts = getModule(DashboardAccounts, store);
 
   // Store News
   news = getModule(News, store);
@@ -104,6 +107,7 @@ export {
 
   dashboardHome,
   dashboardNews,
+  dashboardAccounts,
 
   auth,
 

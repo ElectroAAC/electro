@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container class="dashboard-container">
     <div v-if="isLoading" class="text-center">
       <v-progress-circular
         indeterminate
@@ -16,7 +16,7 @@
     <NewsEdit 
       v-else
     />
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts">

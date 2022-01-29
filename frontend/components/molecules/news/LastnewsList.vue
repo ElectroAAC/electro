@@ -79,7 +79,6 @@ export default Vue.extend({
 
       if (response.status === 200) {
         this.$set(this, 'newsData', response.data);
-        console.log(response.total);
         this.total = response.total;
         this.isLoading = false;
       }

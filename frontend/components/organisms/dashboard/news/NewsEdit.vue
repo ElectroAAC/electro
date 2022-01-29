@@ -42,9 +42,7 @@ export default Vue.extend({
   },
   
   methods: {
-    async onUpdate(this: any): Promise<void> {
-      console.log(dashboardNews.$post);
-      
+    async onUpdate(this: any): Promise<void> {      
       const result: { status: Number, message: String} = await dashboardNews.editPost(dashboardNews.$post);
 
       if (result.status === 200) {
