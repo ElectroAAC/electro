@@ -117,3 +117,8 @@ $ npm run start
 | GET    | /dashboard/guilds          | Get Total Guilds                          |
 | GET    | /dashboard/premium-points  | Get accounts with the most premium points |
 | GET    | /dashboard/vocation        | Get all vocations by id                   |
+##  🕵🏾‍♂️  Routes Dashboard - Accounts
+
+| METHOD | ENDPOINT                   | DESCRIPTION                               |
+| :----- | :------------------------- | :-----------------------------------------|
+| GET    | /dashboard/account/:name   | Find account                              |

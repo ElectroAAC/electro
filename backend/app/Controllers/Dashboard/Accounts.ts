@@ -17,6 +17,23 @@ export default class AccountsController {
     }
   }
 
+  public async show({ request, response, bouncer }: HttpContextContract) {
+    try {
+      await bouncer.with('DashboardPolicy').authorize('viewList');
+
+      const account = await Database
+        .from('accounts')
+        .select('*')
+        .where('name', '=', request.param('name'));
+
+      console.log(account);
+      return response.status(200).send({ result: account});
+    } catch(err) {
+      console.log('Error getTotalAccounts Query: ', err);
+      return response.status(400).send({ message: 'An error occurred, check the api console.'})
+    }
+  }
+
   public async edit({}: HttpContextContract) {}
 
   public async update({}: HttpContextContract) {}
