@@ -43,7 +43,7 @@ export default Vue.extend({
   methods: {
     async onSearch(this: any) {
       try {
-        this.$router.push('/character/' + this.character_name);
+        this.$router.push('/dashboard/account/' + this.account_name);
       } catch(err) {
         console.log(err);
       }
@@ -51,8 +51,8 @@ export default Vue.extend({
 
     async validate(this: any) {
       await this.$refs.form.validate();
-      // if (this.valid)
-      //   this.onSearch();
+      if (this.valid)
+        this.onSearch();
     }
   }
 })

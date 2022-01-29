@@ -50,7 +50,7 @@ export default class Accounts extends VuexModule {
     try {
       return await $axios.$get(`dashboard/account/${name}`)
         .then((response) => {
-          if (!response) 
+          if (response.status !== 200) 
             throw new Error(response);
           
           this.context.commit('UPDATE_ACCOUNT', {
@@ -66,13 +66,13 @@ export default class Accounts extends VuexModule {
 
           return {
             status: response.status,
-            data: response.result[0]
+            data: response.result
           };
         })
         .catch(({ response }) => {
           return {
-            message: response.data.message ? response.data.message : response.data.errors[0].message,
-            status: response.status
+            data: [],
+            status: response
           };
         });
     } catch(err) {
@@ -92,7 +92,7 @@ export default class Accounts extends VuexModule {
         })
         .catch(({ response }) => {
           return {
-            message: response.data.message ? response.data.message : response.data.errors[0].message,
+            data: response,
             status: response.status
           };
         });
