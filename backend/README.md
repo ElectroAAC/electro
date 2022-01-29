@@ -122,3 +122,4 @@ $ npm run start
 | METHOD | ENDPOINT                   | DESCRIPTION                               |
 | :----- | :------------------------- | :-----------------------------------------|
 | GET    | /dashboard/account/:name   | Find account                              |
+| POST   | /dashboard/account         | Update account                            |
