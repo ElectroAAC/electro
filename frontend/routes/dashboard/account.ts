@@ -1,4 +1,4 @@
-import Accounts from '@/pages/dashboard/accounts.vue'
+import Accounts from '~/pages/dashboard/accounts/accounts.vue'
 
 export default [
   {
