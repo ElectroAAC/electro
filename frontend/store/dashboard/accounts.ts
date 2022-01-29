@@ -46,7 +46,7 @@ export default class Accounts extends VuexModule {
   }
 
   @Action
-  public async findAccount(name: string) {
+  public async find(name: string) {
     try {
       return await $axios.$get(`dashboard/account/${name}`)
         .then((response) => {
@@ -81,7 +81,7 @@ export default class Accounts extends VuexModule {
   }
 
   @Action
-  public async updateAccount(payload: UpdatePayload) {
+  public async update(payload: UpdatePayload) {
     try {
       return await $axios.$post('dashboard/account', payload)
         .then((response) => {

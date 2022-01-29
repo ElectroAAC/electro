@@ -47,7 +47,7 @@ export default Vue.extend({
     async accountExists(): Promise<void> {
       this.$set(this, 'isLoading', true);
 
-      const response = await dashboardAccounts.findAccount(this.getAccountName);
+      const response = await dashboardAccounts.find(this.getAccountName);
       
       if (!response || !response.data.length) {
         this.$set(this, 'accountInvalid', true);

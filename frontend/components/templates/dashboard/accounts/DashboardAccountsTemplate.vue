@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <DashboardAccounts />
-  </v-container>
+  </div>
 </template>

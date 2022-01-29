@@ -73,6 +73,11 @@ export const routesCommunity = [
   },
 ]
 
+export const accountGroups = [
+  { value: 1, text: "Player" },
+  { value: 6, text: "Admin" },
+]
+
 export const routesAccount = [
   {
     text: "Manage account",

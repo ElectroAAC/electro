@@ -167,6 +167,11 @@
   border-color: var(--red) !important;
 }
 
+.btn-danger-secondary {
+  color: var(--red) !important;
+  border-color: var(--red) !important;
+}
+
 .container {
   width: 95% !important;
 }
@@ -332,7 +337,7 @@
 }
 
 .dashboard-container {
-  background-color: var(--bg-dashboard-content-color) !important;
+  background: linear-gradient(rgb(21, 30, 43) 0%, rgb(0 37 47) 100%) 0% 0% / cover !important;
   border-radius: 24px !important;
   box-shadow: 
     0px 2px 4px -1px rgb(0 0 0 / 28%), 
