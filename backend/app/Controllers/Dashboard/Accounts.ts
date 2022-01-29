@@ -2,7 +2,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Database from '@ioc:Adonis/Lucid/Database'
 
 export default class AccountsController {
-  public async show({ response, bouncer }: HttpContextContract) {
+  public async index({ response, bouncer }: HttpContextContract) {
     try {
       await bouncer.with('DashboardPolicy').authorize('viewList');
       

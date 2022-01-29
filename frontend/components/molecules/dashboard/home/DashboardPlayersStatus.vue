@@ -1,7 +1,7 @@
 <template>
   <v-container class="dashboard-container">
     <v-row class="pa-0">
-      <v-col v-if="!$vuetify.breakpoint.mdAndDown" class="text-center">
+      <v-col v-if="!$vuetify.breakpoint.mdAndDown" cols="4" class="text-center">
         <v-icon size="96">
           mdi-human-greeting-proximity
         </v-icon>
@@ -12,7 +12,7 @@
           <h2 v-if="!$vuetify.breakpoint.mdAndDown"> Total Players </h2> 
           <h3 v-else> Total Players </h3> 
         </v-col>
-        <h3 color="cyan"> {{ getTotalPlayers }} </h3>
+        <h3> {{ getTotalPlayers }} </h3>
       </v-col>
     </v-row>
   </v-container>
