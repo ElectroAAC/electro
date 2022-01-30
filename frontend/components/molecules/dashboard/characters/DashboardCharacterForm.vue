@@ -1,6 +1,6 @@
 <template>
-  <v-row class="pa-5">
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : '12'">
+  <v-row class="pa-10">
+    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : $vuetify.breakpoint.smOnly ? '6' : '12'">
       <v-text-field
         v-model="$character.account_id"
         :rules="required"
@@ -14,7 +14,7 @@
       />
     </v-col>
     
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : '12'">
+    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : $vuetify.breakpoint.smOnly ? '6' : '12'">
       <v-text-field
         v-model="$character.name"
         :rules="required"
@@ -27,7 +27,7 @@
       />
     </v-col>
 
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : '12'">
+    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : $vuetify.breakpoint.smOnly ? '6' : '12'">
       <v-autocomplete
         v-model="$character.group_id"
         :items="characterGroups"
@@ -39,7 +39,7 @@
       />
     </v-col>
 
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : '12'">
+    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : $vuetify.breakpoint.smOnly ? '6' : '12'">
       <v-autocomplete
         v-model="$character.sex"
         :items="sexList"
@@ -51,7 +51,7 @@
       />
     </v-col>
 
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : '12'">
+    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : $vuetify.breakpoint.smOnly ? '6' : '12'">
       <v-text-field
         v-model="$character.town_id"
         label="Town"
@@ -63,7 +63,7 @@
       />
     </v-col>
 
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : '12'">
+    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : $vuetify.breakpoint.smOnly ? '6' : '12'">
       <v-autocomplete
         v-model="$character.skull"
         :items="skullList"
@@ -75,7 +75,7 @@
       />
     </v-col>
 
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : '12'">
+    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : $vuetify.breakpoint.smOnly ? '6' : '12'">
       <v-text-field
         v-model="$character.skulltime"
         label="Skulltime"
@@ -88,7 +88,7 @@
       />
     </v-col>
 
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : '12'">
+    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : $vuetify.breakpoint.smOnly ? '6' : '12'">
       <v-text-field
         v-model="$character.blessings"
         label="Blessings"
@@ -100,7 +100,7 @@
       />
     </v-col>
 
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : '12'">
+    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : $vuetify.breakpoint.smOnly ? '6' : '12'">
       <v-text-field
         v-model="$character.balance"
         label="Bank Balance"

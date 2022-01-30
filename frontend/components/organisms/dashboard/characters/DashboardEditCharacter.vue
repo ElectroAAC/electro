@@ -9,6 +9,7 @@
       >
       <v-tabs
         v-model="tab"
+        class="v-tabs-dashboard"
         icons-and-text
         centered
       >
@@ -30,9 +31,7 @@
           :key="item.text"
         >
           <DashboardCharacterForm v-if="item.text === 'Player'" />
-          <div v-else-if="item.text === 'Characteristics'">
-            Characteristics
-          </div>
+          <DashboardCharacterStats v-if="item.text === 'Characteristics'" />
           <div v-else-if="item.text === 'Skills'">
             Skills
           </div>
@@ -137,3 +136,13 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.theme--light.v-tabs > .v-tabs-bar {
+  background-color: #2a2c32 !important;
+}
+
+.theme--light.v-tabs-items {
+  background-color: #2a2c32 !important;
+}
+</style>
