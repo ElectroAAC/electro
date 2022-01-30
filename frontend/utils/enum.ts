@@ -113,7 +113,7 @@ export const routesDashboard = [
   {
     icon: 'mdi-account-cowboy-hat',
     title: 'Players',
-    to: '/dashboard/players'
+    to: '/dashboard/characters'
   },
   {
     icon: 'mdi-khanda',
