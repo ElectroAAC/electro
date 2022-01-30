@@ -34,6 +34,8 @@ $ npm run start
 | GET    | /news/find/:id                  | Find post                             |
 | POST   | /news/edit                      | Edit post                             |
 
+<br>
+
 ##  🕵🏾‍♂️  Routes Account
 
 | METHOD | ENDPOINT                        | DESCRIPTION                           |
@@ -118,6 +120,8 @@ $ npm run start
 | GET    | /dashboard/premium-points  | Get accounts with the most premium points |
 | GET    | /dashboard/vocation        | Get all vocations by id                   |
 
+<br>
+
 ##  🕵🏾‍♂️  Routes Dashboard - Accounts
 
 | METHOD | ENDPOINT                   | DESCRIPTION                               |
@@ -125,8 +129,11 @@ $ npm run start
 | GET    | /dashboard/account/:name   | Find account                              |
 | POST   | /dashboard/account         | Update account                            |
 
+<br>
+
 ##  🕵🏾‍♂️  Routes Dashboard - Characters
 
 | METHOD | ENDPOINT                   | DESCRIPTION                               |
 | :----- | :------------------------- | :-----------------------------------------|
 | GET    | /dashboard/character/:name | Find character                            |
+| POST   | /dashboard/character       | Update character                          |

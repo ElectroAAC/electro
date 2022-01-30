@@ -63,13 +63,12 @@ export const sex = [
 ]
 
 export const skulls = [
-  { value: 1, text: "None" },
-  { value: 2, text: "Yellow" },
-  { value: 3, text: "Green" },
-  { value: 4, text: "White" },
-  { value: 5, text: "Red" },
-  { value: 6, text: "Black" },
-  { value: 7, text: "Orange" },
+  { value: 0, text: "None" },
+  { value: 1, text: "Yellow" },
+  { value: 2, text: "Green" },
+  { value: 3, text: "White" },
+  { value: 4, text: "Red" },
+  { value: 5, text: "Black" },
 ]
 
 export const accountGroups = [
