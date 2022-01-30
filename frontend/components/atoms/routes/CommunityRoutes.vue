@@ -32,7 +32,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Route } from '@/models'
-import { routesCommunity } from '@/utils/enum'
+import { routesCommunity } from '@/utils/routes'
 
 export default Vue.extend({
   computed: {

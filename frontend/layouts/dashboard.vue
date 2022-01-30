@@ -79,7 +79,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { auth } from '@/store'
-import { routesDashboard } from '@/utils/enum'
+import { routesDashboard } from '@/utils/routes'
 
 export default Vue.extend({
   middleware: 'dashboard',

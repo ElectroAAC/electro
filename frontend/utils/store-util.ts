@@ -111,7 +111,7 @@ export {
   dashboardHome,
   dashboardNews,
   dashboardAccounts,
-  DashboardCharacters,
+  dashboardCharacters,
 
   auth,
 

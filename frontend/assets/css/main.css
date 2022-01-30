@@ -215,6 +215,7 @@
 
 .theme--light.v-tabs-items {
   background-color: var(--bg-main-color) !important;
+  color: var(--text-color) !important;
   border-radius: 1.95rem;
 }
 
