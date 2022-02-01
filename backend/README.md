@@ -133,7 +133,8 @@ $ npm run start
 
 ##  🕵🏾‍♂️  Routes Dashboard - Characters
 
-| METHOD | ENDPOINT                   | DESCRIPTION                               |
-| :----- | :------------------------- | :-----------------------------------------|
-| GET    | /dashboard/character/:name | Find character                            |
-| POST   | /dashboard/character       | Update character                          |
+| METHOD | ENDPOINT                        | DESCRIPTION                               |
+| :----- | :-------------------------------| :-----------------------------------------|
+| GET    | /dashboard/character/:name      | Find character                            |
+| GET    | /dashboard/character-skills/:id | Find character                            |
+| POST   | /dashboard/character            | Update character                          |
