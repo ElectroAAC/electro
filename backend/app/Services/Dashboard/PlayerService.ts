@@ -10,7 +10,7 @@ export default class PlayerService {
     return await Database.from('players').select('*').where('name', '=', name);
   }
 
-  public async update(data: { id: number, name: string }) {
+  public async update(data: { id: number, name: string }): Promise<String> {
     const character = await Database
       .from('players')
       .select('id')

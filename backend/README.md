@@ -138,3 +138,4 @@ $ npm run start
 | GET    | /dashboard/character/:name      | Find character                            |
 | GET    | /dashboard/character-skills/:id | Find character                            |
 | POST   | /dashboard/character            | Update character                          |
+| POST   | /dashboard/character-skills     | Update characterSkills                    |
