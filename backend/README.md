@@ -64,10 +64,10 @@ $ npm run start
 
 ##  🕵🏾‍♂️  Routes Highscores
 
-| METHOD | ENDPOINT                   | DESCRIPTION                           |
-| :----- | :------------------------- | :------------------------------------ |
-| GET    | /highscores                | Get Top 5 Players                     |
-| POST   | /highscores/:page/:limit   | Ranking Players                       |
+| METHOD | ENDPOINT                         | DESCRIPTION                           |
+| :----- | :------------------------------- | :------------------------------------ |
+| GET    | /highscores                      | Get Top 5 Players                     |
+| POST   | /highscores/:page/:limit/:type   | Ranking Players                       |
 
 <br>
 
