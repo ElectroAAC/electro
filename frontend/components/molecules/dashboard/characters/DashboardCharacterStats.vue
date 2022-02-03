@@ -1,6 +1,6 @@
 <template>
   <v-row class="pa-10">
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '3' : $vuetify.breakpoint.smOnly ? '6' : '12'">
+    <v-col :cols="getCols">
       <v-text-field
         v-model="$character.level"
         :rules="required"
@@ -14,7 +14,7 @@
       />
     </v-col>
 
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '3' : $vuetify.breakpoint.smOnly ? '6' : '12'">
+    <v-col :cols="getCols">
       <v-text-field
         v-model="$character.maglevel"
         :rules="required"
@@ -28,7 +28,7 @@
       />
     </v-col>
 
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '3' : $vuetify.breakpoint.smOnly ? '6' : '12'">
+    <v-col :cols="getCols">
       <v-text-field
         v-model="$character.experience"
         :rules="required"
@@ -42,7 +42,7 @@
       />
     </v-col>
 
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '3' : $vuetify.breakpoint.smOnly ? '6' : '12'">
+    <v-col :cols="getCols">
       <v-autocomplete
         v-model="$character.vocation"
         :items="vocationList"
@@ -55,7 +55,7 @@
       />
     </v-col>
 
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '3' : $vuetify.breakpoint.smOnly ? '6' : '12'">
+    <v-col :cols="getCols">
       <v-text-field
         v-model="$character.health"
         :rules="required"
@@ -69,7 +69,7 @@
       />
     </v-col>
 
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '3' : $vuetify.breakpoint.smOnly ? '6' : '12'">
+    <v-col :cols="getCols">
       <v-text-field
         v-model="$character.healthmax"
         :rules="required"
@@ -83,7 +83,7 @@
       />
     </v-col>
 
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '3' : $vuetify.breakpoint.smOnly ? '6' : '12'">
+    <v-col :cols="getCols">
       <v-text-field
         v-model="$character.mana"
         :rules="required"
@@ -97,7 +97,7 @@
       />
     </v-col>
 
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '3' : $vuetify.breakpoint.smOnly ? '6' : '12'">
+    <v-col :cols="getCols">
       <v-text-field
         v-model="$character.manamax"
         :rules="required"
@@ -111,7 +111,7 @@
       />
     </v-col>
 
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '3' : $vuetify.breakpoint.smOnly ? '6' : '12'">
+    <v-col :cols="getCols">
       <v-text-field
         v-model="$character.cap"
         :rules="required"
@@ -125,7 +125,7 @@
       />
     </v-col>
 
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '3' : $vuetify.breakpoint.smOnly ? '6' : '12'">
+    <v-col :cols="getCols">
       <v-text-field
         v-model="$character.soul"
         :rules="required"
@@ -139,7 +139,7 @@
       />
     </v-col>
 
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '3' : $vuetify.breakpoint.smOnly ? '6' : '12'">
+    <v-col :cols="getCols">
       <v-text-field
         v-model="$character.stamina"
         :rules="required"
@@ -153,7 +153,7 @@
       />
     </v-col>
 
-    <v-col :cols="!$vuetify.breakpoint.smAndDown ? '3' : $vuetify.breakpoint.smOnly ? '6' : '12'">
+    <v-col :cols="getCols">
       <v-text-field
         v-model="$character.offlinetraining_time"
         :rules="required"
@@ -197,6 +197,10 @@ export default Vue.extend({
         text: vocation.text
       }));
     },
+
+    getCols(): String {
+      return !this.$vuetify.breakpoint.smAndDown ? '3' : this.$vuetify.breakpoint.smOnly ? '6' : '12';
+    }
   }
 })
 </script>

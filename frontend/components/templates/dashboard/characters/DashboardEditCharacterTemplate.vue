@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { dashboardCharacters } from '@/store'
+import { dashboardCharacters, dashboardCharacterSkills } from '@/store'
 
 export default Vue.extend({
   data() {
@@ -54,6 +54,7 @@ export default Vue.extend({
       }
 
       else {
+        await dashboardCharacterSkills.find(response.data.id);
         this.$set(this, 'characterInvalid', false);
       }
 

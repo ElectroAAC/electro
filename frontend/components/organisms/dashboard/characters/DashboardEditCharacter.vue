@@ -32,9 +32,7 @@
         >
           <DashboardCharacterForm v-if="item.text === 'Player'" />
           <DashboardCharacterStats v-if="item.text === 'Characteristics'" />
-          <div v-else-if="item.text === 'Skills'">
-            Skills
-          </div>
+          <DashboardCharacterSkills v-else-if="item.text === 'Skills'" />
           <div v-else-if="item.text === 'Outfit'">
             Outfit
           </div>
@@ -66,7 +64,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { dashboardCharacters } from '@/store'
+import { dashboardCharacters, dashboardCharacterSkills } from '@/store'
 export default Vue.extend({
   data() {
     return {
@@ -100,17 +98,34 @@ export default Vue.extend({
 
     async onSubmit(this: any): Promise<void> {
       try {
-        const res = await dashboardCharacters.update(dashboardCharacters.$character)
+        const res = await dashboardCharacters.update(dashboardCharacters.$character);
         
         if (res.status === 200) {
-          this.$toast.success(
-            'Successfully updated',
-            {
-              keepOnHover: true,
-              duration: 2000,
-              theme: "bubble",
-            }
-          )
+          const response = await dashboardCharacterSkills.update({
+            id: dashboardCharacters.$character.id,
+            skills: dashboardCharacterSkills.$skills
+          });
+
+          if (response.status === 200) {
+            this.$toast.success(
+              'Successfully updated',
+              {
+                keepOnHover: true,
+                duration: 2000,
+                theme: "bubble",
+              }
+            )
+          }
+          else {
+            this.$toast.error(
+              'The character has been updated, but there was an error updating your skills',
+              {
+                keepOnHover: true,
+                duration: 2000,
+                theme: "bubble",
+              }
+            );
+          }
           this.back();
         }
           
