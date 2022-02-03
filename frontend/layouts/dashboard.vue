@@ -31,7 +31,7 @@
       :clipped="clipped"
       absolute
       app
-      class="text-center"
+      class="dashboard-drawer text-center"
     >
       <div> 
         <NuxtLink to="/">

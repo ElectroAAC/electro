@@ -39,3 +39,8 @@
 .bg-third {
   background-color: rgb(255 165 0 / 23%) !important;
 }
+
+.menu-mobile {
+  background-color: var(--bg-third-color) !important;
+  border-right: 2px solid var(--main-color) !important;
+}
