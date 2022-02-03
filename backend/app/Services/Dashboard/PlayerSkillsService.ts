@@ -8,16 +8,16 @@ export default class PlayerSkillsService {
   public async update(data: any): Promise<String> {
     try {
       for(let i = 0; i < 7; i++) {
-        await Database.table('player_skills').insert({
-          player_id: data.id,
+        await Database.from('player_skills').where('player_id', '=', data.id).andWhere('skillid', '=', data.skills[i].skillid).update({
           skillid: i,
-          value: data[i].value,
-          count: data[i].count
+          value: data.skills[i].value,
+          count: data.skills[i].count
         });
       }
   
       return "Skills successfully updated.";
     } catch(err) {
+      console.log('Entrou aqui, 21: ', err);
       return err;
     }
   }
