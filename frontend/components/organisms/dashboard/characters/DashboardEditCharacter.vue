@@ -12,6 +12,7 @@
         class="v-tabs-dashboard"
         icons-and-text
         centered
+        show-arrows
       >
         <v-tabs-slider></v-tabs-slider>
 
@@ -34,6 +35,7 @@
           <DashboardCharacterStats v-if="item.text === 'Characteristics'" />
           <DashboardCharacterSkills v-else-if="item.text === 'Skills'" />
           <DashboardCharacterOutfit v-else-if="item.text === 'Outfit'" />
+          <DashboardCharacterInformations v-else-if="item.text === 'Informations'" />
         </v-tab-item>
       </v-tabs-items>
       
@@ -84,7 +86,11 @@ export default Vue.extend({
         {
           text: 'Outfit',
           icon: 'mdi-drama-masks'
-        }
+        },
+        {
+          text: 'Informations',
+          icon: 'mdi-card-account-details-outline'
+        },
       ]
     }
   },
