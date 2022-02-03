@@ -6,7 +6,7 @@ import {
 } from 'vuex-module-decorators'
 
 import { $axios } from '@/utils/nuxt-instance'
-import { Character } from '@/models'
+import { Character, CharacterSkills } from '@/models'
 
 @Module({
   name: 'dashboard/character',
@@ -107,13 +107,24 @@ export default class Characters extends VuexModule {
     viewers: undefined
   } as unknown as Character;
 
+  private skills: CharacterSkills[] = [];
+
   public get $character(): Character {
     return this.character;
+  }
+
+  public get $skills(): CharacterSkills[] {
+    return this.skills;
   }
   
   @Mutation
   private UPDATE_CHARACTERS(this: any, payload: Character) {
     this.character = Object.assign(this.character, payload);
+  }
+  
+  @Mutation
+  private UPDATE_SKILLS(this: any, payload: CharacterSkills) {
+    this.skills = Object.assign(this.skills, payload);
   }
 
   @Action
@@ -125,6 +136,7 @@ export default class Characters extends VuexModule {
             throw new Error(response);
 
           this.context.commit('UPDATE_CHARACTERS', response.result);
+          // this.context.commit('UPDATE_SKILLS', response.result.skills);
 
           return {
             status: response.status,

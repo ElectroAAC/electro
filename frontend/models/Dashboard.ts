@@ -99,3 +99,10 @@ export interface Character {
 	broadcasting: number,
 	viewers: number
 }
+
+export interface CharacterSkills {
+	player_id: number,
+	skillid: number,
+	value: number,
+	count: number
+}
