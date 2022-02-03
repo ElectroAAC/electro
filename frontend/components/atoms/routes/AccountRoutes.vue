@@ -53,7 +53,7 @@
 import Vue from 'vue'
 import { auth, account } from '@/store'
 import { Accounts, Route } from '@/models'
-import { routesAccount } from '@/utils/enum'
+import { routesAccount } from '@/utils/routes'
 
 export default Vue.extend({
   computed: {

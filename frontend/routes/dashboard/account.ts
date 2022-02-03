@@ -5,9 +5,9 @@ export default [
   {
     path: '/dashboard/accounts',
     component: Accounts,
-    name: 'Dashboard - Account',
+    name: 'Dashboard - Find Account',
     meta: {
-      name: 'dashboard-account'
+      name: 'dashboard-find-account'
     }
   },
   {

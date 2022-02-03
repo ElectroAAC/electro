@@ -15,11 +15,11 @@
       >
         <v-col class="text-center widget-title"> 
           <v-row>
-            <v-col cols="3"></v-col>
-            <v-col cols="6">
+            <v-col v-if="!$vuetify.breakpoint.mdAndDown" cols="3"></v-col>
+            <v-col :cols="!$vuetify.breakpoint.mdAndDown ? '6' : '8'">
               {{ post.title }} 
             </v-col>
-            <v-col cols="3">
+            <v-col :cols="!$vuetify.breakpoint.mdAndDown ? '3' : '4'">
               {{ formatDate(post.created_at) }}
             </v-col>
           </v-row>

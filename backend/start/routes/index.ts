@@ -5,6 +5,7 @@ import './highscores';
 import './players';
 import './dashboard/home';
 import './dashboard/accounts';
+import './dashboard/character';
 import './guilds';
 import './online';
 import './lastkills';

@@ -7,8 +7,9 @@ export default {
     },
     meta: [
       { charset: 'utf-8' },
+      { name: 'keywords', content: 'ElectroAAC, Electro AAC, AAC, Electro, opentibia' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'A free and open-source Automatic Account Creator (AAC) written in Javascript Stack;' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }],
@@ -105,7 +106,6 @@ export default {
   router: {
     base: process.env.ROUTE || '/'
   },
-
   
   ssr: true
 }
