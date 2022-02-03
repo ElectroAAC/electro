@@ -169,6 +169,11 @@ This repository follows the semantic commit pattern, with the addition of the ta
     <li> [x] Change account information </li>
     <li> [x] View all account characters </li>
   </ul>
+  <li> [x] Players </li>
+  <ul>
+    <li> [x] Find Player </li>
+    <li> [x] Edit Info and Skills </li>
+  </ul>
 </ul>
 
 ## Show-Off

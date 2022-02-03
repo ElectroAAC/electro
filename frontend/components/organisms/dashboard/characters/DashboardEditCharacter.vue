@@ -33,9 +33,7 @@
           <DashboardCharacterForm v-if="item.text === 'Player'" />
           <DashboardCharacterStats v-if="item.text === 'Characteristics'" />
           <DashboardCharacterSkills v-else-if="item.text === 'Skills'" />
-          <div v-else-if="item.text === 'Outfit'">
-            Outfit
-          </div>
+          <DashboardCharacterOutfit v-else-if="item.text === 'Outfit'" />
         </v-tab-item>
       </v-tabs-items>
       
