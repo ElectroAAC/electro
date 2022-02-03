@@ -5,7 +5,7 @@
     :clipped="false"
     absolute
     app
-    class="text-center"
+    class="menu-mobile text-center"
   >      
     <MenuMobileOptions :miniVariant="miniVariant"/>
   </v-navigation-drawer>

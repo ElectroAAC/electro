@@ -1,43 +1,44 @@
 <template>
   <v-list :class="miniVariant ? '' : 'ml-4 mr-4'">
-    <v-list-item router exact>
-      <v-list-item-content>
-        <v-list-item>
-          <v-list-item-title class="dashboard-menu-text"> <NuxtLink to="/" class="pa-5"> HOME </NuxtLink> </v-list-item-title>
-        </v-list-item>
+    <div v-for="(link, i) in links" :key="i">
+      <v-list-item
+        v-if="!link.subLinks"
+        :key="i"
+        :to="link.to"
+        class="mt-2 text-left"
+      >
+        <v-list-item-action>
+          <v-icon>{{ link.icon }}</v-icon>
+        </v-list-item-action>
+        <v-list-item-title v-text="link.text" />
+      </v-list-item>
 
-        <v-list-item>
-          <v-treeview
-            v-model="tree"
-            :items="getRoutesCommunity"
-            open-on-click
-            expand-icon="mdi-chevron-down"
-            item-key="text"
-          > 
-            <template v-slot:append="{ item }">
-              <NuxtLink v-if="item.to" class="dashboard-menu-text" :to="item.to"> {{ item.text }} </NuxtLink>
-              <span v-else class="dashboard-menu-text"> {{ item.text }} </span>
-            </template>
-          </v-treeview>
-        </v-list-item>
+      <v-list-group
+        v-else
+        :key="link.text"
+        no-action
+        class="mt-2 text-left"
+      >
+        <template v-slot:activator>
+          <v-list-item-action>
+            <v-icon>{{ link.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-title>{{ link.text }}</v-list-item-title>
+        </template>
 
-        <v-list-item>
-          <v-list-item-title class="dashboard-menu-text"> <NuxtLink to="/highscores" class="pa-5"> HIGHSCORES </NuxtLink> </v-list-item-title>
+        <v-list-item
+          v-for="sublink in link.subLinks"
+          :to="sublink.to"
+          :key="sublink.text"
+          class="mt-2 text-left"
+        >
+          <v-list-item-action>
+            <v-icon>{{ sublink.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-title v-text="sublink.text" />
         </v-list-item>
-
-        <v-list-item>
-          <v-list-item-title class="dashboard-menu-text"> <NuxtLink to="/guilds" class="pa-5"> GUILDS </NuxtLink> </v-list-item-title>
-        </v-list-item>
-
-        <v-list-item>
-          <v-list-item-title class="dashboard-menu-text"> <NuxtLink to="/" class="pa-5"> SHOP </NuxtLink> </v-list-item-title>
-        </v-list-item>
-
-        <v-list-item>
-          <v-list-item-title class="dashboard-menu-text"> <NuxtLink to="/downloads" class="pa-5"> DOWNLOAD </NuxtLink> </v-list-item-title>
-        </v-list-item>
-      </v-list-item-content>
-    </v-list-item>
+      </v-list-group>
+    </div>
   </v-list>
 </template>
 
@@ -55,13 +56,38 @@ export default Vue.extend({
 
   data() {
     return {
-      tree: []
-    }
-  },
-
-  computed: {
-    getRoutesCommunity() {
-      return [{ text: "Community", children: routesCommunity }];
+      links: [
+        {
+          to: '/',
+          icon: 'mdi-home',
+          text: 'Home',
+        },
+        {
+          icon: 'mdi-khanda',
+          text: 'Community',
+          subLinks: [...routesCommunity]
+        },
+        {
+          to: '/highscores',
+          icon: 'mdi-trophy',
+          text: 'Highscores',
+        },
+        {
+          to: '/guilds',
+          icon: 'mdi-khanda',
+          text: 'Guilds',
+        },
+        {
+          to: '/',
+          icon: 'mdi-cart-outline',
+          text: 'Shop',
+        },
+        {
+          to: '/downloads',
+          icon: 'mdi-download-outline',
+          text: 'Download',
+        },
+      ]
     }
   }
 })

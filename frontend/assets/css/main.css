@@ -329,7 +329,7 @@
   color: var(--heading-color) !important;
 }
 
-.theme--light.v-navigation-drawer {
+.dashboard-drawer {
   background-color: var(--bg-dashboard-main-color) !important;
 }
 
@@ -376,4 +376,12 @@
 
 .v-data-table--fixed-header > .v-data-table__wrapper > table > thead > tr > th {
   z-index: 0 !important;
+}
+
+.v-application--is-ltr .v-list-item__action:last-of-type:not(:only-child), .v-application--is-ltr .v-list-item__avatar:last-of-type:not(:only-child), .v-application--is-ltr .v-list-item__icon:last-of-type:not(:only-child) {
+  margin-left: 0px !important;
+}
+
+.v-application--is-ltr .v-list-group--no-action > .v-list-group__items > .v-list-item {
+  padding-left: 40px !important;
 }

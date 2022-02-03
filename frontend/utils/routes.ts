@@ -11,10 +11,12 @@ export const routesAccount = [
 
 export const routesCommunity = [
   {
+    icon: 'mdi-human-queue',
     text: "Who is online?",
     to: "/online"
   },
   {
+    icon: 'mdi-skull-outline',
     text: "Lastkills",
     to: "/lastkills"
   },
