@@ -108,7 +108,7 @@ This repository follows the semantic commit pattern, with the addition of the ta
 <ul>
   <li> [x] Widget Highscores </li>
   <li> [x] Show Highscores </li>
-  <li> [ ] Create/Apply Filters </li>
+  <li> [x] Create/Apply Filters </li>
 </ul>
 
 ### Guilds
