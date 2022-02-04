@@ -1,20 +1,17 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Database from '@ioc:Adonis/Lucid/Database'
+import { SkillService } from 'App/Services'
 
 export default class PlayerSkillController {
-  public async show({ request, response }: HttpContextContract) {
-    try {
-      const playerSkills = await Database
-        .from('players')
-        .join('player_skills', 'players.id', '=', 'player_skills.player_id')
-        .select('player_skills.skillid', 'player_skills.value')
-        .where('players.id', request.param('id'))
-        .andWhere('player_skills.skillid', '<>', 6);
-      return response.status(200).send({ result: playerSkills});
+  public skillService: SkillService = new SkillService();
 
+  public async show(ctx: HttpContextContract) {
+    try {
+      const playerSkills = await this.skillService.getCharacterSkills(ctx.request.param('id'));
+
+      return ctx.response.status(200).send({ result: playerSkills});
     } catch(err) {
       console.log('Error getPlayerSkills Query: ', err);
-      return response.status(400).send({ message: 'An error occurred, check the api console.'})
+      return ctx.response.status(400).send({ message: 'An error occurred, check the api console.'})
     }
   }
 }
