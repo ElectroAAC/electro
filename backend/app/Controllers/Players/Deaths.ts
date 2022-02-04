@@ -1,35 +1,29 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Database from '@ioc:Adonis/Lucid/Database'
+import { DeathService } from 'App/Services'
 
+interface PlayerDeath {
+  id: number,
+  date: number,
+  level: number
+}
+interface Death {
+  player_name: String,
+  monster_name: String,
+  player_exists: Number
+}
 export default class PlayerDeathsController {
-  public async show({ request, response }: HttpContextContract) {
+  public deathService: DeathService = new DeathService();
+  
+  public async show(ctx: HttpContextContract) {
     try {
-      const { remote_url } = request.body();
+      const { remote_url } = ctx.request.body();
       
       const deaths: Object[] = [];
 
-      const player_deaths = await Database
-        .from('player_deaths')
-        .select('id', 'date', 'level')
-        .where('player_id', request.param('id'))
-        .orderBy('date', 'desc')
-        .limit(10);
+      const player_deaths: PlayerDeath[] = await this.deathService.getDeathsByCharacterId(ctx.request.param('id')) as PlayerDeath[];
       
       for(let death of player_deaths) {
-        const killers = await Database
-          .from('killers')
-          .leftJoin('environment_killers', 'environment_killers.kill_id', '=', 'killers.id')
-          .leftJoin('player_killers', 'player_killers.kill_id', '=', 'killers.id')
-          .leftJoin('players', 'players.id', '=', 'player_killers.player_id')
-          .select(
-            'environment_killers.name as monster_name', 
-            'players.name as player_name', 
-            'players.deleted as player_exists',
-          )
-          .where('killers.death_id', death.id)
-          .orderBy('killers.final_hit', 'desc')
-          .orderBy('killers.id', 'asc')
-          .limit(10);
+        const killers: Death[] = await this.deathService.getInfoDeathById(death.id) as Death[];
 
         let description = '';
         let i = 0;
@@ -75,11 +69,11 @@ export default class PlayerDeathsController {
           'description': description + '.'
         })
       }
-      return response.status(200).send({ result: deaths});
+      return ctx.response.status(200).send({ result: deaths});
 
     } catch(err) {
       console.log('Error getPlayerDeaths Query: ', err);
-      return response.status(400).send({ message: 'An error occurred, check the api console.'})
+      return ctx.response.status(400).send({ message: 'An error occurred, check the api console.'})
     }
   }
 }

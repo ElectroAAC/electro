@@ -11,33 +11,33 @@ import {
 export default class CharactersAccount {
   public characterService: CharacterService = new CharacterService();
 
-  public async store({ request, response, auth }: HttpContextContract) {
+  public async store(ctx: HttpContextContract) {
     try {
-      const data = await request.validate(StoreValidator);
+      const data = await ctx.request.validate(StoreValidator);
 
-      const account = auth.user;
+      const account = ctx.auth.user;
 
       if (!account || !account.id) {
-        return response.unauthorized();
+        return ctx.response.unauthorized();
       }
 
       const characters = await this.characterService.getByAccount(account.id);
       
       if (characters.length >= Env.get('CHARACTERS_PER_ACCOUNT')) {
-        return response.status(404).send({ message: 'You have too many characters on your account ' + characters.length + '/' + Env.get('CHARACTERS_PER_ACCOUNT')});
+        return ctx.response.status(404).send({ message: 'You have too many characters on your account ' + characters.length + '/' + Env.get('CHARACTERS_PER_ACCOUNT')});
       }
 
       const vocation = Vocations.find((vocation) => vocation.vocation_id === data.vocation);
 
       if (!vocation || !vocation.vocation_id) {
-        return response.status(404).send({ message: 'Vocation invalid'});
+        return ctx.response.status(404).send({ message: 'Vocation invalid'});
       }
 
       const characterCopy: Player[] = await this.characterService.findByName(vocation.name) as Player[];
       
       if (!characterCopy.length) {
         console.log("Error find Sample Character: Edit file Vocations in contracts/enums/Vocations and set valid characters to copy names. Name Character to copy: " + vocation.name + " doesn\'t exist.");
-        return response.status(404).send({ message: "Wrong characters configuration. Try again or contact with admin."});
+        return ctx.response.status(404).send({ message: "Wrong characters configuration. Try again or contact with admin."});
       }
 
       const newPlayer = Object.assign(characterCopy[0], {
@@ -59,7 +59,7 @@ export default class CharactersAccount {
       const player: Player[] = await this.characterService.findById(result[0]) as Player[];
 
       if (!player.length) {
-        return response.status(404).send({ message: "Error. Can't create character. Probably problem with database. Please try again later or contact with admin."});
+        return ctx.response.status(404).send({ message: "Error. Can't create character. Probably problem with database. Please try again later or contact with admin."});
       }
 
       for(let i = 0; i < 7; i++) {
@@ -76,10 +76,10 @@ export default class CharactersAccount {
         await this.characterService.insertItems(player[0].id, item.pid, item.sid, item.itemtype, item.count, item.attributes);
       };
 
-      return response.status(200).send({ status: 200, message: 'Character created successfully!'});
+      return ctx.response.status(200).send({ status: 200, message: 'Character created successfully!'});
     } catch (err) {
       console.log('Error getPlayersAccount Query: ', err);
-      return response.badRequest(err.messages);
+      return ctx.response.badRequest(err.messages);
     }
   }
 
