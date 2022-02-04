@@ -395,3 +395,15 @@
   box-shadow: none !important;
   color: var(--main-color) !important;
 }
+
+.theme--light.v-select .v-select__selections {
+  color: var(--heading-color) !important;
+}
+
+.theme--light.v-data-table .v-data-table__empty-wrapper {
+  color: var(--heading-color) !important;
+}
+
+.theme--light.v-btn.v-btn--has-bg {
+  background-color: transparent !important;
+}

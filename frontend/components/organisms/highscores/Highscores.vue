@@ -1,46 +1,25 @@
 <template>
   <div class="container">
-    <v-bottom-navigation v-model="value">
-      <v-btn value="Experience">
-        <span class="btn-highscores">Experience</span>
-        <v-icon>mdi-karate</v-icon>
-      </v-btn>
-
-      <v-btn value="Magic Level">
-        <span>Magic Level</span>
-        <v-icon>mdi-creation</v-icon>
-      </v-btn>
-
-      <v-btn value="Attack Speed">
-        <span>Attack Speed</span>
-        <v-icon>mdi-run-fast</v-icon>
-      </v-btn>
-
-      <v-btn value="Club">
-        <span>Glove</span>
-        <v-icon>mdi-arm-flex</v-icon>
-      </v-btn>
-
-      <v-btn value="Sword">
-        <span>Sword</span>
-        <v-icon>mdi-sword</v-icon>
-      </v-btn>
-
-      <v-btn value="Bow">
-        <span>Distance</span>
-        <v-icon>mdi-bow-arrow</v-icon>
-      </v-btn>
-
-      <v-btn value="Axe">
-        <span>Axe</span>
-        <v-icon>mdi-axe-battle</v-icon>
-      </v-btn>
-
-      <v-btn value="Shielding">
-        <span>Shield</span>
-        <v-icon>mdi-shield-sun-outline</v-icon>
+    <v-bottom-navigation v-model="value" v-if="!$vuetify.breakpoint.mdAndDown">
+      <v-btn v-for="(item, idx) in options" :key="idx" :value="item.value">
+        <span>{{ item.text }}</span>
+        <v-icon>{{ item.icon }}</v-icon>
       </v-btn>
     </v-bottom-navigation>
+
+    <v-select 
+      v-else
+      :value="value"
+      :items="options"
+      :menu-props="{ bottom: true, offsetY: true }"
+      return-object
+      outlined
+      dense
+      hide-details
+      @change="($event) => {
+        value = $event.text;
+      }"
+    />
 
     <HighscoresTable
       :search="search"
@@ -57,7 +36,54 @@ export default Vue.extend({
   data() {
     return {
       value: 'Experience',
-      search: ''
+      search: '',
+      options: [
+        {
+          value: "Experience",
+          icon: "mdi-karate",
+          text: "Experience"
+        },
+        {
+          value: "Magic Level",
+          icon: "mdi-creation",
+          text: "Magic Level"
+        },
+        {
+          value: "Attack Speed",
+          icon: "mdi-run-fast",
+          text: "Attack Speed"
+        },
+        {
+          value: "Club",
+          icon: "mdi-arm-flex",
+          text: "Club"
+        },
+        {
+          value: "Sword",
+          icon: "mdi-sword",
+          text: "Sword"
+        },
+        {
+          value: "Distance",
+          icon: "mdi-bow-arrow",
+          text: "Distance"
+        },
+        {
+          value: "Axe",
+          icon: "mdi-axe-battle",
+          text: "Axe"
+        },
+        {
+          value: "Shielding",
+          icon: "mdi-shield-sun-outline",
+          text: "Shielding"
+        },
+        {
+          value: "Frags",
+          icon: "mdi-skull-outline",
+          text: "Frags"
+        },
+      ]
     }
   },
 

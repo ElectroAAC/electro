@@ -54,8 +54,14 @@ export default Vue.extend({
       ];
 
       if (this.$type === "Experience") {
-        items.push({ text: 'Level', value: 'level', align: 'center', sortable: false }, { text: 'Experience', value: 'experience', align: 'center', sortable: false })
-      } else {
+        items.push(
+          { text: 'Level', value: 'level', align: 'center', sortable: false }, 
+          { text: 'Experience', value: 'experience', align: 'center d-none d-sm-table-cell', sortable: false }
+        )
+      } else if (this.$type === "Frags") {
+        items.push({ text: 'Frags', value: 'value', align: 'center', sortable: false })
+      }
+      else {
         items.push({ text: 'Skill', value: 'value', align: 'center', sortable: false })
       }
 
