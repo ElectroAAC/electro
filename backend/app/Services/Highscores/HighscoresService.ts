@@ -13,6 +13,7 @@ export default class HighscoresService {
   }
   
   public async find(page: number, limit: number, type: string): Promise<Object[]> {  
+    console.log(type);
     if (type === 'Experience')  
       return await Database
         .from('players')
@@ -22,10 +23,10 @@ export default class HighscoresService {
         .orderBy('experience', 'desc')
         .paginate(page, limit);
 
-    else if (type === 'Magic')
+    else if (type === 'Magic Level')
       return await Database
         .from('players')
-        .select('name', 'vocation', 'maglevel', 'experience', 'online')
+        .select('name', 'vocation', 'maglevel as value', 'experience', 'online')
         .where('deleted', '=', 0)
         .andWhere('group_id', '<', 4)
         .orderBy('maglevel', 'desc')

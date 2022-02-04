@@ -18,7 +18,7 @@ export default class HighscoresController {
   public async getRank(ctx: HttpContextContract) {
     try {
       console.log(ctx.request.param('type'))
-      const rank = await this.highscoresService.find(ctx.request.param('page'), ctx.request.param('limit'), ctx.request.param('type'));
+      const rank = await this.highscoresService.find(ctx.request.param('page'), ctx.request.param('limit'), ctx.request.param('type').replace(/%20/g, " "));
       
       return ctx.response.status(200).send({ status: 200, result: rank});
     } catch (err) {
