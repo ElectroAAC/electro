@@ -4,7 +4,7 @@ import { OnlineService } from 'App/Services'
 export default class OnlineController {
   public onlineService: OnlineService = new OnlineService();
 
-  public async show({ response }: HttpContextContract) {
+  public async show(ctx: HttpContextContract) {
     try {
       const playersOnline = await this.onlineService.getPlayersOnline();
       
@@ -15,10 +15,10 @@ export default class OnlineController {
         playersOnline
       };
 
-      return response.status(200).send({ status: 200, result});
+      return ctx.response.status(200).send({ status: 200, result});
     } catch(err) {
       console.log('Error getPlayersOnline Query: ', err);
-      return response.status(400).send({ error: 'An error occurred, check the api console.'});
+      return ctx.response.status(400).send({ error: 'An error occurred, check the api console.'});
     }
   }
 }
