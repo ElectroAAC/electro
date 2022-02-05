@@ -2,7 +2,7 @@ import Route from '@ioc:Adonis/Core/Route';
 import './auth';
 import './account';
 import './highscores';
-import './players';
+import './character';
 import './dashboard/home';
 import './dashboard/accounts';
 import './dashboard/character';

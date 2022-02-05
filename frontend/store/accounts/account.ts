@@ -134,7 +134,7 @@ export default class Account extends VuexModule {
   @Action
   public async getChangeNameStatus() {
     try {
-      await $axios.$get('accounts/change-character-name')
+      await $axios.$get('player/change-name')
         .then((response) => {
           if (!response) 
             throw new Error("Failed to get status to change name");
@@ -163,7 +163,7 @@ export default class Account extends VuexModule {
   
   @Action
   public async changeNameCharacter(payload: UpdatePayload) {
-    const status = await $axios.$post('accounts/change-character-name', payload)
+    const status = await $axios.$post('player/change-name', payload)
       .then(( response ) => {
         if (response.status !== 200) 
           throw new Error("Failed to change name character");
@@ -180,7 +180,7 @@ export default class Account extends VuexModule {
 
   @Action
   public async deleteCharacter(payload: DeletePayload) {
-    const status = await $axios.$post('accounts/delete-character', payload)
+    const status = await $axios.$post('player/delete', payload)
       .then(( response ) => {
         if (response.status !== 200) 
           throw new Error("Failed to delete character");

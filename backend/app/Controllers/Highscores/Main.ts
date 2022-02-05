@@ -1,5 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import HighscoresService from 'App/Services/Highscores/HighscoresService'
+import { HighscoresService } from 'App/Services'
 
 export default class HighscoresController {
   public highscoresService: HighscoresService = new HighscoresService();

@@ -46,9 +46,21 @@ $ npm run start
 | PUT    | /accounts/forgot-password       | Update Password                       |
 | GET    | /accounts/characters/:id        | Get characters to account             |
 | POST   | /accounts/create-character      | Create new character                  |
-| GET    | /accounts/change-character-name | Status system                         |
-| POST   | /accounts/change-character-name | Change character name                 |
-| POST   | /accounts/delete-character      | Delete character                      |
+
+<br>
+
+##  🕵🏾‍♂️  Routes Players
+
+| METHOD | ENDPOINT                   | DESCRIPTION                           |
+| :----- | :------------------------- | :------------------------------------ |
+| GET    | /player/:name              | Get Player Infos                      |
+| GET    | /player/:id/skills         | Get Player Skills                     |
+| GET    | /player/:id/storage/:key   | Get Player Storage                    |
+| POST   | /player/:id/deaths         | Get Player Last 10 Deaths             |
+| GET    | /player/:id/items          | Get Player Items equipment            |
+| GET    | /player/change-name        | Status system                         |
+| POST   | /player/change-name        | Change character name                 |
+| POST   | /player/delete             | Delete character                      |
 
 <br>
 
@@ -84,18 +96,6 @@ $ npm run start
 | METHOD | ENDPOINT                   | DESCRIPTION                           |
 | :----- | :------------------------- | :------------------------------------ |
 | POST   | /lastkills/:page/:limit    | Get last kills                        |
-
-<br>
-
-##  🕵🏾‍♂️  Routes Players
-
-| METHOD | ENDPOINT                   | DESCRIPTION                           |
-| :----- | :------------------------- | :------------------------------------ |
-| GET    | /player/:name              | Get Player Infos                      |
-| GET    | /player/:id/skills         | Get Player Skills                     |
-| GET    | /player/:id/storage/:key   | Get Player Storage                    |
-| POST   | /player/:id/deaths         | Get Player Last 10 Deaths             |
-| GET    | /player/:id/items          | Get Player Items equipment            |
 
 <br>
 
