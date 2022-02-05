@@ -128,6 +128,19 @@ class CharacterView {
       return err;
     }
   }
+
+  public async getTotalVocations(): Promise<Object[]>  {
+    try {
+      return await Database
+        .from('players')
+        .select('vocation')
+        .count('* as total')
+        .groupBy('vocation');
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
 }
 class CharacterRepository {
   public async create(newPlayer: Object): Promise<Number> {

@@ -1,12 +1,12 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { NewsService } from 'App/Services'
+import { NewsView } from 'App/Services'
 
 export default class NewsController {
-  public newsService: NewsService = new NewsService();
+  public newsView: NewsView = new NewsView();
 
   public async show(ctx: HttpContextContract) {
     try {
-      const news = await this.newsService.getNews(ctx.request.param('page'), ctx.request.param('limit'));
+      const news = await this.newsView.getNews(ctx.request.param('page'), ctx.request.param('limit'));
       
       return ctx.response.status(200).send({ status: 200, news });
     } catch(err) {

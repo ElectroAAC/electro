@@ -1,12 +1,12 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { SkillService } from 'App/Services'
+import { SkillView } from 'App/Services'
 
 export default class PlayerSkillController {
-  public skillService: SkillService = new SkillService();
+  public skillView: SkillView = new SkillView();
 
   public async show(ctx: HttpContextContract) {
     try {
-      const playerSkills = await this.skillService.getCharacterSkills(ctx.request.param('id'));
+      const playerSkills = await this.skillView.getCharacterSkills(ctx.request.param('id'));
 
       return ctx.response.status(200).send({ result: playerSkills});
     } catch(err) {
