@@ -1,20 +1,29 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Database from '@ioc:Adonis/Lucid/Database'
 import { UpdateValidator } from 'App/Validators/Dashboard/Accounts'
+import { 
+  Account,
+  AccountView,
+  AccountRepository,
+  CharacterView
+} from 'App/Services'
+import { Account as AccountModel } from 'App/Models';
 
 export default class AccountsController {
-  public async index({ response, bouncer }: HttpContextContract) {
-    try {
-      await bouncer.with('DashboardPolicy').authorize('viewList');
-      
-      const accounts = await Database
-        .from('accounts')
-        .count('* as total');
+  public account: Account = new Account();
+  public accountRepository: AccountRepository = new AccountRepository();
+  public accountView: AccountView = new AccountView();
+  public characterView: CharacterView = new CharacterView();
 
-      return response.status(200).send({ result: accounts});
+  public async index(ctx: HttpContextContract) {
+    try {
+      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+      
+      const accounts = await this.accountView.getTotalAccounts();
+
+      return ctx.response.status(200).send({ result: accounts});
     } catch(err) {
       console.log('Error getTotalAccounts Query: ', err);
-      return response.status(400).send({ status: 200, message: 'An error occurred, check the api console.'})
+      return ctx.response.status(400).send({ status: 200, message: 'An error occurred, check the api console.'})
     }
   }
 
@@ -22,20 +31,13 @@ export default class AccountsController {
     try {
       await bouncer.with('DashboardPolicy').authorize('viewList');
 
-      const account = await Database
-        .from('accounts')
-        .select('id', 'name', 'premdays', 'email', 'group_id', 'web_flags', 'premium_points', 'key')
-        .where('name', '=', request.param('name'));
+      const account = await this.accountView.getAccountByName(request.param('name')) as AccountModel[];
        
       if (!account.length) {
         return response.status(404).send({ message: "Account not found!"});
       }
 
-      const characters = await Database
-        .from('players')
-        .select('players.id', 'players.level', 'players.name', 'players.vocation')
-        .where('players.account_id', account[0].id)
-        .orderBy('players.experience', 'desc');
+      const characters = await this.characterView.getByAccount(account[0].id);
 
       return response.status(200).send({ status: 200, result: { account, characters }});
     } catch(err) {
@@ -49,19 +51,13 @@ export default class AccountsController {
       await bouncer.with('DashboardPolicy').authorize('viewList');
       const data = await request.validate(UpdateValidator);
       
-      const account = await Database
-        .from('accounts')
-        .select('id')
-        .where('name', '=', data.name)
-        .andWhere('id', '<>', data.id);
+      const account = await this.account.validateName(data.id, data.name);
       
       if (account.length) {
         return response.status(404).send({ message: "Error. The username is already used."});
       }
       
-      const affectedRows = await Database.from('accounts')
-        .where('id', '=', data.id)
-        .update(data);
+      const affectedRows = await this.accountRepository.update(data.id, data);
       
       if (!affectedRows) {
         return response.status(404).send({ message: "Account not found."});
@@ -73,6 +69,4 @@ export default class AccountsController {
       return response.status(400).send({ message: err})
     }
   }
-
-  public async destroy({}: HttpContextContract) {}
 }

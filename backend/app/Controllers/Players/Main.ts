@@ -12,7 +12,7 @@ import {
 } from 'App/Models'
 
 import { 
-  AccountService,
+  Account,
   Character,
   CharacterRepository,
   CharacterView,
@@ -25,7 +25,7 @@ export default class PlayersController {
   public character: Character = new Character();
   public characterRepository: CharacterRepository = new CharacterRepository();
   public characterView: CharacterView = new CharacterView();
-  public accountService: AccountService = new AccountService();
+  public account: Account = new Account();
   public houseService: HouseService = new HouseService();
 
   public async show(ctx: HttpContextContract) {
@@ -69,7 +69,7 @@ export default class PlayersController {
       
       const updateCharacter = await this.character.updateName(data.character_id, data.new_name);
       
-      await this.accountService.removePremiumPoints(account.id, Env.get('POINTS_TO_CHANGE_NAME'));
+      await this.account.removePremiumPoints(account.id, Env.get('POINTS_TO_CHANGE_NAME'));
       
       if (!updateCharacter)
         return ctx.response.status(404).send({ message: "Error. Can't change character name. Probably problem with database. Please try again later or contact with admin." });
@@ -90,7 +90,7 @@ export default class PlayersController {
       if (!account || !account.id) 
         return ctx.response.unauthorized();
 
-      const verifyPassword = await this.accountService.validatePassword(account.id, data.password);
+      const verifyPassword = await this.account.validatePassword(account.id, data.password);
       
       if (!verifyPassword)
        return ctx.response.status(404).send({ message: 'Wrong password.' });
