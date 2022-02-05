@@ -93,7 +93,7 @@ export default Vue.extend({
       if (!date || date < 0) {
         return "";
       }
-      return moment().format("DD.MM.YYYY HH:mm:ss")
+      return moment(date).format("DD.MM.YYYY HH:mm:ss")
     }
   }
 })
