@@ -23,7 +23,7 @@ export default class PlayerDeathsController {
       const player_deaths: PlayerDeath[] = await this.deathService.getDeathsByCharacterId(ctx.request.param('id')) as PlayerDeath[];
       
       for(let death of player_deaths) {
-        const killers: Death[] = await this.deathService.getInfoDeathById(death.id) as Death[];
+        const killers: Death[] = await this.deathService.getInfoDeathCharacterById(death.id) as Death[];
 
         let description = '';
         let i = 0;
