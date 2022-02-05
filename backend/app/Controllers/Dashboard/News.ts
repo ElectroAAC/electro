@@ -1,33 +1,32 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { StoreValidator, UpdateValidator } from 'App/Validators/News'
-import Database from '@ioc:Adonis/Lucid/Database'
+import { NewsRepository, NewsView } from 'App/Services';
 
 export default class AccountsController {
-  public async index({ request, response }: HttpContextContract) {
+  public newsView: NewsView = new NewsView();
+  public newsRepository: NewsRepository = new NewsRepository();
+
+  public async index(ctx: HttpContextContract) {
     try {
-      const news = await Database
-        .from('electro_news')
-        .select('id', 'title', 'body', 'created_at')
-        .orderBy('created_at', 'desc')
-        .paginate(request.param('page', 1), request.param('limit'));
+      const news = await this.newsView.getNews(ctx.request.param('page'), ctx.request.param('limit'));
       
-      return response.status(200).send({ status: 200, news });
+      return ctx.response.status(200).send({ status: 200, news });
     } catch(err) {
       console.log('Error getNews Query: ', err);
-      return response.status(400).send({ error: 'An error occurred, check the api console.'});
+      return ctx.response.status(400).send({ error: 'An error occurred, check the api console.'});
     }
   }
 
-  public async store({ request, response, auth, bouncer }: HttpContextContract) {
+  public async store(ctx: HttpContextContract) {
     try {
-      await bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
 
-      const data = await request.validate(StoreValidator);
+      const data = await ctx.request.validate(StoreValidator);
 
-      const account = auth.user;
+      const account = ctx.auth.user;
 
       if (!account || !account.id) {
-        return response.unauthorized();
+        return ctx.response.unauthorized();
       }
 
       const news = {
@@ -39,48 +38,38 @@ export default class AccountsController {
         created_at: new Date()
       }
 
-      await Database.table('electro_news').returning('id').insert(news);
+      await this.newsRepository.create(news);
 
-      return response.status(200).send({ status: 200, message: 'New Post created successfully!'});
+      return ctx.response.status(200).send({ status: 200, message: 'New Post created successfully!'});
     } catch (err) {
       console.log('Error createNewPage Query: ', err);
-      return response.badRequest(err.messages);
+      return ctx.response.badRequest(err.messages);
     }
   }
 
-  public async show({ request, response, bouncer }: HttpContextContract) {
-    await bouncer.with('DashboardPolicy').authorize('viewList');
+  public async show(ctx: HttpContextContract) {
+    await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
 
-    const page = await Database
-      .from('electro_news')
-      .select('*')
-      .where('id', '=', request.param('id'))
+    const page = await this.newsView.findNewsById(ctx.request.param('id'));
     if (!page.length) {
-      return response.status(404).send({ message: 'News not found.' });
+      return ctx.response.status(404).send({ message: 'News not found.' });
     }
-    return response.status(200).send({ status: 200, page });
+    return ctx.response.status(200).send({ status: 200, page });
   }
 
-  public async update({ request, response, auth, bouncer }: HttpContextContract) {
-    await bouncer.with('DashboardPolicy').authorize('viewList');
+  public async update(ctx: HttpContextContract) {
+    await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
 
-    const data = await request.validate(UpdateValidator);
+    const data = await ctx.request.validate(UpdateValidator);
 
-    const account = auth.user;
+    const account = ctx.auth.user;
 
     if (!account || !account.id) {
-      return response.unauthorized();
+      return ctx.response.unauthorized();
     }
 
-    await Database.from('electro_news')
-      .where('id', '=', data.news_id)
-      .update({ 
-        title: data.title,
-        body: data.description,
-        hidden: data.hidden ? 1 : 0,
-        updated_at: new Date()
-      });
+    await this.newsRepository.update(data.news_id, data);
     
-    return response.status(200).send({ status: 200, message: "Post successfully updated." });
+    return ctx.response.status(200).send({ status: 200, message: "Post successfully updated." });
   }
 }
