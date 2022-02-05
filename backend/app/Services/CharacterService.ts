@@ -31,7 +31,7 @@ export default class CharacterService {
     try {
       return await Database
         .from('players')
-        .select('name', 'deleted', 'online')
+        .select('name', 'deleted', 'online', 'rank_id')
         .where('id', '=', character_id)
         .andWhere('account_id', '=', account_id);
     } catch (err) {
@@ -103,6 +103,15 @@ export default class CharacterService {
         count,
         attributes
       });
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
+  public async updateRankId(character_id: number, rank_id: number): Promise<Object[]> {
+    try {
+      return await Database.from('players').where('id', '=', character_id).update({ rank_id });
     } catch (err) {
       console.log(err);
       return err;
