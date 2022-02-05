@@ -60,6 +60,19 @@ class AccountView {
       return err;
     }
   }
+
+  public async getTopPremiumPoints(): Promise<Object[]> {  
+    try {
+      return await Database
+        .from('accounts')
+        .select('premium_points', 'name')
+        .orderBy('premium_points', 'desc')
+        .limit(10);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
 }
 
 class AccountRepository {
