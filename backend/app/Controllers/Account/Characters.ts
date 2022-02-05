@@ -87,14 +87,14 @@ export default class CharactersAccount {
     }
   }
 
-  public async show({ request, response }: HttpContextContract) {
+  public async show(ctx: HttpContextContract) {
     try {
-      const characters = await this.characterView.getByAccount(request.param('id'));
+      const characters = await this.characterView.getByAccount(ctx.request.param('id'));
 
-      return response.status(200).send({ result: characters});
+      return ctx.response.status(200).send({ result: characters});
     } catch(err) {
       console.log('Error getPlayersAccount Query: ', err);
-      return response.status(400).send({ message: 'An error occurred, check the api console.'})
+      return ctx.response.status(400).send({ message: 'An error occurred, check the api console.'})
     }
   }
 }

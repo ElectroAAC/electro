@@ -4,8 +4,8 @@ import { Account } from 'App/Models'
 import encrypt from 'js-sha1';
 
 export default class AuthController {
-  public async store({ request, auth }: HttpContextContract) {
-    const { name, password, rememberMe } = await request.validate(StoreValidator);
+  public async store(ctx: HttpContextContract) {
+    const { name, password, rememberMe } = await ctx.request.validate(StoreValidator);
 
     const encryptedPassword = encrypt(password);
     
@@ -18,7 +18,7 @@ export default class AuthController {
     if (!user)
       return "";
 
-    const token = await auth.use('api').generate(user, {
+    const token = await ctx.auth.use('api').generate(user, {
       expiresIn: rememberMe ? '7 days' : '30mins'
     });
 

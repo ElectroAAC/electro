@@ -5,8 +5,8 @@ import faker from 'faker'
 import Mail from '@ioc:Adonis/Addons/Mail'
 
 export default class AccountRegisterController {
-  public async store({ request, response }: HttpContextContract) {
-    const { email, name, password } = await request.validate(StoreValidator);
+  public async store(ctx: HttpContextContract) {
+    const { email, name, password } = await ctx.request.validate(StoreValidator);
     
     const account = await Account.create({ 
       email, 
@@ -55,11 +55,11 @@ export default class AccountRegisterController {
       message.htmlView('mails/register')
     })
 
-    return response.send({ status: 200, message: 'Created Successfully'});
+    return ctx.response.send({ status: 200, message: 'Created Successfully'});
   }
 
-  public async show({ params }: HttpContextContract) {
-    const accountKey = await AccountKey.findByOrFail('key', params.code);
+  public async show(ctx: HttpContextContract) {
+    const accountKey = await AccountKey.findByOrFail('key', ctx.params.code);
     const account = await accountKey.related('account').query().firstOrFail()
 
     return account;

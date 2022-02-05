@@ -13,7 +13,14 @@
 <br>
 
 ##  👨🏾‍💻 Project documentation.
-<a href="https://walistonbelles1.gitbook.io/electroaac/" target="_blank"> Documentation </a>
+Learn all about the project through our documentation: <a href="https://walistonbelles1.gitbook.io/electroaac/" target="_blank"> Documentation </a>
+
+<br>
+
+##  👨🏾‍💻 Demo.
+Want to see the project better? Access our demo: <a href="http://www.electro-aac.org/" target="_blank"> Demo </a>
+
+<br>
 
 ## 👨🏾‍💻 Techs 
 
