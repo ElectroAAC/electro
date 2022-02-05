@@ -1,25 +1,19 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Database from '@ioc:Adonis/Lucid/Database'
+import { GuildView } from 'App/Services';
 
 export default class GuildsController {
-  public async show({ response, bouncer }: HttpContextContract) {
+  public guildView: GuildView = new GuildView();
+
+  public async show(ctx: HttpContextContract) {
     try {
-      await bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
 
-      const accounts = await Database
-        .from('guilds')
-        .count('* as total');
+      const accounts = await this.guildView.getTotalGuilds();
 
-      return response.status(200).send({ result: accounts});
+      return ctx.response.status(200).send({ result: accounts});
     } catch(err) {
       console.log('Error getTotalGuilds Query: ', err);
-      return response.status(400).send({ message: 'An error occurred, check the api console.'})
+      return ctx.response.status(400).send({ message: 'An error occurred, check the api console.'})
     }
   }
-
-  public async edit({}: HttpContextContract) {}
-
-  public async update({}: HttpContextContract) {}
-
-  public async destroy({}: HttpContextContract) {}
 }

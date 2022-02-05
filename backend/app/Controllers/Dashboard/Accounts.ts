@@ -27,46 +27,46 @@ export default class AccountsController {
     }
   }
 
-  public async show({ request, response, bouncer }: HttpContextContract) {
+  public async show(ctx: HttpContextContract) {
     try {
-      await bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
 
-      const account = await this.accountView.getAccountByName(request.param('name')) as AccountModel[];
+      const account = await this.accountView.getAccountByName(ctx.request.param('name')) as AccountModel[];
        
       if (!account.length) {
-        return response.status(404).send({ message: "Account not found!"});
+        return ctx.response.status(404).send({ message: "Account not found!"});
       }
 
       const characters = await this.characterView.getByAccount(account[0].id);
 
-      return response.status(200).send({ status: 200, result: { account, characters }});
+      return ctx.response.status(200).send({ status: 200, result: { account, characters }});
     } catch(err) {
       console.log('Error findAccount Query: ', err);
-      return response.status(400).send({ message: 'An error occurred, check the api console.'})
+      return ctx.response.status(400).send({ message: 'An error occurred, check the api console.'})
     }
   }
 
-  public async update({ request, response, bouncer}: HttpContextContract) {
+  public async update(ctx: HttpContextContract) {
     try {
-      await bouncer.with('DashboardPolicy').authorize('viewList');
-      const data = await request.validate(UpdateValidator);
+      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+      const data = await ctx.request.validate(UpdateValidator);
       
       const account = await this.account.validateName(data.id, data.name);
       
       if (account.length) {
-        return response.status(404).send({ message: "Error. The username is already used."});
+        return ctx.response.status(404).send({ message: "Error. The username is already used."});
       }
       
       const affectedRows = await this.accountRepository.update(data.id, data);
       
       if (!affectedRows) {
-        return response.status(404).send({ message: "Account not found."});
+        return ctx.response.status(404).send({ message: "Account not found."});
       }
       
-      return response.status(200).send({ status: 200, message: "Account successfully updated." });
+      return ctx.response.status(200).send({ status: 200, message: "Account successfully updated." });
     } catch (err) {
       console.log('Error updateAccount Query: ', err);
-      return response.status(400).send({ message: err})
+      return ctx.response.status(400).send({ message: err})
     }
   }
 }

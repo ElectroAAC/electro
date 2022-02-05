@@ -1,6 +1,17 @@
 import Database from '@ioc:Adonis/Lucid/Database'
 
 class GuildView {
+  public async getTotalGuilds(): Promise<Object[]> {  
+    try {
+      return await Database
+        .from('guilds')
+        .count('* as total');
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
   public async getGuildById(guild_id: number): Promise<Object[]> {  
     try {
       return await Database
