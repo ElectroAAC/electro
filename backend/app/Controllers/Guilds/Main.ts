@@ -1,6 +1,11 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { StoreValidator } from 'App/Validators/Guilds/Register'
-import { CharacterService, GuildService } from 'App/Services'
+import { 
+  Character,
+  CharacterView, 
+  GuildRepository,
+  GuildView 
+} from 'App/Services'
 import { Player } from 'App/Models';
 
 interface Guild {
@@ -8,12 +13,14 @@ interface Guild {
   rank_id: number
 }
 export default class GuildsController {
-  public characterService: CharacterService = new CharacterService();
-  public guildService: GuildService = new GuildService();
+  public character: Character = new Character();
+  public characterView: CharacterView = new CharacterView();
+  public guildRepository: GuildRepository = new GuildRepository();
+  public guildView: GuildView = new GuildView();
 
   public async index(ctx: HttpContextContract) {
     try {
-      const guilds = await this.guildService.getGuilds(ctx.request.param('page'), ctx.request.param('limit'));
+      const guilds = await this.guildView.getGuilds(ctx.request.param('page'), ctx.request.param('limit'));
 
       return ctx.response.status(200).send({ status: 200, result: guilds });
     } catch(err) {
@@ -31,7 +38,7 @@ export default class GuildsController {
       return ctx.response.unauthorized();
     }
 
-    const character = await this.characterService.findByIdAndAccount(data.character_id, account.id) as Player[];
+    const character = await this.characterView.findByIdAndAccount(data.character_id, account.id) as Player[];
 
     if (!character.length)
     {
@@ -63,30 +70,30 @@ export default class GuildsController {
       description: 'New guild. Leader must edit this text'
     };
 
-    const result = await this.guildService.create(newGuild);
+    const result = await this.guildRepository.create(newGuild);
 
-    const guild = await this.guildService.getGuildById(result[0]) as Guild[];
+    const guild = await this.guildView.getGuildById(result[0]) as Guild[];
 
     if (!guild.length) {
       return ctx.response.status(404).send({ message: "Error. Can't create guild. Probably problem with database. Please try again later or contact with admin."});
     }
     
-    await this.characterService.updateRankId(data.character_id, guild[0].rank_id);
+    await this.character.updateRankId(data.character_id, guild[0].rank_id);
 
     return ctx.response.status(200).send({ status: 200, message: 'Guild created successfully!'});
   }
 
   public async show(ctx: HttpContextContract) {
     try {
-      const guild = await this.guildService.getGuildByName(ctx.request.param('name')) as Guild[];
+      const guild = await this.guildView.getGuildByName(ctx.request.param('name')) as Guild[];
 
       if (!guild.length) {
         return ctx.response.status(404).send({ message: "Guild not found." });
       }
       
-      const guildRanks = await this.guildService.getGuildRanks(guild[0].id);
+      const guildRanks = await this.guildView.getGuildRanks(guild[0].id);
 
-      const memberList = await this.guildService.getGuildMembers(guild[0].id);
+      const memberList = await this.guildView.getGuildMembers(guild[0].id);
       
       const result = {
         info: guild[0],
@@ -100,10 +107,4 @@ export default class GuildsController {
       return ctx.response.status(400).send({ message: 'An error occurred, check the api console.'})
     }
   }
-
-  public async edit({}: HttpContextContract) {}
-
-  public async update({}: HttpContextContract) {}
-
-  public async destroy({}: HttpContextContract) {}
 }

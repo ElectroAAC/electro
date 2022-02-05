@@ -1,8 +1,8 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { GuildService } from 'App/Services'
+import { GuildView } from 'App/Services'
 
 export default class PlayersWithGuildController {
-  public guildService: GuildService = new GuildService();
+  public guildView: GuildView = new GuildView();
   
   public async show(ctx: HttpContextContract) {
     try {
@@ -12,7 +12,7 @@ export default class PlayersWithGuildController {
         return ctx.response.unauthorized();
       }
 
-      const character = await this.guildService.getCharactersWithGuild(account.id);
+      const character = await this.guildView.getCharactersWithGuild(account.id);
 
       return ctx.response.status(200).send({ status: 200, character });
     } catch(err) {

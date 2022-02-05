@@ -1,6 +1,6 @@
 import Database from '@ioc:Adonis/Lucid/Database'
 
-export default class GuildService {
+class GuildView {
   public async getGuildById(guild_id: number): Promise<Object[]> {  
     try {
       return await Database
@@ -95,7 +95,9 @@ export default class GuildService {
       return err;
     }
   }
+}
 
+class GuildRepository {
   public async create(newGuild: object): Promise<Number> {  
     try {
       return await Database.table('guilds').returning('id').insert(newGuild);
@@ -105,3 +107,5 @@ export default class GuildService {
     }
   }
 }
+
+export { GuildView, GuildRepository}

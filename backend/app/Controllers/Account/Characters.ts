@@ -5,11 +5,15 @@ import { Item, Player } from 'App/Models'
 import Env from '@ioc:Adonis/Core/Env'
 
 import {
-  CharacterService,
+  Character,
+  CharacterView,
+  CharacterRepository
 } from 'App/Services'
 
 export default class CharactersAccount {
-  public characterService: CharacterService = new CharacterService();
+  public character: Character = new Character();
+  public characterView: CharacterView = new CharacterView();
+  public characterRepository: CharacterRepository = new CharacterRepository();
 
   public async store(ctx: HttpContextContract) {
     try {
@@ -21,7 +25,7 @@ export default class CharactersAccount {
         return ctx.response.unauthorized();
       }
 
-      const characters = await this.characterService.getByAccount(account.id);
+      const characters = await this.characterView.getByAccount(account.id);
       
       if (characters.length >= Env.get('CHARACTERS_PER_ACCOUNT')) {
         return ctx.response.status(404).send({ message: 'You have too many characters on your account ' + characters.length + '/' + Env.get('CHARACTERS_PER_ACCOUNT')});
@@ -33,7 +37,7 @@ export default class CharactersAccount {
         return ctx.response.status(404).send({ message: 'Vocation invalid'});
       }
 
-      const characterCopy: Player[] = await this.characterService.findByName(vocation.name) as Player[];
+      const characterCopy: Player[] = await this.characterView.findByName(vocation.name) as Player[];
       
       if (!characterCopy.length) {
         console.log("Error find Sample Character: Edit file Vocations in contracts/enums/Vocations and set valid characters to copy names. Name Character to copy: " + vocation.name + " doesn\'t exist.");
@@ -54,26 +58,26 @@ export default class CharactersAccount {
         created: 0
       });
 
-      const result = await this.characterService.create(newPlayer);
+      const result = await this.characterRepository.create(newPlayer);
 
-      const player: Player[] = await this.characterService.findById(result[0]) as Player[];
+      const player: Player[] = await this.characterView.findById(result[0]) as Player[];
 
       if (!player.length) {
         return ctx.response.status(404).send({ message: "Error. Can't create character. Probably problem with database. Please try again later or contact with admin."});
       }
 
       for(let i = 0; i < 7; i++) {
-        const skillExists = await this.characterService.checkSkillId(player[0].id, i);
+        const skillExists = await this.characterView.checkSkillId(player[0].id, i);
 
         if (!skillExists.length) {
-          await this.characterService.insertSkill(player[0].id, i);
+          await this.character.insertSkill(player[0].id, i);
         }
       }
 
-      const items_to_copy: Item[] = await this.characterService.getItems(characterCopy[0].id) as Item[];
+      const items_to_copy: Item[] = await this.characterView.getItems(characterCopy[0].id) as Item[];
 
       for(let item of items_to_copy) {
-        await this.characterService.insertItems(player[0].id, item.pid, item.sid, item.itemtype, item.count, item.attributes);
+        await this.character.insertItems(player[0].id, item.pid, item.sid, item.itemtype, item.count, item.attributes);
       };
 
       return ctx.response.status(200).send({ status: 200, message: 'Character created successfully!'});
@@ -85,7 +89,7 @@ export default class CharactersAccount {
 
   public async show({ request, response }: HttpContextContract) {
     try {
-      const characters = await this.characterService.getByAccount(request.param('id'));
+      const characters = await this.characterView.getByAccount(request.param('id'));
 
       return response.status(200).send({ result: characters});
     } catch(err) {

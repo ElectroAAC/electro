@@ -13,20 +13,24 @@ import {
 
 import { 
   AccountService,
-  CharacterService, 
+  Character,
+  CharacterRepository,
+  CharacterView,
   HouseService
 } from 'App/Services'
 
 import Env from '@ioc:Adonis/Core/Env'
 
 export default class PlayersController {
-  public characterService: CharacterService = new CharacterService();
+  public character: Character = new Character();
+  public characterRepository: CharacterRepository = new CharacterRepository();
+  public characterView: CharacterView = new CharacterView();
   public accountService: AccountService = new AccountService();
   public houseService: HouseService = new HouseService();
 
   public async show(ctx: HttpContextContract) {
     try {
-      const character = await this.characterService.findByName(ctx.request.param('name'));
+      const character = await this.characterView.findByName(ctx.request.param('name'));
 
       return ctx.response.status(200).send({ result: character});
     } catch(err) {
@@ -55,7 +59,7 @@ export default class PlayersController {
         });
       }
   
-      const character: Player[] = await this.characterService.findByIdAndAccount(data.character_id, account.id) as Player[];
+      const character: Player[] = await this.characterView.findByIdAndAccount(data.character_id, account.id) as Player[];
   
       if (!character.length)
         return ctx.response.status(404).send({ message: 'The character does not belong to your account.' });
@@ -63,7 +67,7 @@ export default class PlayersController {
       if (character[0].online === 1)
         return ctx.response.status(404).send({ message: 'The character cannot be online.' });
       
-      const updateCharacter = await this.characterService.updateName(data.character_id, data.new_name);
+      const updateCharacter = await this.character.updateName(data.character_id, data.new_name);
       
       await this.accountService.removePremiumPoints(account.id, Env.get('POINTS_TO_CHANGE_NAME'));
       
@@ -91,7 +95,7 @@ export default class PlayersController {
       if (!verifyPassword)
        return ctx.response.status(404).send({ message: 'Wrong password.' });
       
-      const character: Player[] = await this.characterService.findByIdAndAccount(data.character_id, account.id) as Player[];
+      const character: Player[] = await this.characterView.findByIdAndAccount(data.character_id, account.id) as Player[];
 
       if (!character.length)
         return ctx.response.status(404).send({ message: 'The character does not belong to your account.' });
@@ -107,7 +111,7 @@ export default class PlayersController {
       if (house.length) 
         return ctx.response.status(404).send({ message: 'You cannot delete a character that has a house.' });
       
-      const updateCharacter = await this.characterService.delete(data.character_id);
+      const updateCharacter = await this.characterRepository.delete(data.character_id);
 
       if (!updateCharacter)
         return ctx.response.status(404).send({ message: "Error. Unable to delete character. Probably problem with database. Please try again later or contact with admin." });
