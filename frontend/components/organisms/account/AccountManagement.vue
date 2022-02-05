@@ -4,6 +4,7 @@
       v-model="tab"
       icons-and-text
       centered
+      show-arrows
     >
       <v-tabs-slider color="primary"></v-tabs-slider>
 

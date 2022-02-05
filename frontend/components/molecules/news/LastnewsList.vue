@@ -15,11 +15,11 @@
       >
         <v-col class="text-center widget-title"> 
           <v-row>
-            <v-col cols="3"></v-col>
-            <v-col cols="6">
+            <v-col v-if="!$vuetify.breakpoint.mdAndDown" cols="3"></v-col>
+            <v-col :cols="!$vuetify.breakpoint.mdAndDown ? '6' : '8'">
               {{ post.title }} 
             </v-col>
-            <v-col cols="3">
+            <v-col :cols="!$vuetify.breakpoint.mdAndDown ? '3' : '4'">
               {{ formatDate(post.created_at) }}
             </v-col>
           </v-row>
@@ -79,7 +79,6 @@ export default Vue.extend({
 
       if (response.status === 200) {
         this.$set(this, 'newsData', response.data);
-        console.log(response.total);
         this.total = response.total;
         this.isLoading = false;
       }
@@ -94,7 +93,7 @@ export default Vue.extend({
       if (!date || date < 0) {
         return "";
       }
-      return moment().format("DD.MM.YYYY HH:mm:ss")
+      return moment(date).format("DD.MM.YYYY HH:mm:ss")
     }
   }
 })

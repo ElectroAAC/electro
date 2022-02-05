@@ -13,7 +13,14 @@
 <br>
 
 ##  👨🏾‍💻 Project documentation.
-<a href="https://walistonbelles1.gitbook.io/electroaac/" target="_blank"> Documentation </a>
+Learn all about the project through our documentation: <a href="https://walistonbelles1.gitbook.io/electroaac/" target="_blank"> Documentation </a>
+
+<br>
+
+##  👨🏾‍💻 Demo.
+Want to see the project better? Access our demo: <a href="http://www.electro-aac.org/" target="_blank"> Demo </a>
+
+<br>
 
 ## 👨🏾‍💻 Techs 
 
@@ -108,7 +115,7 @@ This repository follows the semantic commit pattern, with the addition of the ta
 <ul>
   <li> [x] Widget Highscores </li>
   <li> [x] Show Highscores </li>
-  <li> [ ] Create/Apply Filters </li>
+  <li> [x] Create/Apply Filters </li>
 </ul>
 
 ### Guilds
@@ -162,6 +169,17 @@ This repository follows the semantic commit pattern, with the addition of the ta
     <li> [x] List all post </li>
     <li> [x] Edit post </li>
     <li> [x] Delete post </li>
+  </ul>
+  <li> [x] Accounts </li>
+  <ul>
+    <li> [x] Find Account </li>
+    <li> [x] Change account information </li>
+    <li> [x] View all account characters </li>
+  </ul>
+  <li> [x] Players </li>
+  <ul>
+    <li> [x] Find Player </li>
+    <li> [x] Edit Info and Skills </li>
   </ul>
 </ul>
 

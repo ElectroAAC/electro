@@ -14,10 +14,26 @@ import { Paginate } from '@/models'
 })
 
 export default class Ranking extends VuexModule {
+  private type = "";
+
+  public get $type() {
+    return this.type;
+  }
+
+  @Mutation
+  private UPDATE_TYPE(type: string) {
+    this.type = type;
+  }
+
   @Action
-  public async getTopRank(payload: Paginate) {
+  public setType(type: string) {
+    this.context.commit('UPDATE_TYPE', type);
+  }
+
+  @Action
+  public async getTopRank(payload: { page: number, limit: number, type: string}) {
     try {
-      return await $axios.$get(`highscores/${payload.page}/${payload.limit}`)
+      return await $axios.$get(`highscores/${payload.page}/${payload.limit}/${payload.type || "Experience"}`)
         .then((response) => {
           if (!response) 
             throw new Error(response);

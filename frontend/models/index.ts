@@ -17,7 +17,9 @@ export {
 
 export { 
   TopPremiumPoints,
-  Vocations
+  Vocations,
+  Character,
+  CharacterSkills
 } from './Dashboard';
 
 export {

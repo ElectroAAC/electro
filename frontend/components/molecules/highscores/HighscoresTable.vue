@@ -43,14 +43,30 @@ export default Vue.extend({
   },
 
   computed: {
+    $type(): string {
+      return ranking.$type;
+    },
+
     getHeaders(): Object[] {
-      return [
+      const items = [
         { text: 'Rank', value: 'position', align: 'center', sortable: false },
         { text: 'Name', value: 'name', align: 'center', sortable: false },
-        { text: 'Level', value: 'level', align: 'center', sortable: false },
-        { text: 'Experience', value: 'experience', align: 'center', sortable: false },
       ];
-    }
+
+      if (this.$type === "Experience") {
+        items.push(
+          { text: 'Level', value: 'level', align: 'center', sortable: false }, 
+          { text: 'Experience', value: 'experience', align: 'center d-none d-sm-table-cell', sortable: false }
+        )
+      } else if (this.$type === "Frags") {
+        items.push({ text: 'Frags', value: 'value', align: 'center', sortable: false })
+      }
+      else {
+        items.push({ text: 'Skill', value: 'value', align: 'center', sortable: false })
+      }
+
+      return items;
+    },
   },
 
   watch: {
@@ -60,6 +76,10 @@ export default Vue.extend({
       },
       deep: true,
     },
+
+    $type(v) {
+      this.getPlayers();
+    }
   },
 
   methods: {
@@ -68,10 +88,7 @@ export default Vue.extend({
 
       const { page, itemsPerPage } = this.options;
       
-      const response = await ranking.getTopRank({
-        page,
-        limit: itemsPerPage
-      });
+      const response = await ranking.getTopRank({ page, limit: itemsPerPage, type: ranking.$type });
 
       if (response.status === 200) {
         this.$set(this, 'playersData', response.data);

@@ -1,6 +1,8 @@
 <template>
   <v-app-bar
     id="header"
+    :clipped-left="false"
+    fixed
     app
   >
     <CreateAccountDialog
@@ -36,7 +38,13 @@
     </v-row>
 
     <v-row v-else class="d-flex align-center justify-center header-text">
-      <MobileMenu />
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer, miniVariant = false" />
+
+      <MenuMobile 
+        :drawer="drawer"
+        :miniVariant="miniVariant"
+        @update-drawer="updateDrawer"
+      />
 
       <v-spacer></v-spacer>
 
@@ -59,6 +67,8 @@ export default {
   data() {
     return {
       dialog: false,
+      drawer: false,
+      miniVariant: false,
     }
   },
 
@@ -85,6 +95,10 @@ export default {
   methods: {
     updateDialog(this: any, status: boolean): void {
       this.$set(this, 'dialog', status);
+    },
+    
+    updateDrawer(this: any, status: boolean): void {
+      this.$set(this, 'drawer', status);
     },
 
     onLogout(this: any): void {

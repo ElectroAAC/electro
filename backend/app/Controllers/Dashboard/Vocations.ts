@@ -1,27 +1,19 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Database from '@ioc:Adonis/Lucid/Database'
+import { CharacterView } from 'App/Services';
 
 export default class PremiumPointsController {
-  public async show({ response, bouncer }: HttpContextContract) {
+  public characterView: CharacterView = new CharacterView();
+
+  public async show(ctx: HttpContextContract) {
     try {
-      await bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
 
-      const vocations = await Database
-        .from('players')
-        .select('vocation')
-        .count('* as total')
-        .groupBy('vocation');
+      const vocations = await this.characterView.getTotalVocations();
 
-      return response.status(200).send({ result: vocations});
+      return ctx.response.status(200).send({ result: vocations});
     } catch(err) {
       console.log('Error getTopPremiumPoints Query: ', err);
-      return response.status(400).send({ message: 'An error occurred, check the api console.'})
+      return ctx.response.status(400).send({ message: 'An error occurred, check the api console.'})
     }
   }
-
-  public async edit({}: HttpContextContract) {}
-
-  public async update({}: HttpContextContract) {}
-
-  public async destroy({}: HttpContextContract) {}
 }

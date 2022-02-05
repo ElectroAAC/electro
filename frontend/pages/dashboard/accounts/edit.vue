@@ -1,7 +1,5 @@
 <template>
-  <div>
-      Accounts
-  </div>
+  <DashboardEditAccountTemplate />
 </template>
 
 <script lang="ts">

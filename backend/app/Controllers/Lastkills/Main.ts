@@ -1,24 +1,26 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Database from '@ioc:Adonis/Lucid/Database'
+import { DeathService } from 'App/Services'
 
+interface Death {
+  player_name: String,
+  monster_name: String,
+  player_exists: Number
+}
 export default class LastKillsController {
-  public async show({ request, response }: HttpContextContract) {
+  public deathService: DeathService = new DeathService();
+
+  public async show(ctx: HttpContextContract) {
     try {
-      const { remote_url } = request.body();
+      const { remote_url } = ctx.request.body();
       
       let players_deaths_count = 0;
 
       const last_kills: Object[] = [];
 
-      const playersDeath = await Database
-        .from('player_deaths')
-        .innerJoin('players', 'players.id', 'player_deaths.player_id')
-        .select('player_deaths.id', 'player_deaths.date', 'player_deaths.level', 'players.name')
-        .orderBy('player_deaths.date', 'desc')
-        .paginate(request.param('page', 1), request.param('limit'));
+      const playersDeath: any = await this.deathService.getLastKills(ctx.request.param('page'), ctx.request.param('limit'));
       
       if (!playersDeath.length) {
-        return response.status(404).send({ message: 'There are no recorded deaths.' });
+        return ctx.response.status(404).send({ message: 'There are no recorded deaths.' });
       }
 
       for(let death of playersDeath) {
@@ -28,14 +30,7 @@ export default class LastKillsController {
         
         let killers_string = '<a href="'+ url_player + '">' + death.name + '</a> ';
 
-        const killers = await Database
-          .from('killers')
-          .leftJoin('environment_killers', 'environment_killers.kill_id', 'killers.id')
-          .leftJoin('player_killers', 'player_killers.kill_id', 'killers.id')
-          .leftJoin('players', 'players.id', 'player_killers.player_id')
-          .select('environment_killers.name AS monster_name', 'players.name AS player_name', 'players.deleted AS player_exists')
-          .where('killers.death_id', '=', death.id)
-          .orderBy('killers.final_hit', 'desc');
+        const killers: Death[] = await this.deathService.getKillers(death.id) as Death[];
 
         let i = 0;
         let count = killers.length;
@@ -91,10 +86,11 @@ export default class LastKillsController {
           world_id: 0
         })
       }
-      return response.status(200).send({ status: 200, total: playersDeath.lastPage, last_kills });
+
+      return ctx.response.status(200).send({ status: 200, total: playersDeath.lastPage, last_kills });
     } catch(err) {
       console.log('Error getPlayersDeaths Query: ', err);
-      return response.status(400).send({ error: 'An error occurred, check the api console.'});
+      return ctx.response.status(400).send({ error: 'An error occurred, check the api console.'});
     }
   }
 }

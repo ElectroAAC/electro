@@ -167,6 +167,11 @@
   border-color: var(--red) !important;
 }
 
+.btn-danger-secondary {
+  color: var(--red) !important;
+  border-color: var(--red) !important;
+}
+
 .container {
   width: 95% !important;
 }
@@ -204,12 +209,17 @@
   border-radius: 1.95rem;
 }
 
+.theme--light.v-tabs-dashboard > .v-tabs-bar {
+  background-color: #2a2c32 !important;
+}
+
 .theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active), .theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) > .v-icon, .theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) > .v-btn, .theme--light.v-tabs > .v-tabs-bar .v-tab--disabled {
   color: var(--text-color) !important;
 }
 
 .theme--light.v-tabs-items {
   background-color: var(--bg-main-color) !important;
+  color: var(--text-color) !important;
   border-radius: 1.95rem;
 }
 
@@ -315,7 +325,11 @@
   background-color: var(--bg-dashboard-main-color);
 }
 
-.theme--light.v-navigation-drawer {
+#dashboard h3 {
+  color: var(--heading-color) !important;
+}
+
+.dashboard-drawer {
   background-color: var(--bg-dashboard-main-color) !important;
 }
 
@@ -332,7 +346,7 @@
 }
 
 .dashboard-container {
-  background-color: var(--bg-dashboard-content-color) !important;
+  background-color: #2a2c32 !important;
   border-radius: 24px !important;
   box-shadow: 
     0px 2px 4px -1px rgb(0 0 0 / 28%), 
@@ -362,4 +376,34 @@
 
 .v-data-table--fixed-header > .v-data-table__wrapper > table > thead > tr > th {
   z-index: 0 !important;
+}
+
+.v-application--is-ltr .v-list-item__action:last-of-type:not(:only-child), .v-application--is-ltr .v-list-item__avatar:last-of-type:not(:only-child), .v-application--is-ltr .v-list-item__icon:last-of-type:not(:only-child) {
+  margin-left: 0px !important;
+}
+
+.v-application--is-ltr .v-list-group--no-action > .v-list-group__items > .v-list-item {
+  padding-left: 40px !important;
+}
+
+.btn-highscores {
+  color: var(--heading-color);
+}
+
+.theme--light.v-bottom-navigation {
+  background-color: inherit !important;
+  box-shadow: none !important;
+  color: var(--main-color) !important;
+}
+
+.theme--light.v-select .v-select__selections {
+  color: var(--heading-color) !important;
+}
+
+.theme--light.v-data-table .v-data-table__empty-wrapper {
+  color: var(--heading-color) !important;
+}
+
+.theme--light.v-btn.v-btn--has-bg {
+  background-color: transparent !important;
 }

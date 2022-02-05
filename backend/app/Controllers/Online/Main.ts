@@ -1,27 +1,24 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Database from '@ioc:Adonis/Lucid/Database'
+import { OnlineService } from 'App/Services'
 
 export default class OnlineController {
-  public async show({ response }: HttpContextContract) {
+  public onlineService: OnlineService = new OnlineService();
+
+  public async show(ctx: HttpContextContract) {
     try {
-      const playersOnline = await Database
-        .from('players')
-        .innerJoin('accounts', 'accounts.id', 'players.account_id')
-        .select('accounts.country', 'players.skull', 'players.skulltime', 'players.name', 'players.level', 'players.vocation')
-        .where('players.online', '>', '0')
-        .orderBy('experience', 'desc');
+      const playersOnline = await this.onlineService.getPlayersOnline();
       
-      const serverRecord = await Database.from('server_record').select('record', 'timestamp').where('world_id', '=', 0).orderBy('record', 'desc').limit(1)
+      const serverRecord = await this.onlineService.getRecord(0);
       
       const result = {
         serverRecord,
         playersOnline
       };
 
-      return response.status(200).send({ status: 200, result});
+      return ctx.response.status(200).send({ status: 200, result});
     } catch(err) {
       console.log('Error getPlayersOnline Query: ', err);
-      return response.status(400).send({ error: 'An error occurred, check the api console.'});
+      return ctx.response.status(400).send({ error: 'An error occurred, check the api console.'});
     }
   }
 }

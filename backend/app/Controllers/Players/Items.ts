@@ -1,21 +1,18 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Database from '@ioc:Adonis/Lucid/Database'
+import { ItemService } from 'App/Services'
 
 export default class PlayerItemsController {
-  public async show({ request, response }: HttpContextContract) {
+  public itemService: ItemService = new ItemService();
+
+  public async show(ctx: HttpContextContract) {
     try {
-      const items = await Database
-        .from('player_items')
-        .select('pid', 'itemtype')
-        .where('player_id', request.param('id'))
-        .andWhere('pid', '>', 0)
-        .andWhere('pid', '<', 11);
+      const items = await this.itemService.getCharacterEquipments(ctx.request.param('id'));
       
       const empty_slots = ["", "no_helmet", "no_necklace", "no_backpack", "no_armor", "no_handright", "no_handleft", "no_legs", "no_boots", "no_ring", "no_ammo"];
 
       const name_slots = ['', 'helmet', 'necklace', 'backpack', 'armor', 'handright', 'handleft', 'legs', 'boots', 'ring', 'ammo'];
       
-      const newOrder = [0, 2, 1, 3, 5, 4, 6, 8, 10, 7, 9 ]
+      const newOrder = [0, 2, 1, 3, 5, 4, 6, 8, 10, 7, 9];
 
       const equipment: Object[] = [];
 
@@ -46,10 +43,10 @@ export default class PlayerItemsController {
 
       newEquipment.shift();
 
-      return response.status(200).send({ result: newEquipment});
+      return ctx.response.status(200).send({ result: newEquipment});
     } catch(err) {
       console.log('Error getPlayerItems Query: ', err);
-      return response.status(400).send({ message: 'An error occurred, check the api console.'})
+      return ctx.response.status(400).send({ message: 'An error occurred, check the api console.'})
     }
   }
 }

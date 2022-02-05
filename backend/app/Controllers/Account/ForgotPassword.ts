@@ -5,8 +5,8 @@ import Mail from '@ioc:Adonis/Addons/Mail'
 import faker from 'faker'
 
 export default class UserForgotPasswordController {
-  public async store({ request }: HttpContextContract) {
-    const { email, redirectUrl } = await request.validate(StoreValidator)
+  public async store(ctx: HttpContextContract) {
+    const { email, redirectUrl } = await ctx.request.validate(StoreValidator)
 
     const account = await Account.findByOrFail('email', email)
 
@@ -24,12 +24,12 @@ export default class UserForgotPasswordController {
     })
   }
 
-  public async show({ params }: HttpContextContract) {
-    await AccountKey.findByOrFail('key', params.key)
+  public async show(ctx: HttpContextContract) {
+    await AccountKey.findByOrFail('key', ctx.params.key)
   }
 
-  public async update({ request }: HttpContextContract) {
-    const { key, password } = await request.validate(UpdateValidator)
+  public async update(ctx: HttpContextContract) {
+    const { key, password } = await ctx.request.validate(UpdateValidator)
 
     const accountKey = await AccountKey.findByOrFail('key', key)
 

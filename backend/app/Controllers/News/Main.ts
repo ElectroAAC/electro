@@ -1,20 +1,17 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Database from '@ioc:Adonis/Lucid/Database'
+import { NewsView } from 'App/Services'
 
 export default class NewsController {
-  public async show({ request, response }: HttpContextContract) {
+  public newsView: NewsView = new NewsView();
+
+  public async show(ctx: HttpContextContract) {
     try {
-      const news = await Database
-        .from('electro_news')
-        .select('id', 'title', 'body', 'created_at')
-        .where('hidden', '=', 0)
-        .orderBy('created_at', 'desc')
-        .paginate(request.param('page', 1), request.param('limit'));
+      const news = await this.newsView.getNews(ctx.request.param('page'), ctx.request.param('limit'));
       
-      return response.status(200).send({ status: 200, news });
+      return ctx.response.status(200).send({ status: 200, news });
     } catch(err) {
       console.log('Error getNews Query: ', err);
-      return response.status(400).send({ error: 'An error occurred, check the api console.'});
+      return ctx.response.status(400).send({ error: 'An error occurred, check the api console.'});
     }
   }
 }
