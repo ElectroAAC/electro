@@ -1,15 +1,16 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import { UpdateValidator } from 'App/Validators/Dashboard/Characters';
-import PlayerService from 'App/Services/Dashboard/PlayerService';
+import { CharacterView, CharacterRepository } from 'App/Services';
 
 export default class PlayersController {
-  public playerService: PlayerService = new PlayerService();
+  public characterView: CharacterView = new CharacterView();
+  public characterRepository: CharacterRepository = new CharacterRepository();
 
   public async index(ctx: HttpContextContract) {
     try {
       await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
 
-      const accounts = await this.playerService.index();
+      const accounts = await this.characterView.getTotalCharacters();
 
       return ctx.response.status(200).send({ result: accounts });
     } 
@@ -23,7 +24,7 @@ export default class PlayersController {
     try {
       await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
 
-      const character = await this.playerService.find(ctx.request.param('name'));
+      const character = await this.characterView.findByName(ctx.request.param('name'));
        
       if (!character.length) {
         return ctx.response.status(404).send({ message: "Character not found!" });
@@ -43,7 +44,7 @@ export default class PlayersController {
 
       const data = await ctx.request.validate(UpdateValidator);
       
-      const character = await this.playerService.update(data);
+      const character = await this.characterRepository.update(data);
       
       if (character !== "Character successfully updated.")
         return ctx.response.status(404).send({ message: character });

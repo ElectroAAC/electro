@@ -1,15 +1,16 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import { UpdateValidator } from 'App/Validators/Dashboard/CharacterSkills';
-import PlayerSkillsService from 'App/Services/Dashboard/PlayerSkillsService';
+import { Skill, SkillView } from 'App/Services';
 
 export default class PlayersController {
-  public playerSkillsService: PlayerSkillsService = new PlayerSkillsService();
+  public skill: Skill = new Skill();
+  public skillView: SkillView = new SkillView();
 
   public async show(ctx: HttpContextContract) {
     try {
       await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
 
-      const skills = await this.playerSkillsService.find(ctx.request.param('id'));
+      const skills = await this.skillView.getCharacterSkills(ctx.request.param('id'));
        
       if (!skills.length) {
         return ctx.response.status(404).send({ message: "Character not found!" });
@@ -28,12 +29,11 @@ export default class PlayersController {
 
       const data = await ctx.request.validate(UpdateValidator);
 
-      const updateSkills = await this.playerSkillsService.update(data);
+      for(let i = 0; i < 7; i++) {
+        await this.skill.updateCharacterSkill(data.id, data.skills[i]);
+      }
 
-      if (updateSkills !== "Skills successfully updated.")
-        return ctx.response.status(404).send({ message: updateSkills });
-
-      return ctx.response.status(200).send({ status: 200, message: updateSkills });
+      return ctx.response.status(200).send({ status: 200, message: "Skills successfully updated." });
     } catch (err) {
       console.log('Error updateCharacterSkills: ', err);
       return ctx.response.status(400).send({ message: 'An error occurred, check the api console.'})

@@ -110,6 +110,15 @@ class CharacterView {
       return err;
     }
   }
+
+  public async getTotalCharacters(): Promise<Object[]>  {
+    try {
+      return await Database.from('players').count('* as total');
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
   
   public async checkSkillId(character_id: number, skill_id: number): Promise<Object[]> {
     try {
@@ -133,6 +142,29 @@ class CharacterRepository {
   public async delete(character_id: number): Promise<Object[]> {
     try {
       return await Database.from('players').where('id', '=', character_id).update({ deleted: 1 });
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
+  public async update(data: { id: number, name: string }): Promise<String> {
+    try {
+      const character = await Database
+        .from('players')
+        .select('id')
+        .where('name', '=', data.name)
+        .andWhere('id', '<>', data.id);
+      
+      if (character.length)
+        return "Error. The username is already used.";
+        
+      const affectedRows = await Database.from('players').where('id', '=', data.id).update(data);
+
+      if (!affectedRows)
+        return "Character not found.";
+      
+      return "Character successfully updated.";
     } catch (err) {
       console.log(err);
       return err;

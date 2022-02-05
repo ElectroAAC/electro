@@ -14,5 +14,8 @@ export { default as ItemService } from './ItemService'
 export { default as HouseService } from './HouseService'
 export { default as NewsService } from './NewsService'
 export { default as OnlineService } from './OnlineService'
-export { default as SkillService } from './SkillService'
+export { 
+  Skill,
+  SkillView
+} from './SkillService'
 export { default as StorageService } from './StorageService'
