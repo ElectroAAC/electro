@@ -1,6 +1,7 @@
 <template>
   <div>
-    <Title text="View Guild"/>
+    <Title text="Manage Guild" />
+
     <v-container>
       <div v-if="isLoading" class="text-center">
         <v-progress-circular
@@ -14,8 +15,8 @@
         text="Guild not found"
         to="/guilds"
       />
-      
-      <GuildView v-else />
+
+      <GuildManage v-else/>
     </v-container>
   </div>
 </template>
@@ -37,10 +38,6 @@ export default Vue.extend({
       if (this.$route.params && this.$route.params.name)
         return this.$route.params.name;
     },
-
-    $guild() {
-      return guild.$guild;
-    }
   },
   
   async mounted(this: any) {

@@ -17,7 +17,7 @@
           text 
           class="btn btn-success-secondary"
         >
-          Manage Guild
+          <NuxtLink :to="`/guild/manage/${$guild.info.name}`"> Manage Guild </NuxtLink>
         </v-btn>
       </v-col>
     </v-col>
