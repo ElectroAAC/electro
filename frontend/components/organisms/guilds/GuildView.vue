@@ -1,11 +1,7 @@
 <template>
   <v-row class="mt-2">
 
-    <h2> LOGO </h2>
-    <v-spacer></v-spacer>
-    <h2> {{ $guild.info.name }} </h2> 
-    <v-spacer></v-spacer>
-    <h2> LOGO </h2>
+    <GuildHeader />
 
     <v-col cols="12">
       <GuildInformation />

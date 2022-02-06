@@ -11,6 +11,15 @@
       <p>
         The guild was founded on {{ date() }}
       </p>
+      
+      <v-col v-if="$guild.guild_leader" class="text-center" cols="12">
+        <v-btn 
+          text 
+          class="btn btn-success-secondary"
+        >
+          Manage Guild
+        </v-btn>
+      </v-col>
     </v-col>
   </v-container>
 </template>
@@ -22,7 +31,7 @@ import { guild } from '@/store'
 
 export default Vue.extend({
   computed: {
-    $guild() {
+    $guild(): any {
       return guild.$guild;
     }
   },
