@@ -52,8 +52,9 @@ class GuildView {
     try {
       return await Database
         .from('guild_ranks')
-        .select('id')
-        .where('guild_id', '=', guild_id);
+        .select('id', 'level')
+        .where('guild_id', '=', guild_id)
+        .orderBy('level', 'desc');
     } catch (err) {
       console.log(err);
       return err;
@@ -67,6 +68,7 @@ class GuildView {
         .innerJoin('players', 'players.rank_id', 'guild_ranks.id')
         .select(
           'guild_ranks.level',
+          'guild_ranks.id as rank_id',
           'guild_ranks.name as rank_name',
           'players.id',
           'players.name',

@@ -10,7 +10,13 @@ import { Player } from 'App/Models';
 
 interface Guild {
   id: number,
-  rank_id: number
+  rank_id: number,
+  owner_id: number
+}
+
+interface Rank {
+  id: number,
+  level: number
 }
 export default class GuildsController {
   public character: Character = new Character();
@@ -30,6 +36,7 @@ export default class GuildsController {
   }
 
   public async create(ctx: HttpContextContract) {
+    
     const data = await ctx.request.validate(StoreValidator);
     
     const account = ctx.auth.user;
@@ -87,20 +94,56 @@ export default class GuildsController {
     try {
       const guild = await this.guildView.getGuildByName(ctx.request.param('name')) as Guild[];
 
+      const guildRanks = await this.guildView.getGuildRanks(guild[0].id) as Rank[];
+
+      let guild_leader = false;
+      let guild_vice = false;
+      let level_guild = 0;
+
+      const players_from_account_in_guild: Number[] = [];
+      const players_from_account_ids: Number[] = [];
+
       if (!guild.length) {
         return ctx.response.status(404).send({ message: "Guild not found." });
       }
-      
-      const guildRanks = await this.guildView.getGuildRanks(guild[0].id);
+
+      const account = ctx.auth.use('api').user!;
+
+      if (account) {
+        const characters_to_account = await this.characterView.getByAccount(account.id) as Player[];
+        for (let character of characters_to_account) {
+          players_from_account_ids.push(character.id);
+          if (character.rank_id > 0) {
+            for (let rank of guildRanks) {
+              if (character.rank_id === rank.id) {
+                players_from_account_in_guild.push(character.id);
+
+                if (guild[0].owner_id = character.id) {
+                  guild_leader = true;
+                  guild_vice = true;
+                } else if (rank.level > 1) {
+                  guild_vice = true;
+                  level_guild = rank.level;
+                }
+              }
+            }
+          }
+        };
+      }
 
       const memberList = await this.guildView.getGuildMembers(guild[0].id);
-      
+
       const result = {
         info: guild[0],
+        guild_leader,
+        guild_vice,
+        level_guild,
+        players_from_account_in_guild,
+        players_from_account_ids,
         guild_rank: guildRanks,
         guild_members: memberList
       }
-      
+
       return ctx.response.status(200).send({ status: 200, result });
     } catch(err) {
       console.log('Error getGuild Query: ', err);

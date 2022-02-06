@@ -94,7 +94,7 @@ class CharacterView {
     try {
       return await Database
         .from('players')
-        .select('id', 'level', 'name', 'deleted', 'online', 'vocation')
+        .select('id', 'level', 'name', 'deleted', 'online', 'vocation', 'rank_id')
         .where('account_id', '=', account_id);
     } catch (err) {
       console.log(err);
