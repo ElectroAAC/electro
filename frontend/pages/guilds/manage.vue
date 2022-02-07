@@ -1,3 +1,3 @@
 <template>
-  <GuildManageTemplate />
+  <ManageGuildTemplate />
 </template>

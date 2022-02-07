@@ -15,7 +15,7 @@
         to="/guilds"
       />
       
-      <GuildView v-else />
+      <ViewGuild v-else />
     </v-container>
   </div>
 </template>

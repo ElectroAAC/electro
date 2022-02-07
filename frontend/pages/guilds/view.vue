@@ -1,3 +1,3 @@
 <template>
-  <GuildViewTemplate />
+  <ViewGuildTemplate />
 </template>

@@ -84,3 +84,36 @@ export const characterGroups = [
   { value: 5, text: "CM" },
   { value: 6, text: "Admin" },
 ]
+
+export const guildActions = [
+  {
+    icon: 'mdi-kabaddi',
+    to: '',
+    text: 'Pass Leadership',
+    description: 'Pass leadership of guild to other guild member.'
+  },
+  {
+    icon: 'mdi-clipboard-text-outline',
+    to: '',
+    text: 'Change Description',
+    description: 'Delete guild, kick all members.'
+  },
+  {
+    icon: 'mdi-text',
+    to: '',
+    text: 'Change MOTD',
+    description: 'Change MOTD of guild.'
+  },
+  {
+    icon: 'mdi-image-outline',
+    to: '',
+    text: 'Change Logo',
+    description: 'Upload new guild logo.'
+  },
+  {
+    icon: 'mdi-delete-outline',
+    to: '',
+    text: 'Delete Guild',
+    description: 'Delete guild, kick all members.'
+  },
+]

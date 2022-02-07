@@ -16,7 +16,7 @@
         to="/guilds"
       />
 
-      <GuildManage v-else/>
+      <ManageGuild v-else/>
     </v-container>
   </div>
 </template>

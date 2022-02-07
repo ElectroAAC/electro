@@ -16,8 +16,9 @@
         <v-btn 
           text 
           class="btn btn-success-secondary"
+          @click="goToManage"
         >
-          <NuxtLink :to="`/guild/manage/${$guild.info.name}`"> Manage Guild </NuxtLink>
+          Manage Guild
         </v-btn>
       </v-col>
     </v-col>
@@ -39,6 +40,9 @@ export default Vue.extend({
   methods: {
     date(this: any) {
       return moment(this.$guild.info.creation_data * 1000).format("LL");
+    },
+    goToManage(): void {
+      this.$router.replace(`/guild/manage/${this.$guild.info.name}`);
     }
   }
 })
