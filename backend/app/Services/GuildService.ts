@@ -141,6 +141,15 @@ class Guild extends GuildView{
     }
   }
 
+  public async updateDescription(guild_id: number, description: string): Promise<Object[]> {  
+    try {
+      return await Database.from('guilds').where('id', '=', guild_id).update({ description });
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
   public async updateMotd(guild_id: number, motd: string): Promise<Object[]> {  
     try {
       return await Database.from('guilds').where('id', '=', guild_id).update({ motd });
