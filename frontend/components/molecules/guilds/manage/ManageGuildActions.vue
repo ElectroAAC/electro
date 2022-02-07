@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="pb-5 actions-guild">
     <v-row v-if="!$vuetify.breakpoint.xsOnly" class="text-center pa-1">
       <v-col cols="4">
         Action
@@ -51,3 +51,10 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.actions-guild {
+  border: 2px solid cyan;
+  border-radius: 1rem;
+}
+</style>

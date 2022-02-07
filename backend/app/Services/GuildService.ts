@@ -1,4 +1,6 @@
 import Database from '@ioc:Adonis/Lucid/Database'
+import { Guild as GuildModel, Player } from 'App/Models';
+import { CharacterView } from 'App/Services'
 
 class GuildView {
   public async getTotalGuilds(): Promise<Object[]> {  
@@ -110,6 +112,45 @@ class GuildView {
   }
 }
 
+class Guild extends GuildView{
+  public characterView: CharacterView = new CharacterView();
+
+  public async isLeader(account_id: number, guild_id: number): Promise<Boolean> {  
+    try {
+      const characters_to_account = await this.characterView.getByAccount(account_id) as Player[];
+      const guildRanks = await this.getGuildRanks(guild_id) as GuildModel[];
+      const guilds = await this.getGuildById(guild_id) as GuildModel[];
+      let guild_leader = false;
+
+      for (let character of characters_to_account) {
+        if (character.rank_id > 0) {
+          for (let rank of guildRanks) {
+            if (character.rank_id === rank.id) {
+              if (guilds[0].ownerid = character.id) {
+                guild_leader = true;
+              }
+            }
+          }
+        }
+      };
+
+      return guild_leader;
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
+  public async updateMotd(guild_id: number, motd: string): Promise<Object[]> {  
+    try {
+      return await Database.from('guilds').where('id', '=', guild_id).update({ motd });
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+}
+
 class GuildRepository {
   public async create(newGuild: object): Promise<Number> {  
     try {
@@ -121,4 +162,4 @@ class GuildRepository {
   }
 }
 
-export { GuildView, GuildRepository}
+export { Guild, GuildView, GuildRepository}

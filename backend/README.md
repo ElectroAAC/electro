@@ -107,6 +107,7 @@ $ npm run start
 | GET    | /guild/view/:name          | Get guild info                        |
 | GET    | /guild/players-with-guild  | Get guild info                        |
 | POST   | /guild/create-guild        | Create Guild                          |
+| POST   | /guild/change-motd         | Change Motd                           |
 
 <br>
 
