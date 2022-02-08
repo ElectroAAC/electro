@@ -1,8 +1,11 @@
 import Database from '@ioc:Adonis/Lucid/Database'
 import { Guild as GuildModel, Player } from 'App/Models';
-import { CharacterView } from 'App/Services'
+import { Character, CharacterView } from 'App/Services'
 
 class GuildView {
+  public character: Character = new Character();
+  public characterView: CharacterView = new CharacterView();
+
   public async getTotalGuilds(): Promise<Object[]> {  
     try {
       return await Database
@@ -112,9 +115,7 @@ class GuildView {
   }
 }
 
-class Guild extends GuildView{
-  public characterView: CharacterView = new CharacterView();
-
+class Guild extends GuildView {
   public async isLeader(account_id: number, guild_id: number): Promise<Boolean> {  
     try {
       const characters_to_account = await this.characterView.getByAccount(account_id) as Player[];
@@ -160,10 +161,43 @@ class Guild extends GuildView{
   }
 }
 
-class GuildRepository {
+class GuildRepository extends GuildView {
+
   public async create(newGuild: object): Promise<Number> {  
     try {
       return await Database.table('guilds').returning('id').insert(newGuild);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
+  public async deleteRank(rank_id: number): Promise<Object> {  
+    try {
+      return await Database
+        .from('guild_ranks')
+        .where('id', rank_id)
+        .delete();
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
+  public async delete(guild_id: number): Promise<Object> {
+    try {
+      const guildMembers = await this.getGuildMembers(guild_id) as Player[];
+      const guildRanks = await this.getGuildRanks(guild_id) as GuildModel[];
+
+      for (let member of guildMembers) {
+        await this.character.updateRankId(member.id, 0);
+      }
+
+      for (let rank of guildRanks) {
+        await this.deleteRank(rank.id);
+      }
+
+      return await Database.from('guilds').where('id', guild_id).delete();
     } catch (err) {
       console.log(err);
       return err;

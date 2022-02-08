@@ -5,8 +5,8 @@ export default class MotdValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    account_id: schema.number([rules.exists({ table: 'accounts', column: 'id'})]),
-    guild_id: schema.number([rules.exists({ table: 'guilds', column: 'id'})]),
+    account_id: schema.number([ rules.required(), rules.exists({ table: 'accounts', column: 'id'})]),
+    guild_id: schema.number([ rules.required(), rules.exists({ table: 'guilds', column: 'id'})]),
     motd: schema.string({ escape: true }, [
       rules.required(),
       rules.maxLength(255),
