@@ -23,11 +23,11 @@ export default class ManageController {
     try {
       const data = await ctx.request.validate(LeadershipValidator);
 
-      const isLeader = await this.guild.isLeader(data.account_id, data.guild_id);
+      const isLeader = await this.guild.isOwner(data.account_id, data.guild_id);
       let isMember = false;
 
       if (!isLeader)
-        return ctx.response.status(404).send({ message: "You cannot manage a guild that is not yours." });
+        return ctx.response.status(404).send({ message: "You are not the guild owner." });
 
       const character = await this.characterView.isOffline(data.new_leader_id);
 
@@ -52,7 +52,7 @@ export default class ManageController {
       if (!affectedRows)
         return ctx.response.status(404).send({ message: "An error occurred while passing guild leadership. Contact the administrator."});
 
-      return ctx.response.status(200).send({ status: 200, result: "Guild MOTD successfully updated!" });
+      return ctx.response.status(200).send({ status: 200, result: "Leadership transferred successfully!" });
     } catch(err) {
       console.log('Error getGuilds: ', err);
       return ctx.response.status(400).send({ message: err })
