@@ -128,6 +128,15 @@ class CharacterView {
       return err;
     }
   }
+  
+  public async isOffline(character_id: number): Promise<Object[]> {
+    try {
+      return await Database.from('players').select('online').where('id', '=', character_id).andWhere('online', '=', 0);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
 
   public async getTotalVocations(): Promise<Object[]>  {
     try {
