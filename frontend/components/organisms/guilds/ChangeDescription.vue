@@ -6,7 +6,7 @@
   >
     <v-row class="mt-2">
       <v-col v-if="isLeader" cols="12">
-        <ChangeMotdForm />
+        <ChangeDescriptionForm />
       </v-col>
 
       <v-col v-else class="text-center" cols="12">
@@ -61,15 +61,15 @@ export default Vue.extend({
     },
     
     async onUpdate(this: any): Promise<void> {
-      const result = await manageGuild.changeMotd({
+      const result = await manageGuild.changeDescription({
         account_id: account.$account.id,
         guild_id: this.$guild.info.id,
-        motd: this.$guild.info.motd
+        description: this.$guild.info.description
       });
 
       if (result.status === 200) {
         this.$toast.success(
-          'Guild MOTD successfully updated!',
+          'Guild Description successfully updated!',
           {
             keepOnHover: true,
             duration: 2000,

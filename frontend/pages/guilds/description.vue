@@ -1,0 +1,3 @@
+<template>
+  <ChangeDescriptionGuildTemplate />
+</template>

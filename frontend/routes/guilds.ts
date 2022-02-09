@@ -3,6 +3,7 @@ import View from '@/pages/guilds/view.vue'
 import Create from '@/pages/guilds/create.vue'
 import Manage from '@/pages/guilds/manage.vue'
 import ChangeMotd from '@/pages/guilds/motd.vue'
+import ChangeDescription from '@/pages/guilds/description.vue'
 
 export default [
   {
@@ -43,6 +44,14 @@ export default [
     name: 'Change MOTD',
     meta: {
       name: 'Change MOTD'
+    }
+  },
+  {
+    path: '/guild/manage/:name/change-description',
+    component: ChangeDescription,
+    name: 'Change Description',
+    meta: {
+      name: 'Change Description'
     }
   },
 ]
