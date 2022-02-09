@@ -88,7 +88,7 @@ export const characterGroups = [
 export const guildActions = [
   {
     icon: 'mdi-kabaddi',
-    to: '',
+    to: 'pass-leadership',
     text: 'Pass Leadership',
     description: 'Pass leadership of guild to other guild member.'
   },

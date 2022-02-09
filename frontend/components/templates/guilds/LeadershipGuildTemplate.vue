@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Title text="Change MOTD" />
+    <Title text="Pass Leadership" />
 
     <v-container>
       <div v-if="isLoading" class="text-center">
@@ -13,7 +13,7 @@
         to="/guilds"
       />
 
-      <ChangeMotd v-else/>
+      <Leadership v-else/>
     </v-container>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Title text="Manage Guild" />
+    <Title text="Change Description" />
 
     <v-container>
       <div v-if="isLoading" class="text-center">

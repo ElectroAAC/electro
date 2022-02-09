@@ -4,6 +4,7 @@ import Create from '@/pages/guilds/create.vue'
 import Manage from '@/pages/guilds/manage.vue'
 import ChangeMotd from '@/pages/guilds/motd.vue'
 import ChangeDescription from '@/pages/guilds/description.vue'
+import Leadership from '@/pages/guilds/leadership.vue'
 
 export default [
   {
@@ -52,6 +53,14 @@ export default [
     name: 'Change Description',
     meta: {
       name: 'Change Description'
+    }
+  },
+  {
+    path: '/guild/manage/:name/pass-leadership',
+    component: Leadership,
+    name: 'Pass Leadership',
+    meta: {
+      name: 'Pass Leadership'
     }
   },
 ]

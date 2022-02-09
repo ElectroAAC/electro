@@ -94,6 +94,8 @@ export default class GuildsController {
     try {
       const guild = await this.guildView.getGuildByName(ctx.request.param('name')) as Guild[];
 
+      console.log(guild);
+
       const guildRanks = await this.guildView.getGuildRanks(guild[0].id) as Rank[];
 
       let guild_leader = false;
@@ -118,7 +120,7 @@ export default class GuildsController {
               if (character.rank_id === rank.id) {
                 players_from_account_in_guild.push(character.id);
 
-                if (guild[0].owner_id = character.id) {
+                if (guild[0].owner_id === character.id) {
                   guild_leader = true;
                   guild_vice = true;
                 } else if (rank.level > 1) {
