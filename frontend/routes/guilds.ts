@@ -2,6 +2,7 @@ import Guilds from '@/pages/guilds/index.vue'
 import View from '@/pages/guilds/view.vue'
 import Create from '@/pages/guilds/create.vue'
 import Manage from '@/pages/guilds/manage.vue'
+import ChangeMotd from '@/pages/guilds/motd.vue'
 
 export default [
   {
@@ -34,6 +35,14 @@ export default [
     name: 'Manage Guild',
     meta: {
       name: 'Manage Guild'
+    }
+  },
+  {
+    path: '/guild/manage/:name/change-motd',
+    component: ChangeMotd,
+    name: 'Change MOTD',
+    meta: {
+      name: 'Change MOTD'
     }
   },
 ]

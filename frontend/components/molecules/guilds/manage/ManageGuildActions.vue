@@ -17,12 +17,14 @@
       align="center"
     >
       <v-col class="pa-1 text-center" :cols="getColsAction">
-        <v-btn 
-          text 
-          class="btn btn-success-secondary"
-        >
-          {{ action.text }}
-        </v-btn>
+        <NuxtLink :to="`/guild/manage/${$guild.info.name}/${action.to}`">
+          <v-btn 
+            text 
+            class="btn btn-success-secondary"
+          >
+            {{ action.text }} 
+          </v-btn>
+        </NuxtLink>
       </v-col>
 
       <v-col  v-if="!$vuetify.breakpoint.xsOnly" class="pa-1" :cols="getColsDescription">
@@ -34,10 +36,15 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { guild } from '@/store'
 import { guildActions } from '@/utils/enum'
 
 export default Vue.extend({
   computed: {
+    $guild() {
+      return guild.$guild;
+    },
+
     getActions() {
       return guildActions;
     },

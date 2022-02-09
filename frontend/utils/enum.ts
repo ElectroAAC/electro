@@ -100,7 +100,7 @@ export const guildActions = [
   },
   {
     icon: 'mdi-text',
-    to: '',
+    to: 'change-motd',
     text: 'Change MOTD',
     description: 'Change MOTD of guild.'
   },

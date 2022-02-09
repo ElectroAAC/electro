@@ -7,8 +7,8 @@ import {
 import { $axios } from '@/utils/nuxt-instance'
 
 interface ChangeMotd {
-  account_id: number,
-	guild_i: number,
+  account_id: Number,
+	guild_id: number,
 	motd: string
 }
 

@@ -42,6 +42,7 @@ class GuildView {
           'guilds.id', 
           'guilds.name', 
           'guilds.description', 
+          'guilds.motd', 
           'guilds.ownerid as owner_id', 
           'guilds.creationdata as creation_data',
           'players.name as owner_name',
