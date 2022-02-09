@@ -6,10 +6,7 @@
       
       <div v-else>
         <div v-if="isLoading" class="text-center">
-          <v-progress-circular
-            indeterminate
-            color="primary"
-          ></v-progress-circular>
+          <Loading  style="width: 50% !important;" />
         </div>
 
         <Character v-else-if="$character" />

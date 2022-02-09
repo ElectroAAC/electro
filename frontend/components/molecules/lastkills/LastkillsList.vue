@@ -1,10 +1,7 @@
 <template>
   <v-container>
     <div v-if="isLoading" class="text-center">
-      <v-progress-circular
-        indeterminate
-        color="primary"
-      ></v-progress-circular>
+      <Loading  style="width: 50% !important;" />
     </div>
 
     <div v-else> 
@@ -43,7 +40,7 @@ export default Vue.extend({
   },
 
   computed: {
-    deathList(): { name: String, description: String }[] {
+    deathList(): { time: number, killers_string: string }[] {
       return this.deathsData;
     }
   },
