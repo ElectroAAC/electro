@@ -94,8 +94,6 @@ export default class GuildsController {
     try {
       const guild = await this.guildView.getGuildByName(ctx.request.param('name')) as Guild[];
 
-      console.log(guild);
-
       const guildRanks = await this.guildView.getGuildRanks(guild[0].id) as Rank[];
 
       let guild_leader = false;

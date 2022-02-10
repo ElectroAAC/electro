@@ -5,6 +5,7 @@ import Manage from '@/pages/guilds/manage.vue'
 import ChangeMotd from '@/pages/guilds/motd.vue'
 import ChangeDescription from '@/pages/guilds/description.vue'
 import Leadership from '@/pages/guilds/leadership.vue'
+import Delete from '@/pages/guilds/delete.vue'
 
 export default [
   {
@@ -61,6 +62,14 @@ export default [
     name: 'Pass Leadership',
     meta: {
       name: 'Pass Leadership'
+    }
+  },
+  {
+    path: '/guild/manage/:name/delete',
+    component: Delete,
+    name: 'Delete',
+    meta: {
+      name: 'Delete'
     }
   },
 ]

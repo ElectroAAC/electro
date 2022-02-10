@@ -1,5 +1,5 @@
 <template>
-  <lottie-animation path="./404-error.json" />
+  <lottie-animation path="./delete.json" :speed="2"/>
 </template>
 
 <script lang="ts">

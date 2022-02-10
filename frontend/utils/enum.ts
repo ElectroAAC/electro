@@ -112,7 +112,7 @@ export const guildActions = [
   },
   {
     icon: 'mdi-delete-outline',
-    to: '',
+    to: 'delete',
     text: 'Delete Guild',
     description: 'Delete guild, kick all members.'
   },

@@ -10,16 +10,5 @@ export default Vue.extend({
   components: {
     LottieAnimation
   },
-
-  data() {
-    return {
-      options: [
-        {
-          name: "error",
-          path: "./404-error.json",
-        },
-      ],
-    };
-  },
 })
 </script>

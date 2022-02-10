@@ -24,6 +24,11 @@ interface PassLeadership {
 	new_leader_id: number
 }
 
+interface DeleteGuild {
+  account_id: Number,
+	guild_id: number
+}
+
 @Module({
   name: 'guilds/manage',
   stateFactory: true,
@@ -84,6 +89,30 @@ export default class ManageGuild extends VuexModule {
   public async passLeadership(payload: PassLeadership) {
     try {
       return await $axios.$post('guild/pass-leadership', payload)
+        .then((response) => {
+          if (!response) 
+            throw new Error(response);
+          
+          return {
+            status: response.status,
+            message: response.result
+          };
+        })
+        .catch(({ response }) => {
+          return {
+            status: 404,
+            message: response.data.errors[0].message
+          };
+        });
+    } catch(err) {
+      return err;
+    }
+  }
+
+  @Action
+  public async delete(payload: DeleteGuild) {
+    try {
+      return await $axios.$post('guild/delete', payload)
         .then((response) => {
           if (!response) 
             throw new Error(response);
