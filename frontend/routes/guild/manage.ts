@@ -1,37 +1,10 @@
-import Guilds from '@/pages/guilds/index.vue'
-import View from '@/pages/guilds/view.vue'
-import Create from '@/pages/guilds/create.vue'
-import Manage from '@/pages/guilds/manage.vue'
-import ChangeMotd from '@/pages/guilds/motd.vue'
-import ChangeDescription from '@/pages/guilds/description.vue'
-import Leadership from '@/pages/guilds/leadership.vue'
-import Delete from '@/pages/guilds/delete.vue'
+import Manage from '~/pages/guilds/manage/manage.vue'
+import ChangeMotd from '~/pages/guilds/manage/motd.vue'
+import ChangeDescription from '~/pages/guilds/manage/description.vue'
+import Leadership from '~/pages/guilds/manage/leadership.vue'
+import Delete from '~/pages/guilds/manage/delete.vue'
 
 export default [
-  {
-    path: '/guilds',
-    component: Guilds,
-    name: 'Guilds',
-    meta: {
-      name: 'guilds'
-    }
-  },
-  {
-    path: '/guilds/view/:name',
-    component: View,
-    name: 'View Guild',
-    meta: {
-      name: 'View Guild'
-    }
-  },
-  {
-    path: '/guilds/create',
-    component: Create,
-    name: 'Create Guild',
-    meta: {
-      name: 'Create Guild'
-    }
-  },
   {
     path: '/guild/manage/:name',
     component: Manage,

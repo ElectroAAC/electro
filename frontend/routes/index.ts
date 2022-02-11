@@ -7,7 +7,7 @@ import Download from '~/pages/download.vue';
 import Dashboard from '~/routes/dashboard/index'
 import Account from '~/routes/account'
 import Character from '~/routes/character'
-import Guilds from '~/routes/guilds'
+import Guilds from '~/routes/guild/main'
 
 export default [
   {
