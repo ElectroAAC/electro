@@ -237,6 +237,19 @@ class Guild extends GuildView {
     }
   }
 
+  public async removeInvite(guild_id: number, player_id: number): Promise<Object[]> {  
+    try {
+      return await Database
+        .from('guild_invites')
+        .where('player_id', player_id)
+        .andWhere('guild_id', guild_id)
+        .delete();
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
   public async updateDescription(guild_id: number, description: string): Promise<Object[]> {  
     try {
       return await Database.from('guilds').where('id', '=', guild_id).update({ description });

@@ -1,5 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { 
+  DeleteValidator,
   StoreValidator
 } from 'App/Validators/Guilds/Invite'
 
@@ -41,6 +42,32 @@ export default class InviteController {
       return ctx.response.status(200).send({ status: 200, result: "Invitation sent successfully!" });
     } catch(err) {
       console.log('Error sendInvitation: ', err);
+      return ctx.response.status(400).send({ message: err })
+    }
+  }
+
+  public async delete(ctx: HttpContextContract) {
+    try {
+      const data = await ctx.request.validate(DeleteValidator);
+
+      const isLeaderOrVice = await this.guild.isLeaderOrVice(data.account_id, data.guild_id);
+
+      if (!isLeaderOrVice)
+        return ctx.response.status(404).send({ message: "You are not a leader or vice leader of guild."});
+      
+      const alreadyInvited = await this.guild.alreadyInvited(data.guild_id, data.character_invitation);
+      
+      if (!alreadyInvited)
+        return ctx.response.status(404).send({ message: "The player has not been invited to your guild."});
+      
+      const affectedRows = await this.guild.removeInvite(data.guild_id, data.character_invitation);
+
+      if (!affectedRows)
+        return ctx.response.status(404).send({ message: "An error occurred while removing the player's invite to the guild. Contact the administrator."});
+
+      return ctx.response.status(200).send({ status: 200, result: "Invitation canceled successfully!" });
+    } catch(err) {
+      console.log('Error cancelInvitation: ', err);
       return ctx.response.status(400).send({ message: err })
     }
   }
