@@ -103,6 +103,8 @@ export default class GuildsController {
       const players_from_account_in_guild: Number[] = [];
       const players_from_account_ids: Number[] = [];
 
+      let invites: Object[] = [];
+
       if (!guild.length) {
         return ctx.response.status(404).send({ message: "Guild not found." });
       }
@@ -111,6 +113,8 @@ export default class GuildsController {
 
       if (account) {
         const characters_to_account = await this.characterView.getByAccount(account.id) as Player[];
+        invites = await this.guildView.getInvitationsByAccount(guild[0].id, account.id);
+
         for (let character of characters_to_account) {
           players_from_account_ids.push(character.id);
           if (character.rank_id > 0) {
@@ -141,7 +145,8 @@ export default class GuildsController {
         players_from_account_in_guild,
         players_from_account_ids,
         guild_rank: guildRanks,
-        guild_members: memberList
+        guild_members: memberList,
+        invites
       }
 
       return ctx.response.status(200).send({ status: 200, result });

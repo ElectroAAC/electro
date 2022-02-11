@@ -127,6 +127,21 @@ class GuildView {
     }
   }
 
+  public async getInvitationsByAccount(guild_id: number, account_id: number): Promise<Object[]> {  
+    try {
+      return await Database
+        .from('players')
+        .leftJoin('accounts', 'accounts.id', 'players.account_id')
+        .leftJoin('guild_invites', 'guild_invites.player_id', 'players.id')
+        .select('players.id', 'players.name')
+        .where('guild_invites.guild_id', '=', guild_id)
+        .andWhere('accounts.id', '=', account_id);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
   public async getCharactersWithGuild(account_id: number): Promise<Object[]> {  
     try {
       return await Database
