@@ -17,7 +17,7 @@ class Character {
 
   public async insertItems(character_id: number, pid: number, sid: number, itemtype: number, count: number, attributes: string): Promise<Number> {
     try {
-      return await Database.table('player_skills').insert({
+      return await Database.table('player_items').insert({
         player_id: character_id,
         pid,
         sid,
