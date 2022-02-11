@@ -1,7 +1,5 @@
 <template>
   <v-row class="text-center pa-5">
-    {{ $invite }}
-
     <v-col cols="12">
       <v-text-field
         v-model="name"

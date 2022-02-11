@@ -24,4 +24,8 @@ export interface Guild {
     player_level: Number,
     online: Number
   }[];
+  invites: {
+    id: Number,
+		name: String
+  }[];
 }

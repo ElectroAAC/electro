@@ -5,6 +5,7 @@
 
     <v-col cols="12">
       <GuildInformation />
+
       <GuildMembers />
     </v-col>
 

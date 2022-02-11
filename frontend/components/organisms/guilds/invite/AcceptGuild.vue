@@ -5,12 +5,8 @@
     @submit.prevent="validate"
   >
     <v-row v-if="!isSuccess" class="mt-2">
-      <v-col v-if="isLeaderOrVice" cols="12">
-        <InvitePlayerForm />
-      </v-col>
-
-      <v-col v-else class="text-center" cols="12">
-        You are not a leader or vice leader of guild.
+      <v-col cols="12">
+        <AcceptGuildForm />
       </v-col>
 
       <v-col class="text-center" cols="12">
@@ -19,7 +15,7 @@
           class="mr-2 btn btn-success-primary"
           @click="validate"
         >
-          Invite
+          Accept
         </v-btn>
 
         <v-btn 
@@ -66,15 +62,15 @@ export default Vue.extend({
     },
     
     async onUpdate(this: any): Promise<void> {
-      const result = await inviteGuild.invite({
+      const result = await inviteGuild.accept({
         guild_id: this.$guild.info.id,
-        character_invitation: inviteGuild.$inviteName
+        character_invitation: inviteGuild.$acceptInvitation
       });
 
       if (result.status === 200) {
         this.$set(this, "isSuccess", true);
         this.$toast.success(
-          'Invitation sent successfully!',
+          'Invitation successfully accepted!',
           {
             keepOnHover: true,
             duration: 2000,

@@ -8,6 +8,7 @@
       <p>
         <NuxtLink :to="`/character/${$guild.info.owner_name}`"> {{ $guild.info.owner_name }} </NuxtLink> is guild leader of <strong> {{ $guild.info.name }} </strong>
       </p>
+      
       <p>
         The guild was founded on {{ date() }}
       </p>
@@ -41,6 +42,17 @@
           Change Rank
         </v-btn>
       </v-col>
+
+      <v-col v-if="$guild.invites.length" cols="12">
+        <v-btn 
+          v-if="$guild.guild_leader"
+          text 
+          class="btn btn-success-secondary"
+          @click="acceptInvite"
+        >
+          Accept Invite
+        </v-btn>
+      </v-col>
     </v-col>
   </v-container>
 </template>
@@ -66,6 +78,9 @@ export default Vue.extend({
     },
     invitePlayer(): void {
       this.$router.replace(`/guild/invite/${this.$guild.info.name}`);
+    },
+    acceptInvite(): void {
+      this.$router.replace(`/guild/accept-invite/${this.$guild.info.name}`);
     },
   }
 })
