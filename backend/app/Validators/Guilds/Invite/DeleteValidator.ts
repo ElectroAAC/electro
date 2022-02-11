@@ -7,7 +7,13 @@ export default class DeleteValidator {
   public schema = schema.create({
     account_id: schema.number([ rules.required(), rules.exists({ table: 'accounts', column: 'id'})]),
     guild_id: schema.number([ rules.required(), rules.exists({ table: 'guilds', column: 'id'})]),
-    character_invitation: schema.number([ rules.required(), rules.exists({ table: 'players', column: 'id'})])
+    character_invitation: schema.string({ escape: true, },[ 
+      rules.required(), 
+      rules.exists({ table: 'players', column: 'name'}),
+      rules.alpha({
+        allow: ['space']
+      })
+    ])
   })
 
   public messages = {

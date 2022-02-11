@@ -25,17 +25,17 @@ export default class InviteController {
       if (!isLeaderOrVice)
         return ctx.response.status(404).send({ message: "You are not a leader or vice leader of guild"});
 
-      const character = await this.characterView.getRankId(data.character_invitation) as Player[];
+      const character = await this.characterView.findByName(data.character_invitation) as Player[];
 
       if (character[0].rank_id > 0)
         return ctx.response.status(404).send({ message: "The player already has a guild."});
       
-      const alreadyInvited = await this.guild.alreadyInvited(data.guild_id, data.character_invitation);
+      const alreadyInvited = await this.guild.alreadyInvited(data.guild_id, character[0].id);
       
       if (alreadyInvited)
         return ctx.response.status(404).send({ message: "Character is already invited to your guild"});
       
-      const affectedRows = await this.guild.invitePlayer(data.guild_id, data.character_invitation);
+      const affectedRows = await this.guild.invitePlayer(data.guild_id, character[0].id);
 
       if (!affectedRows)
         return ctx.response.status(404).send({ message: "There was an error inviting the player to the guild. Contact the administrator."});
@@ -51,7 +51,7 @@ export default class InviteController {
     try {
       const data = await ctx.request.validate(UpdateValidator);
 
-      const character = await this.characterView.findById(data.character_invitation) as Player[];
+      const character = await this.characterView.findByName(data.character_invitation) as Player[];
       
       const account = ctx.auth.user;
 
@@ -61,12 +61,12 @@ export default class InviteController {
       if (character[0].rank_id > 0)
         return ctx.response.status(404).send({ message: "You are already in a guild."});
       
-      const alreadyInvited = await this.guild.alreadyInvited(data.guild_id, data.character_invitation);
+      const alreadyInvited = await this.guild.alreadyInvited(data.guild_id, character[0].id);
       
       if (!alreadyInvited)
         return ctx.response.status(404).send({ message: "You are not invited to this guild." });
       
-      const affectedRows = await this.guild.acceptInvite(data.guild_id, data.character_invitation);
+      const affectedRows = await this.guild.acceptInvite(data.guild_id, character[0].id);
 
       if (!affectedRows)
         return ctx.response.status(404).send({ message: "An error occurred while removing the player's invite to the guild. Contact the administrator."});
@@ -87,12 +87,14 @@ export default class InviteController {
       if (!isLeaderOrVice)
         return ctx.response.status(404).send({ message: "You are not a leader or vice leader of guild."});
       
-      const alreadyInvited = await this.guild.alreadyInvited(data.guild_id, data.character_invitation);
+      const character = await this.characterView.findByName(data.character_invitation) as Player[];
+      
+      const alreadyInvited = await this.guild.alreadyInvited(data.guild_id, character[0].id);
       
       if (!alreadyInvited)
         return ctx.response.status(404).send({ message: "The player has not been invited to your guild."});
       
-      const affectedRows = await this.guild.removeInvite(data.guild_id, data.character_invitation);
+      const affectedRows = await this.guild.removeInvite(data.guild_id, character[0].id);
 
       if (!affectedRows)
         return ctx.response.status(404).send({ message: "An error occurred while removing the player's invite to the guild. Contact the administrator."});
