@@ -237,6 +237,21 @@ class Guild extends GuildView {
     }
   }
 
+  public async acceptInvite(guild_id: number, player_id: number): Promise<Object[]> {  
+    try {
+      const rankGuild = await this.getGuildRanks(guild_id) as GuildModel[];
+
+      await this.character.updateRankId(player_id, rankGuild[2].id);
+
+      await this.removeInvite(guild_id, player_id);
+
+      return []
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
   public async removeInvite(guild_id: number, player_id: number): Promise<Object[]> {  
     try {
       return await Database
