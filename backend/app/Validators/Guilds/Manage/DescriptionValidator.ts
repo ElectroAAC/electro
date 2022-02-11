@@ -5,7 +5,6 @@ export default class DescriptionValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    account_id: schema.number([ rules.required(), rules.exists({ table: 'accounts', column: 'id'})]),
     guild_id: schema.number([ rules.required(), rules.exists({ table: 'guilds', column: 'id'})]),
     description: schema.string({ escape: true }, [
       rules.required()

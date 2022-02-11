@@ -20,7 +20,13 @@ export default class InviteController {
     try {
       const data = await ctx.request.validate(StoreValidator);
 
-      const isLeaderOrVice = await this.guild.isLeaderOrVice(data.account_id, data.guild_id);
+      const account = ctx.auth.user;
+
+      if (!account) {
+        return ctx.response.status(404).send({ message: "Invalid account."});
+      }
+
+      const isLeaderOrVice = await this.guild.isLeaderOrVice(account.id, data.guild_id);
 
       if (!isLeaderOrVice)
         return ctx.response.status(404).send({ message: "You are not a leader or vice leader of guild"});
@@ -82,7 +88,13 @@ export default class InviteController {
     try {
       const data = await ctx.request.validate(DeleteValidator);
 
-      const isLeaderOrVice = await this.guild.isLeaderOrVice(data.account_id, data.guild_id);
+      const account = ctx.auth.user;
+
+      if (!account) {
+        return ctx.response.status(404).send({ message: "Invalid account."});
+      }
+
+      const isLeaderOrVice = await this.guild.isLeaderOrVice(account.id, data.guild_id);
 
       if (!isLeaderOrVice)
         return ctx.response.status(404).send({ message: "You are not a leader or vice leader of guild."});

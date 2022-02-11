@@ -22,8 +22,14 @@ export default class ManageController {
   public async passLeadership(ctx: HttpContextContract) {
     try {
       const data = await ctx.request.validate(LeadershipValidator);
+      
+      const account = ctx.auth.user;
 
-      const isLeader = await this.guild.isOwner(data.account_id, data.guild_id);
+      if (!account) {
+        return ctx.response.status(404).send({ message: "Invalid account."});
+      }
+
+      const isLeader = await this.guild.isOwner(account.id, data.guild_id);
       let isMember = false;
 
       if (!isLeader)
@@ -63,7 +69,13 @@ export default class ManageController {
     try {
       const data = await ctx.request.validate(MotdValidator);
 
-      const isLeader = await this.guild.isLeader(data.account_id, data.guild_id);
+      const account = ctx.auth.user;
+
+      if (!account) {
+        return ctx.response.status(404).send({ message: "Invalid account."});
+      }
+
+      const isLeader = await this.guild.isLeader(account.id, data.guild_id);
 
       if (!isLeader)
         return ctx.response.status(404).send({ message: "You cannot manage a guild that is not yours." });
@@ -84,7 +96,13 @@ export default class ManageController {
     try {
       const data = await ctx.request.validate(DescriptionValidator);
 
-      const isLeader = await this.guild.isLeader(data.account_id, data.guild_id);
+      const account = ctx.auth.user;
+
+      if (!account) {
+        return ctx.response.status(404).send({ message: "Invalid account."});
+      }
+
+      const isLeader = await this.guild.isLeader(account.id, data.guild_id);
 
       if (!isLeader)
         return ctx.response.status(404).send({ message: "You cannot manage a guild that is not yours." });
@@ -105,7 +123,13 @@ export default class ManageController {
     try {
       const data = await ctx.request.validate(DeleteValidator);
 
-      const isLeader = await this.guild.isLeader(data.account_id, data.guild_id);
+      const account = ctx.auth.user;
+
+      if (!account) {
+        return ctx.response.status(404).send({ message: "Invalid account."});
+      }
+
+      const isLeader = await this.guild.isLeader(account.id, data.guild_id);
 
       if (!isLeader)
         return ctx.response.status(404).send({ message: "You cannot manage a guild that is not yours." });
