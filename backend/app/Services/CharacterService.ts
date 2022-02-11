@@ -111,9 +111,9 @@ class CharacterView {
     }
   }
 
-  public async getTotalCharacters(): Promise<Object[]>  {
+  public async getRankId(character_id: number): Promise<Object[]>  {
     try {
-      return await Database.from('players').count('* as total');
+      return await Database.from('players').select('rank_id').where('id', '=', character_id);
     } catch (err) {
       console.log(err);
       return err;
@@ -132,6 +132,15 @@ class CharacterView {
   public async isOffline(character_id: number): Promise<Object[]> {
     try {
       return await Database.from('players').select('online').where('id', '=', character_id).andWhere('online', '=', 0);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
+  public async getTotalCharacters(): Promise<Object[]>  {
+    try {
+      return await Database.from('players').count('* as total');
     } catch (err) {
       console.log(err);
       return err;

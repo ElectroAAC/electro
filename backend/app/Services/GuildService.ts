@@ -115,6 +115,18 @@ class GuildView {
     }
   }
 
+  public async getInvitations(guild_id: number): Promise<Object[]> {  
+    try {
+      return await Database
+        .from('guild_invites')
+        .select('*')
+        .where('guild_id', '=', guild_id);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
   public async getCharactersWithGuild(account_id: number): Promise<Object[]> {  
     try {
       return await Database
@@ -165,6 +177,30 @@ class Guild extends GuildView {
       return err;
     }
   }
+  
+  public async isLeaderOrVice(account_id: number, guild_id: number): Promise<Boolean> {  
+    try {
+      const characters_to_account = await this.characterView.getByAccount(account_id) as Player[];
+      const guildRanks = await this.getGuildRanks(guild_id) as { id: number, level: number }[];
+      let isLeaderOrVice = false;
+
+      for (let character of characters_to_account) {
+        if (character.rank_id > 0) {
+          for (let rank of guildRanks) {
+            if (character.rank_id === rank.id && rank.level > 1) {
+              isLeaderOrVice = true;
+              break;
+            }
+          }
+        }
+      };
+
+      return isLeaderOrVice;
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
 
   public async passLeadership(guild_id: number, new_leader: number): Promise<Object[]> {  
     try {
@@ -173,6 +209,28 @@ class Guild extends GuildView {
       await this.character.updateRankId(new_leader, guildRanks[0].id);
       
       return await Database.from('guilds').where('id', '=', guild_id).update({ ownerid: new_leader });
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
+  public async alreadyInvited(guild_id: number, character_id: number): Promise<Boolean> {  
+    try {
+      const invites = await this.getInvitations(guild_id);
+      return invites.some((invite: { player_id: number }) => invite.player_id === character_id);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
+  public async invitePlayer(guild_id: number, player_id: number): Promise<Object[]> {  
+    try {
+      return await Database.table('guild_invites').returning('id').insert({
+        player_id,
+        guild_id
+      });
     } catch (err) {
       console.log(err);
       return err;
