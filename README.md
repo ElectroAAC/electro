@@ -87,7 +87,11 @@ This repository follows the semantic commit pattern, with the addition of the ta
 
 ## 👨🏾‍💻 Functionalities
 ### News Page
-<li> [x] Show lastnews </li>
+<ul>
+  <li> [x] Show lastnews </li>
+</ul>
+
+<br>
 
 ### View character informations
 <ul>
@@ -195,11 +199,18 @@ This repository follows the semantic commit pattern, with the addition of the ta
 
 <img src="./assets/home.png">
 
+<br>
+
+## Contributing
+
+Contributions are more than welcome.
+
+Pull requests should be made to the <strong>develop</strong> branch as that is the working branch, <strong> master </strong> is for release code.
 ## 👤 Author 
 
 <h3> <b> Waliston Belles </b></h3>
 
-<li> Github: <a href="https://github.com/WalistonBelles">@walistonbelles</a> </li>
+<li> Github: <a href="https://github.com/WalistonBelles">Waliston Belles</a> </li>
 <li> Linkedin: <a href="https://www.linkedin.com/in/waliston-belles-88927a212/"> Waliston Belles</a> </li>
 <li> Discord:  Waliston#0145</a></li>
 <br>
