@@ -21,6 +21,26 @@
           Manage Guild
         </v-btn>
       </v-col>
+      
+      <v-col v-if="$guild.guild_leader || $guild.guild_vice" class="text-center" cols="12">
+        <v-btn 
+          v-if="$guild.guild_leader || $guild.guild_vice"
+          text 
+          class="btn btn-success-secondary"
+          @click="invitePlayer"
+        >
+          Invite Player
+        </v-btn>
+
+        <v-btn 
+          v-if="$guild.guild_leader"
+          text 
+          class="btn btn-success-secondary"
+          @click="goToManage"
+        >
+          Change Rank
+        </v-btn>
+      </v-col>
     </v-col>
   </v-container>
 </template>
@@ -43,7 +63,10 @@ export default Vue.extend({
     },
     goToManage(): void {
       this.$router.replace(`/guild/manage/${this.$guild.info.name}`);
-    }
+    },
+    invitePlayer(): void {
+      this.$router.replace(`/guild/invite/${this.$guild.info.name}`);
+    },
   }
 })
 </script>
