@@ -4,20 +4,12 @@
     v-model="valid"
     @submit.prevent="validate"
   >
-    <v-row v-if="!isSuccess" class="mt-2">
+    <v-row class="mt-2">
       <v-col cols="12">
         <AcceptGuildForm />
       </v-col>
 
       <v-col class="text-center" cols="12">
-        <v-btn 
-          text 
-          class="mr-2 btn btn-success-primary"
-          @click="validate"
-        >
-          Accept
-        </v-btn>
-
         <v-btn 
           text 
           class="btn btn-success-secondary"
@@ -26,10 +18,6 @@
           Voltar
         </v-btn>
       </v-col>
-    </v-row>
-
-    <v-row v-else>
-      <Success style="width: 50%;"/>
     </v-row>
   </v-form>
 </template>

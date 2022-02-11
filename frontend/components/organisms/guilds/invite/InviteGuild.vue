@@ -40,7 +40,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { account, guild, inviteGuild } from '@/store'
+import { guild, inviteGuild } from '@/store'
 
 export default Vue.extend({
   data() {

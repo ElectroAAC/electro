@@ -27,19 +27,19 @@
         <v-btn 
           v-if="$guild.guild_leader || $guild.guild_vice"
           text 
-          class="btn btn-success-secondary"
+          class="ma-1 btn btn-success-secondary"
           @click="invitePlayer"
         >
           Invite Player
         </v-btn>
 
         <v-btn 
-          v-if="$guild.guild_leader"
+          v-if="$guild.guild_leader || $guild.guild_vice"
           text 
-          class="btn btn-success-secondary"
-          @click="goToManage"
+          class="ma-1 btn btn-success-secondary"
+          @click="cancelInvite"
         >
-          Change Rank
+          Cancel Invite
         </v-btn>
       </v-col>
 
@@ -78,6 +78,9 @@ export default Vue.extend({
     },
     invitePlayer(): void {
       this.$router.replace(`/guild/invite/${this.$guild.info.name}`);
+    },
+    cancelInvite(): void {
+      this.$router.replace(`/guild/cancel-invite/${this.$guild.info.name}`);
     },
     acceptInvite(): void {
       this.$router.replace(`/guild/accept-invite/${this.$guild.info.name}`);
