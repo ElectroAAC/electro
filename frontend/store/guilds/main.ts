@@ -44,6 +44,11 @@ export default class Guild extends VuexModule {
     this.invites = invite;
   }
 
+  @Mutation
+  private REMOVE_INVITE(name: string) {
+    this.invites = this.invites.filter((invite) => invite.name !== name);
+  }
+
   @Action
   public async getGuild(name: String) {
     try {
@@ -89,5 +94,10 @@ export default class Guild extends VuexModule {
     } catch(err) {
       return err;
     }
+  }
+
+  @Action
+  public removeInvite(name: String) {
+    this.context.commit('REMOVE_INVITE', name);
   }
 }

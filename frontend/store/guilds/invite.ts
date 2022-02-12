@@ -6,10 +6,10 @@ import {
 } from 'vuex-module-decorators'
 
 import { $axios } from '@/utils/nuxt-instance'
-
+import { guild } from '@/store'
 interface Payload {
-	guild_id: number,
-	character_invitation: string
+	guild_id: Number,
+	character_invitation: String
 }
 
 @Module({
@@ -83,6 +83,32 @@ export default class InviteGuild extends VuexModule {
           if (!response) 
             throw new Error(response);
           
+          return {
+            status: response.status,
+            message: response.result
+          };
+        })
+        .catch(({ response }) => {
+          console.log(response);
+          return {
+            status: 404,
+            message: response.data.message
+          };
+        });
+    } catch(err) {
+      return err;
+    }
+  }
+
+  @Action
+  public async cancel(payload: Payload) {
+    try {
+      return await $axios.$post('guild/cancel-invite', payload)
+        .then((response) => {
+          if (!response) 
+            throw new Error(response);
+          
+            guild.removeInvite(payload.character_invitation);
           return {
             status: response.status,
             message: response.result

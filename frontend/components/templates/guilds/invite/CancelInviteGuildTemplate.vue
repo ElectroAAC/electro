@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Title text="Accept Invite" />
+    <Title text="Cancel Invites" />
 
     <v-container>
       <div v-if="isLoading" class="text-center">
@@ -55,7 +55,7 @@ export default Vue.extend({
           this.$set(this, 'guildInvalid', false);
           await guild.getInvites({
             guild_id: guild.$guild.info.id
-          })
+          });
         }
         this.$set(this, 'isLoading', false);
       } catch(err) {

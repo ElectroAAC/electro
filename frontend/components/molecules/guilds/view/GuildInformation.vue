@@ -34,7 +34,7 @@
         </v-btn>
 
         <v-btn 
-          v-if="$guild.guild_leader || $guild.guild_vice"
+          v-if="($guild.guild_leader || $guild.guild_vice) && $invites.length"
           text 
           class="ma-1 btn btn-success-secondary"
           @click="cancelInvite"
@@ -66,7 +66,11 @@ export default Vue.extend({
   computed: {
     $guild(): any {
       return guild.$guild;
-    }
+    },
+
+    $invites() {
+      return guild.$invites;
+    },
   },
 
   methods: {

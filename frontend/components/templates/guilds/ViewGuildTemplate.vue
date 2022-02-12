@@ -55,7 +55,10 @@ export default Vue.extend({
           this.$set(this, 'guildInvalid', true);
         }
         else {
-          this.$set(this, 'guildInvalid', false)
+          this.$set(this, 'guildInvalid', false);
+          await guild.getInvites({
+            guild_id: guild.$guild.info.id
+          });
         }
         this.$set(this, 'isLoading', false);
       } catch(err) {
