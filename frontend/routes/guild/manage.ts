@@ -1,6 +1,7 @@
 import Manage from '~/pages/guilds/manage/manage.vue'
 import ChangeMotd from '~/pages/guilds/manage/motd.vue'
 import ChangeDescription from '~/pages/guilds/manage/description.vue'
+import ChangeRank from '~/pages/guilds/manage/rank.vue'
 import Leadership from '~/pages/guilds/manage/leadership.vue'
 import Delete from '~/pages/guilds/manage/delete.vue'
 
@@ -19,6 +20,14 @@ export default [
     name: 'Change MOTD',
     meta: {
       name: 'Change MOTD'
+    }
+  },
+  {
+    path: '/guild/manage/:name/change-rank',
+    component: ChangeRank,
+    name: 'Change Rank',
+    meta: {
+      name: 'Change Rank'
     }
   },
   {

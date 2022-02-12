@@ -105,6 +105,12 @@ export const guildActions = [
     description: 'Change MOTD of guild.'
   },
   {
+    icon: 'mdi-text',
+    to: 'change-rank',
+    text: 'Change Rank',
+    description: 'Change Rank of member from guild.'
+  },
+  {
     icon: 'mdi-image-outline',
     to: '',
     text: 'Change Logo',
