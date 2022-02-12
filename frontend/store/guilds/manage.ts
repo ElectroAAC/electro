@@ -1,6 +1,7 @@
 import {
   Module,
   VuexModule,
+  Mutation,
   Action
 } from 'vuex-module-decorators'
 
@@ -29,6 +30,12 @@ interface DeleteGuild {
 	guild_id: number
 }
 
+interface RankPayload {
+	guild_id?: number,
+  character_id?: Number,
+	rank_level?: Number
+}
+
 @Module({
   name: 'guilds/manage',
   stateFactory: true,
@@ -36,11 +43,50 @@ interface DeleteGuild {
 })
 
 export default class ManageGuild extends VuexModule {
+  private rank: RankPayload = {} as RankPayload;
+
+  public get $rank() {
+    return this.rank;
+  }
+
+  @Mutation
+  private SET_RANK(payload: RankPayload) {
+    this.rank = payload;
+  }
+
+  @Action
+  public async setRank(payload: RankPayload) {
+    this.context.commit('SET_RANK', payload);
+  }
 
   @Action
   public async changeMotd(payload: ChangeMotd) {
     try {
       return await $axios.$post('guild/change-motd', payload)
+        .then((response) => {
+          if (!response) 
+            throw new Error(response);
+          
+          return {
+            status: response.status,
+            message: response.result
+          };
+        })
+        .catch(({ response }) => {
+          return {
+            status: 404,
+            message: response.data.errors[0].message
+          };
+        });
+    } catch(err) {
+      return err;
+    }
+  }
+
+  @Action
+  public async changeRank(payload: RankPayload) {
+    try {
+      return await $axios.$post('guild/change-rank', payload)
         .then((response) => {
           if (!response) 
             throw new Error(response);
@@ -132,4 +178,5 @@ export default class ManageGuild extends VuexModule {
       return err;
     }
   }
+
 }

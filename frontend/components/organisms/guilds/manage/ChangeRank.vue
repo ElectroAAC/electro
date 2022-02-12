@@ -61,10 +61,9 @@ export default Vue.extend({
     },
     
     async onUpdate(this: any): Promise<void> {
-      const result = await manageGuild.changeMotd({
-        account_id: account.$account.id,
+      const result = await manageGuild.changeRank({
         guild_id: this.$guild.info.id,
-        motd: this.$guild.info.motd
+        ...manageGuild.$rank
       });
 
       if (result.status === 200) {

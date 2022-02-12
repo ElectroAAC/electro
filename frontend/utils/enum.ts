@@ -123,3 +123,9 @@ export const guildActions = [
     description: 'Delete guild, kick all members.'
   },
 ]
+
+export const rankGuild = [
+  { value: 1, text: "Member" },
+  { value: 2, text: "Vice-Leader" },
+  { value: 3, text: "Leader" },
+]
