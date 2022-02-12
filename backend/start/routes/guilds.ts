@@ -14,5 +14,6 @@ Route.post('/guild/create-guild', 'Guilds/Main.create').middleware('auth');
 
 Route.post('/guild/pass-leadership', 'Guilds/Manage.passLeadership').middleware('auth');
 Route.post('/guild/change-motd', 'Guilds/Manage.changeMotd').middleware('auth');
+Route.post('/guild/change-rank', 'Guilds/Manage.changeRank').middleware('auth');
 Route.post('/guild/change-description', 'Guilds/Manage.changeDescription').middleware('auth');
 Route.post('/guild/delete', 'Guilds/Manage.delete').middleware('auth');

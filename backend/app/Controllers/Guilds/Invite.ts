@@ -83,6 +83,9 @@ export default class InviteController {
       const data = await ctx.request.validate(UpdateValidator);
 
       const character = await this.characterView.findByName(data.character_invitation) as Player[];
+
+      if (character[0].online !== 0) 
+        return ctx.response.status(404).send({ message: "The character needs to be offline." });
       
       const account = ctx.auth.user;
 

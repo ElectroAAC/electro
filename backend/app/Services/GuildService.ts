@@ -183,17 +183,14 @@ class Guild extends GuildView {
   public async isLeader(account_id: number, guild_id: number): Promise<Boolean> {  
     try {
       const characters_to_account = await this.characterView.getByAccount(account_id) as Player[];
-      const guildRanks = await this.getGuildRanks(guild_id) as GuildModel[];
-      const guilds = await this.getGuildById(guild_id) as GuildModel[];
+      const guildRanks = await this.getGuildRanks(guild_id) as { id: number, level: number }[];
       let guild_leader = false;
 
       for (let character of characters_to_account) {
         if (character.rank_id > 0) {
           for (let rank of guildRanks) {
-            if (character.rank_id === rank.id) {
-              if (guilds[0].ownerid = character.id) {
-                guild_leader = true;
-              }
+            if (character.rank_id === rank.id && rank.level === 3) {
+              guild_leader = true;
             }
           }
         }

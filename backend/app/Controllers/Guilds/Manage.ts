@@ -3,10 +3,12 @@ import {
   LeadershipValidator,
   DeleteValidator,
   DescriptionValidator,
-  MotdValidator 
+  MotdValidator,
+  RankValidator 
 } from 'App/Validators/Guilds/Manage'
 
 import {
+  Character,
   CharacterView,
   Guild,
   GuildRepository
@@ -15,6 +17,7 @@ import {
 import { Player } from 'App/Models';
 
 export default class ManageController {
+  public character: Character = new Character();
   public characterView: CharacterView = new CharacterView();
   public guild: Guild = new Guild();
   public guildRepository: GuildRepository = new GuildRepository();
@@ -116,6 +119,58 @@ export default class ManageController {
     } catch(err) {
       console.log('Error getGuilds: ', err);
       return ctx.response.status(400).send({ message: 'An error occurred, check the api console.'})
+    }
+  }
+
+  public async changeRank(ctx: HttpContextContract) {
+    try {
+      const data = await ctx.request.validate(RankValidator);
+
+      const account = ctx.auth.user;
+
+      if (!account) {
+        return ctx.response.status(404).send({ message: "Invalid account."});
+      }
+
+      const offline = await this.characterView.isOffline(data.character_id);
+
+      if (!offline.length) 
+        return ctx.response.status(404).send({ message: "The character needs to be offline." });
+      
+      const isLeader = await this.guild.isLeader(account.id, data.guild_id);
+
+      if (!isLeader)
+        return ctx.response.status(404).send({ message: "You cannot manage a guild that is not yours." });
+
+      const ranks = await this.guild.getGuildRanks(data.guild_id) as { id: number, level: number }[];
+
+      const rank_id = await this.characterView.getRankId(data.character_id) as Player[];
+
+      const rank = ranks.find((rank) => rank.id === rank_id[0].rank_id);
+
+      if (rank?.level === 3 && rank?.level !== data.rank_level) {
+        const isOwner = await this.guild.isOwner(account.id, data.guild_id);
+        if (!isOwner) {
+          return ctx.response.status(404).send({ message: "You must be a guild owner to remove a member's Leader role." });
+        }
+      }
+
+      const newRank = ranks.some((rank) => rank.level === data.rank_level) 
+        ? ranks.find((rank) => rank.level === data.rank_level) 
+        : null;
+      
+      if (!newRank)
+        return ctx.response.status(404).send({ message: "The new position does not exist." });
+
+      const affectedRows = await this.character.updateRankId(data.character_id, newRank.id);
+
+      if (!affectedRows)
+        return ctx.response.status(404).send({ message: "There was an error updating the rank from player. Contact the administrator."});
+
+      return ctx.response.status(200).send({ status: 200, result: "New role successfully assigned.!" });
+    } catch(err) {
+      console.log('Error changeRank: ', err);
+      return ctx.response.status(400).send({ message: err });
     }
   }
 

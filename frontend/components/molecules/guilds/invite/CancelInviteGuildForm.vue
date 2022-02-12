@@ -49,7 +49,7 @@ export default Vue.extend({
   },
 
   methods: {
-    async cancelInvite() {
+    async cancelInvite(this: any) {
       const result = await inviteGuild.cancel({
         guild_id: guild.$guild.info.id,
         character_invitation: this.name
@@ -74,7 +74,7 @@ export default Vue.extend({
             duration: 2000,
             theme: "bubble",
           }
-        );
+        )
       }
     },
 
