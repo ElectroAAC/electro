@@ -58,10 +58,3 @@ export default Vue.extend({
   }
 })
 </script>
-
-<style lang="scss" scoped>
-.actions-guild {
-  border: 2px solid cyan;
-  border-radius: 1rem;
-}
-</style>

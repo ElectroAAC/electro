@@ -411,3 +411,8 @@
 .v-application a {
   text-decoration: none !important;
 }
+
+.actions-guild {
+  border: 2px solid var(--second-main-color);
+  border-radius: 1rem;
+}

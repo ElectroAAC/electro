@@ -6,7 +6,7 @@
   >
     <v-row class="mt-2">
       <v-col cols="12">
-        <AcceptGuildForm />
+        <CancelInviteGuildForm />
       </v-col>
 
       <v-col class="text-center" cols="12">
