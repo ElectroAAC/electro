@@ -3,6 +3,7 @@ import Manage from './manage'
 import Guilds from '@/pages/guilds/index.vue'
 import View from '@/pages/guilds/view.vue'
 import Create from '@/pages/guilds/create.vue'
+import Leave from '@/pages/guilds/leave.vue'
 
 export default [
   {
@@ -27,6 +28,14 @@ export default [
     name: 'Create Guild',
     meta: {
       name: 'Create Guild'
+    }
+  },
+  {
+    path: '/guild/leave/:name/',
+    component: Leave,
+    name: 'Leave Guild',
+    meta: {
+      name: 'Leave Guild'
     }
   },
   ...Invite,

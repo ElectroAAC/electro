@@ -1,29 +1,6 @@
 <template>
   <v-row class="text-center pa-5">
-    <v-col cols="12">
-      <v-autocomplete
-        :value="
-          getInvites.some((character) => character.text === name)
-            ? {
-                value: getInvites.find(
-                  (character) => character.text === name,
-                ).value,
-                text: name,
-              }
-            : null"
-        :items="getInvites"
-        :rules="rules"
-        label="Player Name"
-        type="text"
-        return-object
-        dense
-        outlined
-        @change="($event) => {
-          name = $event.text;
-          acceptInvite();
-        }"
-      />
-    </v-col>
+    {{ $invite }}
   </v-row>
 </template>
 
