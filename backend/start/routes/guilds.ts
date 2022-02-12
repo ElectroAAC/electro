@@ -5,6 +5,7 @@ Route.get('/guild/view/:name', 'Guilds/Main.show').middleware('silence');
 
 Route.get('/guild/players-with-guild', 'Guilds/PlayersWithGuild.show').middleware('auth');
 
+Route.post('/guild/invites', 'Guilds/Invite.index').middleware('auth');
 Route.post('/guild/invite', 'Guilds/Invite.store').middleware('auth');
 Route.post('/guild/accept-invite', 'Guilds/Invite.update').middleware('auth');
 Route.post('/guild/cancel-invite', 'Guilds/Invite.delete').middleware('auth');

@@ -1,8 +1,9 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { 
-  UpdateValidator,
   DeleteValidator,
-  StoreValidator
+  IndexValidator,
+  StoreValidator,
+  UpdateValidator
 } from 'App/Validators/Guilds/Invite'
 
 import {
@@ -15,6 +16,30 @@ import { Player } from 'App/Models';
 export default class InviteController {
   public characterView: CharacterView = new CharacterView();
   public guild: Guild = new Guild();
+
+  public async index(ctx: HttpContextContract) {
+    try {
+      const data = await ctx.request.validate(IndexValidator);
+
+      const account = ctx.auth.user;
+
+      if (!account) {
+        return ctx.response.status(404).send({ message: "Invalid account."});
+      }
+
+      const isLeaderOrVice = await this.guild.isLeaderOrVice(account.id, data.guild_id);
+
+      if (!isLeaderOrVice)
+        return ctx.response.status(404).send({ message: "You are not a leader or vice leader of guild"});
+      
+      const invites = await this.guild.getInvitations(data.guild_id);
+
+      return ctx.response.status(200).send({ status: 200, result: invites });
+    } catch(err) {
+      console.log('Error sendInvitation: ', err);
+      return ctx.response.status(400).send({ message: err })
+    }
+  }
 
   public async store(ctx: HttpContextContract) {
     try {

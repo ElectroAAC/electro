@@ -108,6 +108,7 @@ $ npm run start
 | GET    | /guild/players-with-guild  | Get guild info                        |
 | POST   | /guild/create-guild        | Create Guild                          |
 | POST   | /guild/invite              | Invite character                      |
+| POST   | /guild/invites             | Get all invites                       |
 | POST   | /guild/accept-invite       | Accept invite character               |
 | POST   | /guild/cancel-invite       | Cancel invite character               |
 | POST   | /guild/pass-leadership     | Pass Leadership                       |

@@ -205,7 +205,7 @@ This repository follows the semantic commit pattern, with the addition of the ta
 
 Contributions are more than welcome.
 
-Pull requests should be made to the <strong>develop</strong> branch as that is the working branch, <strong> master </strong> is for release code.
+Pull requests should be made to the <strong>develop</strong> branch as that is the working branch, <strong> main </strong> is for release code.
 ## 👤 Author 
 
 <h3> <b> Waliston Belles </b></h3>
