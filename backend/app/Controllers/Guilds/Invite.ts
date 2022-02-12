@@ -32,7 +32,7 @@ export default class InviteController {
       if (!isLeaderOrVice)
         return ctx.response.status(404).send({ message: "You are not a leader or vice leader of guild"});
       
-      const invites = await this.guild.getInvitations(data.guild_id);
+      const invites = await this.guild.getInvitationsAndPlayers(data.guild_id);
 
       return ctx.response.status(200).send({ status: 200, result: invites });
     } catch(err) {
