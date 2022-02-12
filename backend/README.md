@@ -111,6 +111,7 @@ $ npm run start
 | POST   | /guild/invites             | Get all invites                       |
 | POST   | /guild/accept-invite       | Accept invite character               |
 | POST   | /guild/cancel-invite       | Cancel invite character               |
+| POST   | /guild/leave               | Leave guild                           |
 | POST   | /guild/pass-leadership     | Pass Leadership                       |
 | POST   | /guild/change-motd         | Change Motd                           |
 | POST   | /guild/change-rank         | Change Rank of Member                 |

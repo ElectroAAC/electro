@@ -119,6 +119,19 @@ class CharacterView {
       return err;
     }
   }
+
+  public async getGuild(character_id: number): Promise<Object[]>  {
+    try {
+      return await Database
+        .from('players')
+        .innerJoin('guild_ranks', 'guild_ranks.id', 'players.rank_id')
+        .select('guild_ranks.guild_id')
+        .where('players.id', '=', character_id);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
   
   public async checkSkillId(character_id: number, skill_id: number): Promise<Object[]> {
     try {

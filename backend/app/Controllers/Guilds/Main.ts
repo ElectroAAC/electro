@@ -1,5 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { StoreValidator } from 'App/Validators/Guilds/Register'
+import { LeaveValidator } from 'App/Validators/Guilds/Main'
 import { 
   Character,
   CharacterView, 
@@ -150,6 +151,41 @@ export default class GuildsController {
       }
 
       return ctx.response.status(200).send({ status: 200, result });
+    } catch(err) {
+      console.log('Error getGuild Query: ', err);
+      return ctx.response.status(400).send({ message: 'An error occurred, check the api console.'})
+    }
+  }
+
+  public async leave(ctx: HttpContextContract) {
+    try {
+      const data = await ctx.request.validate(LeaveValidator);
+      
+      const account = ctx.auth.user;
+  
+      if (!account || !account.id) {
+        return ctx.response.unauthorized();
+      }
+
+      const character = await this.characterView.findByName(data.character) as Player[];
+
+      if (character[0].online !== 0) 
+        return ctx.response.status(404).send({ message: "The character needs to be offline." });
+      
+      if (!account || account && account.id !== character[0].account_id)
+        return ctx.response.status(404).send({ message: "The character does not belong to you."});
+
+      const guild = await this.characterView.getGuild(character[0].id) as { guild_id: number }[];
+
+      if (guild[0].guild_id !== data.guild_id)
+        return ctx.response.status(404).send({ message: "You do not belong to this guild."});
+
+      const affectedRows = await this.character.updateRankId(character[0].id, 0);
+
+      if (!affectedRows)
+        return ctx.response.status(404).send({ message: "There was an error leaving the guild. Contact the administrator."});
+
+      return ctx.response.status(200).send({ status: 200, result: "You have successfully exited the guild!" });
     } catch(err) {
       console.log('Error getGuild Query: ', err);
       return ctx.response.status(400).send({ message: 'An error occurred, check the api console.'})
