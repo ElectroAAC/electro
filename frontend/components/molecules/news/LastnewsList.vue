@@ -1,10 +1,7 @@
 <template>
   <div>
     <div v-if="isLoading" class="text-center">
-      <v-progress-circular
-        indeterminate
-        color="primary"
-      ></v-progress-circular>
+      <Loading  style="width: 50% !important;" />
     </div>
 
     <div v-else> 
@@ -55,7 +52,7 @@ export default Vue.extend({
   },
 
   computed: {
-    newsList(): { name: String, description: String }[] {
+    newsList(): { title: String, created_at: number, body: string }[] {
       return this.newsData;
     }
   },

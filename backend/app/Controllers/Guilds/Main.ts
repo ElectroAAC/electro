@@ -1,5 +1,6 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { StoreValidator } from 'App/Validators/Guilds/Register'
+import { LeaveValidator } from 'App/Validators/Guilds/Main'
 import { 
   Character,
   CharacterView, 
@@ -10,7 +11,13 @@ import { Player } from 'App/Models';
 
 interface Guild {
   id: number,
-  rank_id: number
+  rank_id: number,
+  owner_id: number
+}
+
+interface Rank {
+  id: number,
+  level: number
 }
 export default class GuildsController {
   public character: Character = new Character();
@@ -30,6 +37,7 @@ export default class GuildsController {
   }
 
   public async create(ctx: HttpContextContract) {
+    
     const data = await ctx.request.validate(StoreValidator);
     
     const account = ctx.auth.user;
@@ -87,21 +95,97 @@ export default class GuildsController {
     try {
       const guild = await this.guildView.getGuildByName(ctx.request.param('name')) as Guild[];
 
+      const guildRanks = await this.guildView.getGuildRanks(guild[0].id) as Rank[];
+
+      let guild_leader = false;
+      let guild_vice = false;
+      let level_guild = 0;
+
+      const players_from_account_in_guild: Number[] = [];
+      const players_from_account_ids: Number[] = [];
+
+      let invites: Object[] = [];
+
       if (!guild.length) {
         return ctx.response.status(404).send({ message: "Guild not found." });
       }
-      
-      const guildRanks = await this.guildView.getGuildRanks(guild[0].id);
+
+      const account = ctx.auth.use('api').user!;
+
+      if (account) {
+        const characters_to_account = await this.characterView.getByAccount(account.id) as Player[];
+        invites = await this.guildView.getInvitationsByAccount(guild[0].id, account.id);
+
+        for (let character of characters_to_account) {
+          players_from_account_ids.push(character.id);
+          if (character.rank_id > 0) {
+            for (let rank of guildRanks) {
+              if (character.rank_id === rank.id) {
+                players_from_account_in_guild.push(character.id);
+
+                if (guild[0].owner_id === character.id) {
+                  guild_leader = true;
+                  guild_vice = true;
+                } else if (rank.level > 1) {
+                  guild_vice = true;
+                  level_guild = rank.level;
+                }
+              }
+            }
+          }
+        };
+      }
 
       const memberList = await this.guildView.getGuildMembers(guild[0].id);
-      
+
       const result = {
         info: guild[0],
+        guild_leader,
+        guild_vice,
+        level_guild,
+        players_from_account_in_guild,
+        players_from_account_ids,
         guild_rank: guildRanks,
-        guild_members: memberList
+        guild_members: memberList,
+        invites
       }
-      
+
       return ctx.response.status(200).send({ status: 200, result });
+    } catch(err) {
+      console.log('Error getGuild Query: ', err);
+      return ctx.response.status(400).send({ message: 'An error occurred, check the api console.'})
+    }
+  }
+
+  public async leave(ctx: HttpContextContract) {
+    try {
+      const data = await ctx.request.validate(LeaveValidator);
+      
+      const account = ctx.auth.user;
+  
+      if (!account || !account.id) {
+        return ctx.response.unauthorized();
+      }
+
+      const character = await this.characterView.findByName(data.character) as Player[];
+
+      if (character[0].online !== 0) 
+        return ctx.response.status(404).send({ message: "The character needs to be offline." });
+      
+      if (!account || account && account.id !== character[0].account_id)
+        return ctx.response.status(404).send({ message: "The character does not belong to you."});
+
+      const guild = await this.characterView.getGuild(character[0].id) as { guild_id: number }[];
+
+      if (guild[0].guild_id !== data.guild_id)
+        return ctx.response.status(404).send({ message: "You do not belong to this guild."});
+
+      const affectedRows = await this.character.updateRankId(character[0].id, 0);
+
+      if (!affectedRows)
+        return ctx.response.status(404).send({ message: "There was an error leaving the guild. Contact the administrator."});
+
+      return ctx.response.status(200).send({ status: 200, result: "You have successfully exited the guild!" });
     } catch(err) {
       console.log('Error getGuild Query: ', err);
       return ctx.response.status(400).send({ message: 'An error occurred, check the api console.'})

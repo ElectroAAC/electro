@@ -1,3 +1,14 @@
 <template>
-  <img src="~/assets/images/404.png">
+  <lottie-animation path="./404-error.json" />
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue";
+
+export default Vue.extend({
+  components: {
+    LottieAnimation
+  },
+})
+</script>

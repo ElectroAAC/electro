@@ -1,20 +1,19 @@
 <template>
   <v-container>
     <div v-if="isLoading" class="text-center">
-      <v-progress-circular
-        indeterminate
-        color="primary"
-      ></v-progress-circular>
+      <Loading  style="width: 50% !important;" />
     </div>
 
     <div v-else>
       <v-col class="mb-5 text-center" cols="12">
-        <v-btn 
-          text 
-          class="btn btn-success-secondary"
-        >
-          <NuxtLink to="/guilds/create"> Create Guild </NuxtLink>
-        </v-btn>
+        <NuxtLink to="/guilds/create">
+          <v-btn 
+            text 
+            class="btn btn-success-secondary"
+          >
+            Create Guild 
+          </v-btn>
+        </NuxtLink>
       </v-col>
 
       <div  
@@ -78,13 +77,13 @@ export default Vue.extend({
       if (response.status === 200) {
         this.$set(this, 'guildsData', response.data);
         this.total = response.total;
-        this.isLoading = false;
       }
 
       else {
         this.$set(this, 'guildsData', []);
-        this.isLoading = false;
       }
+
+      this.isLoading = false;
     },
   }
 })

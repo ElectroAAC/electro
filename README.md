@@ -87,7 +87,11 @@ This repository follows the semantic commit pattern, with the addition of the ta
 
 ## 👨🏾‍💻 Functionalities
 ### News Page
-<li> [x] Show lastnews </li>
+<ul>
+  <li> [x] Show lastnews </li>
+</ul>
+
+<br>
 
 ### View character informations
 <ul>
@@ -123,18 +127,18 @@ This repository follows the semantic commit pattern, with the addition of the ta
   <li> [x] Show all Guilds </li>
   <li> [x] View Guilds </li>
   <li> [x] Create Guild </li>
-  <li> [ ] Manage Guilds </li>
+  <li> [x] Manage Guilds </li>
   <ul>
-    <li> [ ] Invite Player </li>
-    <li> [ ] Remove Player </li>
-    <li> [ ] Promove Player </li>
-    <li> [ ] Demote Player </li>
-    <li> [ ] Add Surname Player </li>
-    <li> [ ] Remove Surname Player </li>
-    <li> [ ] Change Name </li>
-    <li> [ ] Create Role </li>
-    <li> [ ] Change Role </li>
-    <li> [ ] Delete Role </li>
+    <li> [x] Invite Player </li>
+    <li> [ ] Remove Invite </li>
+    <li> [ ] Remove Invite </li>
+    <li> [x] Promove Player </li>
+    <li> [x] Demote Player </li>
+    <li> [x] Change MOTD </li>
+    <li> [x] Change Rank </li>
+    <li> [x] Change Logo </li>
+    <li> [x] Pass Leadership </li>
+    <li> [x] Delete Guild </li>
   </ul>
 </ul>
 
@@ -195,11 +199,18 @@ This repository follows the semantic commit pattern, with the addition of the ta
 
 <img src="./assets/home.png">
 
+<br>
+
+## Contributing
+
+Contributions are more than welcome.
+
+Pull requests should be made to the <strong>develop</strong> branch as that is the working branch, <strong> main </strong> is for release code.
 ## 👤 Author 
 
 <h3> <b> Waliston Belles </b></h3>
 
-<li> Github: <a href="https://github.com/WalistonBelles">@walistonbelles</a> </li>
+<li> Github: <a href="https://github.com/WalistonBelles">Waliston Belles</a> </li>
 <li> Linkedin: <a href="https://www.linkedin.com/in/waliston-belles-88927a212/"> Waliston Belles</a> </li>
 <li> Discord:  Waliston#0145</a></li>
 <br>

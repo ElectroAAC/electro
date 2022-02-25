@@ -33,7 +33,9 @@ import {
 import {
   CreateGuild,
   Guild,
-  GuildList
+  GuildList,
+  InviteGuild,
+  ManageGuild
 } from '~/store/guilds'
 
 import {
@@ -66,6 +68,8 @@ let ranking: Ranking;
 let createGuild: CreateGuild;
 let guild: Guild;
 let guildList: GuildList;
+let inviteGuild: InviteGuild;
+let manageGuild: ManageGuild;
 
 let online: Online;
 
@@ -100,6 +104,8 @@ const initializeStores = (store: Store<any>) => {
   createGuild = getModule(CreateGuild, store);
   guild = getModule(Guild, store);
   guildList = getModule(GuildList, store);
+  inviteGuild = getModule(InviteGuild, store);
+  manageGuild = getModule(ManageGuild, store);
 
   // Store Online
   online = getModule(Online, store);
@@ -133,6 +139,8 @@ export {
   createGuild,
   guild,
   guildList,
+  inviteGuild,
+  manageGuild,
   
   online,
 

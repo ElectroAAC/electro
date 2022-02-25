@@ -1,5 +1,5 @@
-import { BaseModel, column, belongsTo, BelongsTo  } from '@ioc:Adonis/Lucid/Orm'
-import { Account } from 'App/Models'
+import { BaseModel, column, belongsTo, BelongsTo, hasMany, HasMany  } from '@ioc:Adonis/Lucid/Orm'
+import { Account, Guild } from 'App/Models'
 
 export default class Player extends BaseModel {
   @column({ isPrimary: true })
@@ -277,4 +277,7 @@ export default class Player extends BaseModel {
   
   @belongsTo(() => Account)
   public account: BelongsTo<typeof Account>
+  
+  @hasMany(() => Guild)
+  public news: HasMany<typeof Guild>
 }

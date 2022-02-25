@@ -1,15 +1,19 @@
 <template>
   <div>
-    <Title text="View Guild"/>
+    <Title text="Leave Guild" />
+
     <v-container>
       <div v-if="isLoading" class="text-center">
-        <v-progress-circular
-          indeterminate
-          color="primary"
-        ></v-progress-circular>
+        <Loading style="width: 50% !important;" />
       </div>
-      
-      <GuildView v-else />
+
+      <ValueNoExists 
+        v-else-if="guildInvalid"
+        text="Guild not found"
+        to="/guilds"
+      />
+
+      <LeaveGuild v-else/>
     </v-container>
   </div>
 </template>
@@ -21,7 +25,8 @@ import { guild } from '@/store'
 export default Vue.extend({
   data() {
     return {
-      isLoading: true
+      isLoading: true,
+      guildInvalid: false
     }
   },
 
@@ -30,14 +35,10 @@ export default Vue.extend({
       if (this.$route.params && this.$route.params.name)
         return this.$route.params.name;
     },
-
-    $guild() {
-      return guild.$guild;
-    }
   },
   
-  async created(this: any) {
-    this.getGuild();
+  async mounted(this: any) {
+    await this.getGuild();
   },
 
   methods: {
@@ -48,13 +49,11 @@ export default Vue.extend({
         const res = await guild.getGuild(this.getGuildName);
 
         if (res !== 200) {
-          this.$toast.error('Guild Not Found');
-
-          this.$router.replace('/guilds');
-
-          return;
+          this.$set(this, 'guildInvalid', true);
         }
-
+        else {
+          this.$set(this, 'guildInvalid', false)
+        }
         this.$set(this, 'isLoading', false);
       } catch(err) {
         console.log(err);

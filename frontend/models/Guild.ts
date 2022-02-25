@@ -7,6 +7,11 @@ export interface Guild {
 		owner_id: Number,
     owner_name: String
   },
+  guild_leader: Boolean,
+	guild_vice: Boolean,
+	level_guild: Number,
+	players_from_account_in_guild: Number[],
+	players_from_account_ids: Number[],
   guild_rank: {
     id: Number
   }[],
@@ -18,5 +23,9 @@ export interface Guild {
     vocation: Number,
     player_level: Number,
     online: Number
+  }[];
+  invites: {
+    id: Number,
+		name: String
   }[];
 }
