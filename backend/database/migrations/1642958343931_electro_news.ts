@@ -10,7 +10,7 @@ export default class ElectroNews extends BaseSchema {
       table.string('title').notNullable()
       table.text('body', 'longtext').notNullable()
       table.integer('hidden').defaultTo(0)
-      table.timestamps(true)
+      table.timestamps(true, true)
     })
   }
 

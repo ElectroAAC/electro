@@ -38,23 +38,24 @@
     </v-row>
 
     <v-row v-else class="d-flex align-center justify-center header-text">
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer, miniVariant = false" />
+      <v-col cols="2">
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer, miniVariant = false" />
+        <MenuMobile 
+          :drawer="drawer"
+          :miniVariant="miniVariant"
+          @update-drawer="updateDrawer"
+        />
+      </v-col>
 
-      <MenuMobile 
-        :drawer="drawer"
-        :miniVariant="miniVariant"
-        @update-drawer="updateDrawer"
-      />
+      <v-col class="text-center" cols="8">
+        <NuxtLink to="/">
+          <Logo class="mt-8" width="130px"/>
+        </NuxtLink>
+      </v-col>
 
-      <v-spacer></v-spacer>
-
-      <NuxtLink to="/">
-        <Logo class="mt-8" width="130px"/>
-      </NuxtLink>
-
-      <v-spacer></v-spacer>
-
-      <AccountRoutes @update-dialog="updateDialog"/>
+      <v-col cols="2">
+        <AccountRoutes @update-dialog="updateDialog"/>
+      </v-col>
     </v-row>
   </v-app-bar>
 </template>

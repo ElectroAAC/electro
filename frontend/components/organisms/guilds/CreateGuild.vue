@@ -46,7 +46,7 @@ export default Vue.extend({
             theme: "bubble",
           }
         )
-        this.$router.push('/accounts');
+        this.$router.push(`/guilds/view/${createGuild.$info.name}`);
       }
         
       else {

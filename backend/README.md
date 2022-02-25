@@ -107,6 +107,16 @@ $ npm run start
 | GET    | /guild/view/:name          | Get guild info                        |
 | GET    | /guild/players-with-guild  | Get guild info                        |
 | POST   | /guild/create-guild        | Create Guild                          |
+| POST   | /guild/invite              | Invite character                      |
+| POST   | /guild/invites             | Get all invites                       |
+| POST   | /guild/accept-invite       | Accept invite character               |
+| POST   | /guild/cancel-invite       | Cancel invite character               |
+| POST   | /guild/leave               | Leave guild                           |
+| POST   | /guild/pass-leadership     | Pass Leadership                       |
+| POST   | /guild/change-motd         | Change Motd                           |
+| POST   | /guild/change-rank         | Change Rank of Member                 |
+| POST   | /guild/change-description  | Change Description                    |
+| POST   | /guild/delete              | Delete Guild                          |
 
 <br>
 

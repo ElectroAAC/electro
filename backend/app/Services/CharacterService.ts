@@ -94,7 +94,7 @@ class CharacterView {
     try {
       return await Database
         .from('players')
-        .select('id', 'level', 'name', 'deleted', 'online', 'vocation')
+        .select('id', 'level', 'name', 'deleted', 'online', 'vocation', 'rank_id')
         .where('account_id', '=', account_id);
     } catch (err) {
       console.log(err);
@@ -111,9 +111,22 @@ class CharacterView {
     }
   }
 
-  public async getTotalCharacters(): Promise<Object[]>  {
+  public async getRankId(character_id: number): Promise<Object[]>  {
     try {
-      return await Database.from('players').count('* as total');
+      return await Database.from('players').select('rank_id').where('id', '=', character_id);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
+  public async getGuild(character_id: number): Promise<Object[]>  {
+    try {
+      return await Database
+        .from('players')
+        .innerJoin('guild_ranks', 'guild_ranks.id', 'players.rank_id')
+        .select('guild_ranks.guild_id')
+        .where('players.id', '=', character_id);
     } catch (err) {
       console.log(err);
       return err;
@@ -123,6 +136,24 @@ class CharacterView {
   public async checkSkillId(character_id: number, skill_id: number): Promise<Object[]> {
     try {
       return await Database.from('player_skills').select('skillid').where('player_id', '=', character_id).andWhere('skillid', '=', skill_id);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+  
+  public async isOffline(character_id: number): Promise<Object[]> {
+    try {
+      return await Database.from('players').select('online').where('id', '=', character_id).andWhere('online', '=', 0);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
+  public async getTotalCharacters(): Promise<Object[]>  {
+    try {
+      return await Database.from('players').count('* as total');
     } catch (err) {
       console.log(err);
       return err;

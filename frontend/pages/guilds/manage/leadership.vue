@@ -1,0 +1,3 @@
+<template>
+  <LeadershipGuildTemplate />
+</template>

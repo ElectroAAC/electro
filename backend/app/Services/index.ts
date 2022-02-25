@@ -13,6 +13,7 @@ export {
 export { default as DeathService } from './DeathService';
 
 export { 
+  Guild,
   GuildRepository,
   GuildView
 } from './GuildService';

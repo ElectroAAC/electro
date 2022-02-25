@@ -21,6 +21,7 @@
     "cookie-universal-nuxt": "^2.1.5",
     "core-js": "^3.19.3",
     "eslint-import-resolver-typescript": "^2.5.0",
+    "lottie-vuejs": "^0.4.0",
     "moment": "^2.29.1",
     "nuxt": "^2.15.8",
     "randomcolor": "^0.6.2",

@@ -13,7 +13,7 @@ export default class ElectroKeys extends BaseSchema {
         .inTable('accounts')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
-      table.timestamps(true)
+      table.timestamps(true, true)
     })
   }
 

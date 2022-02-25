@@ -1,11 +1,15 @@
 <template>
   <div class="container-error text-center mt-15">
     <div class="text-center">
-      <Error404 width="70%"/>
+      <Error404/>
     </div>
-    <h1 v-if="error.statusCode === 404">404 Page not found</h1>
+    <h1 v-if="error.statusCode === 404">Page not found</h1>
     <h1 v-else>An error occurred</h1>
-    <NuxtLink to="/">Home page</NuxtLink>
+
+    <h3>
+      <NuxtLink to="/">Home page</NuxtLink>
+    </h3>
+
   </div>
 </template>
 

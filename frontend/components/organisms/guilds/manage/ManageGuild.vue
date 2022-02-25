@@ -1,15 +1,12 @@
 <template>
   <v-row class="mt-2">
+    <div v-if="isLeader">
+      <ManageGuildInfo />
+      <ManageGuildActions class="mt-2" />
+    </div>
 
-    <h2> LOGO </h2>
-    <v-spacer></v-spacer>
-    <h2> {{ $guild.info.name }} </h2> 
-    <v-spacer></v-spacer>
-    <h2> LOGO </h2>
-
-    <v-col cols="12">
-      <GuildInformation />
-      <GuildMembers />
+    <v-col v-else class="text-center" cols="12">
+      You cannot manage a guild that is not yours.
     </v-col>
 
     <v-col class="text-center" cols="12">
@@ -32,12 +29,16 @@ export default Vue.extend({
   computed: {
     $guild() {
       return guild.$guild;
+    },
+
+    isLeader() {
+      return guild.$guild.guild_leader;
     }
   },
 
   methods: {
     back() {
-      this.$router.replace('/guilds');
+      this.$router.replace(`/guilds/view/${this.$guild.info.name}`);
     }
   }
 })
