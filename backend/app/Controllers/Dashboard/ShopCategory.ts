@@ -46,18 +46,42 @@ export default class AccountsController {
   }
 
   public async update(ctx: HttpContextContract) {
-    await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+    try {
+      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
 
-    const data = await ctx.request.validate(UpdateValidator);
+      const data = await ctx.request.validate(UpdateValidator);
 
-    const account = ctx.auth.user;
+      const account = ctx.auth.user;
 
-    if (!account || !account.id) {
-      return ctx.response.unauthorized();
+      if (!account || !account.id) {
+        return ctx.response.unauthorized();
+      }
+
+      await this.categoryRepository.update(data.category_id, data);
+      
+      return ctx.response.status(200).send({ status: 200, message: "Category successfully updated." });
+    } catch (err) {
+      console.log('Error updateShopCategory Query: ', err);
+      return ctx.response.badRequest(err.messages);
     }
+  }
 
-    await this.categoryRepository.update(data.category_id, data);
-    
-    return ctx.response.status(200).send({ status: 200, message: "Category successfully updated." });
+  public async destroy(ctx: HttpContextContract) {
+    try {
+      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+
+      const account = ctx.auth.user;
+
+      if (!account || !account.id) {
+        return ctx.response.unauthorized();
+      }
+
+      await this.categoryRepository.delete(ctx.request.param('id'));
+      
+      return ctx.response.status(200).send({ status: 200, message: "Category successfully deleted." });
+    } catch (err) {
+      console.log('Error deleteShopCategory Query: ', err);
+      return ctx.response.badRequest(err.messages);
+    }
   }
 }

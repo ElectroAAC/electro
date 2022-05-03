@@ -156,4 +156,5 @@ $ npm run start
 | :----- | :-------------------------------| :------------------------------------ |
 | GET    | /shop/category/list             | Get all categories                    |
 | POST   | /shop/category/create           | Create new category                   |
-| POST   | /shop/category/update           | Update category                       |
+| PUT    | /shop/category/update           | Update category                       |
+| DELETE | /shop/category/destroy/:id      | Delete category                       |

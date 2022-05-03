@@ -40,6 +40,15 @@ class CategoryRepository {
       return err;
     }
   }
+
+  public async delete(category_id: number): Promise<Object> {
+    try {
+      return await Database.from('electro_shop_categories').where('id', category_id).delete();
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
 }
 
 export { CategoryView, CategoryRepository }
