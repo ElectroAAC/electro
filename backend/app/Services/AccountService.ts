@@ -49,6 +49,18 @@ class AccountView {
     }
   }
 
+  public async getAccountById(id: number): Promise<Object[]> {  
+    try {
+      return await Database
+        .from('accounts')
+        .select('id', 'name', 'premdays', 'email', 'group_id', 'web_flags', 'premium_points', 'key')
+        .where('id', '=', id);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
   public async getAccountByName(name: string): Promise<Object[]> {  
     try {
       return await Database

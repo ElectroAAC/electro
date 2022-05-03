@@ -162,3 +162,4 @@ $ npm run start
 | POST   | /shop/item/create               | Create new offer item                 |
 | PUT    | /shop/item/update               | Update offer item                     |
 | DELETE | /shop/item/destroy/:id          | Delete offer item                     |
+| POST   | //shop/purchase                 | Purchase Items                        |

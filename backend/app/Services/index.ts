@@ -43,3 +43,7 @@ export {
 } from './ShopCategoryService'
 
 export { ShopItemRepository, ShopItemView} from './ShopItemService'
+
+export { ShopHistoryRepository } from './ShopHistoryService'
+
+export { ShopCommunicationRepository } from './ShopCommunicationService'
