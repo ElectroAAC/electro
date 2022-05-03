@@ -12,22 +12,22 @@ export default class ShopCommunication extends BaseModel {
   public action: string
 
   @column()
-  public param1: string
+  public itemId1: string
 
   @column()
-  public param2: string
+  public count1: string
 
   @column()
-  public param3: string
+  public itemId2: string
 
   @column()
-  public param4: string
+  public count2: string
 
   @column()
-  public param5: string
+  public category_name: string
 
   @column()
-  public param6: string
+  public offer_name: string
 
   @column()
   public param7: string
