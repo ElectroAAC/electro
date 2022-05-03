@@ -23,6 +23,23 @@ class CategoryRepository {
       return err;
     }
   }
+
+  public async update(category_id: number, data: any): Promise<Object[]> {  
+    try {
+      return await Database
+        .from('electro_shop_categories')
+        .where('id', '=', category_id)
+        .update({ 
+          name: data.name,
+          description: data.description,
+          hidden: data.hidden ? 1 : 0,
+          updated_at: new Date()
+        });
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
 }
 
 export { CategoryView, CategoryRepository }
