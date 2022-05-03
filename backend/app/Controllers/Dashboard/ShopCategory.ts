@@ -6,6 +6,17 @@ export default class AccountsController {
   public categoryView: ShopCategoryView = new ShopCategoryView();
   public categoryRepository: ShopCategoryRepository = new ShopCategoryRepository();
 
+  public async index(ctx: HttpContextContract) {
+    try {
+      const news = await this.categoryView.getCategories();
+      
+      return ctx.response.status(200).send({ status: 200, news });
+    } catch(err) {
+      console.log('Error getCategories Query: ', err);
+      return ctx.response.status(400).send({ error: 'An error occurred, check the api console.'});
+    }
+  }
+
   public async store(ctx: HttpContextContract) {
     try {
       await ctx.bouncer.with('DashboardPolicy').authorize('viewList');

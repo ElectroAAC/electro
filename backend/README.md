@@ -154,4 +154,5 @@ $ npm run start
 
 | METHOD | ENDPOINT                        | DESCRIPTION                           |
 | :----- | :-------------------------------| :------------------------------------ |
+| GET    | /shop/category/list             | Get all categories                    |
 | POST   | /shop/category/create           | Create new category                   |
