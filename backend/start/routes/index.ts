@@ -6,6 +6,7 @@ import './character';
 import './dashboard/home';
 import './dashboard/accounts';
 import './dashboard/character';
+import './dashboard/shopCategory';
 import './guilds';
 import './online';
 import './lastkills';

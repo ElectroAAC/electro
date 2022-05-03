@@ -149,3 +149,9 @@ $ npm run start
 | GET    | /dashboard/character-skills/:id | Find character                            |
 | POST   | /dashboard/character            | Update character                          |
 | POST   | /dashboard/character-skills     | Update characterSkills                    |
+
+##  🕵🏾‍♂️  Routes Shop
+
+| METHOD | ENDPOINT                        | DESCRIPTION                           |
+| :----- | :-------------------------------| :------------------------------------ |
+| POST   | /shop/category/create           | Create new category                   |
