@@ -4,3 +4,7 @@ export { default as Guild } from './Guild';
 export { default as Item } from './Items';
 export { default as News } from './New';
 export { default as Player } from './Player';
+export { default as ShopCategory } from './Shop_Category';
+export { default as ShopItem } from './Shop_Item';
+export { default as ShopHistory } from './Shop_History';
+export { default as ShopCommunication } from './Shop_Communication';
