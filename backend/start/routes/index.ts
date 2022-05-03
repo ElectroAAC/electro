@@ -7,6 +7,7 @@ import './dashboard/home';
 import './dashboard/accounts';
 import './dashboard/character';
 import './dashboard/shopCategory';
+import './dashboard/shopItem';
 import './guilds';
 import './online';
 import './lastkills';

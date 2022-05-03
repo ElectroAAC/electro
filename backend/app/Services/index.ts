@@ -41,3 +41,5 @@ export {
   CategoryView as ShopCategoryView,
   CategoryRepository as ShopCategoryRepository
 } from './ShopCategoryService'
+
+export { ShopItemRepository, ShopItemView} from './ShopItemService'
