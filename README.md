@@ -131,7 +131,6 @@ This repository follows the semantic commit pattern, with the addition of the ta
   <ul>
     <li> [x] Invite Player </li>
     <li> [ ] Remove Invite </li>
-    <li> [ ] Remove Invite </li>
     <li> [x] Promove Player </li>
     <li> [x] Demote Player </li>
     <li> [x] Change MOTD </li>
