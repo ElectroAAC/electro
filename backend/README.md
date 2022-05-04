@@ -149,3 +149,17 @@ $ npm run start
 | GET    | /dashboard/character-skills/:id | Find character                            |
 | POST   | /dashboard/character            | Update character                          |
 | POST   | /dashboard/character-skills     | Update characterSkills                    |
+
+##  🕵🏾‍♂️  Routes Shop
+
+| METHOD | ENDPOINT                        | DESCRIPTION                           |
+| :----- | :-------------------------------| :------------------------------------ |
+| GET    | /shop/category/list             | Get all categories                    |
+| POST   | /shop/category/create           | Create new category                   |
+| PUT    | /shop/category/update           | Update category                       |
+| DELETE | /shop/category/destroy/:id      | Delete category                       |
+| GET    | /shop/item/list                 | Get all items                         |
+| POST   | /shop/item/create               | Create new offer item                 |
+| PUT    | /shop/item/update               | Update offer item                     |
+| DELETE | /shop/item/destroy/:id          | Delete offer item                     |
+| POST   | //shop/purchase                 | Purchase Items                        |

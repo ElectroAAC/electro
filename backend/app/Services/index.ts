@@ -36,3 +36,14 @@ export {
 } from './SkillService';
 
 export { default as StorageService } from './StorageService';
+
+export {
+  CategoryView as ShopCategoryView,
+  CategoryRepository as ShopCategoryRepository
+} from './ShopCategoryService'
+
+export { ShopItemRepository, ShopItemView} from './ShopItemService'
+
+export { ShopHistoryRepository } from './ShopHistoryService'
+
+export { ShopCommunicationRepository } from './ShopCommunicationService'
