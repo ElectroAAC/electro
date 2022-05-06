@@ -16,6 +16,9 @@ $ npm install
 # Create database structure
 $ node ace migration:run
 
+# Create account admin and character sample
+$ node ace db:seed
+
 # server with changes watcher
 $ npm run dev
 
