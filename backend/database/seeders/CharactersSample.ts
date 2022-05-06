@@ -7,6 +7,7 @@ export default class CharactersSampleSeeder extends BaseSeeder {
       account_id: 1,
       name: "Character Sample",
       conditions: '0x',
+      vocation: 1,
       comment: ''
     })
   }
