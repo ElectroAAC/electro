@@ -1,5 +1,5 @@
 CREATE TABLE `accounts` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `password` char(40) NOT NULL,
   `secret` char(16) DEFAULT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE `account_bans` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `account_ban_history` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `account_id` int(11) NOT NULL,
   `reason` varchar(255) NOT NULL,
   `banned_at` bigint(20) NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE `account_viplist` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `auction_system` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `player_id` int(11) NOT NULL,
   `item_name` varchar(255) NOT NULL,
   `item_id` smallint(6) NOT NULL,
@@ -78,7 +78,7 @@ CREATE TABLE `global_storage` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `guilds` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `ownerid` int(11) NOT NULL,
   `creationdata` int(11) NOT NULL,
@@ -94,7 +94,7 @@ CREATE TRIGGER `oncreate_guilds` AFTER INSERT ON `guilds` FOR EACH ROW BEGIN
 END
 
 CREATE TABLE `guildwar_kills` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `killer` varchar(50) NOT NULL,
   `target` varchar(50) NOT NULL,
   `killerguild` int(11) NOT NULL DEFAULT '0',
@@ -116,14 +116,14 @@ CREATE TABLE `guild_membership` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `guild_ranks` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `guild_id` int(11) NOT NULL COMMENT 'guild',
   `name` varchar(255) NOT NULL COMMENT 'rank name',
   `level` int(11) NOT NULL COMMENT 'rank level - leader, vice, member, maybe something else'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `guild_wars` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `guild1` int(11) NOT NULL DEFAULT '0',
   `guild2` int(11) NOT NULL DEFAULT '0',
   `name1` varchar(255) NOT NULL,
@@ -134,7 +134,7 @@ CREATE TABLE `guild_wars` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `houses` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `owner` int(11) NOT NULL,
   `paid` int(10) UNSIGNED NOT NULL DEFAULT '0',
   `warnings` int(11) NOT NULL DEFAULT '0',
@@ -163,7 +163,7 @@ CREATE TABLE `hunted_system` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `ip_bans` (
-  `ip` int(10) UNSIGNED NOT NULL,
+  `ip` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `reason` varchar(255) NOT NULL,
   `banned_at` bigint(20) NOT NULL,
   `expires_at` bigint(20) NOT NULL,
@@ -171,7 +171,7 @@ CREATE TABLE `ip_bans` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `players` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `group_id` int(11) NOT NULL DEFAULT '1',
   `account_id` int(11) NOT NULL DEFAULT '0',
@@ -214,8 +214,8 @@ CREATE TABLE `players` (
   `skill_fist_tries` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
   `skill_club` int(10) UNSIGNED NOT NULL DEFAULT '10',
   `skill_club_tries` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
-  `skill_ninjutsu` int(10) UNSIGNED NOT NULL DEFAULT '10',
-  `skill_ninjutsu_tries` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
+  `skill_sword` int(10) UNSIGNED NOT NULL DEFAULT '10',
+  `skill_sword_tries` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
   `skill_axe` int(10) UNSIGNED NOT NULL DEFAULT '10',
   `skill_axe_tries` bigint(20) UNSIGNED NOT NULL DEFAULT '0',
   `skill_dist` int(10) UNSIGNED NOT NULL DEFAULT '10',
@@ -314,7 +314,7 @@ CREATE TABLE `tile_store` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `towns` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `posx` int(11) NOT NULL DEFAULT '0',
   `posy` int(11) NOT NULL DEFAULT '0',
