@@ -8,7 +8,7 @@ export default class PlayersController {
 
   public async show(ctx: HttpContextContract) {
     try {
-      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
 
       const skills = await this.skillView.getCharacterSkills(ctx.request.param('id'));
        
@@ -25,7 +25,7 @@ export default class PlayersController {
 
   public async update(ctx: HttpContextContract) {
     try {
-      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
 
       const data = await ctx.request.validate(UpdateValidator);
 

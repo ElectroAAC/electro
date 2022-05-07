@@ -16,7 +16,7 @@ export default class AccountsController {
 
   public async index(ctx: HttpContextContract) {
     try {
-      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
       
       const accounts = await this.accountView.getTotalAccounts();
 
@@ -29,7 +29,7 @@ export default class AccountsController {
 
   public async show(ctx: HttpContextContract) {
     try {
-      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
 
       const account = await this.accountView.getAccountByName(ctx.request.param('name')) as AccountModel[];
        
@@ -48,7 +48,7 @@ export default class AccountsController {
 
   public async update(ctx: HttpContextContract) {
     try {
-      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
       const data = await ctx.request.validate(UpdateValidator);
       
       const account = await this.account.validateName(data.id, data.name);

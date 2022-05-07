@@ -19,7 +19,7 @@ export default class AccountsController {
 
   public async store(ctx: HttpContextContract) {
     try {
-      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
 
       const data = await ctx.request.validate(StoreValidator);
 
@@ -48,7 +48,7 @@ export default class AccountsController {
   }
 
   public async show(ctx: HttpContextContract) {
-    await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+    await ctx.bouncer.with('DashboardPolicy').authorize('admin');
 
     const page = await this.newsView.findNewsById(ctx.request.param('id'));
     if (!page.length) {
@@ -58,7 +58,7 @@ export default class AccountsController {
   }
 
   public async update(ctx: HttpContextContract) {
-    await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+    await ctx.bouncer.with('DashboardPolicy').authorize('admin');
 
     const data = await ctx.request.validate(UpdateValidator);
 

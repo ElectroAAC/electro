@@ -19,7 +19,7 @@ export default class AccountsController {
 
   public async store(ctx: HttpContextContract) {
     try {
-      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
 
       const validator = await ctx.request.validate(StoreValidator);
 
@@ -47,7 +47,7 @@ export default class AccountsController {
 
   public async update(ctx: HttpContextContract) {
     try {
-      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
 
       const data = await ctx.request.validate(UpdateValidator);
 
@@ -68,7 +68,7 @@ export default class AccountsController {
 
   public async destroy(ctx: HttpContextContract) {
     try {
-      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
 
       const account = ctx.auth.user;
 
