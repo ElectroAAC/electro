@@ -107,10 +107,10 @@ class GuildView {
   public async getOwner(guild_id: number): Promise<Object[]> {  
     try {
       return await Database
-        .from('guilds')
-        .innerJoin('players', 'players.id', 'guilds.ownerid')
-        .select('players.id', 'players.name', 'players.account_id')
-        .where('guilds.id', '=', guild_id);
+        .from('guilds as g')
+        .innerJoin('players as p', 'p.id', 'g.ownerid')
+        .select('p.id', 'p.name', 'p.account_id')
+        .where('g.id', '=', guild_id);
     } catch (err) {
       console.log(err);
       return err;
@@ -346,17 +346,6 @@ class GuildRepository extends GuildView {
 
   public async delete(guild_id: number): Promise<Object> {
     try {
-      const guildMembers = await this.getGuildMembers(guild_id) as Player[];
-      const guildRanks = await this.getGuildRanks(guild_id) as GuildModel[];
-
-      for (let member of guildMembers) {
-        await this.character.updateRankId(member.id, 0);
-      }
-
-      for (let rank of guildRanks) {
-        await this.deleteRank(rank.id);
-      }
-
       return await Database.from('guilds').where('id', guild_id).delete();
     } catch (err) {
       console.log(err);
