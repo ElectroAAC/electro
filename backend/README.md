@@ -32,10 +32,6 @@ $ npm run start
 | METHOD | ENDPOINT                        | DESCRIPTION                           |
 | :----- | :-------------------------------| :------------------------------------ |
 | GET    | /news/list/:page/:limit         | Get news                              |
-| GET    | /news/listDashboard/:page/:limit| Get news to Dashboard                 |
-| POST   | /news/create-post               | Create new post                       |
-| GET    | /news/find/:id                  | Find post                             |
-| POST   | /news/edit                      | Edit post                             |
 
 <br>
 
@@ -168,3 +164,12 @@ $ npm run start
 | GET    | /dashboard/character-skills/:id | Find character                            |
 | POST   | /dashboard/character            | Update character                          |
 | POST   | /dashboard/character-skills     | Update characterSkills                    |
+
+##  🕵🏾‍♂️  Routes Dashboard - News
+
+| METHOD | ENDPOINT                        | DESCRIPTION                           |
+| :----- | :-------------------------------| :------------------------------------ |
+| GET    | /news/listDashboard/:page/:limit| Get news to Dashboard                 |
+| POST   | /news/create                    | Create new post                       |
+| GET    | /news/find/:id                  | Find post                             |
+| PATCH  | /news/edit                      | Update post                           |

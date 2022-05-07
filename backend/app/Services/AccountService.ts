@@ -52,7 +52,7 @@ class AccountView {
     try {
       return await Database
         .from('accounts')
-        .select('id', 'name', 'premdays', 'email', 'group_id', 'web_flags', 'premium_points', 'key')
+        .select('id', 'name', 'premdays', 'email', 'type', 'web_flags', 'premium_points', 'key')
         .where('id', '=', id);
     } catch (err) {
       console.log(err);
@@ -64,7 +64,7 @@ class AccountView {
     try {
       return await Database
         .from('accounts')
-        .select('id', 'name', 'premdays', 'email', 'group_id', 'web_flags', 'premium_points', 'key')
+        .select('id', 'name', 'premdays', 'email', 'type', 'web_flags', 'premium_points', 'key')
         .where('name', '=', name);
     } catch (err) {
       console.log(err);
