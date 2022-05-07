@@ -108,7 +108,7 @@ $ npm run start
 | :----- | :------------------------- | :------------------------------------ |
 | GET    | /guilds/:page/:limit       | Get all guilds                        |
 | GET    | /guild/view/:name          | Get guild info                        |
-| GET    | /guild/players-with-guild  | Get guild info                        |
+| GET    | /guild/players-without-guild| Get guild info                        |
 | POST   | /guild/create-guild        | Create Guild                          |
 | POST   | /guild/invite              | Invite character                      |
 | POST   | /guild/invites             | Get all invites                       |
@@ -120,6 +120,22 @@ $ npm run start
 | POST   | /guild/change-rank         | Change Rank of Member                 |
 | POST   | /guild/change-description  | Change Description                    |
 | POST   | /guild/delete              | Delete Guild                          |
+
+<br>
+
+##  🕵🏾‍♂️  Routes Shop
+
+| METHOD | ENDPOINT                        | DESCRIPTION                           |
+| :----- | :-------------------------------| :------------------------------------ |
+| GET    | /shop/category/list             | Get all categories                    |
+| POST   | /shop/category/create           | Create new category                   |
+| PUT    | /shop/category/update           | Update category                       |
+| DELETE | /shop/category/destroy/:id      | Delete category                       |
+| GET    | /shop/item/list                 | Get all items                         |
+| POST   | /shop/item/create               | Create new offer item                 |
+| PUT    | /shop/item/update               | Update offer item                     |
+| DELETE | /shop/item/destroy/:id          | Delete offer item                     |
+| POST   | //shop/purchase                 | Purchase Items                        |
 
 <br>
 
@@ -152,17 +168,3 @@ $ npm run start
 | GET    | /dashboard/character-skills/:id | Find character                            |
 | POST   | /dashboard/character            | Update character                          |
 | POST   | /dashboard/character-skills     | Update characterSkills                    |
-
-##  🕵🏾‍♂️  Routes Shop
-
-| METHOD | ENDPOINT                        | DESCRIPTION                           |
-| :----- | :-------------------------------| :------------------------------------ |
-| GET    | /shop/category/list             | Get all categories                    |
-| POST   | /shop/category/create           | Create new category                   |
-| PUT    | /shop/category/update           | Update category                       |
-| DELETE | /shop/category/destroy/:id      | Delete category                       |
-| GET    | /shop/item/list                 | Get all items                         |
-| POST   | /shop/item/create               | Create new offer item                 |
-| PUT    | /shop/item/update               | Update offer item                     |
-| DELETE | /shop/item/destroy/:id          | Delete offer item                     |
-| POST   | //shop/purchase                 | Purchase Items                        |

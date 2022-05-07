@@ -157,13 +157,13 @@ class GuildView {
     }
   }
 
-  public async getCharactersWithGuild(account_id: number): Promise<Object[]> {  
+  public async getCharactersWithoutGuild(account_id: number): Promise<Object[]> {  
     try {
       return await Database
-        .from('players')
-        .select('id', 'name')
-        .where('account_id', '=', account_id)
-        .andWhere('rank_id', '=', 0);
+        .from('guild_membership as gm')
+        .select('p.id', 'p.name')
+        .innerJoin('players as p', 'p.id', 'gm.player_id')
+        .where('p.account_id', '=', account_id)
     } catch (err) {
       console.log(err);
       return err;

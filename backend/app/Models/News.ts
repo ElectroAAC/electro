@@ -2,7 +2,7 @@ import { DateTime } from 'luxon'
 import { BaseModel, belongsTo, column, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
 import { Account } from 'App/Models'
 
-export default class New extends BaseModel {
+export default class News extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
