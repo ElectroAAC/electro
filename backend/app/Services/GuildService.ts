@@ -1,10 +1,11 @@
 import Database from '@ioc:Adonis/Lucid/Database'
 import { Guild as GuildModel, Player } from 'App/Models';
-import { Character, CharacterView } from 'App/Services'
+import { Character, CharacterView, GuildMembershipRepository } from 'App/Services'
 
 class GuildView {
   public character: Character = new Character();
   public characterView: CharacterView = new CharacterView();
+  public guildMembershipRepository: GuildMembershipRepository = new GuildMembershipRepository();
 
   public async getTotalGuilds(): Promise<Object[]> {  
     try {
@@ -183,14 +184,17 @@ class Guild extends GuildView {
   
   public async isLeader(account_id: number, guild_id: number): Promise<Boolean> {  
     try {
-      const characters_to_account = await this.characterView.getByAccount(account_id) as Player[];
+      const characters_to_account: any = await this.characterView.getByAccount(account_id) as Player[];
       const guildRanks = await this.getGuildRanks(guild_id) as { id: number, level: number }[];
+      
       let guild_leader = false;
 
       for (let character of characters_to_account) {
-        if (character.rank_id > 0) {
+        character.rank_id = await this.characterView.getRankId(character.id);
+
+        if (character.rank_id.length && character.rank_id[0].rank_id > 0) {
           for (let rank of guildRanks) {
-            if (character.rank_id === rank.id && rank.level === 3) {
+            if (character.rank_id[0].rank_id === rank.id && rank.level === 3) {
               guild_leader = true;
             }
           }
@@ -206,14 +210,17 @@ class Guild extends GuildView {
   
   public async isLeaderOrVice(account_id: number, guild_id: number): Promise<Boolean> {  
     try {
-      const characters_to_account = await this.characterView.getByAccount(account_id) as Player[];
+      const characters_to_account: any = await this.characterView.getByAccount(account_id) as Player[];
       const guildRanks = await this.getGuildRanks(guild_id) as { id: number, level: number }[];
+
       let isLeaderOrVice = false;
 
       for (let character of characters_to_account) {
-        if (character.rank_id > 0) {
+        character.rank_id = await this.characterView.getRankId(character.id);
+
+        if (character.rank_id.length && character.rank_id[0].rank_id > 0) {
           for (let rank of guildRanks) {
-            if (character.rank_id === rank.id && rank.level > 1) {
+            if (character.rank_id[0].rank_id === rank.id && rank.level > 1) {
               isLeaderOrVice = true;
               break;
             }
@@ -267,7 +274,11 @@ class Guild extends GuildView {
     try {
       const rankGuild = await this.getGuildRanks(guild_id) as GuildModel[];
 
-      await this.character.updateRankId(player_id, rankGuild[2].id);
+      await this.guildMembershipRepository.insert({
+        player_id,
+        guild_id,
+        rank_id: rankGuild[2].id
+      });
 
       await this.removeInvite(guild_id, player_id);
 
