@@ -1,4 +1,3 @@
-import { Account as AccountModel } from 'App/Models'
 import Database from '@ioc:Adonis/Lucid/Database'
 import encrypt from 'js-sha1'
 
@@ -16,7 +15,7 @@ class Account {
 
   public async validatePassword(account_id: number, password: string): Promise<Object[]> {
     try {
-      return await AccountModel.query().where('id', account_id).where('password', encrypt(password)).firstOrFail();
+      return await Database.from('accounts').where('id', '=', account_id).andWhere('password', '=', encrypt(password));
     } catch (err) {
       console.log(err);
       return err;

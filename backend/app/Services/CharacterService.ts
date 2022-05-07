@@ -81,7 +81,7 @@ class CharacterView {
     try {
       return await Database
         .from('players')
-        .select('name', 'deleted', 'online', 'rank_id')
+        .select('id', 'name', 'deletion')
         .where('id', '=', character_id)
         .andWhere('account_id', '=', account_id);
     } catch (err) {
@@ -142,9 +142,9 @@ class CharacterView {
     }
   }
   
-  public async isOffline(character_id: number): Promise<Object[]> {
+  public async isOnline(character_id: number): Promise<Object[]> {
     try {
-      return await Database.from('players').select('online').where('id', '=', character_id).andWhere('online', '=', 0);
+      return await Database.from('players_online').select('player_id').where('player_id', '=', character_id);
     } catch (err) {
       console.log(err);
       return err;
@@ -185,7 +185,7 @@ class CharacterRepository {
 
   public async delete(character_id: number): Promise<Object[]> {
     try {
-      return await Database.from('players').where('id', '=', character_id).update({ deleted: 1 });
+      return await Database.from('players').where('id', '=', character_id).update({ deletion: 1 });
     } catch (err) {
       console.log(err);
       return err;

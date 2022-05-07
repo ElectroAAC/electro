@@ -60,11 +60,13 @@ export default class PlayersController {
       }
   
       const character: Player[] = await this.characterView.findByIdAndAccount(data.character_id, account.id) as Player[];
-  
+
       if (!character.length)
         return ctx.response.status(404).send({ message: 'The character does not belong to your account.' });
-  
-      if (character[0].online === 1)
+      
+      const online = await this.characterView.isOnline(character[0].id);
+
+      if (online.length)
         return ctx.response.status(404).send({ message: 'The character cannot be online.' });
       
       const updateCharacter = await this.character.updateName(data.character_id, data.new_name);
@@ -77,7 +79,7 @@ export default class PlayersController {
       return ctx.response.status(200).send({ status: 200, message: "The character " + character[0].name + " name has been changed to " + data.new_name + "." });
     } catch (err) {
       console.log('Error changing player name: ', err);
-      return ctx.response.status(400).send({ message: 'Character not found!'})
+      return ctx.response.status(400).send({ message: err })
     }
   }
 
@@ -91,8 +93,8 @@ export default class PlayersController {
         return ctx.response.unauthorized();
 
       const verifyPassword = await this.account.validatePassword(account.id, data.password);
-      
-      if (!verifyPassword)
+
+      if (!verifyPassword.length)
        return ctx.response.status(404).send({ message: 'Wrong password.' });
       
       const character: Player[] = await this.characterView.findByIdAndAccount(data.character_id, account.id) as Player[];
@@ -100,10 +102,12 @@ export default class PlayersController {
       if (!character.length)
         return ctx.response.status(404).send({ message: 'The character does not belong to your account.' });
       
-      if (character[0].online === 1)
+      const online = await this.characterView.isOnline(character[0].id);
+
+      if (online.length)
         return ctx.response.status(404).send({ message: 'You cannot delete a character that is online.' });
       
-      if (character[0].deleted === 1)
+      if (character[0].deletion === 1)
         return ctx.response.status(404).send({ message: 'This character is already deleted.' });
       
       const house = await this.houseService.findByOwnerId(data.character_id);
@@ -118,7 +122,8 @@ export default class PlayersController {
       
       return ctx.response.status(200).send({ status: 200, message: "The character " + character[0].name + " has been deleted." });
     } catch (err) {
-
+      console.log('Error delete character: ', err);
+      return ctx.response.status(400).send({ message: 'Character not found!'})
     }
   }
 }
