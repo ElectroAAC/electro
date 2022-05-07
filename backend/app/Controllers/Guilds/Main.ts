@@ -5,9 +5,13 @@ import {
   Character,
   CharacterView, 
   GuildRepository,
-  GuildView 
+  GuildView,
+  GuildRanksRepository,
+  GuildMembershipRepository
 } from 'App/Services'
+
 import { Player } from 'App/Models';
+import { GuildRanks } from 'Contracts/enums/GuildRanks'
 
 interface Guild {
   id: number,
@@ -24,6 +28,8 @@ export default class GuildsController {
   public characterView: CharacterView = new CharacterView();
   public guildRepository: GuildRepository = new GuildRepository();
   public guildView: GuildView = new GuildView();
+  public guildRanksRepository: GuildRanksRepository = new GuildRanksRepository();
+  public guildMembershipRepository: GuildMembershipRepository = new GuildMembershipRepository();
 
   public async index(ctx: HttpContextContract) {
     try {
@@ -53,12 +59,13 @@ export default class GuildsController {
       return ctx.response.status(404).send({ message: 'The character does not belong to your account.' });
     }
 
-    if (character[0].online === 1)
-    {
-      return ctx.response.status(404).send({ message: 'The character cannot be online.' });
-    }
+    const online = await this.characterView.isOnline(character[0].id);
+    const rank_id = await this.characterView.getRankId(character[0].id);
 
-    if (character[0].rank_id !== 0)
+    if (online.length)
+      return ctx.response.status(404).send({ message: 'The character cannot be online.' });
+
+    if (rank_id.length)
     {
       return ctx.response.status(404).send({ message: 'Your character already has a guild.' });
     }
@@ -67,26 +74,40 @@ export default class GuildsController {
       name: data.name,
       ownerid: data.character_id,
       creationdata: 0,
-      checkdata: 0,
-      balance: 0,
-      invited_to: 0,
-      invited_by: 0,
-      in_war_with: 0,
-      kills: 0,
-      show: 0,
-      war_time: 0,
-      description: 'New guild. Leader must edit this text'
+      description: 'New guild. Leader must edit this text',
+      motd: '',
+      logo_name: ''
     };
 
     const result = await this.guildRepository.create(newGuild);
 
-    const guild = await this.guildView.getGuildById(result[0]) as Guild[];
-
-    if (!guild.length) {
+    if (!result) {
       return ctx.response.status(404).send({ message: "Error. Can't create guild. Probably problem with database. Please try again later or contact with admin."});
     }
     
-    await this.character.updateRankId(data.character_id, guild[0].rank_id);
+    const rankLeaderId = await this.guildRanksRepository.create({
+      guild_id: result[0],
+      name: 'Leader',
+      level: 3
+    });
+
+    await this.guildRanksRepository.create({
+      guild_id: result[0],
+      name: 'Vice-Leader',
+      level: 2
+    });
+
+    await this.guildRanksRepository.create({
+      guild_id: result[0],
+      name: 'Member',
+      level: 1
+    });
+
+    await this.guildMembershipRepository.insert({
+      player_id: data.character_id,
+      guild_id: result,
+      rank_id: rankLeaderId[0]
+    });
 
     return ctx.response.status(200).send({ status: 200, message: 'Guild created successfully!'});
   }
@@ -94,6 +115,10 @@ export default class GuildsController {
   public async show(ctx: HttpContextContract) {
     try {
       const guild = await this.guildView.getGuildByName(ctx.request.param('name')) as Guild[];
+
+      if (!guild.length) {
+        return ctx.response.status(404).send({ message: "Guild not found." });
+      }
 
       const guildRanks = await this.guildView.getGuildRanks(guild[0].id) as Rank[];
 

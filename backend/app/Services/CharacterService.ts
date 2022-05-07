@@ -113,7 +113,7 @@ class CharacterView {
 
   public async getRankId(character_id: number): Promise<Object[]>  {
     try {
-      return await Database.from('players').select('rank_id').where('id', '=', character_id);
+      return await Database.from('guild_membership').select('rank_id').where('player_id', '=', character_id);
     } catch (err) {
       console.log(err);
       return err;
