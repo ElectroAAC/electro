@@ -5,9 +5,9 @@ export default class DeathService {
     try {
       return await Database
         .from('player_deaths')
-        .select('id', 'date', 'level')
+        .select('player_id', 'time', 'level', 'killed_by', 'is_player', 'mostdamage_by', 'mostdamage_is_player', 'unjustified', 'mostdamage_unjustified')
         .where('player_id', character_id)
-        .orderBy('date', 'desc')
+        .orderBy('time', 'desc')
         .limit(10);
     } catch (err) {
       console.log(err);

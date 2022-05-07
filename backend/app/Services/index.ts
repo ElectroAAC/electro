@@ -47,3 +47,5 @@ export { ShopItemRepository, ShopItemView} from './ShopItemService'
 export { ShopHistoryRepository } from './ShopHistoryService'
 
 export { ShopCommunicationRepository } from './ShopCommunicationService'
+
+export { default as UtilsService } from './UtilsServices';
