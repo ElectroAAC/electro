@@ -24,7 +24,7 @@ export default class PlayersController {
     try {
       await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
 
-      const character = await this.characterView.findByName(ctx.request.param('name'));
+      const character = await this.characterView.getByName(ctx.request.param('name'));
        
       if (!character.length) {
         return ctx.response.status(404).send({ message: "Character not found!" });

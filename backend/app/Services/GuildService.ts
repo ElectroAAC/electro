@@ -36,18 +36,18 @@ class GuildView {
       name = name.replace(/%20/g, " ").replace(/'+'/g, " ").replace(/'/g, "").replace(/%27/g, "").replace(/-/g, "").replace(/"/g, "").replace(/%22/g, "");
 
       return await Database
-        .from('guilds')
-        .innerJoin('players', 'players.id', 'guilds.ownerid')
+        .from('guilds as g')
+        .innerJoin('players as p', 'p.id', 'g.ownerid')
         .select(
-          'guilds.id', 
-          'guilds.name', 
-          'guilds.description', 
-          'guilds.motd', 
-          'guilds.ownerid as owner_id', 
-          'guilds.creationdata as creation_data',
-          'players.name as owner_name',
+          'g.id', 
+          'g.name', 
+          'g.description', 
+          'g.motd', 
+          'g.ownerid as owner_id', 
+          'g.creationdata as creation_data',
+          'p.name as owner_name',
         )
-        .where('guilds.name', '=', name);
+        .where('g.name', '=', name);
     } catch (err) {
       console.log(err);
       return err;
@@ -69,21 +69,22 @@ class GuildView {
 
   public async getGuildMembers(guild_id: number): Promise<Object[]> {  
     try {
-      return await Database.from('guilds')
-        .innerJoin('guild_ranks', 'guild_ranks.guild_id', '=', 'guilds.id')
-        .innerJoin('players', 'players.rank_id', 'guild_ranks.id')
+      return await Database
+        .from('guild_membership as gm')
+        .innerJoin('guilds as g', 'g.id', 'gm.guild_id')
+        .innerJoin('guild_ranks as gr', 'gr.id', 'gm.rank_id')
+        .innerJoin('players as p', 'p.id', 'gm.player_id')
         .select(
-          'guild_ranks.level',
-          'guild_ranks.id as rank_id',
-          'guild_ranks.name as rank_name',
-          'players.id',
-          'players.name',
-          'players.vocation',
-          'players.level as player_level',
-          'players.online'
+          'gr.level',
+          'gr.id as rank_id',
+          'gr.name as rank_name',
+          'p.id',
+          'p.name',
+          'p.vocation',
+          'p.level as player_level'
         )
-        .where('guilds.id', '=', guild_id)
-        .orderBy('guild_ranks.level', 'desc');
+        .where('g.id', '=', guild_id)
+        .orderBy('gr.level', 'desc');
     } catch (err) {
       console.log(err);
       return err;

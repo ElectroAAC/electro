@@ -37,7 +37,7 @@ export default class CharactersAccount {
         return ctx.response.status(404).send({ message: 'Vocation invalid'});
       }
 
-      const characterCopy: Player[] = await this.characterView.findByName(vocation.name) as Player[];
+      const characterCopy: Player[] = await this.characterView.getByName(vocation.name) as Player[];
       
       if (!characterCopy.length) {
         console.log("Error find Sample Character: Edit file Vocations in contracts/enums/Vocations and set valid characters to copy names. Name Character to copy: " + vocation.name + " doesn\'t exist.");
@@ -60,7 +60,7 @@ export default class CharactersAccount {
 
       const result = await this.characterRepository.create(newPlayer);
 
-      const player: Player[] = await this.characterView.findById(result[0]) as Player[];
+      const player: Player[] = await this.characterView.getById(result[0]) as Player[];
 
       const items_to_copy: Item[] = await this.characterView.getItems(characterCopy[0].id) as Item[];
 

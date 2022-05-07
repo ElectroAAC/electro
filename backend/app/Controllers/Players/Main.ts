@@ -30,7 +30,7 @@ export default class PlayersController {
 
   public async show(ctx: HttpContextContract) {
     try {
-      const character = await this.characterView.findByName(ctx.request.param('name'));
+      const character = await this.characterView.getByName(ctx.request.param('name'));
 
       return ctx.response.status(200).send({ result: character});
     } catch(err) {
@@ -59,7 +59,7 @@ export default class PlayersController {
         });
       }
   
-      const character: Player[] = await this.characterView.findByIdAndAccount(data.character_id, account.id) as Player[];
+      const character: Player[] = await this.characterView.getByIdAndAccount(data.character_id, account.id) as Player[];
 
       if (!character.length)
         return ctx.response.status(404).send({ message: 'The character does not belong to your account.' });
@@ -97,7 +97,7 @@ export default class PlayersController {
       if (!verifyPassword.length)
        return ctx.response.status(404).send({ message: 'Wrong password.' });
       
-      const character: Player[] = await this.characterView.findByIdAndAccount(data.character_id, account.id) as Player[];
+      const character: Player[] = await this.characterView.getByIdAndAccount(data.character_id, account.id) as Player[];
 
       if (!character.length)
         return ctx.response.status(404).send({ message: 'The character does not belong to your account.' });
