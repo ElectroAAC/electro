@@ -1,6 +1,9 @@
 import Database from '@ioc:Adonis/Lucid/Database'
+import { ShopCategoryView } from 'App/Services'
 
 class ShopItemView {
+  public shopCategoryView: ShopCategoryView = new ShopCategoryView();
+
   public async getOfferById(id: number): Promise<Object[]> {  
     try {
       return await Database
@@ -23,12 +26,23 @@ class ShopItemView {
     }
   }
 
-  public async getShopItems(): Promise<Object[]> {  
+  public async getOffers(category_name: String): Promise<Object[]> {  
     try {
-      return await Database
-        .from('electro_shop_items')
-        .select('id', 'category_id', 'name', 'description', 'price', 'itemId1', 'itemId2', 'count2', 'hidden')
-        .orderBy('name', 'asc');
+      const category: any = category_name ? await this.shopCategoryView.getCategoryByName(category_name) : "";
+      
+      if (category.length) {
+        return await Database
+          .from('electro_shop_items')
+          .select('id', 'category_id', 'name', 'description', 'price', 'itemId1', 'itemId2', 'count2', 'hidden')
+          .where('category_id', '=', category[0].id)
+          .orderBy('name', 'asc');
+      }
+      else {
+        return await Database
+          .from('electro_shop_items')
+          .select('id', 'category_id', 'name', 'description', 'price', 'itemId1', 'itemId2', 'count2', 'hidden')
+          .orderBy('name', 'asc');
+      }
     } catch (err) {
       console.log(err);
       return err;

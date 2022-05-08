@@ -54,7 +54,10 @@ export {
   CategoryRepository as ShopCategoryRepository
 } from './ShopCategoryService'
 
-export { ShopItemRepository, ShopItemView} from './ShopItemService'
+export { 
+  ShopItemRepository, 
+  ShopItemView
+} from './ShopItemService'
 
 export { ShopHistoryRepository } from './ShopHistoryService'
 

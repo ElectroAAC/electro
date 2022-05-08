@@ -27,6 +27,16 @@ $ npm run build
 $ npm run start
 ```
 
+##  🕵🏾‍♂️  Routes Authorization (Login/Logout)
+
+| METHOD | ENDPOINT                   | DESCRIPTION                           |
+| :----- | :------------------------- | :------------------------------------ |
+| POST   | /auth                      | Login                                 |
+| DELETE | /auth                      | Logout                                |
+
+
+<br>
+
 ##  🕵🏾‍♂️  Routes News
 
 | METHOD | ENDPOINT                        | DESCRIPTION                           |
@@ -63,16 +73,6 @@ $ npm run start
 
 <br>
 
-##  🕵🏾‍♂️  Routes Authorization (Login/Logout)
-
-| METHOD | ENDPOINT                   | DESCRIPTION                           |
-| :----- | :------------------------- | :------------------------------------ |
-| POST   | /auth                      | Login                                 |
-| DELETE | /auth                      | Logout                                |
-
-
-<br>
-
 ##  🕵🏾‍♂️  Routes Highscores
 
 | METHOD | ENDPOINT                         | DESCRIPTION                           |
@@ -100,22 +100,22 @@ $ npm run start
 
 ## 🕵🏾‍♂️  Routes Guilds
 
-| METHOD | ENDPOINT                   | DESCRIPTION                           |
-| :----- | :------------------------- | :------------------------------------ |
-| GET    | /guilds/:page/:limit       | Get all guilds                        |
-| GET    | /guild/view/:name          | Get guild info                        |
-| GET    | /guild/players-without-guild| Get guild info                        |
-| POST   | /guild/create-guild        | Create Guild                          |
-| POST   | /guild/invite              | Invite character                      |
-| POST   | /guild/invites             | Get all invites                       |
-| POST   | /guild/accept-invite       | Accept invite character               |
-| POST   | /guild/cancel-invite       | Cancel invite character               |
-| POST   | /guild/leave               | Leave guild                           |
-| POST   | /guild/pass-leadership     | Pass Leadership                       |
-| POST   | /guild/change-motd         | Change Motd                           |
-| POST   | /guild/change-rank         | Change Rank of Member                 |
-| POST   | /guild/change-description  | Change Description                    |
-| POST   | /guild/delete              | Delete Guild                          |
+| METHOD | ENDPOINT                     | DESCRIPTION                           |
+| :----- | :----------------------------| :------------------------------------ |
+| GET    | /guilds/:page/:limit         | Get all guilds                        |
+| GET    | /guild/view/:name            | Get guild info                        |
+| GET    | /guild/players-without-guild | Get guild info                        |
+| POST   | /guild/create-guild          | Create Guild                          |
+| POST   | /guild/invite                | Invite character                      |
+| POST   | /guild/invites               | Get all invites                       |
+| POST   | /guild/accept-invite         | Accept invite character               |
+| POST   | /guild/cancel-invite         | Cancel invite character               |
+| POST   | /guild/leave                 | Leave guild                           |
+| POST   | /guild/pass-leadership       | Pass Leadership                       |
+| POST   | /guild/change-motd           | Change Motd                           |
+| POST   | /guild/change-rank           | Change Rank of Member                 |
+| POST   | /guild/change-description    | Change Description                    |
+| POST   | /guild/delete                | Delete Guild                          |
 
 <br>
 
@@ -123,15 +123,8 @@ $ npm run start
 
 | METHOD | ENDPOINT                        | DESCRIPTION                           |
 | :----- | :-------------------------------| :------------------------------------ |
-| GET    | /shop/category/list             | Get all categories                    |
-| POST   | /shop/category/create           | Create new category                   |
-| PUT    | /shop/category/update           | Update category                       |
-| DELETE | /shop/category/destroy/:id      | Delete category                       |
-| GET    | /shop/item/list                 | Get all items                         |
-| POST   | /shop/item/create               | Create new offer item                 |
-| PUT    | /shop/item/update               | Update offer item                     |
-| DELETE | /shop/item/destroy/:id          | Delete offer item                     |
-| POST   | //shop/purchase                 | Purchase Items                        |
+| GET    | /shop/offers                    | Get all offers                        |
+| POST   | /shop/purchase                  | Purchase Items                        |
 
 <br>
 
@@ -165,6 +158,8 @@ $ npm run start
 | POST   | /dashboard/character            | Update character                          |
 | POST   | /dashboard/character-skills     | Update characterSkills                    |
 
+<br>
+
 ##  🕵🏾‍♂️  Routes Dashboard - News
 
 | METHOD | ENDPOINT                        | DESCRIPTION                           |
@@ -173,3 +168,18 @@ $ npm run start
 | POST   | /news/create                    | Create new post                       |
 | GET    | /news/find/:id                  | Find post                             |
 | PATCH  | /news/edit                      | Update post                           |
+
+<br>
+
+##  🕵🏾‍♂️  Routes Dashboard - Shop
+
+| METHOD | ENDPOINT                        | DESCRIPTION                           |
+| :----- | :-------------------------------| :------------------------------------ |
+| GET    | /shop/category/list             | Get all categories                    |
+| POST   | /shop/category/create           | Create new category                   |
+| PUT    | /shop/category/update           | Update category                       |
+| DELETE | /shop/category/destroy/:id      | Delete category                       |
+| GET    | /shop/item/list                 | Get all items                         |
+| POST   | /shop/item/create               | Create new offer item                 |
+| PUT    | /shop/item/update               | Update offer item                     |
+| DELETE | /shop/item/destroy/:id          | Delete offer item                     |

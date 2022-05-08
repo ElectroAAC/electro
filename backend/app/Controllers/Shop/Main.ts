@@ -28,8 +28,22 @@ export default class ShopController {
       if (validator.from_account_id !== account.id) {
         return ctx.response.status(404).send({ message: "The account is not yours."});
       }
-      
-      const offers: any = await Promise.all(validator.items.map(async (item) => 
+
+      const items: any = [];
+
+      validator.items.forEach((item) => {
+        const result = items.findIndex(object => {
+          return object.itemId === item.itemId;
+        });
+
+        if (result !== -1) {
+          items[result].amount += item.amount;
+        } else {
+          items.push(item);
+        }
+      });
+
+      const offers: any = await Promise.all(items.map(async (item) => 
         await this.shopItemView.getOfferById(item.itemId)
       ));
 
@@ -37,20 +51,25 @@ export default class ShopController {
         if (!offer.length) {
           throw new Error("OfferId invalid!");
         }
-        return offer[0].price;
+        const length = items.find((item) => item.itemId === offer[0].id)?.amount;
+        if (!length)
+          return 0;
+        return offer[0].price * length;
       }).reduce((total: number, value: number) => total + value, 0);
-
+      
       if (totalPrice > account.premium_points) {
         return ctx.response.status(404).send({ message: `You don't have enough points. The total amount is: ${totalPrice} and you have: ${account.premium_points}`});
       }
 
       const communications = await Promise.all(offers.map(async (offer: any) => {
+        const length = items.find((item) => item.itemId === offer[0].id)?.amount;
+        
         return await this.shopCommunicationRepository.insert({
           player_id: validator.to_player_id,
           type: 'login',
           action: 'give_item',
           itemId1: offer[0].itemId1,
-          count1: offer[0].count1,
+          count1: offer[0].count1 ? (offer[0].count1 * length) : 0,
           itemId2: offer[0].itemId2 ,
           count2: offer[0].count2,
           category_name: offer[0].category_name,
@@ -60,15 +79,17 @@ export default class ShopController {
       }));
       
       await Promise.all(communications.map(async (communication, index) => {
+        const length = items.find((item) => item.itemId === offers[index][0].id)?.amount;
+
         return this.shopHistoryRepository.insert({
           communication_id: communication[0],
           from_account_id: validator.from_account_id,
           from_nick: validator.from_nick,
           to_account_id: validator.to_account_id,
           to_player_id: validator.to_player_id,
-          price: offers[index][0].price,
+          price: offers[index][0].price && length ? (offers[index][0].price * length) : offers[index][0].price,
           offer_id: offers[index][0].id,
-          status: 'realized',
+          status: 'waiting',
           is_pacc: 0
         })
       }));
@@ -79,6 +100,17 @@ export default class ShopController {
     } catch (err) {
       console.log('Error purchase Query: ', err);
       return ctx.response.badRequest(err.messages);
+    }
+  }
+
+  public async show(ctx: HttpContextContract) {
+    try {
+      const offers = await this.shopItemView.getOffers(ctx.request.param('categorie').replace(/%20/g, " "));
+
+      return ctx.response.status(200).send({ result: offers});
+    } catch (err) {
+      console.log('Error getOffers: ', err);
+      return ctx.response.status(400).send({ message: 'Offers not found.'})
     }
   }
 }
