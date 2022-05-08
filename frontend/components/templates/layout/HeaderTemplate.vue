@@ -24,7 +24,7 @@
       <v-col cols="9">
         <v-row class="d-flex align-center justify-center">
           <NuxtLink to="/" class="pa-5"> HOME </NuxtLink>
-          <CommunityRoutes to="/highscores" class="pa-5"> COMMUNITY + </CommunityRoutes>
+          <CommunityRoutes />
           <NuxtLink to="/highscores" class="pa-5"> HIGHSCORES </NuxtLink>
           <NuxtLink to="/guilds" class="pa-5"> GUILDS + </NuxtLink>
           <NuxtLink to="/" class="pa-5"> SHOP + </NuxtLink>

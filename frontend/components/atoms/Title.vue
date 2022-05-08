@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="widget-title text-center"> {{ text }} </h2>
+    <h2 class="widget-title text-center"> <span> {{ text }} </span> </h2>
   </div>
 </template>
 

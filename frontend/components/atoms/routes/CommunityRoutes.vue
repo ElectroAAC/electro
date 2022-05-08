@@ -11,7 +11,7 @@
         v-bind="attrs"
         v-on="on"
       >
-        COMMUNITY
+        COMMUNITY +
       </span>
     </template>
       

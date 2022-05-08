@@ -1,6 +1,6 @@
 <template>
   <aside class="widget">
-    <h5 class="widget-title"> Trailer </h5>
+    <h5 class="widget-title"> <span> Trailer </span> </h5>
     <iframe 
       class="pt-2"
       width="100%"

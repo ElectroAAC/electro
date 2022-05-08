@@ -11,9 +11,9 @@
         v-bind="attrs"
         v-on="on"
       >
-        <v-icon>mdi-account</v-icon> 
         <NuxtLink v-if="!$vuetify.breakpoint.mdAndDown" to="/accounts"> {{ $account.name }} </NuxtLink>
         <span v-else> {{ $account.name }} </span>
+        <v-icon>mdi-account</v-icon> 
       </v-btn>
     </template>
       

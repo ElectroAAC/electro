@@ -1,26 +1,19 @@
 <template>
   <div>
     <div v-if="isLoading" class="text-center">
-      <Loading  style="width: 50% !important;" />
+      <Loading style="width: 50% !important;" />
     </div>
 
     <div v-else> 
       <div 
-        class="pa-0 text-center"
+        class="text-center"
         v-for="(post, idx) in newsList" 
         :key="idx"
       >
-        <v-col class="text-center widget-title"> 
-          <v-row>
-            <v-col v-if="!$vuetify.breakpoint.mdAndDown" cols="3"></v-col>
-            <v-col :cols="!$vuetify.breakpoint.mdAndDown ? '6' : '8'">
-              {{ post.title }} 
-            </v-col>
-            <v-col :cols="!$vuetify.breakpoint.mdAndDown ? '3' : '4'">
-              {{ formatDate(post.created_at) }}
-            </v-col>
-          </v-row>
+        <v-col class="title"> 
+          <span> {{ post.title }} </span>
         </v-col>
+
         <v-col cols="12">
           <span v-html="post.body"></span>
         </v-col>
