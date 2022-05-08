@@ -8,12 +8,12 @@
 }
 
 .header-text:hover, .header-text > a:hover, .header-text > span:hover {
-  color: var(--second-main-color) !important;
+  color: var(--main-color) !important;
 }
 
 .header-list {
   background-color: rgba(0, 0, 0, 0.85) !important;
-  border-bottom: 4px solid var(--second-main-color) !important;
+  border-bottom: 4px solid var(--main-color) !important;
 }
 
 .content {
@@ -111,7 +111,7 @@
 
 .theme--light.v-data-table {
   background: none !important;
-  color: var(--title-color) !important;
+  color: var(--heading-color) !important;
 }
 
 .theme--light.v-data-table thead th {
@@ -208,12 +208,12 @@
 .btn-success-primary {
   background: var(--main-color) !important;
   color: var(--heading-color) !important;
-  border: 1px solid var(--second-main-color) !important;
+  border: 1px solid var(--main-color) !important;
 }
 
 .btn-success-secondary {
-  color: var(--second-main-color) !important;
-  border: 1px solid var(--second-main-color) !important;
+  color: var(--main-color) !important;
+  border: 1px solid var(--main-color) !important;
 }
 
 .btn-danger-primary {
@@ -251,7 +251,7 @@
 
 .text-register {
   text-decoration: underline;
-  color: var(--second-main-color);
+  color: var(--main-color);
 }
 
 .v-dialog {
@@ -260,7 +260,7 @@
 
 .theme--light.v-tabs > .v-tabs-bar {
   background-color: var(--bg-main-color) !important;
-  color: var(--second-main-color) !important;
+  color: var(--main-color) !important;
   border-radius: 1.95rem;
 }
 
@@ -349,7 +349,7 @@
   background-color: #394c6c9e;
   position: relative;
   top: 72px;
-  color: var(--second-main-color);
+  color: var(--main-color);
   font-weight: bold;
 }
 
@@ -417,7 +417,7 @@
 }
 
 .v-list .v-list-item--active {
-  color: var(--second-main-color) !important;
+  color: var(--main-color) !important;
   border-radius: 1rem;
 }
 
@@ -426,7 +426,7 @@
 }
 
 .v-list-item--link:before {
-  background-color: var(--second-main-color) !important;
+  background-color: var(--main-color) !important;
   border-radius: 1rem;
 }
 
@@ -475,10 +475,10 @@
 }
 
 .v-application a:hover {
-  color: var(--second-main-color) !important;
+  color: var(--main-color) !important;
 }
 
 .actions-guild {
-  border: 2px solid var(--second-main-color);
+  border: 2px solid var(--main-color);
   border-radius: 1rem;
 }

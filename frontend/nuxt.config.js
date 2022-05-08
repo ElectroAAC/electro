@@ -86,7 +86,7 @@ export default {
       dark: false,
       themes: {
         light: {
-          primary: '#ffd103',
+          primary: '#dd163b',
         }
       }
     }

@@ -6,7 +6,7 @@
         :rules="required"
         label="Character Name"
         type="text"
-        color="var(--second-main-color)"
+        color="var(--main-color)"
         dense
         outlined
         rounded
@@ -34,7 +34,7 @@
         :items="getSexList"
         class="character-sex-list"
         label="Sex"
-        color="var(--second-main-color)"
+        color="var(--main-color)"
         dense
         rounded
         outlined

@@ -2,19 +2,21 @@
   --heading-color: #ffffff;
   --text-color: #ffffff;
   --title-color: #9cabb9;
+
   --red: #f56969;
   --green: #41c683;
 
-  --main-color: #ff7403;
-  --second-main-color: #ffd103;
+  --main-color: #dd163b;
+
+  --tables: #dd163b;
+  --tables-hover: #2f3541;
 
   --bg-header: #293139;
   --bg-main-color: #141f36;
   --bg-second-color: #334459;
   --bg-third-color: #061217;
   --bg-fourth: #171e22;
-  --tables: #03fff273;
-  --tables-hover: #03fff24d;
+
   --bg-dashboard-main-color: #1f2128;
   --bg-dashboard-content-color: #2a2d38;
 }
