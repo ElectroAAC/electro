@@ -12,6 +12,18 @@ class CategoryView {
       return err;
     }
   }
+  public async getCategoryByName(name): Promise<Object[]> {  
+    try {
+      return await Database
+        .from('electro_shop_categories')
+        .select('id', 'name', 'description', 'hidden')
+        .where('name', '=', name)
+        .orderBy('name', 'asc');
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
 }
 
 class CategoryRepository {
