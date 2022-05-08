@@ -3,7 +3,6 @@
     open-on-hover
     transition="scale-transition"
     bottom
-    right
     offset-y
   >
     <template #activator="{ on, attrs }">
@@ -16,7 +15,7 @@
       </span>
     </template>
       
-    <v-list class="header-list">
+    <v-list class="mt-3 header-list">
       <v-list-item
         v-for="(item, idx) in getRoutesCommunity"
         :key="idx"

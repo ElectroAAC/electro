@@ -1,13 +1,4 @@
-.theme--light.v-list {
-  background: var(--bg-third-color) !important;
-  color: var(--heading-color) !important;
-}
-
-.header-text {
-  color: var(--second-main-color) !important;;
-}
-
-.header-text > a, .header-text > span {
+.header-text, .header-text > a, .header-text > span {
   color: var(--heading-color) !important;
   font-style: normal !important;
   font-weight: bold !important;
@@ -16,17 +7,17 @@
   letter-spacing: .6px !important;
 }
 
-.header-text > a:hover, .header-text > span:hover {
-  color: var(--second-main-color) !important;;
+.header-text:hover, .header-text > a:hover, .header-text > span:hover {
+  color: var(--second-main-color) !important;
 }
 
 .header-list {
-  background-color: var(--bg-third-color) !important;
-  border: 1px solid var(--bg-second-color) !important;
+  background-color: rgba(0, 0, 0, 0.85) !important;
+  border-bottom: 4px solid var(--second-main-color) !important;
 }
 
 .content {
-  border-radius: 1rem !important;
+  border-radius: 0.5rem !important;
   color: var(--text-color);
   background-color: var(--bg-fourth);
   border: 1px solid var(--bg-second-color);
@@ -39,11 +30,11 @@
 .widget {
   background-color: var(--bg-fourth);
   border: 1px solid var(--bg-second-color);
-  border-radius: 1rem !important;
+  border-radius: 0.5rem !important;
 }
 
 .widget-title {
-  border-radius: 1rem 1rem 0px 0px !important;
+  border-radius: 0.5rem 0.5rem 0px 0px !important;
   padding: 0.5rem 1rem 0.5rem;
   font-size: 18px;
   font-weight: 500;
@@ -409,7 +400,17 @@
 }
 
 .v-application a {
+  color: var(--heading-color) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  -webkit-transition: .15s color !important;
+  -o-transition: .15s color !important;
+  transition: .15s color !important;
   text-decoration: none !important;
+}
+
+.v-application a:hover {
+  color: var(--second-main-color) !important;
 }
 
 .actions-guild {
