@@ -8,8 +8,7 @@ export default class UpdateValidator {
     id: schema.number([rules.required(), rules.exists({ table: 'players', column: 'id' })]),
     skills: schema.array().members(
       schema.object().members({
-        player_id: schema.number(),
-        skillid: schema.number(),
+        skill_name: schema.string(),
         value: schema.number(),
         count: schema.number()
       })

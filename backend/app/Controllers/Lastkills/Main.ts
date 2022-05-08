@@ -1,13 +1,9 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { DeathService } from 'App/Services'
+import { DeathService, UtilsService } from 'App/Services'
 
-interface Death {
-  player_name: String,
-  monster_name: String,
-  player_exists: Number
-}
 export default class LastKillsController {
   public deathService: DeathService = new DeathService();
+  public utilsService: UtilsService = new UtilsService();
 
   public async show(ctx: HttpContextContract) {
     try {
@@ -26,62 +22,17 @@ export default class LastKillsController {
       for(let death of playersDeath) {
         players_deaths_count++;
 
-        const url_player = remote_url + '/' + death.name;
+        let killers_string = this.utilsService.generatePlayerLink(remote_url, death.victim) + ` died at level <strong> ${death.level} </strong> by `;
         
-        let killers_string = '<a href="'+ url_player + '">' + death.name + '</a> ';
+        death.is_player 
+          ? killers_string += this.utilsService.generatePlayerLink(remote_url, death.killed_by)
+          : killers_string += death.killed_by;
+        
+        killers_string += '.';
 
-        const killers: Death[] = await this.deathService.getKillers(death.id) as Death[];
-
-        let i = 0;
-        let count = killers.length;
-
-        for(let killer of killers) {
-          i++;
-          if (killer.player_name && killer.player_name !== "") {
-            
-            if (i === 1) {
-              if (count) {
-                killers_string += " killed";
-                killers_string += " at level <b>" + death.level + "</b>"; 
-              }
-            } 
-            
-            else if (i === count) {
-              killers_string += " and";
-            } 
-
-            else
-              killers_string += ",";
-
-            killers_string += " by ";
-
-            if (killer.monster_name)
-              killers_string += killer.monster_name;
-            
-            const url = remote_url + '/' + killer.player_name;
-
-            if (killer.player_exists === 0) 
-              killers_string += '<a href="'+ url + '">' + killer.player_name + '</a> ';
-          } 
-          
-          else {
-            if (i === 1)
-              killers_string += "died at level <b>" + death.level + "</b>";
-
-            else if (i === count)
-              killers_string += " and";
-                
-            else
-              killers_string += ",";
-
-            killers_string += " by " + killer.monster_name;
-          }
-        }
-
-        killers_string += ".";
         last_kills.push({
           id: players_deaths_count,
-          time: death.date,
+          time: death.time,
           killers_string,
           world_id: 0
         })

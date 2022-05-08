@@ -33,7 +33,16 @@ class Character {
 
   public async updateRankId(character_id: number, rank_id: number): Promise<Object[]> {
     try {
-      return await Database.from('players').where('id', '=', character_id).update({ rank_id });
+      return await Database.from('guild_membership').where('player_id', '=', character_id).update({ rank_id });
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
+  public async removeRankId(character_id: number): Promise<Object[]> {
+    try {
+      return await Database.from('guild_membership').where('player_id', '=', character_id).delete();
     } catch (err) {
       console.log(err);
       return err;
@@ -51,7 +60,7 @@ class Character {
 }
 
 class CharacterView {
-  public async findById(character_id: number): Promise<Object[]> {  
+  public async getById(character_id: number): Promise<Object[]> {  
     try {
       return await Database
         .from('players')
@@ -63,7 +72,7 @@ class CharacterView {
     }
   }
 
-  public async findByName(name: string): Promise<Object[]> {  
+  public async getByName(name: string): Promise<Object[]> {  
     try {
       name = name.replace(/%20/g, " ").replace(/'+'/g, " ").replace(/'/g, "").replace(/%27/g, "").replace(/-/g, "").replace(/"/g, "").replace(/%22/g, "");
 
@@ -77,11 +86,11 @@ class CharacterView {
     }
   }
 
-  public async findByIdAndAccount(character_id: number, account_id: number): Promise<Object[]> {  
+  public async getByIdAndAccount(character_id: number, account_id: number): Promise<Object[]> {  
     try {
       return await Database
         .from('players')
-        .select('name', 'deleted', 'online', 'rank_id')
+        .select('id', 'name', 'deletion')
         .where('id', '=', character_id)
         .andWhere('account_id', '=', account_id);
     } catch (err) {
@@ -94,7 +103,7 @@ class CharacterView {
     try {
       return await Database
         .from('players')
-        .select('id', 'level', 'name', 'deleted', 'online', 'vocation', 'rank_id')
+        .select('id', 'level', 'name', 'deletion', 'vocation')
         .where('account_id', '=', account_id);
     } catch (err) {
       console.log(err);
@@ -113,7 +122,7 @@ class CharacterView {
 
   public async getRankId(character_id: number): Promise<Object[]>  {
     try {
-      return await Database.from('players').select('rank_id').where('id', '=', character_id);
+      return await Database.from('guild_membership').select('rank_id').where('player_id', '=', character_id);
     } catch (err) {
       console.log(err);
       return err;
@@ -123,10 +132,11 @@ class CharacterView {
   public async getGuild(character_id: number): Promise<Object[]>  {
     try {
       return await Database
-        .from('players')
-        .innerJoin('guild_ranks', 'guild_ranks.id', 'players.rank_id')
-        .select('guild_ranks.guild_id')
-        .where('players.id', '=', character_id);
+        .from('players as p')
+        .innerJoin('guild_membership as gm', 'gm.player_id', 'p.id')
+        .innerJoin('guilds as g', 'g.id', 'gm.guild_id')
+        .select('gm.guild_id', 'g.ownerid')
+        .where('p.id', '=', character_id);
     } catch (err) {
       console.log(err);
       return err;
@@ -142,9 +152,9 @@ class CharacterView {
     }
   }
   
-  public async isOffline(character_id: number): Promise<Object[]> {
+  public async isOnline(character_id: number): Promise<Object[]> {
     try {
-      return await Database.from('players').select('online').where('id', '=', character_id).andWhere('online', '=', 0);
+      return await Database.from('players_online').select('player_id').where('player_id', '=', character_id);
     } catch (err) {
       console.log(err);
       return err;
@@ -185,7 +195,7 @@ class CharacterRepository {
 
   public async delete(character_id: number): Promise<Object[]> {
     try {
-      return await Database.from('players').where('id', '=', character_id).update({ deleted: 1 });
+      return await Database.from('players').where('id', '=', character_id).update({ deletion: 1 });
     } catch (err) {
       console.log(err);
       return err;

@@ -99,12 +99,6 @@ export default class Player extends BaseModel {
   public skulltime: number
   
   @column()
-  public rank_id: number
-  
-  @column()
-  public guildnick: string
-  
-  @column()
   public lastlogout: number
   
   @column()
@@ -122,39 +116,6 @@ export default class Player extends BaseModel {
   @column({ serializeAs: null })
   public direction: number
   
-  @column()
-  public loss_experience: number
-  
-  @column({ serializeAs: null })
-  public loss_mana: number
-  
-  @column()
-  public loss_skills: number
-  
-  @column()
-  public loss_containers: number
-  
-  @column()
-  public loss_items: number
-  
-  @column({ serializeAs: null })
-  public premend: number
-  
-  @column()
-  public online: number
-  
-  @column({ serializeAs: null })
-  public marriage: number
-  
-  @column({ serializeAs: null })
-  public marrystatus: number
-  
-  @column({ serializeAs: null })
-  public promotion: number
-  
-  @column()
-  public deleted: number
-  
   @column({ serializeAs: null })
   public description: string
   
@@ -162,118 +123,64 @@ export default class Player extends BaseModel {
   public created: number
   
   @column({ serializeAs: null })
-  public nick_verify: number
-  
-  @column({ serializeAs: null })
-  public old_name: string
-  
-  @column({ serializeAs: null })
   public hidden: number
-  
-  @column({ serializeAs: null })
-  public worldtransfer: number
   
   @column({ serializeAs: null })
   public comment: string
   
   @column({ serializeAs: null })
-  public show_outfit:number
+  public deletion: number
   
   @column({ serializeAs: null })
-  public show_eq:number
+  public onlinetime: number
   
   @column({ serializeAs: null })
-  public show_bars:number
-  
-  @column({ serializeAs: null })
-  public show_skills:number
-  
-  @column({ serializeAs: null })
-  public show_quests:number
-  
-  @column({ serializeAs: null })
-  public exphist_lastexp: number
-  
-  @column({ serializeAs: null })
-  public exphist1: number
-  
-  @column({ serializeAs: null })
-  public exphist2: number
-  
-  @column({ serializeAs: null })
-  public exphist3: number
-  
-  @column({ serializeAs: null })
-  public exphist4: number
-  
-  @column({ serializeAs: null })
-  public exphist5: number
-  
-  @column({ serializeAs: null })
-  public exphist6: number
-  
-  @column({ serializeAs: null })
-  public exphist7: number
-  
-  @column({ serializeAs: null })
-  public onlinetimetoday: number
-  
-  @column({ serializeAs: null })
-  public onlinetime1: number
-  
-  @column({ serializeAs: null })
-  public onlinetime2: number
-  
-  @column({ serializeAs: null })
-  public onlinetime3: number
+  public online_time: number
   
   @column()
-  public onlinetime4: number
-  
-  @column({ serializeAs: null })
-  public onlinetime5: number
-  
-  @column({ serializeAs: null })
-  public onlinetime6: number
-  
-  @column({ serializeAs: null })
-  public onlinetime7: number
-  
-  @column({ serializeAs: null })
-  public onlinetimeall: number
-  
-  @column({ serializeAs: null })
-  public ip: string
-  
-  @column({ serializeAs: null })
-  public cast: number
-  
-  @column({ serializeAs: null })
-  public filed_list: string
-  
-  @column({ serializeAs: null })
-  public castViewers: number
-  
-  @column({ serializeAs: null })
-  public castDescription: string
+  public skill_fist: number
   
   @column()
-  public frags: number
-  
-  @column({ serializeAs: null })
-  public offlinetraining_time: number
-  
-  @column({ serializeAs: null })
-  public offlinetraining_skill: number
-  
-  @column({ serializeAs: null })
-  public broadcasting: number
+  public skill_fist_tries: number
   
   @column()
-  public viewers: number
+  public skill_club: number
   
   @column()
-  public auction_balance: number
+  public skill_club_tries: number
+  
+  @column()
+  public skill_sword: number
+  
+  @column()
+  public skill_sword_tries: number
+  
+  @column()
+  public skill_axe: number
+  
+  @column()
+  public skill_axe_tries: number
+  
+  @column()
+  public skill_dist: number
+  
+  @column()
+  public skill_dist_tries: number
+  
+  @column()
+  public skill_shielding: number
+  
+  @column()
+  public skill_shielding_tries: number
+  
+  @column()
+  public skill_fishing: number
+  
+  @column()
+  public skill_fishing_tries: number
+
+  @column({ serializeAs: null })
+  public autoloot: string
   
   @belongsTo(() => Account)
   public account: BelongsTo<typeof Account>

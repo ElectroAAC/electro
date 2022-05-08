@@ -4,12 +4,12 @@ import Role from 'Contracts/enums/Role'
 
 export default class Dashboard extends BasePolicy {
 	public async before(account: Account | null) {
-    if (account?.group_id === Role.ADMIN)
+    if (account?.type === Role.ADMIN)
       return true;
   }
 
-	public async viewList(account: Account) {
-		if (account.group_id === Role.ADMIN)
+	public async admin(account: Account) {
+		if (account.type === Role.ADMIN)
       return true;
 	}
 }

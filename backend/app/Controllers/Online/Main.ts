@@ -8,7 +8,7 @@ export default class OnlineController {
     try {
       const playersOnline = await this.onlineService.getPlayersOnline();
       
-      const serverRecord = await this.onlineService.getRecord(0);
+      const serverRecord = await this.onlineService.getRecord();
       
       const result = {
         serverRecord,

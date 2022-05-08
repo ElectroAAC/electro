@@ -91,8 +91,6 @@ This repository follows the semantic commit pattern, with the addition of the ta
   <li> [x] Show lastnews </li>
 </ul>
 
-<br>
-
 ### View character informations
 <ul>
   <li> [x] Show character info </li>
@@ -130,8 +128,7 @@ This repository follows the semantic commit pattern, with the addition of the ta
   <li> [x] Manage Guilds </li>
   <ul>
     <li> [x] Invite Player </li>
-    <li> [ ] Remove Invite </li>
-    <li> [ ] Remove Invite </li>
+    <li> [x] Remove Invite </li>
     <li> [x] Promove Player </li>
     <li> [x] Demote Player </li>
     <li> [x] Change MOTD </li>

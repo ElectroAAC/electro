@@ -19,7 +19,7 @@ export default class AccountsController {
 
   public async store(ctx: HttpContextContract) {
     try {
-      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
 
       const data = await ctx.request.validate(StoreValidator);
 
@@ -38,7 +38,11 @@ export default class AccountsController {
         created_at: new Date()
       }
 
-      await this.newsRepository.create(news);
+      const result = await this.newsRepository.create(news);
+      
+      if (!result.length) {
+        return ctx.response.status(404).send({ message: "Error creating a post."});
+      }
 
       return ctx.response.status(200).send({ status: 200, message: 'New Post created successfully!'});
     } catch (err) {
@@ -48,28 +52,42 @@ export default class AccountsController {
   }
 
   public async show(ctx: HttpContextContract) {
-    await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+    try {
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
 
-    const page = await this.newsView.findNewsById(ctx.request.param('id'));
-    if (!page.length) {
-      return ctx.response.status(404).send({ message: 'News not found.' });
+      const page = await this.newsView.findNewsById(ctx.request.param('id'));
+      if (!page.length) {
+        return ctx.response.status(404).send({ message: 'News not found.' });
+      }
+      return ctx.response.status(200).send({ status: 200, page });
+    } catch (err) {
+      console.log('Error getNews Query: ', err);
+      return ctx.response.status(400).send({ error: 'An error occurred, check the api console.'});
     }
-    return ctx.response.status(200).send({ status: 200, page });
   }
 
   public async update(ctx: HttpContextContract) {
-    await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+    try {
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
 
-    const data = await ctx.request.validate(UpdateValidator);
+      const data = await ctx.request.validate(UpdateValidator);
 
-    const account = ctx.auth.user;
+      const account = ctx.auth.user;
 
-    if (!account || !account.id) {
-      return ctx.response.unauthorized();
+      if (!account || !account.id) {
+        return ctx.response.unauthorized();
+      }
+
+      const result: any = await this.newsRepository.update(data.news_id, data);
+
+      if (result === 0) {
+        return ctx.response.status(404).send({ message: "Error updating post"});
+      }
+      
+      return ctx.response.status(200).send({ status: 200, message: "Post successfully updated." });
+    } catch (err) {
+      console.log('Error updateNews Query: ', err);
+      return ctx.response.status(400).send({ error: 'An error occurred, check the api console.'});
     }
-
-    await this.newsRepository.update(data.news_id, data);
-    
-    return ctx.response.status(200).send({ status: 200, message: "Post successfully updated." });
   }
 }

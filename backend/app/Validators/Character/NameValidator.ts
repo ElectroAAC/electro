@@ -6,11 +6,16 @@ export default class UpdateValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
+    character_id: schema.number([ 
+      rules.required(),
+      rules.exists({ table: 'players', column: 'id' }) 
+    ]),
     new_name: schema.string({ escape: true, }, [
       rules.required(), 
       rules.unique({ 
         table: 'players', 
-        column: 'name'
+        column: 'name',
+        caseInsensitive: true
       }),
       rules.alpha({
         allow: ['space']
@@ -19,11 +24,12 @@ export default class UpdateValidator {
       rules.maxLength(20),
       rules.notIn(NamesBlocked)
     ]),
-    character_id: schema.number([ rules.required() ])
   })
 
   public messages = {
-    required: 'The {{ field }} is required to create a new character',
+    'character_id.exists': 'This character does not exist.',
+    required: 'The {{ field }} is required to change name',
+    'new_name.unique': 'That name already exists.',
     minLength: 'Name is too long. Min length {{ options.minLength }} letters',
     maxLength: 'Name is too short. Max length {{ options.maxLength }} letters',
     alpha: 'Invalid character name.',

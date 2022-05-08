@@ -1,4 +1,3 @@
-import { Account as AccountModel } from 'App/Models'
 import Database from '@ioc:Adonis/Lucid/Database'
 import encrypt from 'js-sha1'
 
@@ -16,7 +15,7 @@ class Account {
 
   public async validatePassword(account_id: number, password: string): Promise<Object[]> {
     try {
-      return await AccountModel.query().where('id', account_id).where('password', encrypt(password)).firstOrFail();
+      return await Database.from('accounts').where('id', '=', account_id).andWhere('password', '=', encrypt(password));
     } catch (err) {
       console.log(err);
       return err;
@@ -49,11 +48,23 @@ class AccountView {
     }
   }
 
+  public async getAccountById(id: number): Promise<Object[]> {  
+    try {
+      return await Database
+        .from('accounts')
+        .select('id', 'name', 'premdays', 'email', 'type', 'web_flags', 'premium_points', 'key')
+        .where('id', '=', id);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
   public async getAccountByName(name: string): Promise<Object[]> {  
     try {
       return await Database
         .from('accounts')
-        .select('id', 'name', 'premdays', 'email', 'group_id', 'web_flags', 'premium_points', 'key')
+        .select('id', 'name', 'premdays', 'email', 'type', 'web_flags', 'premium_points', 'key')
         .where('name', '=', name);
     } catch (err) {
       console.log(err);

@@ -5,8 +5,11 @@ import {
   Character,
   CharacterView, 
   GuildRepository,
-  GuildView 
+  GuildView,
+  GuildRanksRepository,
+  GuildMembershipRepository
 } from 'App/Services'
+
 import { Player } from 'App/Models';
 
 interface Guild {
@@ -24,6 +27,8 @@ export default class GuildsController {
   public characterView: CharacterView = new CharacterView();
   public guildRepository: GuildRepository = new GuildRepository();
   public guildView: GuildView = new GuildView();
+  public guildRanksRepository: GuildRanksRepository = new GuildRanksRepository();
+  public guildMembershipRepository: GuildMembershipRepository = new GuildMembershipRepository();
 
   public async index(ctx: HttpContextContract) {
     try {
@@ -46,47 +51,61 @@ export default class GuildsController {
       return ctx.response.unauthorized();
     }
 
-    const character = await this.characterView.findByIdAndAccount(data.character_id, account.id) as Player[];
+    const character = await this.characterView.getByIdAndAccount(data.character_id, account.id) as Player[];
 
     if (!character.length)
     {
       return ctx.response.status(404).send({ message: 'The character does not belong to your account.' });
     }
 
-    if (character[0].online === 1)
-    {
+    const online = await this.characterView.isOnline(character[0].id);
+    
+    if (online.length)
       return ctx.response.status(404).send({ message: 'The character cannot be online.' });
-    }
+    
+    const rank_id = await this.characterView.getRankId(character[0].id);
 
-    if (character[0].rank_id !== 0)
-    {
+    if (rank_id.length)
       return ctx.response.status(404).send({ message: 'Your character already has a guild.' });
-    }
 
     const newGuild = {
       name: data.name,
       ownerid: data.character_id,
       creationdata: 0,
-      checkdata: 0,
-      balance: 0,
-      invited_to: 0,
-      invited_by: 0,
-      in_war_with: 0,
-      kills: 0,
-      show: 0,
-      war_time: 0,
-      description: 'New guild. Leader must edit this text'
+      description: 'New guild. Leader must edit this text',
+      motd: '',
+      logo_name: ''
     };
 
     const result = await this.guildRepository.create(newGuild);
 
-    const guild = await this.guildView.getGuildById(result[0]) as Guild[];
-
-    if (!guild.length) {
+    if (!result) {
       return ctx.response.status(404).send({ message: "Error. Can't create guild. Probably problem with database. Please try again later or contact with admin."});
     }
     
-    await this.character.updateRankId(data.character_id, guild[0].rank_id);
+    const rankLeaderId = await this.guildRanksRepository.create({
+      guild_id: result[0],
+      name: 'Leader',
+      level: 3
+    });
+
+    await this.guildRanksRepository.create({
+      guild_id: result[0],
+      name: 'Vice-Leader',
+      level: 2
+    });
+
+    await this.guildRanksRepository.create({
+      guild_id: result[0],
+      name: 'Member',
+      level: 1
+    });
+
+    await this.guildMembershipRepository.insert({
+      player_id: data.character_id,
+      guild_id: result,
+      rank_id: rankLeaderId[0]
+    });
 
     return ctx.response.status(200).send({ status: 200, message: 'Guild created successfully!'});
   }
@@ -94,6 +113,10 @@ export default class GuildsController {
   public async show(ctx: HttpContextContract) {
     try {
       const guild = await this.guildView.getGuildByName(ctx.request.param('name')) as Guild[];
+
+      if (!guild.length) {
+        return ctx.response.status(404).send({ message: "Guild not found." });
+      }
 
       const guildRanks = await this.guildView.getGuildRanks(guild[0].id) as Rank[];
 
@@ -113,20 +136,25 @@ export default class GuildsController {
       const account = ctx.auth.use('api').user!;
 
       if (account) {
-        const characters_to_account = await this.characterView.getByAccount(account.id) as Player[];
+        const characters_to_account: any = await this.characterView.getByAccount(account.id) as Player[];
         invites = await this.guildView.getInvitationsByAccount(guild[0].id, account.id);
 
         for (let character of characters_to_account) {
           players_from_account_ids.push(character.id);
-          if (character.rank_id > 0) {
+
+          character.rank_id = await this.characterView.getRankId(character.id);
+          
+          if (character.rank_id.length && character.rank_id[0].rank_id > 0) {
             for (let rank of guildRanks) {
-              if (character.rank_id === rank.id) {
+              if (character.rank_id[0].rank_id === rank.id) {
                 players_from_account_in_guild.push(character.id);
 
                 if (guild[0].owner_id === character.id) {
                   guild_leader = true;
                   guild_vice = true;
-                } else if (rank.level > 1) {
+                } 
+                
+                else if (rank.level > 1) {
                   guild_vice = true;
                   level_guild = rank.level;
                 }
@@ -167,20 +195,28 @@ export default class GuildsController {
         return ctx.response.unauthorized();
       }
 
-      const character = await this.characterView.findByName(data.character) as Player[];
+      const character = await this.characterView.getByName(data.character) as Player[];
+      
+      if (!character.length)
+        return ctx.response.status(404).send({ message: 'Character not found.' });
 
-      if (character[0].online !== 0) 
-        return ctx.response.status(404).send({ message: "The character needs to be offline." });
+      const online = await this.characterView.isOnline(character[0].id);
+      
+      if (online.length)
+        return ctx.response.status(404).send({ message: 'The character needs to be offline.' });
       
       if (!account || account && account.id !== character[0].account_id)
         return ctx.response.status(404).send({ message: "The character does not belong to you."});
 
-      const guild = await this.characterView.getGuild(character[0].id) as { guild_id: number }[];
+      const guild = await this.characterView.getGuild(character[0].id) as { guild_id: number, ownerid: number }[];
 
       if (guild[0].guild_id !== data.guild_id)
         return ctx.response.status(404).send({ message: "You do not belong to this guild."});
 
-      const affectedRows = await this.character.updateRankId(character[0].id, 0);
+      if (guild[0].ownerid === character[0].id)
+        return ctx.response.status(404).send({ message: "You cannot leave the guild, because you own it. If you want to leave, you will need to delete the guild, or transfer leadership to another player."});
+
+      const affectedRows = await this.character.removeRankId(character[0].id);
 
       if (!affectedRows)
         return ctx.response.status(404).send({ message: "There was an error leaving the guild. Contact the administrator."});

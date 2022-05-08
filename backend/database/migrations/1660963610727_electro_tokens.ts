@@ -1,23 +1,26 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class ElectroKeys extends BaseSchema {
-  protected tableName = 'electro_keys'
+export default class ElectroTokens extends BaseSchema {
+  protected tableName = 'electro_tokens'
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id').primary()
-      table.string('key').unique()
       table
         .integer('account_id')
         .references('id')
         .inTable('accounts')
-        .onUpdate('CASCADE')
+        .unsigned()
         .onDelete('CASCADE')
+      table.string('name').notNullable()
+      table.string('type').notNullable()
+      table.string('token', 64).notNullable().unique()
+      table.timestamp('expires_at', { useTz: true }).nullable()
       table.timestamps(true, true)
     })
   }
 
-  public async down () {
+  public async down() {
     this.schema.dropTable(this.tableName)
   }
 }
