@@ -8,7 +8,7 @@ export default class PlayersController {
 
   public async index(ctx: HttpContextContract) {
     try {
-      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
 
       const accounts = await this.characterView.getTotalCharacters();
 
@@ -22,9 +22,9 @@ export default class PlayersController {
 
   public async show(ctx: HttpContextContract) {
     try {
-      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
 
-      const character = await this.characterView.findByName(ctx.request.param('name'));
+      const character = await this.characterView.getByName(ctx.request.param('name'));
        
       if (!character.length) {
         return ctx.response.status(404).send({ message: "Character not found!" });
@@ -40,7 +40,7 @@ export default class PlayersController {
 
   public async update(ctx: HttpContextContract) {
     try {
-      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
 
       const data = await ctx.request.validate(UpdateValidator);
       

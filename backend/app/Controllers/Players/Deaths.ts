@@ -1,18 +1,21 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { DeathService } from 'App/Services'
+import { DeathService, UtilsService } from 'App/Services'
 
 interface PlayerDeath {
-  id: number,
-  date: number,
-  level: number
+  player_id: number,
+  time: number,
+  level: number,
+  killed_by: string,
+  is_player: number,
+  mostdamage_by: string,
+  mostdamage_is_player: number,
+  unjustified: number,
+  mostdamage_unjustified: number,
 }
-interface Death {
-  player_name: String,
-  monster_name: String,
-  player_exists: Number
-}
+
 export default class PlayerDeathsController {
   public deathService: DeathService = new DeathService();
+  public utilsService: UtilsService = new UtilsService();
   
   public async show(ctx: HttpContextContract) {
     try {
@@ -23,46 +26,28 @@ export default class PlayerDeathsController {
       const player_deaths: PlayerDeath[] = await this.deathService.getDeathsByCharacterId(ctx.request.param('id')) as PlayerDeath[];
       
       for(let death of player_deaths) {
-        const killers: Death[] = await this.deathService.getInfoDeathCharacterById(death.id) as Death[];
-
         let description = '';
-        let i = 0;
-        let count = killers.length;
+
+        const lasthit = death.is_player ? this.utilsService.generatePlayerLink(remote_url, death.killed_by) : death.killed_by;
         
-        for(let killer of killers) {
-          i++;
-          if(killer.player_name && killer.player_name !== "")
-          {
-            if(i === 1)
-              description += "Killed at level <b> " + death.level + "</b>";
-            else if(i === count)
-              description += " and";
-            else
-              description += ",";
+        description = `Killed at level ${death.level} by ${lasthit}`;
 
-            description += " by ";
-            if(killer.monster_name && killer.monster_name !== "")
-              description += killer.monster_name + " summoned by ";
+        if(death.unjustified) {
+					description += ' <span style="color: red; font-style: italic;">(unjustified)</span>';
+				}
 
-            const url = remote_url + '/' + killer.player_name;
+				if(death.mostdamage_by !== death.killed_by)
+				{
+					const mostdmg = death.mostdamage_is_player ? this.utilsService.generatePlayerLink(remote_url, death.mostdamage_by) : death.mostdamage_by;
+					description += ` and by ${mostdmg}`;
 
-            if(killer.player_exists === 0)
-              description += '<a href="'+ url + '">' + killer.player_name + '</a> ';
-            else
-              description += killer.player_name;
-          }
-          else
-          {
-            if(i === 1)
-              description += "Died at level <b>" + death.level + "</b>";
-            else if(i === count)
-              description += " and";
-            else
-              description += ",";
-
-            description += " by " + killer.monster_name;
-          }
-        };
+					if (death.mostdamage_unjustified) {
+						description +=  ' <span style="color: red; font-style: italic;">(unjustified)</span>';
+					}
+				}
+				else {
+					description +=  " <b>(soloed)</b>";
+				}
 
         deaths.push({
           'time': death['date'], 

@@ -1,10 +1,11 @@
 import Database from '@ioc:Adonis/Lucid/Database'
 import { Guild as GuildModel, Player } from 'App/Models';
-import { Character, CharacterView } from 'App/Services'
+import { Character, CharacterView, GuildMembershipRepository } from 'App/Services'
 
 class GuildView {
   public character: Character = new Character();
   public characterView: CharacterView = new CharacterView();
+  public guildMembershipRepository: GuildMembershipRepository = new GuildMembershipRepository();
 
   public async getTotalGuilds(): Promise<Object[]> {  
     try {
@@ -36,18 +37,18 @@ class GuildView {
       name = name.replace(/%20/g, " ").replace(/'+'/g, " ").replace(/'/g, "").replace(/%27/g, "").replace(/-/g, "").replace(/"/g, "").replace(/%22/g, "");
 
       return await Database
-        .from('guilds')
-        .innerJoin('players', 'players.id', 'guilds.ownerid')
+        .from('guilds as g')
+        .innerJoin('players as p', 'p.id', 'g.ownerid')
         .select(
-          'guilds.id', 
-          'guilds.name', 
-          'guilds.description', 
-          'guilds.motd', 
-          'guilds.ownerid as owner_id', 
-          'guilds.creationdata as creation_data',
-          'players.name as owner_name',
+          'g.id', 
+          'g.name', 
+          'g.description', 
+          'g.motd', 
+          'g.ownerid as owner_id', 
+          'g.creationdata as creation_data',
+          'p.name as owner_name',
         )
-        .where('guilds.name', '=', name);
+        .where('g.name', '=', name);
     } catch (err) {
       console.log(err);
       return err;
@@ -69,21 +70,22 @@ class GuildView {
 
   public async getGuildMembers(guild_id: number): Promise<Object[]> {  
     try {
-      return await Database.from('guilds')
-        .innerJoin('guild_ranks', 'guild_ranks.guild_id', '=', 'guilds.id')
-        .innerJoin('players', 'players.rank_id', 'guild_ranks.id')
+      return await Database
+        .from('guild_membership as gm')
+        .innerJoin('guilds as g', 'g.id', 'gm.guild_id')
+        .innerJoin('guild_ranks as gr', 'gr.id', 'gm.rank_id')
+        .innerJoin('players as p', 'p.id', 'gm.player_id')
         .select(
-          'guild_ranks.level',
-          'guild_ranks.id as rank_id',
-          'guild_ranks.name as rank_name',
-          'players.id',
-          'players.name',
-          'players.vocation',
-          'players.level as player_level',
-          'players.online'
+          'gr.level',
+          'gr.id as rank_id',
+          'gr.name as rank_name',
+          'p.id',
+          'p.name',
+          'p.vocation',
+          'p.level as player_level'
         )
-        .where('guilds.id', '=', guild_id)
-        .orderBy('guild_ranks.level', 'desc');
+        .where('g.id', '=', guild_id)
+        .orderBy('gr.level', 'desc');
     } catch (err) {
       console.log(err);
       return err;
@@ -105,10 +107,10 @@ class GuildView {
   public async getOwner(guild_id: number): Promise<Object[]> {  
     try {
       return await Database
-        .from('guilds')
-        .innerJoin('players', 'players.id', 'guilds.ownerid')
-        .select('players.id', 'players.name', 'players.account_id')
-        .where('guilds.id', '=', guild_id);
+        .from('guilds as g')
+        .innerJoin('players as p', 'p.id', 'g.ownerid')
+        .select('p.id', 'p.name', 'p.account_id')
+        .where('g.id', '=', guild_id);
     } catch (err) {
       console.log(err);
       return err;
@@ -155,13 +157,13 @@ class GuildView {
     }
   }
 
-  public async getCharactersWithGuild(account_id: number): Promise<Object[]> {  
+  public async getCharactersWithoutGuild(account_id: number): Promise<Object[]> {  
     try {
       return await Database
-        .from('players')
-        .select('id', 'name')
-        .where('account_id', '=', account_id)
-        .andWhere('rank_id', '=', 0);
+        .from('guild_membership as gm')
+        .select('p.id', 'p.name')
+        .innerJoin('players as p', 'p.id', 'gm.player_id')
+        .where('p.account_id', '=', account_id)
     } catch (err) {
       console.log(err);
       return err;
@@ -182,14 +184,17 @@ class Guild extends GuildView {
   
   public async isLeader(account_id: number, guild_id: number): Promise<Boolean> {  
     try {
-      const characters_to_account = await this.characterView.getByAccount(account_id) as Player[];
+      const characters_to_account: any = await this.characterView.getByAccount(account_id) as Player[];
       const guildRanks = await this.getGuildRanks(guild_id) as { id: number, level: number }[];
+      
       let guild_leader = false;
 
       for (let character of characters_to_account) {
-        if (character.rank_id > 0) {
+        character.rank_id = await this.characterView.getRankId(character.id);
+
+        if (character.rank_id.length && character.rank_id[0].rank_id > 0) {
           for (let rank of guildRanks) {
-            if (character.rank_id === rank.id && rank.level === 3) {
+            if (character.rank_id[0].rank_id === rank.id && rank.level === 3) {
               guild_leader = true;
             }
           }
@@ -205,14 +210,17 @@ class Guild extends GuildView {
   
   public async isLeaderOrVice(account_id: number, guild_id: number): Promise<Boolean> {  
     try {
-      const characters_to_account = await this.characterView.getByAccount(account_id) as Player[];
+      const characters_to_account: any = await this.characterView.getByAccount(account_id) as Player[];
       const guildRanks = await this.getGuildRanks(guild_id) as { id: number, level: number }[];
+
       let isLeaderOrVice = false;
 
       for (let character of characters_to_account) {
-        if (character.rank_id > 0) {
+        character.rank_id = await this.characterView.getRankId(character.id);
+
+        if (character.rank_id.length && character.rank_id[0].rank_id > 0) {
           for (let rank of guildRanks) {
-            if (character.rank_id === rank.id && rank.level > 1) {
+            if (character.rank_id[0].rank_id === rank.id && rank.level > 1) {
               isLeaderOrVice = true;
               break;
             }
@@ -266,7 +274,11 @@ class Guild extends GuildView {
     try {
       const rankGuild = await this.getGuildRanks(guild_id) as GuildModel[];
 
-      await this.character.updateRankId(player_id, rankGuild[2].id);
+      await this.guildMembershipRepository.insert({
+        player_id,
+        guild_id,
+        rank_id: rankGuild[2].id
+      });
 
       await this.removeInvite(guild_id, player_id);
 
@@ -334,17 +346,6 @@ class GuildRepository extends GuildView {
 
   public async delete(guild_id: number): Promise<Object> {
     try {
-      const guildMembers = await this.getGuildMembers(guild_id) as Player[];
-      const guildRanks = await this.getGuildRanks(guild_id) as GuildModel[];
-
-      for (let member of guildMembers) {
-        await this.character.updateRankId(member.id, 0);
-      }
-
-      for (let rank of guildRanks) {
-        await this.deleteRank(rank.id);
-      }
-
       return await Database.from('guilds').where('id', guild_id).delete();
     } catch (err) {
       console.log(err);

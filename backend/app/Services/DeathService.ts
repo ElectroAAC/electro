@@ -5,9 +5,9 @@ export default class DeathService {
     try {
       return await Database
         .from('player_deaths')
-        .select('id', 'date', 'level')
+        .select('player_id', 'time', 'level', 'killed_by', 'is_player', 'mostdamage_by', 'mostdamage_is_player', 'unjustified', 'mostdamage_unjustified')
         .where('player_id', character_id)
-        .orderBy('date', 'desc')
+        .orderBy('time', 'desc')
         .limit(10);
     } catch (err) {
       console.log(err);
@@ -38,12 +38,12 @@ export default class DeathService {
   }
 
   public async getLastKills(page: number, limit: number): Promise<Object> {  
-    try {
+    try { 
       return await Database
-        .from('player_deaths')
-        .innerJoin('players', 'players.id', 'player_deaths.player_id')
-        .select('player_deaths.id', 'player_deaths.date', 'player_deaths.level', 'players.name')
-        .orderBy('player_deaths.date', 'desc')
+        .from('player_deaths as pd')
+        .innerJoin('players as p', 'p.id', 'pd.player_id')
+        .select('p.name as victim', 'pd.killed_by as killed_by', 'pd.time as time', 'pd.level', 'pd.is_player')
+        .orderBy('pd.time', 'desc')
         .paginate(page, limit);
     } catch (err) {
       console.log(err);

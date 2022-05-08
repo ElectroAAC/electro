@@ -14,7 +14,7 @@ export default class UpdateValidator {
     ]),
     email: schema.string({ trim: true }, [rules.required()]),
     premdays: schema.number.optional(),
-    group_id: schema.number.optional(),
+    type: schema.number.optional(),
     web_flags: schema.number.optional(),
     premium_points: schema.number.optional()
   })

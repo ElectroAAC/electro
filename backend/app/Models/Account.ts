@@ -16,10 +16,10 @@ export default class Account extends BaseModel {
   public password: string
 
   @column()
-  public rememberMeToken?: string
+  public secret?: string
 
-  @column({ serializeAs: null })
-  public salt: string
+  @column()
+  public type: number
 
   @column()
   public premdays: number
@@ -34,34 +34,10 @@ export default class Account extends BaseModel {
   public blocked: number
 
   @column({ serializeAs: null })
-  public warnings: number
-
-  @column()
-  public group_id: number
-
-  @column({ serializeAs: null })
-  public vip_time: number
-
-  @column({ serializeAs: null })
   public web_lastlogin: number
 
   @column({ serializeAs: null })
   public web_flags: number
-
-  @column({ serializeAs: null })
-  public email_hash: string
-
-  @column({ serializeAs: null })
-  public email_verified: number
-
-  @column({ serializeAs: null })
-  public email_new: string
-
-  @column({ serializeAs: null })
-  public email_new_time: number
-
-  @column()
-  public created: number
 
   @column({ serializeAs: null })
   public rlname: string
@@ -73,34 +49,34 @@ export default class Account extends BaseModel {
   public country: string
 
   @column({ serializeAs: null })
-  public page_access: number
+  public email_hash: string
+
+  @column({ serializeAs: null })
+  public email_new: string
 
   @column({ serializeAs: null })
   public email_code: string
 
   @column({ serializeAs: null })
+  public email_verified: string
+
+  @column({ serializeAs: null })
+  public email_new_time: number
+
+  @column({ serializeAs: null })
   public email_next: number
+
+  @column()
+  public created: number
+
+  @column()
+  public creation: number
 
   @column()
   public premium_points: number
 
   @column({ serializeAs: null })
   public vote: number
-
-  @column({ serializeAs: null })
-  public last_post: number
-
-  @column({ serializeAs: null })
-  public flag: string
-
-  @column({ serializeAs: null })
-  public nickname: string
-
-  @column({ serializeAs: null })
-  public avatar: string
-
-  @column({ serializeAs: null })
-  public about_me: string
 
   @beforeSave()
   public static async hashPassword (account: Account) {

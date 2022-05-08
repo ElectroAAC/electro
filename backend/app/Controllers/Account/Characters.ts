@@ -37,14 +37,14 @@ export default class CharactersAccount {
         return ctx.response.status(404).send({ message: 'Vocation invalid'});
       }
 
-      const characterCopy: Player[] = await this.characterView.findByName(vocation.name) as Player[];
+      const characterCopy: Player[] = await this.characterView.getByName(vocation.name) as Player[];
       
       if (!characterCopy.length) {
         console.log("Error find Sample Character: Edit file Vocations in contracts/enums/Vocations and set valid characters to copy names. Name Character to copy: " + vocation.name + " doesn\'t exist.");
         return ctx.response.status(404).send({ message: "Wrong characters configuration. Try again or contact with admin."});
       }
 
-      const newPlayer = Object.assign(characterCopy[0], {
+      const newPlayer = {...characterCopy[0],
         id: null,
         name: data.name.charAt(0).toUpperCase() + data.name.slice(1).toLowerCase(),
         account_id: account.id,
@@ -56,23 +56,11 @@ export default class CharactersAccount {
         posz: 0,
         balance: 0,
         created: 0
-      });
+      };
 
       const result = await this.characterRepository.create(newPlayer);
 
-      const player: Player[] = await this.characterView.findById(result[0]) as Player[];
-
-      if (!player.length) {
-        return ctx.response.status(404).send({ message: "Error. Can't create character. Probably problem with database. Please try again later or contact with admin."});
-      }
-
-      for(let i = 0; i < 7; i++) {
-        const skillExists = await this.characterView.checkSkillId(player[0].id, i);
-
-        if (!skillExists.length) {
-          await this.character.insertSkill(player[0].id, i);
-        }
-      }
+      const player: Player[] = await this.characterView.getById(result[0]) as Player[];
 
       const items_to_copy: Item[] = await this.characterView.getItems(characterCopy[0].id) as Item[];
 

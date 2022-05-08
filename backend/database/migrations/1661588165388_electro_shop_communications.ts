@@ -10,6 +10,7 @@ export default class ElectroShopCommunications extends BaseSchema {
         .integer('player_id')
         .references('id')
         .inTable('players')
+        .unsigned()
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
       table.string('type').notNullable()

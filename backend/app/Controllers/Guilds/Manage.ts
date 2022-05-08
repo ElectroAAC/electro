@@ -38,9 +38,9 @@ export default class ManageController {
       if (!isLeader)
         return ctx.response.status(404).send({ message: "You are not the guild owner." });
 
-      const character = await this.characterView.isOffline(data.new_leader_id);
+      const online = await this.characterView.isOnline(data.new_leader_id);
 
-      if (!character.length) {
+      if (online.length) {
         return ctx.response.status(404).send({ message: "The character is online." });
       }
 
@@ -132,9 +132,9 @@ export default class ManageController {
         return ctx.response.status(404).send({ message: "Invalid account."});
       }
 
-      const offline = await this.characterView.isOffline(data.character_id);
+      const online = await this.characterView.isOnline(data.character_id);
 
-      if (!offline.length) 
+      if (online.length) 
         return ctx.response.status(404).send({ message: "The character needs to be offline." });
       
       const isLeader = await this.guild.isLeader(account.id, data.guild_id);
@@ -144,7 +144,7 @@ export default class ManageController {
 
       const ranks = await this.guild.getGuildRanks(data.guild_id) as { id: number, level: number }[];
 
-      const rank_id = await this.characterView.getRankId(data.character_id) as Player[];
+      const rank_id: any = await this.characterView.getRankId(data.character_id) as Player[];
 
       const rank = ranks.find((rank) => rank.id === rank_id[0].rank_id);
 

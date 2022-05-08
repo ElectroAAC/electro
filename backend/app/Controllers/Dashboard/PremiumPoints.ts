@@ -6,7 +6,7 @@ export default class PremiumPointsController {
 
   public async show(ctx: HttpContextContract) {
     try {
-      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
 
       const accounts = await this.accountView.getTopPremiumPoints();
 

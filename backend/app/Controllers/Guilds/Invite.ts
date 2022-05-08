@@ -56,9 +56,11 @@ export default class InviteController {
       if (!isLeaderOrVice)
         return ctx.response.status(404).send({ message: "You are not a leader or vice leader of guild"});
 
-      const character = await this.characterView.findByName(data.character_invitation) as Player[];
+      const character: any = await this.characterView.getByName(data.character_invitation) as Player[];
 
-      if (character[0].rank_id > 0)
+      character[0].rank_id = await this.characterView.getRankId(character[0].id);
+
+      if (character[0].rank_id.length && character[0].rank_id[0].rank_id > 0)
         return ctx.response.status(404).send({ message: "The player already has a guild."});
       
       const alreadyInvited = await this.guild.alreadyInvited(data.guild_id, character[0].id);
@@ -82,17 +84,21 @@ export default class InviteController {
     try {
       const data = await ctx.request.validate(UpdateValidator);
 
-      const character = await this.characterView.findByName(data.character_invitation) as Player[];
+      const character: any = await this.characterView.getByName(data.character_invitation) as Player[];
 
-      if (character[0].online !== 0) 
-        return ctx.response.status(404).send({ message: "The character needs to be offline." });
+      const online = await this.characterView.isOnline(character[0].id);
+    
+      if (online.length)
+        return ctx.response.status(404).send({ message: 'The character cannot be online.' });
       
       const account = ctx.auth.user;
 
       if (!account || account && account.id !== character[0].account_id)
         return ctx.response.status(404).send({ message: "The character does not belong to you."});
 
-      if (character[0].rank_id > 0)
+      character[0].rank_id = await this.characterView.getRankId(character[0].id);
+
+      if (character[0].rank_id.length && character[0].rank_id[0].rank_id > 0)
         return ctx.response.status(404).send({ message: "You are already in a guild."});
       
       const alreadyInvited = await this.guild.alreadyInvited(data.guild_id, character[0].id);
@@ -127,7 +133,7 @@ export default class InviteController {
       if (!isLeaderOrVice)
         return ctx.response.status(404).send({ message: "You are not a leader or vice leader of guild."});
       
-      const character = await this.characterView.findByName(data.character_invitation) as Player[];
+      const character = await this.characterView.getByName(data.character_invitation) as Player[];
       
       const alreadyInvited = await this.guild.alreadyInvited(data.guild_id, character[0].id);
       

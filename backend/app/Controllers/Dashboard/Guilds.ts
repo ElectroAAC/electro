@@ -6,7 +6,7 @@ export default class GuildsController {
 
   public async show(ctx: HttpContextContract) {
     try {
-      await ctx.bouncer.with('DashboardPolicy').authorize('viewList');
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
 
       const accounts = await this.guildView.getTotalGuilds();
 

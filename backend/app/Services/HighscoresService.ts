@@ -5,8 +5,8 @@ export default class HighscoresService {
   public async topRankPlayers(): Promise<Object[]> {
     return await Database
       .from('players')
-      .select('id', 'name', 'level', 'vocation', 'experience', 'online')
-      .where('deleted', '=', 0)
+      .select('id', 'name', 'level', 'vocation', 'experience')
+      .where('deletion', '=', 0)
       .andWhere('group_id', '<', 4)
       .orderBy('experience', 'desc')
       .limit(5);
@@ -16,8 +16,8 @@ export default class HighscoresService {
     if (type === 'Experience')  
       return await Database
         .from('players')
-        .select('name', 'vocation', 'level', 'experience', 'online')
-        .where('deleted', '=', 0)
+        .select('name', 'vocation', 'level', 'experience')
+        .where('deletion', '=', 0)
         .andWhere('group_id', '<', 4)
         .orderBy('experience', 'desc')
         .paginate(page, limit);
@@ -25,12 +25,14 @@ export default class HighscoresService {
     else if (type === 'Magic Level')
       return await Database
         .from('players')
-        .select('name', 'vocation', 'maglevel as value', 'experience', 'online')
-        .where('deleted', '=', 0)
+        .select('name', 'vocation', 'maglevel as value', 'experience')
+        .where('deletion', '=', 0)
         .andWhere('group_id', '<', 4)
         .orderBy('maglevel', 'desc')
         .paginate(page, limit);
 
+    /**
+     * @TODO => Add frags highscores for tfs 1.3
     else if (type === 'Frags')
       return await Database
         .from('players')
@@ -42,18 +44,20 @@ export default class HighscoresService {
         .groupBy('players.name')
         .orderBy('value', 'desc')
         .paginate(page, limit);
+     */
 
     else {
-      const skill = Skills.find((skill) => skill.text === type)?.value;
+      const skill: string | undefined = Skills.find((skill) => skill.text === type)?.value;
+      
+      if (!skill)
+        return [{}];
       
       return await Database
         .from('players')
-        .innerJoin('player_skills', 'player_skills.player_id', 'players.id')
-        .select('players.name', 'players.vocation', 'player_skills.value', 'players.online')
-        .where('players.deleted', '=', 0)
+        .select('name', 'vocation', skill)
+        .where('players.deletion', '=', 0)
         .andWhere('players.group_id', '<', 4)
-        .andWhere('player_skills.skillid', '=', skill || 0)
-        .orderBy('player_skills.value', 'desc')
+        .orderBy(skill, 'desc')
         .paginate(page, limit);
     }
   }
