@@ -1,7 +1,8 @@
 <template>
   <div>
     <Title text="Characters"/>
-    <v-container>
+    
+    <v-container class="main-content">
       <CharacterSearchForm v-if="!getCharacterName" />
       
       <div v-else>

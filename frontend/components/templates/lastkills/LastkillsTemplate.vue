@@ -1,6 +1,6 @@
 <template>
   <div>
     <Title text="Lastkills"/>
-    <Lastkills />
+    <Lastkills class="main-content"/>
   </div>
 </template>

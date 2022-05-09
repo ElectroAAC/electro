@@ -1,6 +1,6 @@
 <template>
   <div>
     <Title text="Highscores"/>
-    <Highscores />
+    <Highscores class="main-content"/>
   </div>
 </template>

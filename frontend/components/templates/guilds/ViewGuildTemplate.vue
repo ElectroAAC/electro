@@ -1,7 +1,8 @@
 <template>
   <div>
     <Title text="View Guild"/>
-    <v-container>
+    
+    <v-container class="main-content">
       <div v-if="isLoading" class="text-center">
         <Loading  style="width: 50% !important;" />
       </div>

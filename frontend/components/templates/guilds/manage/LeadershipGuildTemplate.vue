@@ -2,7 +2,7 @@
   <div>
     <Title text="Pass Leadership" />
 
-    <v-container>
+    <v-container class="main-content">
       <div v-if="isLoading" class="text-center">
         <Loading  style="width: 50% !important;" />
       </div>

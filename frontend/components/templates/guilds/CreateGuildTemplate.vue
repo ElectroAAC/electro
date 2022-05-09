@@ -1,5 +1,6 @@
 <template>
-  <v-container class="mt-5">
-    <CreateGuild />
-  </v-container>
+  <div>
+    <Title text="Create Guild"/>
+    <CreateGuild class="main-content"/>
+  </div>
 </template>

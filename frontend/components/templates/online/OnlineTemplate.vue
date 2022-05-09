@@ -1,6 +1,6 @@
 <template>
   <div>
     <Title text="Onlines"/>
-    <Online/>
+    <Online class="main-content"/>
   </div>
 </template>

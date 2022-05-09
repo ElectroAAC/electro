@@ -7,11 +7,13 @@
   --green: #41c683;
 
   --main-color: #dd163b;
+  --second-color: #ef9e2b;
 
   --tables: #dd163b;
-  --tables-hover: #2f3541;
+  --tables-hover: #181c23;
 
   --bg-header: #293139;
+  --bg-content: #293139;
   --bg-main-color: #141f36;
   --bg-second-color: #334459;
   --bg-third-color: #061217;
@@ -22,7 +24,7 @@
 }
 
 #app {
-  background-color: var(--bg-main-color);
+  background-color: var(--bg-fourth);
 }
 
 #header {

@@ -16,6 +16,12 @@
   border-bottom: 4px solid var(--main-color) !important;
 }
 
+.main-content {
+  margin-top: 20px !important;
+  border-radius: 0.5rem;
+  background-color: var(--bg-content);
+}
+
 .content {
   border-radius: 0.5rem !important;
   color: var(--text-color);
@@ -68,7 +74,7 @@
   display: flex;
   padding: 0.5rem 1rem 0.5rem;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: bold !important;
   text-transform: uppercase;
   line-height: 30px;
   letter-spacing: .72px;
@@ -224,8 +230,8 @@
 }
 
 .btn-success-secondary {
-  color: var(--main-color) !important;
-  border: 1px solid var(--main-color) !important;
+  color: var(--second-color) !important;
+  border: 1px solid var(--second-color) !important;
 }
 
 .btn-danger-primary {
@@ -383,10 +389,6 @@
 
 .v-pagination__navigation {
   box-shadow: none !important;
-}
-
-.title {
-  font-weight: bold !important;
 }
 
 #dashboard {
