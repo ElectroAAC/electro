@@ -23,6 +23,7 @@
     <v-pagination
       v-if="total > 1"
       v-model="page"
+      circle
       :length="total"
     ></v-pagination>
   </div>

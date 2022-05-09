@@ -83,7 +83,7 @@
 }
 
 .title::after, .title::before {
-  border-bottom-color: var(--main-color);
+  border-bottom-color: var(--main-color) !important;
 }
 
 .title::before {
@@ -102,6 +102,18 @@
   flex: 100;
   border-bottom: 4px solid;
   transform: translateY(-10px);
+}
+
+.v-pagination__item {
+  color: var(--main-color) !important;
+  font-size: 20px !important;
+  box-shadow: none !important;
+}
+
+.v-pagination__item--active {
+  color: var(--heading-color) !important;
+  font-size: 20px !important;
+  box-shadow: none !important;
 }
 
 .menu-mobile {

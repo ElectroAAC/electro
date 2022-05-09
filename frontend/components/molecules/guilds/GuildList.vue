@@ -32,6 +32,7 @@
     
     <v-pagination
       v-model="page"
+      circle
       :length="total"
     ></v-pagination>
   </v-container>
