@@ -496,3 +496,7 @@
   border: 2px solid var(--main-color);
   border-radius: 1rem;
 }
+
+.theme--light.v-bottom-navigation .v-btn:not(.v-btn--active) {
+  color: var(--heading-color) !important;
+}

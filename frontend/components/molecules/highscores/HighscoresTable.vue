@@ -1,26 +1,37 @@
 <template>
-  <v-data-table
-    :headers="getHeaders"
-    :items="playersData"
-    :footer-props="footerProps"
-    :options.sync="options"
-    :server-items-length="total"
-    :items-per-page="25"
-    :loading="isLoadingGrid"
-    disable-items-per-page
-    mobile-breakpoint="0"
-    loading-text="Loading Player List..."
-    no-data-text="No player found"
-  >
-    <template #item.position="{ index }">
-      {{ index+1 }}
-    </template>
+  <div>
+    <v-data-table
+      :headers="getHeaders"
+      :items="playersData"
+      :options.sync="options"
+      :server-items-length="total"
+      :items-per-page="itemsPerPage"
+      :loading="isLoadingGrid"
+      :page.sync="page"
+      hide-default-footer
+      mobile-breakpoint="0"
+      loading-text="Loading Player List..."
+      no-data-text="No player found"
+      @page-count="pageCount = $event"
+    >
+      <!-- eslint-disable-next-line vue/valid-v-slot -->
+      <template #item.position="{ index }">
+        {{ index+1 }}
+      </template>
+      
+      <!-- eslint-disable-next-line vue/valid-v-slot -->
+      <template #item.name="{ item }">
+        <NuxtLink :to="`/character/${item.name}`" :class="`color-${item.online === 1 ? 'green' : 'red'}`"> {{ item.name }} </NuxtLink> <br>
+        {{ getVocation(item.vocation) }}
+      </template>
+    </v-data-table>
     
-    <template #item.name="{ item }">
-      <NuxtLink :to="`/character/${item.name}`" :class="`color-${item.online === 1 ? 'green' : 'red'}`"> {{ item.name }} </NuxtLink> <br>
-      {{ getVocation(item.vocation) }}
-    </template>
-  </v-data-table>
+    <v-pagination
+      v-model="page"
+      circle
+      :length="pageCount"
+    ></v-pagination>
+  </div>
 </template>
 
 <script lang="ts">
@@ -31,10 +42,9 @@ import { getVocationName } from '@/utils/methods'
 export default Vue.extend({
   data() {
     return {
-      footerProps: {
-        "items-per-page-options": [25, 50, 100, 150],
-        "items-per-page-text": "Players per page",
-      },
+      page: 1,
+      pageCount: 0,
+      itemsPerPage: 25,
       isLoadingGrid: true,
       playersData: [],
       options: {},
