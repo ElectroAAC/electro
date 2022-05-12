@@ -35,7 +35,7 @@
 
     <v-checkbox
       v-model="rememberMe"
-      label="Mantenha-me conectado"
+      label="Keep me logged in."
       color="success"
       hide-details
     ></v-checkbox>
