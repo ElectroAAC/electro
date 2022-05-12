@@ -5,7 +5,6 @@ const auth: Middleware = ({ store, redirect, $toast}) => {
     $toast.error(
       'You need to be authenticated.',
       {
-        keepOnHover: true,
         duration: 2000,
         theme: "bubble",
       }

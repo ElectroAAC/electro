@@ -22,6 +22,19 @@ export const routesCommunity = [
   },
 ]
 
+export const routesGuild = [
+  {
+    icon: 'mdi-khanda',
+    text: "All Guilds",
+    to: "/guilds"
+  },
+  {
+    icon: 'mdi-plus-thick',
+    text: "Create Guild",
+    to: "/guilds/create"
+  },
+]
+
 export const routesDashboard = [
   {
     icon: 'mdi-home',

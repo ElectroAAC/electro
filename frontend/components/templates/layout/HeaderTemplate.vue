@@ -26,7 +26,7 @@
           <NuxtLink to="/" class="pa-5"> HOME </NuxtLink>
           <CommunityRoutes />
           <NuxtLink to="/highscores" class="pa-5"> HIGHSCORES </NuxtLink>
-          <NuxtLink to="/guilds" class="pa-5"> GUILDS + </NuxtLink>
+          <GuildRoutes />
           <NuxtLink to="/" class="pa-5"> SHOP + </NuxtLink>
           <NuxtLink to="/downloads" class="pa-5"> DOWNLOAD </NuxtLink>
           
