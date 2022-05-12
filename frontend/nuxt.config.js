@@ -78,7 +78,6 @@ export default {
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/scss/variables.scss'],
-    treeShake: true,
     icons: {
       iconfont: 'mdi'
     },
@@ -101,7 +100,14 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    extractCSS: true,
+    loaders:  {
+      vue: {
+        prettify: false
+      }
+    },
+  },
 
   router: {
     base: process.env.ROUTE || '/'
