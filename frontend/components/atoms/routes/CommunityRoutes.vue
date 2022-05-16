@@ -7,7 +7,7 @@
   >
     <template #activator="{ on, attrs }">
       <span 
-        class="header-text"
+        class="header-text cursor-pointer"
         v-bind="attrs"
         v-on="on"
       >

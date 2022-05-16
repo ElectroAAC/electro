@@ -6,7 +6,11 @@
     offset-y
   >
     <template #activator="{ on, attrs }">
-      <span v-bind="attrs" v-on="on">
+      <span 
+        class="header-text cursor-pointer"
+        v-bind="attrs"
+        v-on="on"
+      >
         GUILDS +
       </span>
     </template>

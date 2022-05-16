@@ -500,3 +500,7 @@
 .theme--light.v-bottom-navigation .v-btn:not(.v-btn--active) {
   color: var(--heading-color) !important;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
