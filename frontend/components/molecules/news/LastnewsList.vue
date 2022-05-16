@@ -6,7 +6,6 @@
 
     <div v-else> 
       <div 
-        class="text-center"
         v-for="(post, idx) in newsList" 
         :key="idx"
       >
@@ -14,8 +13,8 @@
           <span> {{ post.title }} </span>
         </v-col>
 
-        <v-col cols="12">
-          <span v-html="post.body"></span>
+        <v-col class="pr-3 pl-3" cols="12">
+          <div class="news-content pt-5 pb-5" v-html="post.body"></div>
         </v-col>
       </div>
     </div>

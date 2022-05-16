@@ -504,3 +504,8 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+.news-content {
+  background-color: #2a2c32;
+  border-radius: 0.5rem;
+}

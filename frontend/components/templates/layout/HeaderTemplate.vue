@@ -52,7 +52,7 @@
 
       <v-col class="text-center" cols="8">
         <NuxtLink to="/">
-          <Logo class="mt-8" width="130px"/>
+          <Logo width="130px"/>
         </NuxtLink>
       </v-col>
 
