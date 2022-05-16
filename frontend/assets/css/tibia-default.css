@@ -5,6 +5,7 @@
 
   --red: #f56969;
   --green: #41c683;
+  --gray: #80828a;
 
   --main-color: #dd163b;
   --second-color: #ef9e2b;
@@ -14,17 +15,16 @@
 
   --bg-header: #293139;
   --bg-content: #293139;
-  --bg-main-color: #141f36;
+  --bg-main-color: #171e22;
   --bg-second-color: #334459;
   --bg-third-color: #061217;
-  --bg-fourth: #171e22;
 
   --bg-dashboard-main-color: #1f2128;
   --bg-dashboard-content-color: #2a2d38;
 }
 
 #app {
-  background-color: var(--bg-fourth);
+  background-color: var(--bg-main-colorh);
 }
 
 #header {
