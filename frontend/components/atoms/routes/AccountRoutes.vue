@@ -17,7 +17,7 @@
     </template>
       
     <v-list class="header-list">
-      <v-list-item v-if="$account.name && $account.group_id === 6">
+      <v-list-item v-if="$account.name && $account.type === 6">
         <v-list-item-title class="header-text">
           <NuxtLink to="/dashboard"> Dashboard </NuxtLink>
         </v-list-item-title>

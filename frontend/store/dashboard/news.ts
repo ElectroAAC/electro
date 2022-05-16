@@ -130,7 +130,7 @@ export default class News extends VuexModule {
   @Action
   public async editPost(payload: UpdatePayload) {
     try {
-      return await $axios.$post('news/edit', payload)
+      return await $axios.$patch('news/edit', payload)
         .then((response) => {
           if (!response) 
             throw new Error(response);
