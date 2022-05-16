@@ -17,7 +17,7 @@
       @update-dialog="updateDialog"
     />
 
-    <v-row class="d-flex align-center justify-center header-text">
+    <v-row v-if="!$vuetify.breakpoint.mdAndDown" class="d-flex align-center justify-center header-text">
       <v-col cols="3">
         <Logo width="100px"/>
       </v-col>
@@ -37,6 +37,27 @@
             @update-dialog="updateDialog"
           />
         </v-row>
+      </v-col>
+    </v-row>
+
+    <v-row v-else class="d-flex align-center justify-center header-text">
+      <v-col cols="2">
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer, miniVariant = false" />
+        <MenuMobile 
+          :drawer="drawer"
+          :miniVariant="miniVariant"
+          @update-drawer="updateDrawer"
+        />
+      </v-col>
+
+      <v-col class="text-center" cols="8">
+        <NuxtLink to="/">
+          <Logo class="mt-8" width="130px"/>
+        </NuxtLink>
+      </v-col>
+
+      <v-col cols="2">
+        <AccountRoutes @update-dialog="updateDialog"/>
       </v-col>
     </v-row>
   </v-app-bar>
