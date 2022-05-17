@@ -82,7 +82,6 @@ export default Vue.extend({
     updateGuild(): void {
       createGuild.updateGuild(this.guild);
     }
-
   }
 })
 </script>
