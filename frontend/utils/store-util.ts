@@ -46,6 +46,11 @@ import {
   Lastkills
 } from '~/store/lastkills'
 
+import {
+  Shop,
+  ShopCategorie
+} from '~/store/shop'
+
 let auth: Auth;
 
 let dashboardHome: DashboardHome;
@@ -74,6 +79,9 @@ let manageGuild: ManageGuild;
 let online: Online;
 
 let lastkills: Lastkills;
+
+let shop: Shop;
+let shopCategorie: ShopCategorie;
 
 const initializeStores = (store: Store<any>) => {
   auth = getModule(Auth, store);
@@ -112,6 +120,10 @@ const initializeStores = (store: Store<any>) => {
 
   // Store Lastkills
   lastkills = getModule(Lastkills, store);
+
+  // Store Shop
+  shop = getModule(Shop, store);
+  shopCategorie = getModule(ShopCategorie, store);
 };
 
 export {
@@ -144,5 +156,8 @@ export {
   
   online,
 
-  lastkills
+  lastkills,
+
+  shop,
+  shopCategorie
 };
