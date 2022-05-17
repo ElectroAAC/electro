@@ -44,7 +44,7 @@
                 <NuxtLink to="/accounts/change-name"> Change Name </NuxtLink>
               </v-btn>
               
-              <v-btn v-if="$changeName.enabled" text @click="dialog = true" class="header-text">
+              <v-btn text @click="dialog = true" class="header-text">
                 <v-icon color="red">
                   mdi-delete-outline
                 </v-icon>

@@ -85,7 +85,6 @@ export default class Guild extends VuexModule {
           };
         })
         .catch(({ response }) => {
-          console.log(response);
           return {
             status: 404,
             message: response.data.message

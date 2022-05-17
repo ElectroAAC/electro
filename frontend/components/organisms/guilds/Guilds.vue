@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-0">
+  <div class="container">
     <GuildList />
   </div>
 </template>

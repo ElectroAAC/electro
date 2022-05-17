@@ -82,14 +82,6 @@ export default Vue.extend({
     updateGuild(): void {
       createGuild.updateGuild(this.guild);
     }
-
   }
 })
 </script>
-
-<style lang="scss" scoped>
-.theme--light.v-list {
-  background: #212358fa !important;
-  color: var(--heading-color) !important;
-}
-</style>

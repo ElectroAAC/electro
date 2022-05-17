@@ -1,6 +1,6 @@
 <template>
   <div>
     <Title text="Delete Character"/>
-    <DeleteCharacter />
+    <DeleteCharacter class="main-content"/>
   </div>
 </template>

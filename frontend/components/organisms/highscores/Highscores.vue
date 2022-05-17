@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <v-bottom-navigation v-model="value" v-if="!$vuetify.breakpoint.mdAndDown">
+    <v-bottom-navigation 
+      v-model="value"
+      color="white"
+      active-class="color-red"
+      v-if="!$vuetify.breakpoint.mdAndDown"
+    >
       <v-btn v-for="(item, idx) in options" :key="idx" :value="item.value">
         <span>{{ item.text }}</span>
         <v-icon>{{ item.icon }}</v-icon>
@@ -91,6 +96,10 @@ export default Vue.extend({
     $type() {
       return ranking.$type
     }
+  },
+
+  mounted() {
+    ranking.setType('Experience')
   },
 
   watch: {

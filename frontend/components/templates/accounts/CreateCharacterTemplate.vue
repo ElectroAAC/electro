@@ -1,6 +1,6 @@
 <template>
   <div>
     <Title text="Create Character"/>
-    <CreateCharacter class="mt-10"/>
+    <CreateCharacter class="main-content"/>
   </div>
 </template>

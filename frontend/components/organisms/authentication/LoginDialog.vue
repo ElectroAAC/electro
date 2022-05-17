@@ -44,6 +44,6 @@ export default Vue.extend({
 </script>
 <style lang="scss" scoped>
 .auth-box {
-  background: rgba(40, 51, 118, 0.871) !important
+  background: rgb(72 52 25 / 87%) !important;
 }
 </style>

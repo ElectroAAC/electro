@@ -19,7 +19,7 @@ export default class Characters extends VuexModule {
     id: undefined,
     name: undefined,
     world_id: undefined,
-    group_id: undefined,
+    type: undefined,
     account_id: undefined,
     level: undefined,
     vocation: undefined,

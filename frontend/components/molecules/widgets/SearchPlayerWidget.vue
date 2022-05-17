@@ -1,8 +1,5 @@
 <template>
   <aside class="widget">
-    <h5 class="widget-title"> Search </h5>
-    <v-container>
-      
     <v-form
       ref="form"
       v-model="valid"
@@ -16,11 +13,10 @@
         dense
         append-icon="mdi-magnify"
         hide-details="auto"
-        background-color="var(--main-color)"
-        color="var(--second-main-color)"
+        color="var(--main-color)"
+        @click:append="onSearch"
       />
     </v-form>
-    </v-container>
   </aside>
 </template>
 

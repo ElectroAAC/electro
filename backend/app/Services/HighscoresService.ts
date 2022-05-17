@@ -54,7 +54,7 @@ export default class HighscoresService {
       
       return await Database
         .from('players')
-        .select('name', 'vocation', skill)
+        .select('name', 'vocation', `${skill} as value`)
         .where('players.deletion', '=', 0)
         .andWhere('players.group_id', '<', 4)
         .orderBy(skill, 'desc')

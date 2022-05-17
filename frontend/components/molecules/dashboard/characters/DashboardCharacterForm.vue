@@ -29,7 +29,7 @@
 
     <v-col :cols="getCols">
       <v-autocomplete
-        v-model="$character.group_id"
+        v-model="$character.type"
         :items="characterGroups"
         label="Group ID"
         dense

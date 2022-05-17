@@ -180,7 +180,7 @@ export default class Account extends VuexModule {
 
   @Action
   public async deleteCharacter(payload: DeletePayload) {
-    const status = await $axios.$post('player/delete', payload)
+    const status = await $axios.$post('player/delete-character', payload)
       .then(( response ) => {
         if (response.status !== 200) 
           throw new Error("Failed to delete character");

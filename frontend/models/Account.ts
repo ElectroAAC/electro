@@ -3,7 +3,7 @@ export interface Accounts {
 	name: String,
 	email: String,
 	password: String,
-	group_id: Number,
+	type: Number,
 	premium_points: Number
 }
 

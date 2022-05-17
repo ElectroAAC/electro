@@ -11,13 +11,13 @@
         v-bind="attrs"
         v-on="on"
       >
-        COMMUNITY +
+        GUILDS +
       </span>
     </template>
       
     <v-list class="mt-3 header-list">
       <v-list-item
-        v-for="(item, idx) in getRoutesCommunity"
+        v-for="(item, idx) in getRoutesGuild"
         :key="idx"
       >
         <v-list-item-title class="header-text">
@@ -31,12 +31,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Route } from '@/models'
-import { routesCommunity } from '@/utils/routes'
+import { routesGuild } from '@/utils/routes'
 
 export default Vue.extend({
   computed: {
-    getRoutesCommunity(): Route[] {
-      return routesCommunity;
+    getRoutesGuild(): Route[] {
+      return routesGuild;
     }
   }
 })

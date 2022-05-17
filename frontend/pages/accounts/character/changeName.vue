@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ChangeNameCharacterTemplate />
+    <ChangeNameCharacterTemplate class="mb-5"/>
   </div>
 </template>
 

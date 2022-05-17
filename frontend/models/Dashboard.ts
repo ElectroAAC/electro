@@ -12,7 +12,7 @@ export interface Character {
 	id: number,
 	name: String,
 	world_id: number,
-	group_id: number,
+	type: number,
 	account_id: number,
 	level: number,
 	vocation: number,

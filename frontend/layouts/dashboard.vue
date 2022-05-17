@@ -103,7 +103,7 @@ export default Vue.extend({
       return process.env.PROJECT_NAME;
     },
 
-    getItems(): {}[] {
+    getItems(): { icon: string, title: string, to: string }[] {
       return routesDashboard;
     }
   },

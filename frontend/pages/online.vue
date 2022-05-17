@@ -1,3 +1,3 @@
 <template>
-  <OnlineTemplate/>
+  <OnlineTemplate class="mb-5"/>
 </template>

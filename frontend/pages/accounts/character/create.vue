@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CreateCharacterTemplate />
+    <CreateCharacterTemplate class="mb-5"/>
   </div>
 </template>
 

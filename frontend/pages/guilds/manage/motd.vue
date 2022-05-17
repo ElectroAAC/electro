@@ -1,3 +1,3 @@
 <template>
-  <ChangeMotdGuildTemplate />
+  <ChangeMotdGuildTemplate class="mb-5"/>
 </template>
