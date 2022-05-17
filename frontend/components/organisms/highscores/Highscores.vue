@@ -98,6 +98,10 @@ export default Vue.extend({
     }
   },
 
+  mounted() {
+    ranking.setType('Experience')
+  },
+
   watch: {
     value(v) {
       ranking.setType(v);
