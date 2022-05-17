@@ -123,7 +123,8 @@ $ npm run start
 
 | METHOD | ENDPOINT                        | DESCRIPTION                           |
 | :----- | :-------------------------------| :------------------------------------ |
-| GET    | /shop/offers                    | Get all offers                        |
+| GET    | /shop/offers/:categorie         | Get offers                            |
+| GET    | /shop/categories                | Get categories                        |
 | POST   | /shop/purchase                  | Purchase Items                        |
 
 <br>
