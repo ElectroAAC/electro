@@ -9,9 +9,8 @@
         v-for="(death, idx) in deathList" 
         :key="idx"
       >
-        <v-col cols="3"> {{ formatDate(death.time) }} </v-col>
-        <v-col cols="9">
-          <span v-html="death.killers_string"></span>
+        <v-col class="pl-0" cols="3"> {{ formatDate(death.time) }} </v-col>
+        <v-col class="text-center" cols="9" v-html="death.killers_string">
         </v-col>
       </v-row>
     </div>
