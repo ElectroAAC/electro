@@ -78,7 +78,7 @@ export default class News extends VuexModule {
   @Action
   public async createNewPost(payload: CreatePostPayload) {
     try {
-      return await $axios.$post(`news/create-post`, payload)
+      return await $axios.$post(`news/create`, payload)
         .then((response) => {
           if (!response) 
             throw new Error(response);
