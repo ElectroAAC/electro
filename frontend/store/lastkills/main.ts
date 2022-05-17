@@ -28,7 +28,7 @@ export default class Lastkills extends VuexModule {
             total: response.total
           };
         })
-        .catch(() => {
+        .catch(({ response }) => {
           return {
             data: 'Error',
             status: 'SEARCH_NOTFOUND',

@@ -4,6 +4,10 @@
       <Loading  style="width: 50% !important;" />
     </div>
 
+    <div v-else-if="!deathsData.length" class="text-center">
+      No deaths recorded.
+    </div>
+
     <div v-else> 
       <v-row 
         v-for="(death, idx) in deathList" 
@@ -13,13 +17,13 @@
         <v-col class="text-center" cols="9" v-html="death.killers_string">
         </v-col>
       </v-row>
-    </div>
 
-    <v-pagination
-      v-model="page"
-      circle
-      :length="total"
-    ></v-pagination>
+      <v-pagination
+        v-model="page"
+        circle
+        :length="total"
+      ></v-pagination>
+    </div>
   </v-container>
 </template>
 
