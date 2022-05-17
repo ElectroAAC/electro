@@ -83,10 +83,3 @@ export default Vue.extend({
   }
 })
 </script>
-
-<style lang="scss" scoped>
-.theme--light.v-list {
-  background: transparent !important;
-  color: var(--heading-color) !important;
-}
-</style>

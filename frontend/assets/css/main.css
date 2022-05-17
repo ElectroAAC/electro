@@ -439,6 +439,11 @@
   border-radius: 1rem;
 }
 
+.theme--light.v-list {
+  background: var(--bg-content) !important;
+  color: var(--heading-color) !important;
+}
+
 .theme--light.v-list-item--active:hover::before, .theme--light.v-list-item--active::before {
   opacity: 0.30 !important;
 }
