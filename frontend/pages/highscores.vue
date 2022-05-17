@@ -1,3 +1,3 @@
 <template>
-  <HighscoresTemplate/>
+  <HighscoresTemplate class="mb-5"/>
 </template>

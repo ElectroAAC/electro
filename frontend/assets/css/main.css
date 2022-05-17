@@ -70,6 +70,10 @@
   transform: translateY(-10px);
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .title {
   display: flex;
   padding: 0.5rem 1rem 0.5rem;
@@ -377,6 +381,10 @@
 
 .color-gray {
   color: var(--gray) !important;
+}
+
+.color-orange {
+  color: var(--second-color) !important;
 }
 
 .color-green {

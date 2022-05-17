@@ -1,5 +1,5 @@
 <template>
-  <CreateGuildTemplate />
+  <CreateGuildTemplate class="mb-5"/>
 </template>
 
 <script lang="ts">

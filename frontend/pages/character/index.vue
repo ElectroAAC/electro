@@ -1,5 +1,5 @@
 <template>
   <div>
-    <CharacterTemplate />
+    <CharacterTemplate class="mb-5"/>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <v-row v-if="!$vuetify.breakpoint.xsOnly" class="pa-5">
+  <v-row v-if="!$vuetify.breakpoint.xsOnly" class="pa-5 pr-10 pl-10">
     <h2> LOGO </h2>
     <v-spacer></v-spacer>
     <h2> {{ $guild.info.name }} </h2> 

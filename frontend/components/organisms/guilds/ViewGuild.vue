@@ -18,7 +18,9 @@
       >
         Leave Guild
       </v-btn>
-
+    </v-col>
+    
+    <v-col class="text-center" cols="12">
       <v-btn 
         text 
         class="btn btn-success-secondary"

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DeleteCharacterTemplate />
+    <DeleteCharacterTemplate class="mb-5"/>
   </div>
 </template>
 

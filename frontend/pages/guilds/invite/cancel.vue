@@ -1,3 +1,3 @@
 <template>
-  <CancelInviteGuildTemplate />
+  <CancelInviteGuildTemplate class="mb-5"/>
 </template>

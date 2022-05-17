@@ -1,3 +1,3 @@
 <template>
-  <LastkillsTemplate/>
+  <LastkillsTemplate class="mb-5"/>
 </template>
