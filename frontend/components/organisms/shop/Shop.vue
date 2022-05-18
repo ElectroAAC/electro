@@ -1,6 +1,8 @@
 <template>
   <v-container>
     <ShopCategories />
+
+    <ShopItems />
   </v-container>
 </template>
 
