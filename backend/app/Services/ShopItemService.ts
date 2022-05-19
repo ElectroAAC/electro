@@ -33,14 +33,14 @@ class ShopItemView {
       if (category.length) {
         return await Database
           .from('electro_shop_items')
-          .select('id', 'category_id', 'name', 'description', 'price', 'itemId1', 'itemId2', 'count2', 'hidden')
+          .select('id', 'category_id', 'name', 'description', 'price', 'itemId1', 'count1', 'itemId2', 'count2', 'hidden')
           .where('category_id', '=', category[0].id)
           .orderBy('name', 'asc');
       }
       else {
         return await Database
           .from('electro_shop_items')
-          .select('id', 'category_id', 'name', 'description', 'price', 'itemId1', 'itemId2', 'count2', 'hidden')
+          .select('id', 'category_id', 'name', 'description', 'price', 'itemId1', 'count1', 'itemId2', 'count2', 'hidden')
           .orderBy('name', 'asc');
       }
     } catch (err) {
