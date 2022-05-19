@@ -1,5 +1,5 @@
 <template>
-  <img :src="getImage" :alt="image_name" @error="error">
+  <img :src="getUrl" :alt="image_name" @error="url = 'default'">
 </template>
 
 <script lang="ts">
@@ -17,24 +17,22 @@ export default Vue.extend({
     }
   },
 
+  data() {
+    return {
+      url: ""
+    }
+  },
+
   computed: {
     getImage() {
-      // Return nothing for the default empty string
-      if (!this.image_name) {
-        return require('~/assets/images/items/default.gif');
+      if (this.url === "") {
+        this.url = this.image.toString().toLowerCase();
+        return this.url;
       }
-
-      const fileName = this.image.toString().toLowerCase();
-
-      // Request the image as a webpack module by using `require`
-      if (require(`~/${process.env.ITEM_IMAGES_URL}/${fileName}.gif`))
-        return require(`~/${process.env.ITEM_IMAGES_URL}/${fileName}.gif`);
-      else
-        return require('~/assets/images/items/default.gif');
+      return this.url;
     },
-
-    error() {
-      this.image = '~/assets/images/items/default.gif';
+    getUrl() {
+      return `${process.env.ITEM_IMAGES_URL}/${this.getImage}.gif`;
     }
   },
 })
