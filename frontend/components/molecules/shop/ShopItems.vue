@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row class="pa-0">
-      <v-col class="header-table text-center" cols="7">
+      <v-col class="header-table text-center" cols="6">
         Product
       </v-col>
 
@@ -9,11 +9,20 @@
         Price
       </v-col>
 
-      <v-col cols="2" />
+      <v-col cols="3" />
     </v-row>
     
-    <v-row v-for="(offer, idx) in $offers" :key="idx" class="pa-0"> 
-      <v-col class="text-center" cols="7">
+    <v-row v-if="!$offers.length" class="text-center">
+      There are no offers in this category.
+    </v-row>
+
+    <v-row 
+      v-for="(offer, idx) in $offers" 
+      :key="idx"
+      v-else
+      class="pa-0"
+    > 
+      <v-col class="text-center" cols="6">
         <ItemImage :image="offer.itemId1" :image_name="offer.name"/>
         {{ offer.name }}
       </v-col>
@@ -22,10 +31,14 @@
         {{ offer.price }}
       </v-col>
 
-      <v-col cols="2">
-        <v-btn class="btn btn-success-third" text> 
+      <v-col cols="3">
+        <v-btn 
+          :class="`${$vuetify.breakpoint.smAndDown ? 'btn-mobile' : 'btn'} btn-success-third`" 
+          text
+          @click="addToCart(offer)"
+        > 
           <v-icon> mdi-cart-plus </v-icon>
-          Add to cart 
+          <span v-if="!$vuetify.breakpoint.xsOnly"> Add to cart </span> 
         </v-btn>
       </v-col>
     </v-row>
@@ -46,5 +59,18 @@ export default Vue.extend({
       return shop.$offers;
     }
   },
+
+  methods: {
+    addToCart(offer: any) {
+      shop.$cart.push({
+        item_id: offer.itemId1,
+        name: offer.name,
+        description: offer.description,
+        amount: offer.count1,
+        price: offer.price,
+        originalPrice: offer.price
+      });
+    }
+  }
 })
 </script>

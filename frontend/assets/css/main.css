@@ -231,6 +231,14 @@
   min-width: 150px !important;
 }
 
+.btn-mobile {
+  text-transform: none;
+  font-weight: bold;
+  border-radius: 4px;
+  border: 1px solid transparent !important;
+  letter-spacing: 0;
+}
+
 .btn a {
   text-decoration: none !important;
   color: inherit !important;
@@ -542,4 +550,9 @@
 
 .theme--light.v-icon.v-icon.v-icon--disabled {
   color: var(--heading-color) !important;
+}
+
+.shop-item {
+  border: 2px solid var(--main-color);
+  border-radius: 1rem;
 }

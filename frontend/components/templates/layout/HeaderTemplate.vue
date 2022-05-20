@@ -32,6 +32,8 @@
           
           <v-spacer></v-spacer>
 
+          <ShopHeaderCart />
+
           <AccountRoutes
             class="pa-5"
             @update-dialog="updateDialog"

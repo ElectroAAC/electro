@@ -15,9 +15,14 @@ import { $axios } from '@/utils/nuxt-instance'
 
 export default class Shop extends VuexModule {
   private offers = [];
+  private cart = [];
 
   public get $offers() {
     return this.offers;
+  }
+
+  public get $cart() {
+    return this.cart;
   }
 
   @Mutation
