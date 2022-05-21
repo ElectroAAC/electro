@@ -3,6 +3,7 @@ import { StoreValidator } from 'App/Validators/Shop'
 import { 
   AccountView,
   Account,
+  CharacterView,
   ShopItemView,
   ShopCommunicationRepository,
   ShopHistoryRepository
@@ -11,6 +12,7 @@ import {
 export default class ShopController {
   public accountView: AccountView = new AccountView();
   public accountService: Account = new Account();
+  public characterView: CharacterView = new CharacterView();
   public shopItemView: ShopItemView = new ShopItemView();
   public shopCommunicationRepository: ShopCommunicationRepository = new ShopCommunicationRepository();
   public shopHistoryRepository: ShopHistoryRepository = new ShopHistoryRepository();
@@ -26,7 +28,25 @@ export default class ShopController {
       }
       
       if (validator.from_account_id !== account.id) {
-        return ctx.response.status(404).send({ message: "The account is not yours."});
+        return ctx.response.status(404).send({ 
+          errors: [
+            {
+              message: "The account is not yours."
+            }
+          ]
+        });
+      }
+
+      const character: any = await this.characterView.getByName(validator.to_player_name);
+
+      if (!character.length) {
+        return ctx.response.status(404).send({ 
+          errors: [
+            {
+              message: "The character was not found."
+            }
+          ]
+        });
       }
 
       const items: any = [];
@@ -52,20 +72,28 @@ export default class ShopController {
           throw new Error("OfferId invalid!");
         }
         const length = items.find((item) => item.itemId === offer[0].id)?.amount;
+
         if (!length)
           return 0;
+          
         return offer[0].price * length;
       }).reduce((total: number, value: number) => total + value, 0);
       
       if (totalPrice > account.premium_points) {
-        return ctx.response.status(404).send({ message: `You don't have enough points. The total amount is: ${totalPrice} and you have: ${account.premium_points}`});
+        return ctx.response.status(404).send({
+          errors: [
+            {
+              message: `You don't have enough points. The total amount is: ${totalPrice} and you have: ${account.premium_points}`
+            }
+          ]
+        });
       }
 
       const communications = await Promise.all(offers.map(async (offer: any) => {
         const length = items.find((item) => item.itemId === offer[0].id)?.amount;
         
         return await this.shopCommunicationRepository.insert({
-          player_id: validator.to_player_id,
+          player_id: character[0].id,
           type: 'login',
           action: 'give_item',
           itemId1: offer[0].itemId1,
@@ -85,8 +113,8 @@ export default class ShopController {
           communication_id: communication[0],
           from_account_id: validator.from_account_id,
           from_nick: validator.from_nick,
-          to_account_id: validator.to_account_id,
-          to_player_id: validator.to_player_id,
+          to_account_id: character[0].account_id,
+          to_player_id: character[0].id,
           price: offers[index][0].price && length ? (offers[index][0].price * length) : offers[index][0].price,
           offer_id: offers[index][0].id,
           status: 'waiting',
@@ -99,7 +127,13 @@ export default class ShopController {
       return ctx.response.status(200).send({ status: 200, message: 'Purchase made successfully!'});
     } catch (err) {
       console.log('Error purchase Query: ', err);
-      return ctx.response.badRequest(err.messages);
+      return ctx.response.status(400).send({
+        errors: [
+          {
+            message: err.messages
+          }
+        ]
+      });
     }
   }
 
