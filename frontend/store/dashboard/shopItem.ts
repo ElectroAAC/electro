@@ -35,8 +35,7 @@ export default class ShopItem extends VuexModule {
     description: "",
     price: undefined,
     itemId1: undefined,
-    count1: undefined,
-    hidden: false
+    count1: undefined
   }
 
   public get $item() {
@@ -57,8 +56,7 @@ export default class ShopItem extends VuexModule {
       description: "",
       price: undefined,
       itemId1: undefined,
-      count1: undefined,
-      hidden: false
+      count1: undefined
     };
   }
 
@@ -124,8 +122,7 @@ export default class ShopItem extends VuexModule {
             description: response.category[0].description,
             price: response.category[0].price,
             itemId1: response.category[0].itemId1,
-            count1: response.category[0].count1,
-            hidden: response.category[0].hidden
+            count1: response.category[0].count1
           });
 
           return {

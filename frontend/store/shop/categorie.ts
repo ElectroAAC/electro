@@ -32,7 +32,7 @@ export default class ShopCategorie extends VuexModule {
         if (!response) 
           throw new Error(response);
         
-        this.context.commit('SET_CATEGORIES', response.result);
+        this.context.commit('SET_CATEGORIES', response.result.data);
       })
       .catch(({ response }) => {
         return response;

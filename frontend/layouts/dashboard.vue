@@ -84,7 +84,7 @@
     </v-navigation-drawer>
 
     <v-main>
-      <v-container>
+      <v-container class="mt-3">
         <Nuxt />
       </v-container>
     </v-main>
