@@ -9,69 +9,77 @@
       @action-confirm="actionConfirm"
     />
 
-    <Loading v-if="loading" />
+    <Loading v-if="loading" style="width: 50% !important;"/>
 
-    <v-row v-else class="pa-0">
-      <v-col class="header-table text-center" cols="6">
-        Product
-      </v-col>
+    <div v-else>
+      <v-row class="pa-0">
+        <v-col class="header-table text-center" cols="6">
+          Product
+        </v-col>
 
-      <v-col class="header-table text-center" cols="3">
-        Price
-      </v-col>
+        <v-col class="header-table text-center" cols="3">
+          Price
+        </v-col>
 
-      <v-col class="header-table text-center" cols="3">
-        Amount
-      </v-col>
-    </v-row>
+        <v-col class="header-table text-center" cols="3">
+          Amount
+        </v-col>
+      </v-row>
 
-    <v-row v-for="(item, idx) in $cart" :key="idx" class="align-center shop-item pa-0 mb-3">
-      <v-col class="text-center" cols="1">
-        <v-btn icon @click="dialogDelete = true, deleteItemIndex = idx">
-          <v-icon color="white">
-            mdi-delete-outline
-          </v-icon>
-        </v-btn>
-      </v-col>
+      <v-row v-for="(item, idx) in $cart" :key="idx" class="align-center shop-item pa-0 mb-3">
+        <v-col class="text-center" cols="1">
+          <v-btn icon @click="dialogDelete = true, deleteItemIndex = idx">
+            <v-icon color="white">
+              mdi-delete-outline
+            </v-icon>
+          </v-btn>
+        </v-col>
 
-      <v-col class="text-center" cols="5"> 
-        <ItemImage :image="item.item_id" :image_name="item.name"/>
-        {{ item.name }} 
-      </v-col>
+        <v-col class="text-center d-flex align-center" cols="5"> 
+          <ItemImage :image="item.item_id" :image_name="item.name"/>
+          {{ item.name }} 
+        </v-col>
 
-      <v-col class="color-orange bold text-center" cols="3"> {{ item.price }} </v-col>
+        <v-col class="color-orange bold text-center" cols="3"> {{ item.price }} </v-col>
 
-      <v-col class="text-center" cols="3"> 
-        <v-row class="pa-0">
-          <v-col class="text-center" cols="3">
-            <v-btn icon :disabled="item.amount <= 1" @click="decreaseTheAmount(idx)">
-              <v-icon color="white"> mdi-minus </v-icon>
-            </v-btn>
-          </v-col>
+        <v-col class="text-center" cols="3"> 
+          <v-row class="pa-0">
+            <v-col class="text-center" cols="3">
+              <v-btn icon :disabled="item.amount <= 1" @click="decreaseTheAmount(idx)">
+                <v-icon color="white"> mdi-minus </v-icon>
+              </v-btn>
+            </v-col>
 
-          <v-col class="text-center" cols="6">
-            <v-text-field 
-              v-model="item.amount"
-              :rules="rules"
-              type="number"
-              dense
-              outlined
-              required
-              hide-details="auto"
-              @change="($event) => {
-                $event < 1 ? item.amount = 0 : null;
-              }"
-            />
-          </v-col>
+            <v-col class="text-center" cols="6">
+              <v-text-field 
+                v-model="item.amount"
+                :rules="rules"
+                type="number"
+                dense
+                outlined
+                required
+                hide-details="auto"
+                @change="($event) => {
+                  $event < 0 
+                    ? item.amount = item.amount * -1 
+                    : (
+                        $event == 0 
+                          ? item.amount = 1 
+                          : null
+                      );
+                }"
+              />
+            </v-col>
 
-          <v-col class="text-center" cols="3">
-            <v-btn icon @click="increaseTheAmount(idx)">
-              <v-icon color="white"> mdi-plus </v-icon>
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-col>
-    </v-row>
+            <v-col class="text-center" cols="3">
+              <v-btn icon @click="increaseTheAmount(idx)">
+                <v-icon color="white"> mdi-plus </v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+    </div>
   </v-container>
 </template>
 

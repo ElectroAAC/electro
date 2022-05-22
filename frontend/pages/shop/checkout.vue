@@ -4,6 +4,7 @@
 
 <script lang="ts">
 export default {
-  layout: 'default'
+  layout: 'default',
+  middleware: 'auth',
 }
 </script>

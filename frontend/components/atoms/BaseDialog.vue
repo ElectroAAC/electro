@@ -12,7 +12,7 @@
           </v-col>
           <v-col cols="2" class="d-flex justify-end" @click="actionConfirm()">
             <v-btn icon color="gray">
-              <v-icon v-bind="attrs" v-on="on">
+              <v-icon color="white" v-bind="attrs" v-on="on">
                 mdi-close
               </v-icon>
             </v-btn>

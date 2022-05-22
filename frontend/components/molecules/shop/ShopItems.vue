@@ -63,6 +63,7 @@ export default Vue.extend({
   methods: {
     addToCart(offer: any) {
       shop.$cart.push({
+        offer_id: offer.id,
         item_id: offer.itemId1,
         name: offer.name,
         description: offer.description,
@@ -70,6 +71,15 @@ export default Vue.extend({
         price: offer.price,
         originalPrice: offer.price
       });
+
+      this.$toast.success(
+        `The product ${offer.name} has been added to the cart.`,
+        {
+          keepOnHover: true,
+          duration: 2000,
+          theme: "bubble",
+        }
+      )
     }
   }
 })

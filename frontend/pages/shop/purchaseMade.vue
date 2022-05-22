@@ -1,5 +1,5 @@
 <template>
-  <ShopTemplate class="mb-5"/>
+  <PurchaseMadeTemplate class="mb-5"/>
 </template>
 
 <script lang="ts">

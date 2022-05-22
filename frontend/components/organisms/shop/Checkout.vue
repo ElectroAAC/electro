@@ -2,9 +2,14 @@
   <v-container>
     <EmptyCart v-if="!$cart.length" />
 
-    <PurchaseItems v-else />
-    
-    <Purchase />
+    <div v-else-if="!$checkout">
+
+      <PurchaseItems/>
+      
+      <PurchaseButton />
+    </div>
+
+    <ConfirmCheckout v-else />
   </v-container>
 </template>
 
@@ -16,7 +21,11 @@ export default Vue.extend({
   computed: {
     $cart() {
       return shop.$cart;
+    },
+    
+    $checkout() {
+      return shop.$checkout;
     }
-  }
+  },
 })
 </script>

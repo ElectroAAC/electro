@@ -1,5 +1,5 @@
 <template>
-  <lottie-animation path="./loading.json" :speed="2"/>
+  <lottie-animation path="./cart-success.json" />
 </template>
 
 <script lang="ts">
