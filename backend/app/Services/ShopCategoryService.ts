@@ -13,6 +13,19 @@ class CategoryView {
       return err;
     }
   }
+
+  public async getCategoryById(category_id: number): Promise<Object[]> {  
+    try {
+      return await Database
+        .from('electro_shop_categories')
+        .select('id', 'name', 'description', 'hidden')
+        .where('id', '=', category_id);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+  
   public async getCategoryByName(name): Promise<Object[]> {  
     try {
       return await Database

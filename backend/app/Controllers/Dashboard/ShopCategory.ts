@@ -45,6 +45,22 @@ export default class ShopCategoryController {
     }
   }
 
+  public async show(ctx: HttpContextContract) {
+    try {
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
+
+      const category = await this.categoryView.getCategoryById(ctx.request.param('id'));
+
+      if (!category.length) {
+        return ctx.response.status(404).send({ message: 'Category not found.' });
+      }
+      return ctx.response.status(200).send({ status: 200, category });
+    } catch (err) {
+      console.log('Error getCategory Query: ', err);
+      return ctx.response.status(400).send({ error: 'An error occurred, check the api console.'});
+    }
+  }
+
   public async update(ctx: HttpContextContract) {
     try {
       await ctx.bouncer.with('DashboardPolicy').authorize('admin');
