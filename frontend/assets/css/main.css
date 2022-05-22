@@ -556,3 +556,11 @@
   border: 2px solid var(--main-color);
   border-radius: 1rem;
 }
+
+.dashboard-side-bar {
+  color: var(--heading-color) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  transition: .15s color !important;
+  text-decoration: none !important;
+}

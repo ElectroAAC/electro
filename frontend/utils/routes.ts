@@ -51,52 +51,64 @@ export const routesShop = [
 export const routesDashboard = [
   {
     icon: 'mdi-home',
-    title: 'Home',
+    text: 'Home',
     to: '/dashboard',
   },
   {
     icon: 'mdi-view-dashboard-outline',
-    title: 'Customize',
-    to: '/dashboard/customize'
+    text: 'Customize',
+    to: ''
   },
   {
     icon: 'mdi-newspaper',
-    title: 'News',
+    text: 'News',
     to: '/dashboard/news'
   },
   {
     icon: 'mdi-account-multiple',
-    title: 'Accounts',
+    text: 'Accounts',
     to: '/dashboard/accounts'
   },
   {
     icon: 'mdi-account-cowboy-hat',
-    title: 'Players',
+    text: 'Players',
     to: '/dashboard/characters'
   },
   {
     icon: 'mdi-khanda',
-    title: 'Guilds',
-    to: '/dashboard/guilds'
+    text: 'Guilds',
+    to: ''
   },
   {
     icon: 'mdi-axe',
-    title: 'Items',
-    to: '/dashboard/items'
+    text: 'Items',
+    to: ''
   },
   {
     icon: 'mdi-rodent',
-    title: 'Monsters',
-    to: '/dashboard/monsters'
+    text: 'Monsters',
+    to: ''
   },
   {
     icon: 'mdi-cart',
-    title: 'Shop',
-    to: '/dashboard/shop'
+    text: 'Shop',
+    to: '',
+    subLinks: [
+      {
+        icon: 'mdi-cart-variant',
+        text: "Categories",
+        to: "/dashboard/shop/categories"
+      },
+      {
+        icon: 'mdi-cart-variant',
+        text: "Items",
+        to: "/dashboard/shop/items"
+      },
+    ]
   },
   {
     icon: 'mdi-text-box-outline',
-    title: 'Logs',
-    to: '/dashboard/logs'
+    text: 'Logs',
+    to: ''
   },
 ];

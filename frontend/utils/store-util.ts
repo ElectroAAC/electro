@@ -8,7 +8,8 @@ import {
   News as DashboardNews,
   Accounts as DashboardAccounts,
   Character as DashboardCharacters,
-  CharacterSkills as DashboardCharacterSkills
+  CharacterSkills as DashboardCharacterSkills,
+  ShopCategory as DashboardShopCategory
 } from '@/store/dashboard'
 
 import {
@@ -58,6 +59,7 @@ let dashboardNews: DashboardNews;
 let dashboardAccounts: DashboardAccounts;
 let dashboardCharacters: DashboardCharacters;
 let dashboardCharacterSkills: DashboardCharacterSkills;
+let dashboardShopCategory: DashboardShopCategory;
 
 let news: News;
 
@@ -92,6 +94,7 @@ const initializeStores = (store: Store<any>) => {
   dashboardAccounts = getModule(DashboardAccounts, store);
   dashboardCharacters = getModule(DashboardCharacters, store);
   dashboardCharacterSkills = getModule(DashboardCharacterSkills, store);
+  dashboardShopCategory = getModule(DashboardShopCategory, store);
 
   // Store News
   news = getModule(News, store);
@@ -134,6 +137,7 @@ export {
   dashboardAccounts,
   dashboardCharacters,
   dashboardCharacterSkills,
+  dashboardShopCategory,
 
   auth,
 

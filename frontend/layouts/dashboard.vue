@@ -40,29 +40,46 @@
       </div>
       
       <v-list :class="miniVariant ? '' : 'ml-4 mr-4'">
-        <v-list-item
-          v-for="(item, i) in getItems"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-tooltip right>
-            <template v-slot:activator="{ on, attrs }">
-              <v-list-item-action
-                class="text-center"
-                v-bind="attrs"
-                v-on="on"
-              >
-                <v-icon>{{ item.icon }}</v-icon>
+        <div v-for="(link, i) in getRoutesSideBar" :key="i">
+          <v-list-item
+            v-if="!link.subLinks"
+            :key="i"
+            :to="link.to"
+            class="mt-2 text-left"
+          >
+            <v-list-item-action>
+              <v-icon>{{ link.icon }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-title class="dashboard-side-bar" v-text="link.text" />
+          </v-list-item>
+
+          <v-list-group
+            v-else
+            :key="link.text"
+            no-action
+            class="mt-2 text-left"
+          >
+            <template v-slot:activator>
+              <v-list-item-action>
+                <v-icon>{{ link.icon }}</v-icon>
               </v-list-item-action>
+
+              <v-list-item-title class="dashboard-side-bar" v-text="link.text" />
             </template>
-            <span> {{ item.title }} </span>
-          </v-tooltip>
-          <v-list-item-content>
-            <v-list-item-title class="dashboard-menu-text" v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
+
+            <v-list-item
+              v-for="sublink in link.subLinks"
+              :to="sublink.to"
+              :key="sublink.text"
+              class="mt-2 text-left"
+            >
+              <v-list-item-action>
+                <v-icon>{{ sublink.icon }}</v-icon>
+              </v-list-item-action>
+              <v-list-item-title v-text="sublink.text" />
+            </v-list-item>
+          </v-list-group>
+        </div>
       </v-list>
     </v-navigation-drawer>
 
@@ -103,7 +120,16 @@ export default Vue.extend({
       return process.env.PROJECT_NAME;
     },
 
-    getItems(): { icon: string, title: string, to: string }[] {
+    getRoutesSideBar(): {
+      icon: String,
+      text: String,
+      to: String,
+      subLinks?: {
+        icon: String,
+        text: String,
+        to: String,
+      }[]
+    }[] {
       return routesDashboard;
     }
   },
