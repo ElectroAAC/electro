@@ -44,6 +44,16 @@ export default class ShopCategory extends VuexModule {
     this.categorie = data;
   }
 
+  @Mutation
+  private RESET(data: any) {
+    this.categorie = {
+      category_id: undefined,
+      name: "",
+      description: "",
+      hidden: false
+    };
+  }
+
   @Action
   public async getAll(payload: Paginate) {
     try {
@@ -141,5 +151,10 @@ export default class ShopCategory extends VuexModule {
     } catch(err) {
       return err;
     }
+  }
+
+  @Action
+  public reset() {
+    this.context.commit('RESET');
   }
 }

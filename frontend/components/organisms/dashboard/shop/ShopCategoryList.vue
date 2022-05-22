@@ -8,7 +8,7 @@
       <v-icon color="green">
         mdi-plus
       </v-icon>
-      <NuxtLink to="/dashboard/shop/category/create"> Add New Categorie</NuxtLink>
+      <NuxtLink to="/dashboard/shop/category/create"> Add New Category </NuxtLink>
     </v-btn>
 
     <ShopCategoryTable class="mt-5"/>

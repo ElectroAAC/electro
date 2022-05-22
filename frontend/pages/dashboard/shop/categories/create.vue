@@ -1,5 +1,5 @@
 <template>
-  <ShopCategoriesTemplate />
+  <ShopCategoryCreateTemplate />
 </template>
 
 <script lang="ts">

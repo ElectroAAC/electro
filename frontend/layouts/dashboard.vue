@@ -5,8 +5,8 @@
       fixed
       app
     > 
-      <v-app-bar-nav-icon v-if="!$vuetify.breakpoint.mdAndDown" @click.stop="miniVariant = !miniVariant" />
-      <v-app-bar-nav-icon v-else @click.stop="drawer = !drawer, miniVariant = false" />
+      <v-app-bar-nav-icon v-if="!$vuetify.breakpoint.mdAndDown" color="white" @click.stop="miniVariant = !miniVariant" />
+      <v-app-bar-nav-icon v-else color="white" @click.stop="drawer = !drawer, miniVariant = false" />
       
       <v-spacer></v-spacer>
       
@@ -18,7 +18,7 @@
             v-on="on"
             @click="onLogout()"
           >
-            <v-icon> mdi-logout </v-icon>
+            <v-icon color="white"> mdi-logout </v-icon>
           </v-btn>
         </template>
         <span> Logout</span>
