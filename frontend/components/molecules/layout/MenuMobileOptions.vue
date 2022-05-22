@@ -44,7 +44,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { routesGuild, routesCommunity } from '@/utils/routes'
+import { routesGuild, routesCommunity, routesShop } from '@/utils/routes'
 
 export default Vue.extend({
   props: {
@@ -79,9 +79,10 @@ export default Vue.extend({
           subLinks: [...routesGuild]
         },
         {
-          to: '/',
+          to: '/shop',
           icon: 'mdi-cart-outline',
           text: 'Shop',
+          subLinks: [...routesShop]
         },
         {
           to: '/downloads',

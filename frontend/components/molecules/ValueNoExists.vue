@@ -16,7 +16,7 @@
           class="btn btn-success-secondary"
           @click="back()"
         >
-          Voltar
+          Back
         </v-btn>
       </v-col>
       <v-col cols="3"></v-col>

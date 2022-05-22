@@ -2,7 +2,7 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { StoreValidator, UpdateValidator } from 'App/Validators/News'
 import { NewsRepository, NewsView } from 'App/Services';
 
-export default class AccountsController {
+export default class NewsController {
   public newsView: NewsView = new NewsView();
   public newsRepository: NewsRepository = new NewsRepository();
 

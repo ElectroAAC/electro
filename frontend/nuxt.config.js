@@ -75,6 +75,8 @@ export default {
     baseURL: 'http://localhost:3333/',
   },
 
+  render: { fallback: false },
+
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/scss/variables.scss'],

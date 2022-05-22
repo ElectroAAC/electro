@@ -123,7 +123,8 @@ $ npm run start
 
 | METHOD | ENDPOINT                        | DESCRIPTION                           |
 | :----- | :-------------------------------| :------------------------------------ |
-| GET    | /shop/offers                    | Get all offers                        |
+| GET    | /shop/offers/:categorie         | Get offers                            |
+| GET    | /shop/categories/:page/:limit   | Get categories                        |
 | POST   | /shop/purchase                  | Purchase Items                        |
 
 <br>
@@ -177,9 +178,11 @@ $ npm run start
 | :----- | :-------------------------------| :------------------------------------ |
 | GET    | /shop/category/list             | Get all categories                    |
 | POST   | /shop/category/create           | Create new category                   |
+| GET    | /shop/category/find:id          | Find category                         |
 | PUT    | /shop/category/update           | Update category                       |
 | DELETE | /shop/category/destroy/:id      | Delete category                       |
 | GET    | /shop/item/list                 | Get all items                         |
 | POST   | /shop/item/create               | Create new offer item                 |
+| GET    | /shop/item/find:id              | Find offer item                       |
 | PUT    | /shop/item/update               | Update offer item                     |
 | DELETE | /shop/item/destroy/:id          | Delete offer item                     |

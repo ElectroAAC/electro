@@ -1,3 +1,12 @@
+.header-table {
+  color: var(--main-color) !important;
+  font-style: normal !important;
+  font-weight: bold !important;
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+  letter-spacing: .6px !important;
+}
+
 .header-text, .header-text > a, .header-text > span {
   color: var(--heading-color) !important;
   font-style: normal !important;
@@ -14,6 +23,10 @@
 .header-list {
   background-color: rgba(0, 0, 0, 0.85) !important;
   border-bottom: 4px solid var(--main-color) !important;
+}
+
+.theme--light.v-icon {
+  color: var(--heading-color);
 }
 
 .main-content {
@@ -173,10 +186,6 @@
   color: var(--heading-color) !important;
 }
 
-.theme--light.v-icon {
-  color: var(--heading-color) !important;
-}
-
 .theme--light.v-input input, .theme--light.v-input textarea {
   color: var(--heading-color) !important;
 }
@@ -222,6 +231,14 @@
   min-width: 150px !important;
 }
 
+.btn-mobile {
+  text-transform: none;
+  font-weight: bold;
+  border-radius: 4px;
+  border: 1px solid transparent !important;
+  letter-spacing: 0;
+}
+
 .btn a {
   text-decoration: none !important;
   color: inherit !important;
@@ -236,6 +253,11 @@
 .btn-success-secondary {
   color: var(--second-color) !important;
   border: 1px solid var(--second-color) !important;
+}
+
+.btn-success-third {
+  color: var(--green) !important;
+  border: 1px solid var(--green) !important;
 }
 
 .btn-danger-primary {
@@ -299,7 +321,6 @@
   color: var(--text-color) !important;
   border-radius: 1.95rem;
 }
-
 
 .bg-third {
   background-color: #00ffc43b !important;
@@ -531,3 +552,15 @@
   color: var(--heading-color) !important;
 }
 
+.shop-item {
+  border: 2px solid var(--main-color);
+  border-radius: 1rem;
+}
+
+.dashboard-side-bar {
+  color: var(--heading-color) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  transition: .15s color !important;
+  text-decoration: none !important;
+}

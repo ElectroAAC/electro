@@ -12,9 +12,6 @@ export default class StoreValidator {
         table: 'electro_shop_items', 
         column: 'name'
       }),
-      rules.alpha({
-        allow: ['space']
-      }),
       rules.minLength(3),
       rules.maxLength(20)
     ]),
@@ -31,7 +28,6 @@ export default class StoreValidator {
     unique: 'Invalid offer name.',
     minLength: 'Name is too long. Min length {{ options.minLength }} letters',
     maxLength: 'Name is too short. Max length {{ options.maxLength }} letters',
-    alpha: 'Invalid offer name.',
     'name.unique': 'offer name not available',
     'name.notIn': 'The name contains an invalid name.',
   }

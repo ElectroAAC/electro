@@ -2,15 +2,15 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { StoreValidator, UpdateValidator } from 'App/Validators/Shop/Category'
 import { ShopCategoryView, ShopCategoryRepository } from 'App/Services';
 
-export default class AccountsController {
+export default class ShopCategoryController {
   public categoryView: ShopCategoryView = new ShopCategoryView();
   public categoryRepository: ShopCategoryRepository = new ShopCategoryRepository();
 
   public async index(ctx: HttpContextContract) {
     try {
-      const news = await this.categoryView.getCategories();
+      const categories = await this.categoryView.getCategories(ctx.request.param('page'), ctx.request.param('limit'));
       
-      return ctx.response.status(200).send({ status: 200, news });
+      return ctx.response.status(200).send({ status: 200, categories });
     } catch(err) {
       console.log('Error getCategories Query: ', err);
       return ctx.response.status(400).send({ error: 'An error occurred, check the api console.'});
@@ -42,6 +42,22 @@ export default class AccountsController {
     } catch (err) {
       console.log('Error createNewShopCategory Query: ', err);
       return ctx.response.badRequest(err.messages);
+    }
+  }
+
+  public async show(ctx: HttpContextContract) {
+    try {
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
+
+      const category = await this.categoryView.getCategoryById(ctx.request.param('id'));
+
+      if (!category.length) {
+        return ctx.response.status(404).send({ message: 'Category not found.' });
+      }
+      return ctx.response.status(200).send({ status: 200, category });
+    } catch (err) {
+      console.log('Error getCategory Query: ', err);
+      return ctx.response.status(400).send({ error: 'An error occurred, check the api console.'});
     }
   }
 
