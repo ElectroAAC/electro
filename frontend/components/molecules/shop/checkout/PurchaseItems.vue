@@ -12,11 +12,11 @@
     <Loading v-if="loading" style="width: 50% !important;"/>
 
     <div v-else>
-      <v-col class="text-center" cols="12">
+      <v-col class="text-center mb-2" cols="12">
         Check the products in your cart, choose the quantity and confirm the purchase.
       </v-col>
 
-      <v-row class="pa-0">
+      <v-row v-if="!$vuetify.breakpoint.xsOnly" class="pa-0">
         <v-col class="header-table text-center" cols="6">
           Product
         </v-col>
@@ -39,14 +39,16 @@
           </v-btn>
         </v-col>
 
-        <v-col class="text-center d-flex align-center" cols="5"> 
+        <v-col class="text-center d-flex align-center" :cols="$vuetify.breakpoint.xsOnly ? '8' : '5'"> 
           <ItemImage :image="item.item_id" :image_name="item.name"/>
           {{ item.name }} 
         </v-col>
 
-        <v-col class="color-orange bold text-center" cols="3"> {{ item.price }} </v-col>
+        <v-col class="color-orange bold text-center" cols="3"> 
+          {{ item.price }} <span v-if="$vuetify.breakpoint.xsOnly"> Points </span>
+        </v-col>
 
-        <v-col class="text-center" cols="3"> 
+        <v-col class="text-center" :cols="$vuetify.breakpoint.xsOnly ? '12' : '3'"> 
           <v-row class="pa-0">
             <v-col class="text-center" cols="3">
               <v-btn icon :disabled="item.amount <= 1" @click="decreaseTheAmount(idx)">

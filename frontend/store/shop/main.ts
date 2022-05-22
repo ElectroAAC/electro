@@ -62,8 +62,8 @@ export default class Shop extends VuexModule {
         .then((response) => {
           if (!response) 
             throw new Error(response);
-
-          this.context.commit('SET_OFFERS', response.result);
+          
+          this.context.commit('SET_OFFERS', response.result.data);
         })
         .catch(({ response }) => {
           return response;

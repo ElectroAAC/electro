@@ -1,13 +1,28 @@
 <template>
   <v-container>
+    <v-select 
+      v-if="$vuetify.breakpoint.smAndDown"
+      :value="$categories[0]"
+      :items="$categories"
+      :menu-props="{ bottom: true, offsetY: true }"
+      return-object
+      outlined
+      dense
+      hide-details
+      @change="($event) => {
+        changeCategorie($event.text)
+      }"
+    />
+
     <v-btn 
-      v-for="(categorie, idx) in $categories" 
+      v-for="(categorie, idx) in $categories"
+      v-else
       :key="idx"
       text
       class="ml-3 btn btn-success-primary"
-      @click="changeCategorie(categorie.name)"
+      @click="changeCategorie(categorie.text)"
     > 
-      {{ categorie.name.toUpperCase() }}
+      {{ categorie.text.toUpperCase() }}
     </v-btn>
   </v-container>
 </template>
@@ -18,8 +33,11 @@ import { shop, shopCategorie } from '@/store'
 
 export default Vue.extend({
   computed: {
-    $categories(): { name: string }[] {
-      return shopCategorie.$categories;
+    $categories(): { value: number, text: string }[] {
+      return shopCategorie.$categories.map((category: any) => ({ 
+        value: category.id, text: category.name 
+        })
+      );
     }
   },
 

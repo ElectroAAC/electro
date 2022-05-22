@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row class="pa-0">
+    <v-row v-if="!$vuetify.breakpoint.xsOnly" class="pa-0">
       <v-col class="header-table text-center" cols="6">
         Product
       </v-col>
@@ -16,29 +16,56 @@
       There are no offers in this category.
     </v-row>
 
+    <v-col v-else-if="!$vuetify.breakpoint.xsOnly" cols="12">
+      <v-row 
+        v-for="(offer, idx) in $offers" 
+        :key="idx"
+        class="pa-0 shop-item pa-0 mb-3"
+      > 
+        <v-col class="text-center" :cols="$vuetify.breakpoint.xsOnly ? '12' : '6'">
+          <ItemImage :image="offer.itemId1" :image_name="offer.name"/>
+          {{ offer.name }}
+        </v-col>
+
+        <v-col class="text-center bold" :cols="$vuetify.breakpoint.xsOnly ? '12' : '3'">
+          {{ offer.price }} <span v-if="$vuetify.breakpoint.xsOnly"> Points </span>
+        </v-col>
+
+        <v-col class="text-center" :cols="$vuetify.breakpoint.xsOnly ? '12' : '3'">
+          <v-btn 
+            :class="`${$vuetify.breakpoint.smAndDown ? 'btn-mobile' : 'btn'} btn-success-third`" 
+            text
+            @click="addToCart(offer)"
+          > 
+            <v-icon> mdi-cart-plus </v-icon>
+            <span v-if="!$vuetify.breakpoint.smAndDown"> Add to cart </span> 
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-col>
+
     <v-row 
-      v-for="(offer, idx) in $offers" 
-      :key="idx"
+      v-for="(offer, idx) in $offers" :key="idx" 
       v-else
-      class="pa-0 shop-item pa-0 mb-3"
+      class="shop-item pa-0 pa-0 mb-3"
     > 
       <v-col class="text-center" cols="6">
         <ItemImage :image="offer.itemId1" :image_name="offer.name"/>
         {{ offer.name }}
       </v-col>
 
-      <v-col class="text-center" cols="3">
-        {{ offer.price }}
+      <v-col class="text-center bold" cols="6">
+        {{ offer.price }} <span v-if="$vuetify.breakpoint.xsOnly"> Points </span>
       </v-col>
 
-      <v-col cols="3">
+      <v-col class="text-center" :cols="$vuetify.breakpoint.xsOnly ? '12' : '3'">
         <v-btn 
           :class="`${$vuetify.breakpoint.smAndDown ? 'btn-mobile' : 'btn'} btn-success-third`" 
           text
           @click="addToCart(offer)"
         > 
           <v-icon> mdi-cart-plus </v-icon>
-          <span v-if="!$vuetify.breakpoint.xsOnly"> Add to cart </span> 
+          <span> Add to cart </span> 
         </v-btn>
       </v-col>
     </v-row>
