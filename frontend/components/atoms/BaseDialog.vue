@@ -20,10 +20,10 @@
         </v-row>
       </v-card-title>
 
-      <v-divider></v-divider>
+      <v-divider color="white"></v-divider>
 
       <!-- eslint-disable-next-line vue/no-v-html -->
-      <p v-html="text"></p>
+      <p class="pt-5" v-html="text"></p>
 
       <v-card-actions>
         <v-spacer></v-spacer>
@@ -86,7 +86,8 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .auth-box {
-  background: var(--bg-main-color) !important;
+  background: var(--bg-header) !important;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%) !important;
   padding: 0;
 }
 </style>

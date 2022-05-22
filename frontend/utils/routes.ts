@@ -35,6 +35,19 @@ export const routesGuild = [
   },
 ]
 
+export const routesShop = [
+  {
+    icon: 'mdi-offer',
+    text: "Offers",
+    to: "/shop"
+  },
+  {
+    icon: 'mdi-cart-variant',
+    text: "My Cart",
+    to: "/shop/checkout"
+  },
+]
+
 export const routesDashboard = [
   {
     icon: 'mdi-home',

@@ -20,7 +20,7 @@
       v-for="(offer, idx) in $offers" 
       :key="idx"
       v-else
-      class="pa-0"
+      class="pa-0 shop-item pa-0 mb-3"
     > 
       <v-col class="text-center" cols="6">
         <ItemImage :image="offer.itemId1" :image_name="offer.name"/>
@@ -62,6 +62,18 @@ export default Vue.extend({
 
   methods: {
     addToCart(offer: any) {
+      if (shop.$cart.some((item) => item.offer_id === offer.id)) {
+        this.$toast.info(
+          `The product ${offer.name} is already in your cart.`,
+          {
+            keepOnHover: true,
+            duration: 2000,
+            theme: "bubble",
+          }
+        )
+        return;
+      }
+
       shop.$cart.push({
         offer_id: offer.id,
         item_id: offer.itemId1,

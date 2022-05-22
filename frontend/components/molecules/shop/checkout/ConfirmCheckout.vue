@@ -44,7 +44,7 @@
         </v-btn>
         
         <v-btn
-          class="mt-5 btn btn-danger-secondary"
+          class="mt-5 btn btn-success-secondary"
           text
           rounded
           @click="back()"

@@ -12,6 +12,10 @@
     <Loading v-if="loading" style="width: 50% !important;"/>
 
     <div v-else>
+      <v-col class="text-center" cols="12">
+        Check the products in your cart, choose the quantity and confirm the purchase.
+      </v-col>
+
       <v-row class="pa-0">
         <v-col class="header-table text-center" cols="6">
           Product
@@ -79,6 +83,10 @@
           </v-row>
         </v-col>
       </v-row>
+
+      <v-col class="text-center" cols="12">
+        The total amount of the current purchase is: <span class="bold color-orange"> {{ getTotalAmount }} points.</span> 
+      </v-col>
     </div>
   </v-container>
 </template>
@@ -102,6 +110,11 @@ export default Vue.extend({
   computed: {
     $cart() {
       return shop.$cart;
+    },
+    getTotalAmount() {
+      return shop.$cart.reduce(
+        (previousValue, currentValue) => { return previousValue + currentValue.price}, 0
+      );
     }
   },
 

@@ -26,7 +26,7 @@ export default Vue.extend({
     },
   },
 
-  created() {
+  mounted() {
     if (shop.$to_player_name === "") {
       this.$router.replace('/shop');
     }
