@@ -12,7 +12,9 @@ class ShopItemView {
         .select(
           'electro_shop_items.id', 
           'electro_shop_items.name', 
+          'electro_shop_items.category_id', 
           'electro_shop_categories.name as category_name', 
+          'electro_shop_items.description', 
           'electro_shop_items.price', 
           'electro_shop_items.itemId1', 
           'electro_shop_items.count1', 

@@ -66,7 +66,7 @@ export default class ShopItemController {
         return ctx.response.unauthorized();
       }
 
-      await this.shopItemRepository.update(data.offer_id, data);
+      await this.shopItemRepository.update(data.id, data);
       
       return ctx.response.status(200).send({ status: 200, message: "Offer successfully updated." });
     } catch (err) {
