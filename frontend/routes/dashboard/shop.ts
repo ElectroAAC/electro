@@ -1,5 +1,6 @@
 import Categories from '~/pages/dashboard/shop/categories/index.vue';
 import Create from '~/pages/dashboard/shop/categories/create.vue';
+import Edit from '~/pages/dashboard/shop/categories/edit.vue';
 
 export default [
   {
@@ -16,6 +17,14 @@ export default [
     name: 'Dashboard - Shop Category Create',
     meta: {
       name: 'dashboard-shop-categories-create'
+    }
+  },
+  {
+    path: '/dashboard/shop/category/edit/:id',
+    component: Edit,
+    name: 'Dashboard - Shop Category Edit',
+    meta: {
+      name: 'dashboard-shop-categories-edit'
     }
   },
 ];

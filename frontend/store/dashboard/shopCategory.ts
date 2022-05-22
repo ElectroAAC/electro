@@ -16,8 +16,8 @@ interface CreatePayload {
 
 interface UpdatePayload {
   category_id?: Number,
+  name: String | null,
   hidden?: Boolean,
-  title: String | null,
   description: String | null
 }
 
@@ -110,15 +110,15 @@ export default class ShopCategory extends VuexModule {
             throw new Error(response);
           
           this.context.commit('UPDATE_CATEGORY', {
-            category_id: response.category[0].category_id,
+            category_id: response.category[0].id,
             name: response.category[0].name,
-            description: response.category[0].body,
+            description: response.category[0].description,
             hidden: response.category[0].hidden
           });
 
           return {
             status: response.status,
-            data: response.page[0]
+            data: response.category[0]
           };
         })
         .catch(({ response }) => {
@@ -135,7 +135,7 @@ export default class ShopCategory extends VuexModule {
   @Action
   public async update(payload: UpdatePayload) {
     try {
-      return await $axios.$patch('shop/category/update', payload)
+      return await $axios.$put('shop/category/update', payload)
         .then((response) => {
           if (!response) 
             throw new Error(response);
