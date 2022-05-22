@@ -15,7 +15,7 @@ interface CreatePayload {
 }
 
 interface UpdatePayload {
-  offer_id?: Number,
+  id?: Number,
   name: String | null,
   hidden?: Boolean,
   description: String | null
@@ -29,7 +29,7 @@ interface UpdatePayload {
 
 export default class ShopItem extends VuexModule {
   private item = {
-    offer_id: undefined,
+    id: undefined,
     category_id: undefined,
     name: "",
     description: "",
@@ -50,7 +50,7 @@ export default class ShopItem extends VuexModule {
   @Mutation
   private RESET(data: any) {
     this.item = {
-      offer_id: undefined,
+      id: undefined,
       category_id: undefined,
       name: "",
       description: "",
@@ -116,13 +116,13 @@ export default class ShopItem extends VuexModule {
             throw new Error(response);
           
           this.context.commit('UPDATE_ITEM', {
-            offer_id: response.category[0].id,
-            category_id: response.category[0].category_id,
-            name: response.category[0].name,
-            description: response.category[0].description,
-            price: response.category[0].price,
-            itemId1: response.category[0].itemId1,
-            count1: response.category[0].count1
+            id: response.item[0].id,
+            category_id: response.item[0].category_id,
+            name: response.item[0].name,
+            description: response.item[0].description,
+            price: response.item[0].price,
+            itemId1: response.item[0].itemId1,
+            count1: response.item[0].count1
           });
 
           return {
