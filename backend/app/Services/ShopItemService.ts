@@ -26,7 +26,7 @@ class ShopItemView {
     }
   }
 
-  public async getOffers(category_name: String): Promise<Object[]> {  
+  public async getOffers(category_name: String, page: number, limit: number): Promise<Object[]> {  
     try {
       const category: any = category_name ? await this.shopCategoryView.getCategoryByName(category_name) : "";
       
@@ -35,13 +35,15 @@ class ShopItemView {
           .from('electro_shop_items')
           .select('id', 'category_id', 'name', 'description', 'price', 'itemId1', 'count1', 'itemId2', 'count2', 'hidden')
           .where('category_id', '=', category[0].id)
-          .orderBy('name', 'asc');
+          .orderBy('name', 'asc')
+          .paginate(page, limit);
       }
       else {
         return await Database
           .from('electro_shop_items')
           .select('id', 'category_id', 'name', 'description', 'price', 'itemId1', 'count1', 'itemId2', 'count2', 'hidden')
-          .orderBy('name', 'asc');
+          .orderBy('name', 'asc')
+          .paginate(page, limit);
       }
     } catch (err) {
       console.log(err);

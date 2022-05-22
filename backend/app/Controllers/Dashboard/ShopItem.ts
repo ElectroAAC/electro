@@ -8,7 +8,7 @@ export default class ShopItemController {
 
   public async index(ctx: HttpContextContract) {
     try {
-      const items = await this.shopItemView.getOffers(ctx.request.param('categorie').replace(/%20/g, " "));
+      const items = await this.shopItemView.getOffers("", ctx.request.param('page'), ctx.request.param('limit'));
       
       return ctx.response.status(200).send({ status: 200, items });
     } catch(err) {
@@ -35,6 +35,22 @@ export default class ShopItemController {
     } catch (err) {
       console.log('Error createNewShopOffer Query: ', err);
       return ctx.response.badRequest(err.messages);
+    }
+  }
+
+  public async show(ctx: HttpContextContract) {
+    try {
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
+
+      const item = await this.shopItemView.getOfferById(ctx.request.param('id'));
+
+      if (!item.length) {
+        return ctx.response.status(404).send({ message: 'Item not found.' });
+      }
+      return ctx.response.status(200).send({ status: 200, item });
+    } catch (err) {
+      console.log('Error getItem Query: ', err);
+      return ctx.response.status(400).send({ error: 'An error occurred, check the api console.'});
     }
   }
 

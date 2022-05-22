@@ -139,7 +139,7 @@ export default class ShopController {
 
   public async show(ctx: HttpContextContract) {
     try {
-      const offers = await this.shopItemView.getOffers(ctx.request.param('categorie').replace(/%20/g, " "));
+      const offers = await this.shopItemView.getOffers(ctx.request.param('categorie').replace(/%20/g, " "), ctx.request.param('page'), ctx.request.param('limit'));
       return ctx.response.status(200).send({ result: offers});
     } catch (err) {
       console.log('Error getOffers: ', err);
