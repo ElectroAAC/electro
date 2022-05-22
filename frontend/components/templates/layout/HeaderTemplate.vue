@@ -18,23 +18,28 @@
     />
 
     <v-row v-if="!$vuetify.breakpoint.mdAndDown" class="d-flex align-center justify-center header-text">
-      <StatusServer />
+      <v-col cols="3">
+        <Logo width="100px"/>
+      </v-col>
+      <v-col cols="9">
+        <v-row class="d-flex align-center justify-center">
+          <NuxtLink to="/" class="pa-5"> HOME </NuxtLink>
+          <CommunityRoutes />
+          <NuxtLink to="/highscores" class="pa-5"> HIGHSCORES </NuxtLink>
+          <GuildRoutes />
+          <NuxtLink to="/downloads" class="pa-5"> DOWNLOAD </NuxtLink>
+          <ShopRoutes />
+          
+          <v-spacer></v-spacer>
 
-      <v-spacer></v-spacer>
+          <ShopHeaderCart />
 
-        <NuxtLink to="/" class="pa-5"> HOME </NuxtLink>
-        <CommunityRoutes class="pa-5"/>
-        <NuxtLink to="/highscores" class="pa-5"> HIGHSCORES </NuxtLink>
-        <NuxtLink to="/">
-          <Logo class="mt-8" width="130px"/>
-        </NuxtLink>
-        <NuxtLink to="/guilds" class="pa-5"> GUILDS </NuxtLink>
-        <NuxtLink to="/" class="pa-5"> SHOP </NuxtLink>
-        <NuxtLink to="/downloads" class="pa-5"> DOWNLOAD </NuxtLink>
-
-      <v-spacer></v-spacer>
-
-      <AccountRoutes @update-dialog="updateDialog"/>
+          <AccountRoutes
+            class="pa-5"
+            @update-dialog="updateDialog"
+          />
+        </v-row>
+      </v-col>
     </v-row>
 
     <v-row v-else class="d-flex align-center justify-center header-text">
@@ -49,7 +54,7 @@
 
       <v-col class="text-center" cols="8">
         <NuxtLink to="/">
-          <Logo class="mt-8" width="130px"/>
+          <Logo width="130px"/>
         </NuxtLink>
       </v-col>
 

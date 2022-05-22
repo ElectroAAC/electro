@@ -12,7 +12,7 @@ interface UpdatePayload {
   name?: string,
   premdays?: number,
   email?: string,
-  group_id?: number,
+  type?: number,
   web_flags?: number,
   premium_points?: number,
   key?: string
@@ -37,7 +37,7 @@ export default class Accounts extends VuexModule {
 		name: undefined,
 		premdays: undefined,
 		email: undefined,
-		group_id: undefined,
+		type: undefined,
 		web_flags: undefined,
 		premium_points: undefined,
 		key: undefined
@@ -76,7 +76,7 @@ export default class Accounts extends VuexModule {
             name: response.result.account[0].name,
             premdays: response.result.account[0].premdays,
             email: response.result.account[0].email,
-            group_id: response.result.account[0].group_id,
+            type: response.result.account[0].type,
             web_flags: response.result.account[0].web_flags,
             premium_points: response.result.account[0].premium_points,
             key: response.result.account[0].key

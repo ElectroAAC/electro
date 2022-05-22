@@ -1,6 +1,6 @@
 <template>
   <aside class="widget">
-    <h5 class="widget-title"> Highscores </h5>
+    <h5 class="widget-title"> <span> Highscores </span> </h5>
     <v-container class="text-center">
       <v-row
         v-for="(player, idx) in $top5Players"

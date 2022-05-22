@@ -8,6 +8,7 @@ import Dashboard from '~/routes/dashboard/index'
 import Account from '~/routes/account'
 import Character from '~/routes/character'
 import Guilds from '~/routes/guild/main'
+import Shop from '~/routes/shop'
 
 export default [
   {
@@ -33,5 +34,6 @@ export default [
   ...Dashboard,
   ...Account,
   ...Character,
-  ...Guilds
+  ...Guilds,
+  ...Shop
 ]

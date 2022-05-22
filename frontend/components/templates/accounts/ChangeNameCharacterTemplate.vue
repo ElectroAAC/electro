@@ -1,9 +1,10 @@
 <template>
   <div>
     <Title text="Change Name"/>
-    <ChangeName v-if="$statusChangeName"/>
 
-    <v-container v-else class="mt-15">
+    <ChangeName v-if="$statusChangeName" class="main-content"/>
+
+    <v-container v-else class="main-content">
       Change character name is disabled
     </v-container>
   </div>

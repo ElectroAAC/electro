@@ -1,3 +1,3 @@
 <template>
-  <ChangeRankGuildTemplate />
+  <ChangeRankGuildTemplate class="mb-5"/>
 </template>

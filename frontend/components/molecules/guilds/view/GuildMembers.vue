@@ -2,15 +2,15 @@
   <v-container>
     <!-- Rank	Name and Title	Vocation	Level	Status -->
     <v-row class="text-center">
-      <v-col class="title pa-1" :cols="$vuetify.breakpoint.smAndDown ? '4' : '2'"> Rank </v-col>
+      <v-col class="bold color-orange pa-1" :cols="$vuetify.breakpoint.smAndDown ? '4' : '2'"> Rank </v-col>
 
-      <v-col class="title pa-1" cols="4"> Name </v-col>
+      <v-col class="bold color-orange pa-1" cols="4"> Name </v-col>
 
-      <v-col v-if="!$vuetify.breakpoint.smAndDown" class="title pa-1" cols="2"> Vocation </v-col>
+      <v-col v-if="!$vuetify.breakpoint.smAndDown" class="bold color-orange pa-1" cols="2"> Vocation </v-col>
 
-      <v-col class="title pa-1" :cols="$vuetify.breakpoint.smAndDown ? '4' : '2'"> Level </v-col>
+      <v-col class="bold color-orange pa-1" :cols="$vuetify.breakpoint.smAndDown ? '4' : '2'"> Level </v-col>
 
-      <v-col v-if="!$vuetify.breakpoint.smAndDown" class="title pa-1" cols="2"> Status </v-col>
+      <v-col v-if="!$vuetify.breakpoint.smAndDown" class="bold color-orange pa-1" cols="2"> Status </v-col>
 
       <v-col class="text-center" cols="12">
         <v-row 

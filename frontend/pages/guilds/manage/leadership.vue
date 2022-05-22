@@ -1,3 +1,3 @@
 <template>
-  <LeadershipGuildTemplate />
+  <LeadershipGuildTemplate class="mb-5"/>
 </template>

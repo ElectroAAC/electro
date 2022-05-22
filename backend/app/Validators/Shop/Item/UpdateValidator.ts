@@ -5,17 +5,10 @@ export default class UpdateValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    offer_id: schema.number(),
+    id: schema.number([ rules.required(), rules.exists({ table: 'electro_shop_items', column: 'id'})]),
     category_id: schema.number([ rules.required(), rules.exists({ table: 'electro_shop_categories', column: 'id'})]),
     name: schema.string({ escape: true, }, [
       rules.required(), 
-      rules.unique({ 
-        table: 'electro_shop_items', 
-        column: 'name'
-      }),
-      rules.alpha({
-        allow: ['space']
-      }),
       rules.minLength(3),
       rules.maxLength(20)
     ]),

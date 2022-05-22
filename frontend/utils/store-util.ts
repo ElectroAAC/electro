@@ -8,7 +8,9 @@ import {
   News as DashboardNews,
   Accounts as DashboardAccounts,
   Character as DashboardCharacters,
-  CharacterSkills as DashboardCharacterSkills
+  CharacterSkills as DashboardCharacterSkills,
+  ShopCategory as DashboardShopCategory,
+  ShopItem as DashboardShopItem
 } from '@/store/dashboard'
 
 import {
@@ -46,6 +48,11 @@ import {
   Lastkills
 } from '~/store/lastkills'
 
+import {
+  Shop,
+  ShopCategorie
+} from '~/store/shop'
+
 let auth: Auth;
 
 let dashboardHome: DashboardHome;
@@ -53,6 +60,8 @@ let dashboardNews: DashboardNews;
 let dashboardAccounts: DashboardAccounts;
 let dashboardCharacters: DashboardCharacters;
 let dashboardCharacterSkills: DashboardCharacterSkills;
+let dashboardShopCategory: DashboardShopCategory;
+let dashboardShopItem: DashboardShopItem;
 
 let news: News;
 
@@ -75,6 +84,9 @@ let online: Online;
 
 let lastkills: Lastkills;
 
+let shop: Shop;
+let shopCategorie: ShopCategorie;
+
 const initializeStores = (store: Store<any>) => {
   auth = getModule(Auth, store);
 
@@ -84,6 +96,8 @@ const initializeStores = (store: Store<any>) => {
   dashboardAccounts = getModule(DashboardAccounts, store);
   dashboardCharacters = getModule(DashboardCharacters, store);
   dashboardCharacterSkills = getModule(DashboardCharacterSkills, store);
+  dashboardShopCategory = getModule(DashboardShopCategory, store);
+  dashboardShopItem = getModule(DashboardShopItem, store);
 
   // Store News
   news = getModule(News, store);
@@ -112,6 +126,10 @@ const initializeStores = (store: Store<any>) => {
 
   // Store Lastkills
   lastkills = getModule(Lastkills, store);
+
+  // Store Shop
+  shop = getModule(Shop, store);
+  shopCategorie = getModule(ShopCategorie, store);
 };
 
 export {
@@ -122,6 +140,8 @@ export {
   dashboardAccounts,
   dashboardCharacters,
   dashboardCharacterSkills,
+  dashboardShopCategory,
+  dashboardShopItem,
 
   auth,
 
@@ -144,5 +164,8 @@ export {
   
   online,
 
-  lastkills
+  lastkills,
+
+  shop,
+  shopCategorie
 };

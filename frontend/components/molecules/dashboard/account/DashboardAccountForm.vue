@@ -66,7 +66,7 @@
     
     <v-col :cols="!$vuetify.breakpoint.smAndDown ? '4' : '12'">
       <v-autocomplete
-        v-model="$account.group_id"
+        v-model="$account.type"
         :rules="rules.required"
         :items="getGroupList"
         label="Group Id"

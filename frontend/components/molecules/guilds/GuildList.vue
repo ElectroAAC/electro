@@ -32,6 +32,7 @@
     
     <v-pagination
       v-model="page"
+      circle
       :length="total"
     ></v-pagination>
   </v-container>
@@ -93,7 +94,7 @@ export default Vue.extend({
 .single-stream-schedule-box {
   border-radius: 60px;
   position: relative;
-  border: 1px solid var(--second-main-color);
+  border: 1px solid var(--main-color);
   text-align: center;
   margin-bottom: 30px;
   padding-left: 150px;
@@ -109,7 +110,7 @@ export default Vue.extend({
 
 .single-stream-schedule-box.not-streaming .date .date-2{
   text-decoration: line-through;
-  color: var(--second-main-color);
+  color: var(--main-color);
 }
 
 .single-stream-schedule-box .date {
@@ -139,15 +140,15 @@ export default Vue.extend({
 .single-stream-schedule-box .content {
   background: transparent;
   border: none;
-  border-left: 3px solid var(--second-main-color);
-  border-right: 3px solid var(--second-main-color);
+  border-left: 3px solid var(--main-color);
+  border-right: 3px solid var(--main-color);
   border-radius: 60px !important;
   padding-top: 25px;
   padding-bottom: 25px;
 }
 
 .single-stream-schedule-box.not-streaming .content .time {
-  color: var(--second-main-color);
+  color: var(--main-color);
 }
 
 .single-stream-schedule-box .content .time {

@@ -1,3 +1,3 @@
 <template>
-  <DeleteGuildTemplate />
+  <DeleteGuildTemplate class="mb-5"/>
 </template>

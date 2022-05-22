@@ -1,3 +1,3 @@
 <template>
-  <DownloadsTemplate/>
+  <DownloadsTemplate class="mb-5"/>
 </template>

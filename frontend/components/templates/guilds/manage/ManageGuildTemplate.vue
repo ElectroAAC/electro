@@ -2,7 +2,7 @@
   <div>
     <Title text="Manage Guild" />
 
-    <v-container class="text-center">
+    <v-container class="text-center main-content">
       <div v-if="isLoading" class="text-center">
         <Loading  style="width: 50% !important;" />
       </div>

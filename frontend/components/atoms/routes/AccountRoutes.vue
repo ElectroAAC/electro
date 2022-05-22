@@ -11,14 +11,13 @@
         v-bind="attrs"
         v-on="on"
       >
-        <v-icon>mdi-account</v-icon> 
         <NuxtLink v-if="!$vuetify.breakpoint.mdAndDown" to="/accounts"> {{ $account.name }} </NuxtLink>
-        <span v-else> {{ $account.name }} </span>
+        <v-icon>mdi-account</v-icon> 
       </v-btn>
     </template>
       
     <v-list class="header-list">
-      <v-list-item v-if="$account.name && $account.group_id === 6">
+      <v-list-item v-if="$account.name && $account.type === 6">
         <v-list-item-title class="header-text">
           <NuxtLink to="/dashboard"> Dashboard </NuxtLink>
         </v-list-item-title>

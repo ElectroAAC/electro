@@ -75,10 +75,11 @@ export default {
     baseURL: 'http://localhost:3333/',
   },
 
+  render: { fallback: false },
+
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/scss/variables.scss'],
-    treeShake: true,
     icons: {
       iconfont: 'mdi'
     },
@@ -86,7 +87,7 @@ export default {
       dark: false,
       themes: {
         light: {
-          primary: `${process.env.LAYOUT === 'tibia-default' ? '03fff2' : '#ffd103'}`,
+          primary: '#dd163b',
         }
       }
     }
@@ -101,7 +102,14 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    extractCSS: true,
+    loaders:  {
+      vue: {
+        prettify: false
+      }
+    },
+  },
 
   router: {
     base: process.env.ROUTE || '/'

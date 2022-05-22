@@ -2,13 +2,13 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { StoreValidator, UpdateValidator } from 'App/Validators/Shop/Item'
 import { ShopItemRepository, ShopItemView} from 'App/Services';
 
-export default class AccountsController {
+export default class ShopItemController {
   public shopItemView: ShopItemView = new ShopItemView();
   public shopItemRepository: ShopItemRepository = new ShopItemRepository();
 
   public async index(ctx: HttpContextContract) {
     try {
-      const items = await this.shopItemView.getShopItems();
+      const items = await this.shopItemView.getOffers("", ctx.request.param('page'), ctx.request.param('limit'));
       
       return ctx.response.status(200).send({ status: 200, items });
     } catch(err) {
@@ -38,6 +38,22 @@ export default class AccountsController {
     }
   }
 
+  public async show(ctx: HttpContextContract) {
+    try {
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
+
+      const item = await this.shopItemView.getOfferById(ctx.request.param('id'));
+
+      if (!item.length) {
+        return ctx.response.status(404).send({ message: 'Item not found.' });
+      }
+      return ctx.response.status(200).send({ status: 200, item });
+    } catch (err) {
+      console.log('Error getItem Query: ', err);
+      return ctx.response.status(400).send({ error: 'An error occurred, check the api console.'});
+    }
+  }
+
   public async update(ctx: HttpContextContract) {
     try {
       await ctx.bouncer.with('DashboardPolicy').authorize('admin');
@@ -50,7 +66,7 @@ export default class AccountsController {
         return ctx.response.unauthorized();
       }
 
-      await this.shopItemRepository.update(data.offer_id, data);
+      await this.shopItemRepository.update(data.id, data);
       
       return ctx.response.status(200).send({ status: 200, message: "Offer successfully updated." });
     } catch (err) {

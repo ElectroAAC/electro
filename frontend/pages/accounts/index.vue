@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AccountTemplate/>
+    <AccountTemplate class="mb-5"/>
   </div>
 </template>
 

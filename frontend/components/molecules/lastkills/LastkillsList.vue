@@ -4,22 +4,26 @@
       <Loading  style="width: 50% !important;" />
     </div>
 
+    <div v-else-if="!deathsData.length" class="text-center">
+      No deaths recorded.
+    </div>
+
     <div v-else> 
       <v-row 
         v-for="(death, idx) in deathList" 
         :key="idx"
       >
-        <v-col cols="3"> {{ formatDate(death.time) }} </v-col>
-        <v-col cols="9">
-          <span v-html="death.killers_string"></span>
+        <v-col class="pl-0" cols="3"> {{ formatDate(death.time) }} </v-col>
+        <v-col class="text-center" cols="9" v-html="death.killers_string">
         </v-col>
       </v-row>
-    </div>
 
-    <v-pagination
-      v-model="page"
-      :length="total"
-    ></v-pagination>
+      <v-pagination
+        v-model="page"
+        circle
+        :length="total"
+      ></v-pagination>
+    </div>
   </v-container>
 </template>
 

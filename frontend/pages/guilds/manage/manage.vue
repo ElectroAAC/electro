@@ -1,3 +1,3 @@
 <template>
-  <ManageGuildTemplate />
+  <ManageGuildTemplate class="mb-5"/>
 </template>

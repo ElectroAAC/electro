@@ -2,12 +2,11 @@
   <v-container>
     <v-row>
       <v-col class="text-center" cols="12"> {{ title }} </v-col>
-      <v-col cols="12"> <v-btn 
-          text 
-          class="btn btn-success-secondary"
-        >
-          <a :href="link" target="_blank"> Download</a>
-        </v-btn> </v-col>
+      <v-col cols="12"> 
+        <a :href="link" target="_blank"> 
+          <DownloadAnimated style="width: 20%;"/> 
+        </a> 
+      </v-col>
     </v-row>
   </v-container>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <img :src="require(`~/assets/images/${mini ? 'mini-logo' : 'logo'}.png`)">
+  <img :src="require(`~/assets/images/${mini ? 'mini-logo' : 'tibia-logo'}.png`)">
 </template>
 
 <script lang="ts">

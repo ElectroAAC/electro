@@ -2,6 +2,6 @@
   <div>
     <Title text="Account Management"/>
 
-    <AccountManagement class="mt-15" />
+    <AccountManagement class="main-content" />
   </div>
 </template>

@@ -12,12 +12,14 @@
       <v-col class="text-center" cols="12">
         <v-btn 
           text 
-          class="mr-2 btn btn-danger-secondary"
+          class="btn btn-danger-secondary"
           @click="validate"
         >
           Leave
         </v-btn>
-
+      </v-col>
+      
+      <v-col class="text-center" cols="12">
         <v-btn 
           text 
           class="btn btn-success-secondary"
