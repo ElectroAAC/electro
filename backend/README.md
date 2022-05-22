@@ -124,7 +124,7 @@ $ npm run start
 | METHOD | ENDPOINT                        | DESCRIPTION                           |
 | :----- | :-------------------------------| :------------------------------------ |
 | GET    | /shop/offers/:categorie         | Get offers                            |
-| GET    | /shop/categories                | Get categories                        |
+| GET    | /shop/categories/:page/:limit   | Get categories                        |
 | POST   | /shop/purchase                  | Purchase Items                        |
 
 <br>

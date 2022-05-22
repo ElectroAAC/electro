@@ -2,13 +2,13 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { StoreValidator, UpdateValidator } from 'App/Validators/Shop/Item'
 import { ShopItemRepository, ShopItemView} from 'App/Services';
 
-export default class AccountsController {
+export default class ShopItemController {
   public shopItemView: ShopItemView = new ShopItemView();
   public shopItemRepository: ShopItemRepository = new ShopItemRepository();
 
   public async index(ctx: HttpContextContract) {
     try {
-      const items = await this.shopItemView.getShopItems();
+      const items = await this.shopItemView.getOffers(ctx.request.param('categorie').replace(/%20/g, " "));
       
       return ctx.response.status(200).send({ status: 200, items });
     } catch(err) {

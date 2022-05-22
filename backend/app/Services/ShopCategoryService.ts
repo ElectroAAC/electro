@@ -1,12 +1,13 @@
 import Database from '@ioc:Adonis/Lucid/Database'
 
 class CategoryView {
-  public async getCategories(): Promise<Object[]> {  
+  public async getCategories(page: number, limit: number): Promise<Object[]> {  
     try {
       return await Database
         .from('electro_shop_categories')
         .select('id', 'name', 'description', 'hidden')
-        .orderBy('name', 'asc');
+        .orderBy('name', 'asc')
+        .paginate(page, limit);
     } catch (err) {
       console.log(err);
       return err;

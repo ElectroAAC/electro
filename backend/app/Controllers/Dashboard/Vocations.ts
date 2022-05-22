@@ -1,7 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { CharacterView } from 'App/Services';
 
-export default class PremiumPointsController {
+export default class VocationsController {
   public characterView: CharacterView = new CharacterView();
 
   public async show(ctx: HttpContextContract) {

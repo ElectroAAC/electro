@@ -2,15 +2,15 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { StoreValidator, UpdateValidator } from 'App/Validators/Shop/Category'
 import { ShopCategoryView, ShopCategoryRepository } from 'App/Services';
 
-export default class AccountsController {
+export default class ShopCategoryController {
   public categoryView: ShopCategoryView = new ShopCategoryView();
   public categoryRepository: ShopCategoryRepository = new ShopCategoryRepository();
 
   public async index(ctx: HttpContextContract) {
     try {
-      const news = await this.categoryView.getCategories();
+      const categories = await this.categoryView.getCategories(ctx.request.param('page'), ctx.request.param('limit'));
       
-      return ctx.response.status(200).send({ status: 200, news });
+      return ctx.response.status(200).send({ status: 200, categories });
     } catch(err) {
       console.log('Error getCategories Query: ', err);
       return ctx.response.status(400).send({ error: 'An error occurred, check the api console.'});
