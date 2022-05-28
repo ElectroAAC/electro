@@ -3,6 +3,7 @@ import './auth';
 import './account';
 import './highscores';
 import './character';
+import './creature';
 import './dashboard/home';
 import './dashboard/accounts';
 import './dashboard/character';

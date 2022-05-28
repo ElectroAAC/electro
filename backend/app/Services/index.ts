@@ -10,6 +10,12 @@ export {
   CharacterView 
 } from './CharacterService';
 
+export { 
+  Creature,
+  CreatureRepository,
+  CreatureView
+} from './CreatureService';
+
 export { default as DeathService } from './DeathService';
 
 export { 
