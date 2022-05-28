@@ -64,9 +64,10 @@ $ npm run start
 | :----- | :------------------------- | :------------------------------------ |
 | GET    | /player/:name              | Get Player Infos                      |
 | GET    | /player/:id/skills         | Get Player Skills                     |
-| GET    | /player/:id/storage/:key   | Get Player Storage                    |
 | POST   | /player/:id/deaths         | Get Player Last 10 Deaths             |
 | GET    | /player/:id/items          | Get Player Items equipment            |
+| GET    | /player/:id/storage/:key   | Get Player Storage                    |
+| GET    | /player/:id/storages       | Get Player Storages                   |
 | GET    | /player/change-name        | Status system                         |
 | POST   | /player/change-name        | Change character name                 |
 | POST   | /player/delete             | Delete character                      |
