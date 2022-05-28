@@ -517,9 +517,9 @@
 }
 
 .v-application a {
-  color: var(--heading-color) !important;
+  color: var(--heading-color);
   font-weight: 600 !important;
-  text-transform: uppercase !important;
+  text-transform: uppercase;
   -webkit-transition: .15s color !important;
   -o-transition: .15s color !important;
   transition: .15s color !important;
@@ -563,4 +563,8 @@
   text-transform: uppercase !important;
   transition: .15s color !important;
   text-decoration: none !important;
+}
+
+.highscores-title {
+  text-transform: none !important;
 }
