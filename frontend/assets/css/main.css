@@ -355,7 +355,6 @@
   font-family: Arial, Helvetica, sans-serif !important;
   height: 65px !important;
   transform: none !important;
-  top: -50px !important;
   right: -50px !important;
 }
 
@@ -573,4 +572,16 @@
   background-color: var(--bg-dashboard-content-color);
   border: 1px solid var(--second-color);
   border-radius: 0.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .toasted-container .toasted {
+    width: 350px !important;
+    top: -15px !important;
+    border-radius: 30px !important; 
+  }
+  .toasted-container.bottom-right {
+    right: 0% !important;
+    bottom: 2% !important;
+  }
 }
