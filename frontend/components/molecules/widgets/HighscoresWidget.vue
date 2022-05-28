@@ -1,21 +1,31 @@
 <template>
   <aside class="widget">
     <h5 class="widget-title"> <span> Highscores </span> </h5>
+
     <v-container class="text-center">
       <v-row
         v-for="(player, idx) in $top5Players"
         class="text-center"
         :key="idx"
       >
-        <v-col cols="4"> 
-          <CharacterAvatar :avatar="getVocation(player.vocation)" width="60px"/>
+        <v-col class="pa-1" cols="4"> 
+          <NuxtLink :to="`/character/${player.name}`">
+            <AnimatedOutfit 
+              :look_type="player.looktype"
+              :look_addons="player.lookaddons"
+              :look_head="player.lookhead"
+              :look_body="player.lookbody"
+              :look_legs="player.looklegs"
+              :look_feet="player.lookfeet"
+            />
+          </NuxtLink>
         </v-col>
-        <v-col cols="8">
-          <NuxtLink :to="`/character/${player.name}`"> {{ player.name }} </NuxtLink> 
-          <br>
 
-          <span> 
-            {{ player.level }} 
+        <v-col class="pa-1" style="display: grid; align-items: center;" cols="8">
+          <NuxtLink :to="`/character/${player.name}`" class="highscores-title color-orange"> {{ player.name }} </NuxtLink> 
+
+          <span class="bold"> 
+            Level: ({{ player.level }})
           </span>
         </v-col>
       </v-row>

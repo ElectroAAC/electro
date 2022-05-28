@@ -27,33 +27,23 @@ export const skillName = [
 export const vocations = [
   { 
     initial_id: 1, 
-    last_id: 17, 
-    text: "Dragon_Slayer" 
+    last_id: 1, 
+    text: "Sorcerer" 
   }, 
   { 
-    initial_id: 18, 
-    last_id: 31, 
-    text: "Winter" 
+    initial_id: 2, 
+    last_id: 2, 
+    text: "Druid" 
   }, 
   { 
-    initial_id: 32, 
-    last_id: 46, 
-    text: "Barbarian" 
+    initial_id: 3, 
+    last_id: 3, 
+    text: "Paladin" 
   }, 
   { 
-    initial_id: 47, 
-    last_id: 58, 
-    text: "Mage" 
-  },
-  { 
-    initial_id: 59, 
-    last_id: 67, 
-    text: "Mercenary" 
-  },
-  { 
-    initial_id: 68, 
-    last_id: 71, 
-    text: "Warrior" 
+    initial_id: 4, 
+    last_id: 4, 
+    text: "Knight" 
   },
 ]
 

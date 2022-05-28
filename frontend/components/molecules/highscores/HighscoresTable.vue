@@ -18,6 +18,18 @@
       <template #item.position="{ index }">
         {{ index+1 }}
       </template>
+        
+      <!-- eslint-disable-next-line vue/valid-v-slot -->
+      <template #item.outfit="{ item }">
+        <AnimatedOutfit 
+          :look_type="item.looktype"
+          :look_addons="item.lookaddons"
+          :look_head="item.lookhead"
+          :look_body="item.lookbody"
+          :look_legs="item.looklegs"
+          :look_feet="item.lookfeet"
+        />
+      </template>
       
       <!-- eslint-disable-next-line vue/valid-v-slot -->
       <template #item.name="{ item }">
@@ -60,6 +72,7 @@ export default Vue.extend({
     getHeaders(): Object[] {
       const items = [
         { text: 'Rank', value: 'position', align: 'center', sortable: false },
+        { text: 'Outfit', value: 'outfit', align: 'center', sortable: false },
         { text: 'Name', value: 'name', align: 'center', sortable: false },
       ];
 
