@@ -1,17 +1,26 @@
 <template>
-  <v-container class="text-center">
+  <div class="character-informations text-center">
+    <v-col class="pb-0" cols="12"> <h3> Deaths </h3> </v-col>
+    
+    <v-col v-if="!$deaths.length" cols="12">
+      This player has no recorded kills.
+    </v-col>
+
     <v-row 
       v-for="(death, idx) in $deaths"
       :key="idx"
+      v-else
     >
+
       <v-col class="pa-1" cols="2"> 
         {{ formatDate(death.time) }}
       </v-col>
+
       <v-col class="pa-1" cols="10"> 
         <span v-html="death.description" />
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">

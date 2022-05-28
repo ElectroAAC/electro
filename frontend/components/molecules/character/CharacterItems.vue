@@ -1,5 +1,5 @@
 <template>
-  <div class="character-informations text-center">
+  <div class="character-informations text-center" style="height: 100% !important;">
     <v-row class="text-center ma-0 pa-0">
       <v-col cols="12"> <h3> Equipments </h3> </v-col>
       

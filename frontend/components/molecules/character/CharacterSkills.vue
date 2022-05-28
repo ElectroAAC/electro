@@ -2,12 +2,12 @@
   <div class="character-informations text-center">
     <v-col cols="12"> <h3> Skills </h3> </v-col>
 
-    <v-row v-if="$vuetify.breakpoint.mdAndDown" class="fs-14">
+    <v-row class="text-center fs-14">
       <v-col 
         v-for="(item, idx) in $skills" 
         :key="idx"
         class="pl-1 pr-1"
-        cols="2"
+        :cols="!$vuetify.breakpoint.smAndDown ? '1' : '2'"
       >
         <v-col class="pa-1 bold" cols="12"> 
           <v-tooltip top>
@@ -25,15 +25,6 @@
 
         <v-col class="pa-1" cols="12"> {{ item.value }} </v-col>
       </v-col>
-    </v-row>
-
-    <v-row
-      v-for="(item, idx) in $skills" 
-      v-else
-      :key="idx"
-    >
-      <v-col cols="6">{{ getSkillName(item.skillid) }}</v-col>
-      <v-col cols="6"> {{ item.value }}</v-col>
     </v-row>
   </div>
 </template>

@@ -44,7 +44,7 @@
 
     <v-row v-else class="d-flex align-center justify-center header-text">
       <v-col cols="2">
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer, miniVariant = false" />
+        <v-app-bar-nav-icon color="white" @click.stop="drawer = !drawer, miniVariant = false" />
         <MenuMobile 
           :drawer="drawer"
           :miniVariant="miniVariant"
