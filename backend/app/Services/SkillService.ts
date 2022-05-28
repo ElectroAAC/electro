@@ -87,8 +87,7 @@ class SkillView {
           'skill_sword',
           'skill_axe',
           'skill_dist',
-          'skill_shielding',
-          'skill_fishing'
+          'skill_shielding'
         )
         .where('id', '=', character_id);
     } catch (err) {

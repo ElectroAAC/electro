@@ -182,6 +182,18 @@ class CharacterView {
       return err;
     }
   }
+
+  public async getStorages(character_id: number): Promise<Object[]>  {
+    try {
+      return await Database
+        .from('player_storage')
+        .select('player_storage.key', 'player_storage.value')
+        .where('player_storage.player_id', character_id)
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
 }
 class CharacterRepository {
   public async create(newPlayer: Object): Promise<Number> {

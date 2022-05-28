@@ -48,8 +48,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { account, character } from '@/store'
-import { items } from '@/utils/fakeData'
+import { character, items, skill } from '@/store'
+import { items as ItemList } from '@/utils/fakeData'
 import { skillName } from '@/utils/enum'
 import { Item, CharactersAccount } from '@/models'
 
@@ -63,16 +63,16 @@ export default Vue.extend({
   
   computed: {
     getItemList(): Object[] {
-      return items;
+      return ItemList;
     },
     getCharacter(): CharactersAccount {
       return this.character;
     },
     $characterSkills() {
-      return character.$skills;
+      return skill.$skills;
     },
     $characterItems() {
-      return character.$items;
+      return items.$items;
     }
   },
 

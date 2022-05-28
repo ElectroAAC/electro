@@ -9,10 +9,11 @@ export {
 } from './Highscores';
 
 export { 
+  Death,
+  Item,
   Player,
   Skill,
-  Item,
-  Death
+  Storage
 } from './Player';
 
 export { 

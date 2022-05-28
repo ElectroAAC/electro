@@ -43,7 +43,7 @@ export default Vue.extend({
   methods: {
     async onSearch(this: any) {
       try {
-        this.$router.push('/dashboard/character/' + this.character_name);
+        this.$router.replace('/dashboard/character/' + this.character_name);
       } catch(err) {
         console.log(err);
       }

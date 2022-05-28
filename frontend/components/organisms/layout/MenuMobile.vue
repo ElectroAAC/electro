@@ -34,14 +34,6 @@ export default Vue.extend({
         this.$emit('update-drawer', val);
       }
     },
-
-    getItems(): { to: string, title: string, icon: string }[] {
-      return [{
-        to: "",
-        title: "",
-        icon: ""
-      }];
-    }
   }
 })
 </script>

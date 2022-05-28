@@ -18,7 +18,13 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { character } from '@/store'
+import { 
+  character,
+  death,
+  items,
+  skill,
+  storage 
+} from '@/store'
 
 export default Vue.extend({
   data() {
@@ -41,10 +47,16 @@ export default Vue.extend({
   async created() {
     if (this.getCharacterName) {
       await this.getPlayer();
+      
       if (this.$character && this.$character.id) {
-        character.getSkill(this.$character.id);
-        character.getItems(this.$character.id);
-        character.getDeaths(this.$character.id);
+        const promises = [
+          items.getItems(this.$character.id),
+          death.getDeaths(this.$character.id),
+          skill.getSkills(this.$character.id),
+          storage.getStorages(this.$character.id)
+        ];
+
+        await Promise.all(promises);
       }
     }
   },
@@ -66,7 +78,7 @@ export default Vue.extend({
               position: 'top-right',
             }
           );
-          this.$router.push('/character');
+          this.$router.replace('/character');
           return;
         }
         this.$set(this, 'isLoading', false);

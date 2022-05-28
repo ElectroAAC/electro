@@ -94,7 +94,7 @@ export default {
   },
 
   toast: {
-    position: 'top-right',
+    position: 'bottom-right',
     keepOnHover: true,
     duration: 3000,
     theme: "bubble",

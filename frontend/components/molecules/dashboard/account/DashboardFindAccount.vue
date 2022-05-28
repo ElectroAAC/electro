@@ -43,7 +43,7 @@ export default Vue.extend({
   methods: {
     async onSearch(this: any) {
       try {
-        this.$router.push('/dashboard/account/' + this.account_name);
+        this.$router.replace('/dashboard/account/' + this.account_name);
       } catch(err) {
         console.log(err);
       }
