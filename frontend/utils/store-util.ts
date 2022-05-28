@@ -1,7 +1,7 @@
 import { Store } from 'vuex';
 import { getModule } from 'vuex-module-decorators';
 
-import Auth from '@/store/auth';
+import Auth from '~/store/auth';
 
 import {
   Home as DashboardHome,
@@ -11,7 +11,7 @@ import {
   CharacterSkills as DashboardCharacterSkills,
   ShopCategory as DashboardShopCategory,
   ShopItem as DashboardShopItem
-} from '@/store/dashboard'
+} from '~/store/dashboard'
 
 import {
   News
@@ -21,10 +21,14 @@ import {
   Account,
   Register as AccountRegister,
   Character as CreateCharacter
-} from '@/store/accounts'
+} from '~/store/accounts'
 
 import { 
-  Character 
+  Character,
+  Death,
+  Items,
+  Skill,
+  Storage
 } from '~/store/character'
 
 import { 
@@ -70,6 +74,10 @@ let accountRegister: AccountRegister;
 let createCharacter: CreateCharacter;
 
 let character: Character;
+let death: Death;
+let items: Items;
+let skill: Skill;
+let storage: Storage;
 
 let top5Players: Top5Players;
 let ranking: Ranking;
@@ -109,6 +117,10 @@ const initializeStores = (store: Store<any>) => {
 
   // Store Character
   character = getModule(Character, store);
+  death = getModule(Death, store);
+  items = getModule(Items, store);
+  skill = getModule(Skill, store);
+  storage = getModule(Storage, store);
 
   // Store Top5Players
   top5Players = getModule(Top5Players, store);
@@ -152,6 +164,10 @@ export {
   createCharacter,
 
   character,
+  death,
+  items,
+  skill,
+  storage,
 
   top5Players,
   ranking,

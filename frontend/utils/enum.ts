@@ -1,6 +1,6 @@
 /**
- * Value: SKILL_ID
- * Text: Name Skill
+ * @value (Number): SKILL_ID
+ * @text  (String): NAME_SKILL
  * Example to register: { value: 0, text: "Attack Speed" }
  */
 export const skillName = [
@@ -118,4 +118,13 @@ export const rankGuild = [
   { value: 1, text: "Member" },
   { value: 2, text: "Vice-Leader" },
   { value: 3, text: "Leader" },
+]
+
+/**
+ * @value (Number):   KEY
+ * @text  (String):   ACHIEVEMENT_NAME
+ */
+export const achievements = [
+  { value: 1, text: "Basic Quest" },
+  { value: 2, text: "Intermediate Quest" },
 ]

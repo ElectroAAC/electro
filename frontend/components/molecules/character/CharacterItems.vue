@@ -1,6 +1,6 @@
 <template>
-  <v-container class="text-center">
-    <v-row class="text-center">
+  <div class="character-informations text-center">
+    <v-row class="text-center ma-0 pa-0">
       <v-col cols="12"> <h3> Equipments </h3> </v-col>
       
       <div class="d-flex align-content-center flex-wrap pa-0 text-center" style="width: 200px !important;">
@@ -17,6 +17,7 @@
                 :src="require(`~/assets/images/items/${getItem(item.id, item.slot)}.gif`)"
                 width="32"
                 height="32"
+                style="border: 1px solid var(--second-color);"
                 v-bind="attrs"
                 v-on="on"
               />
@@ -26,23 +27,23 @@
         </v-col>
       </div>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { character } from '@/store'
+import { items } from '@/store'
 import { Item } from '@/models'
-import { items } from '@/utils/fakeData'
+import { items as itemList} from '@/utils/fakeData'
 
 export default Vue.extend({
   computed: {
     $items(): Item[] {
-      return character.$items;
+      return items.$items;
     },
 
     getItemList(): Object[] {
-      return items;
+      return itemList;
     },
   },
 

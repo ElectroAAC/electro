@@ -568,3 +568,9 @@
 .highscores-title {
   text-transform: none !important;
 }
+
+.character-informations {
+  background-color: var(--bg-dashboard-content-color);
+  border: 1px solid var(--second-color);
+  border-radius: 0.5rem;
+}

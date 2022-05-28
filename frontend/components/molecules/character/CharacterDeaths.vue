@@ -18,12 +18,12 @@
 import Vue from 'vue'
 import moment from 'moment'
 
-import { character } from '@/store'
+import { death } from '@/store'
 
 export default Vue.extend({
   computed: {
     $deaths() {
-      return character.$deaths
+      return death.$deaths
     }
   },
 

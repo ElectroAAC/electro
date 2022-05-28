@@ -1,13 +1,21 @@
 <template>
-  <v-container class="text-center">
-    Infos
-    <v-row>
-      <v-col :cols="!$vuetify.breakpoint.mdAndDown ? '12' : '6'">
-        <CharacterAvatar :avatar="getVocation()" width="150px"/>
+  <div class="character-informations text-center">
+    <v-row class="ma-0 pa-0">
+      <v-col class="pb-0" cols="12"> <h3> Informations </h3> </v-col>
+      
+      <v-col class="pt-0 pb-0" cols="12">
+        <AnimatedOutfit 
+          :look_type="$character.looktype"
+          :look_addons="$character.lookaddons"
+          :look_head="$character.lookhead"
+          :look_body="$character.lookbody"
+          :look_legs="$character.looklegs"
+          :look_feet="$character.lookfeet"
+        />
       </v-col>
 
-      <v-col :cols="!$vuetify.breakpoint.mdAndDown ? '12' : '6'">
-        <v-row>
+      <v-col cols="12">
+        <v-row class="pa-0 ma-0">
           <v-col class="pa-1" cols="6">
             Name:
           </v-col>
@@ -38,7 +46,7 @@
         </v-row>
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">

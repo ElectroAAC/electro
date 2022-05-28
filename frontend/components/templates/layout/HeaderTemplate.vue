@@ -110,7 +110,7 @@ export default {
     onLogout(this: any): void {
       auth.destroy();
       if (this.$route && this.$route.fullPath !== "/") {
-        this.$router.push("/")
+        this.$router.replace("/")
       }
     }
   }
