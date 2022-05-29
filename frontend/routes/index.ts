@@ -7,6 +7,7 @@ import Download from '~/pages/download.vue';
 import Dashboard from '~/routes/dashboard/index'
 import Account from '~/routes/account'
 import Character from '~/routes/character'
+import Creatures from '~/routes/creatures'
 import Guilds from '~/routes/guild/main'
 import Shop from '~/routes/shop'
 
@@ -34,6 +35,7 @@ export default [
   ...Dashboard,
   ...Account,
   ...Character,
+  ...Creatures,
   ...Guilds,
   ...Shop
 ]

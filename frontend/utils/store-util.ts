@@ -49,6 +49,10 @@ import {
 } from '~/store/online'
 
 import {
+  Creatures
+} from '~/store/creatures'
+
+import {
   Lastkills
 } from '~/store/lastkills'
 
@@ -87,6 +91,8 @@ let guild: Guild;
 let guildList: GuildList;
 let inviteGuild: InviteGuild;
 let manageGuild: ManageGuild;
+
+let creatures: Creatures;
 
 let online: Online;
 
@@ -133,6 +139,9 @@ const initializeStores = (store: Store<any>) => {
   inviteGuild = getModule(InviteGuild, store);
   manageGuild = getModule(ManageGuild, store);
 
+  // Store Creatures
+  creatures = getModule(Creatures, store);
+
   // Store Online
   online = getModule(Online, store);
 
@@ -177,6 +186,8 @@ export {
   guildList,
   inviteGuild,
   manageGuild,
+  
+  creatures,
   
   online,
 

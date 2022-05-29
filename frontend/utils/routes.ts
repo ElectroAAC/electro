@@ -20,6 +20,11 @@ export const routesCommunity = [
     text: "Lastkills",
     to: "/lastkills"
   },
+  {
+    icon: 'mdi-rodent',
+    text: "Creatures",
+    to: "/creatures"
+  },
 ]
 
 export const routesGuild = [
