@@ -47,12 +47,8 @@
           class="bg-character-list"
           tile
         >
-          <div v-if="isLoading" class="text-center">
-            <Loading  style="width: 50% !important;" />
-          </div>
-
           <AccountCharacterInformation 
-            v-else 
+            :loading="isLoading" 
             :character="getCharacters[model]" 
           />
         </v-sheet>
@@ -72,7 +68,7 @@ export default Vue.extend({
     return {
       model: 0,
       last_value: 0,
-      isLoading: 0
+      isLoading: false
     }
   },
 
@@ -90,7 +86,7 @@ export default Vue.extend({
 
   watch: {
     async model(v): Promise<void> {
-      if (v) {
+      if (v >= 0) {
         const character_id = this.getCharacters[v].id;
         if (character_id) {
           try {
@@ -105,7 +101,9 @@ export default Vue.extend({
           } catch (err) {
             console.log('Error: ', err);
           } finally {
-            this.$set(this, 'isLoading', false);
+            setTimeout(() => {
+              this.$set(this, 'isLoading', false);
+            }, 300)
           }
         }
       }

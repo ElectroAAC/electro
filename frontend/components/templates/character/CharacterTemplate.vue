@@ -2,16 +2,14 @@
   <div>
     <Title text="Characters"/>
     
-    <v-container class="main-content">
+    <div v-if="isLoading" class="text-center">
+      <Loading  style="width: 50% !important;" />
+    </div>
+
+    <v-container v-else class="main-content">
       <CharacterSearchForm v-if="!getCharacterName" />
       
-      <div v-else>
-        <div v-if="isLoading" class="text-center">
-          <Loading  style="width: 50% !important;" />
-        </div>
-
-        <Character v-else-if="$character" />
-      </div>
+      <Character v-else-if="$character" />
     </v-container>
   </div>
 </template>
@@ -81,7 +79,9 @@ export default Vue.extend({
           this.$router.replace('/character');
           return;
         }
-        this.$set(this, 'isLoading', false);
+        setTimeout(() => {
+          this.$set(this, 'isLoading', false);
+        }, 300);
       } catch(err) {
         console.log(err);
       }

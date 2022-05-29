@@ -68,13 +68,13 @@ export default Vue.extend({
     getPaddingItemSlot(slot: String): String {
       switch(slot) {
         case 'necklace':
-          return 'pt-3';
+          return 'pt-2';
         case 'backpack':
-          return 'pt-3';
+          return 'pt-2';
         case 'armor':
           return 'pb-2';
         case 'legs':
-          return 'pt-0';
+          return 'pb-2';
         case 'boots':
           return 'pt-0';
         default:
