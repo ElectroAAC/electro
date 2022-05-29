@@ -1,5 +1,5 @@
 <template>
-  <img :src="getUrl" :alt="image_name" @error="url = 'default'">
+  <img :src="getUrl" :alt="image_name">
 </template>
 
 <script lang="ts">

@@ -13,14 +13,32 @@
         > 
           <v-tooltip top>
             <template v-slot:activator="{ on, attrs }">
-              <img 
-                :src="require(`~/assets/images/items/${getItem(item.id, item.slot)}.gif`)"
-                width="32"
-                height="32"
-                style="border: 1px solid var(--second-color);"
+              <div
+                v-if="getItem(item.id)"
                 v-bind="attrs"
                 v-on="on"
-              />
+              >
+                <ItemImage 
+                  :image="item.id"
+                  image_name="Item"
+                  style="border: 1px solid var(--second-color);"
+                  v-bind="attrs"
+                  v-on="on"
+                />
+              </div>
+
+              <div 
+                v-else
+                v-bind="attrs"
+                v-on="on"
+              >
+                <img 
+                  :src="require(`~/assets/images/items/no_${item.slot}.png`)"
+                  width="32"
+                  height="32"
+                  style="border: 1px solid var(--second-color);"
+                />
+              </div>
             </template>
             <span> {{ getItemName(item.id, item.slot) }} </span>
           </v-tooltip>
@@ -32,18 +50,17 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { characterItems } from '@/store'
-import { Item } from '@/models'
-import { items as itemList} from '@/utils/fakeData'
+import { characterItems, items } from '@/store'
+import { CharacterItem, Items } from '@/models'
 
 export default Vue.extend({
   computed: {
-    $items(): Item[] {
+    $items(): CharacterItem[] {
       return characterItems.$items;
     },
 
-    getItemList(): Object[] {
-      return itemList;
+    getItemList(): Items[] {
+      return items.$items;
     },
   },
 
@@ -65,15 +82,13 @@ export default Vue.extend({
       }
     },
     
-    getItem(this: any, id: Number, slot: String) {
-      return this.getItemList.some((item: Item) => item.id === id)
-        ? this.getItemList.find((item: Item) => item.id === id).id
-        : slot;
+    getItem(this: any, id: Number) {
+      return this.getItemList.some((item: Items) => item.itemId === id);
     },
 
     getItemName(this: any, id: Number, slot: String) {
-      return this.getItemList.some((item: Item) => item.id === id)
-        ? this.getItemList.find((item: Item) => item.id === id).name
+      return this.getItemList.some((item: Items) => item.itemId === id)
+        ? this.getItemList.find((item: Items) => item.itemId === id).name
         : "No_" + slot;
     },
   }

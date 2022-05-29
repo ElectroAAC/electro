@@ -7,7 +7,7 @@ import {
 
 import { $axios } from '@/utils/nuxt-instance'
 
-import { Item } from '@/models'
+import { CharacterItem } from '@/models'
 
 @Module({
   name: 'character/items',
@@ -16,14 +16,14 @@ import { Item } from '@/models'
 })
 
 export default class Items extends VuexModule {
-  private items: Item[] = [];
+  private items: CharacterItem[] = [];
 
   public get $items() {
     return this.items;
   }
 
   @Mutation
-  private SET(items: Item[]) {
+  private SET(items: CharacterItem[]) {
     this.items = items;
   }
 
