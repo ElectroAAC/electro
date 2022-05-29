@@ -1,5 +1,5 @@
 <template>
-  <img :src="getUrl" :alt="image_name" @error="url = 'default'">
+  <img :src="getUrl" :alt="image_name">
 </template>
 
 <script lang="ts">
@@ -32,7 +32,7 @@ export default Vue.extend({
       return this.url;
     },
     getUrl() {
-      return `${process.env.ITEM_IMAGES_URL}/${this.getImage}.gif`;
+      return `${process.env.ITEM_IMAGES_URL}/${this.getImage}.png`;
     }
   },
 })

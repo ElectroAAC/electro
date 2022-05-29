@@ -26,7 +26,7 @@ import {
 import { 
   Character,
   Death,
-  Items,
+  Items as CharacterItems,
   Skill,
   Storage
 } from '~/store/character'
@@ -47,6 +47,14 @@ import {
 import {
   Online
 } from '~/store/online'
+
+import {
+  Creatures
+} from '~/store/creatures'
+
+import {
+  Items
+} from '~/store/items'
 
 import {
   Lastkills
@@ -75,7 +83,7 @@ let createCharacter: CreateCharacter;
 
 let character: Character;
 let death: Death;
-let items: Items;
+let characterItems: CharacterItems;
 let skill: Skill;
 let storage: Storage;
 
@@ -87,6 +95,10 @@ let guild: Guild;
 let guildList: GuildList;
 let inviteGuild: InviteGuild;
 let manageGuild: ManageGuild;
+
+let creatures: Creatures;
+
+let items: Items;
 
 let online: Online;
 
@@ -118,7 +130,7 @@ const initializeStores = (store: Store<any>) => {
   // Store Character
   character = getModule(Character, store);
   death = getModule(Death, store);
-  items = getModule(Items, store);
+  characterItems = getModule(CharacterItems, store);
   skill = getModule(Skill, store);
   storage = getModule(Storage, store);
 
@@ -132,6 +144,12 @@ const initializeStores = (store: Store<any>) => {
   guildList = getModule(GuildList, store);
   inviteGuild = getModule(InviteGuild, store);
   manageGuild = getModule(ManageGuild, store);
+
+  // Store Creatures
+  creatures = getModule(Creatures, store);
+
+  // Store Items
+  items = getModule(Items, store);
 
   // Store Online
   online = getModule(Online, store);
@@ -165,7 +183,7 @@ export {
 
   character,
   death,
-  items,
+  characterItems,
   skill,
   storage,
 
@@ -177,6 +195,10 @@ export {
   guildList,
   inviteGuild,
   manageGuild,
+  
+  creatures,
+  
+  items,
   
   online,
 

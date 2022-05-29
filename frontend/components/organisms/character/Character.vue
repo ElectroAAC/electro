@@ -22,3 +22,16 @@
     </v-col>
   </v-row>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+import { items } from '@/store'
+
+export default Vue.extend({
+  mounted() {
+    if (!items.$items.length) {
+      items.getItems('all');
+    }
+  }
+})
+</script>

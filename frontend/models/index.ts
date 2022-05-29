@@ -5,18 +5,6 @@ export {
 } from './Account';
 
 export { 
-  Top5Players 
-} from './Highscores';
-
-export { 
-  Death,
-  Item,
-  Player,
-  Skill,
-  Storage
-} from './Player';
-
-export { 
   TopPremiumPoints,
   Vocations,
   Character,
@@ -24,12 +12,28 @@ export {
 } from './Dashboard';
 
 export {
+  Guild
+} from './Guild';
+
+export { 
+  Top5Players 
+} from './Highscores';
+
+export { 
+  Items 
+} from './Items';
+
+export {
   Paginate
 } from './Paginate';
 
-export {
-  Guild
-} from './Guild';
+export { 
+  Death,
+  Item as CharacterItem,
+  Player,
+  Skill,
+  Storage
+} from './Player';
 
 export {
   Route

@@ -13,7 +13,6 @@
       dense
       append-icon="mdi-magnify"
       hide-details="auto"
-      color="cyan accent-2"
     />
     
     <v-btn
