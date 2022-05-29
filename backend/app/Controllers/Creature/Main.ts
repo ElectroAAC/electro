@@ -1,15 +1,19 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import {
   Creature,
-  CreatureRepository
+  CreatureRepository,
+  CreatureView
 } from 'App/Services'
 
 export default class PlayerSkillController {
   public creature: Creature = new Creature();
   public creatureRepository: CreatureRepository = new CreatureRepository();
+  public creatureView: CreatureView = new CreatureView();
 
   public async loadXml(ctx: HttpContextContract) {
     try {
+      await ctx.bouncer.with('DashboardPolicy').authorize('admin');
+      
       const creatures = await this.creature.loadMonstersXml();
       
       if (creatures.errno) {
@@ -42,6 +46,17 @@ export default class PlayerSkillController {
     } catch(err) {
       console.log('Error loadCreatureXml: ', err);
       return ctx.response.status(400).send({ message: 'An error occurred, check the api console.'})
+    }
+  }
+
+  public async show(ctx: HttpContextContract) {
+    try {
+      const creatures = await this.creatureView.getCreatures();
+
+      return ctx.response.status(200).send({ status: 200, data: creatures });
+    } catch(err) {
+      console.log('Error getCreatures Query: ', err);
+      return ctx.response.status(400).send({ error: 'An error occurred, check the api console.'});
     }
   }
 }

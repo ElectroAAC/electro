@@ -3,7 +3,18 @@ import Env from '@ioc:Adonis/Core/Env'
 const fs = require('fs');
 const xml2js = require('xml2js');
 
-class CreatureView {}
+class CreatureView {
+  async getCreatures() {
+    try {
+      return await Database
+        .from('electro_creatures')
+        .orderBy('name', 'asc')
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+}
 
 class Creature extends CreatureView {
   loadMonstersXml() {
