@@ -1,12 +1,14 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import {
   Item,
+  ItemView,
   ItemRepository
 } from 'App/Services'
 
 export default class PlayerSkillController {
   public item: Item = new Item();
   public itemRepository: ItemRepository = new ItemRepository();
+  public itemView: ItemView = new ItemView();
 
   public async loadXml(ctx: HttpContextContract) {
     try {
@@ -48,6 +50,17 @@ export default class PlayerSkillController {
     } catch(err) {
       console.log('Error loadItemsXml: ', err);
       return ctx.response.status(400).send({ message: 'An error occurred, check the api console.'})
+    }
+  }
+
+  public async show(ctx: HttpContextContract) {
+    try {
+      const items = await this.itemView.getItems(ctx.request.param('type'));
+
+      return ctx.response.status(200).send({ status: 200, data: items });
+    } catch(err) {
+      console.log('Error getCreatures Query: ', err);
+      return ctx.response.status(400).send({ error: 'An error occurred, check the api console.'});
     }
   }
 }

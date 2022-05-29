@@ -4,6 +4,27 @@ const fs = require('fs');
 const xml2js = require('xml2js');
 
 class ItemView {
+  public async getItems(type: string): Promise<Object[]> {  
+    try {
+      if (type === 'all') {
+        return await Database
+          .from('electro_items')
+          .select('*');
+      }
+      else {
+        const slot = (type === 'shield' || type === 'sword' || type === 'distance' || type === 'club' || type === 'axe') ? 'weapon' : 'slot';
+  
+        return await Database
+          .from('electro_items')
+          .select('*')
+          .where(slot, '=', type);
+      }
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+
   public async getCharacterEquipments(character_id: number): Promise<Object[]> {  
     try {
       return await Database

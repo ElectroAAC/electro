@@ -131,9 +131,10 @@ $ npm run start
 
 ## 🕵🏾‍♂️ Routes Items
 
-| METHOD | ENDPOINT   | DESCRIPTION   |
-| :----- | :--------- | :------------ |
-| GET    | /items/xml | Loading Items |
+| METHOD | ENDPOINT     | DESCRIPTION   |
+| :----- | :----------- | :------------ |
+| GET    | /items/xml   | Loading Items |
+| GET    | /items/:type | Get Items     |
 
 <br>
 
