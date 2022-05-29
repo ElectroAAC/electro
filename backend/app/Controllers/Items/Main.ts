@@ -30,6 +30,7 @@ export default class PlayerSkillController {
             const description = itemXML.attribute ? itemXML.attribute.find((attribute) => attribute.key[0] === "description")?.value[0] : "";
             const weaponType = itemXML.attribute ? itemXML.attribute.find((attribute) => attribute.key[0] === "weaponType")?.value[0] : "";
             const attack = itemXML.attribute ? itemXML.attribute.find((attribute) => attribute.key[0] === "attack")?.value[0] : "";
+            const defense = itemXML.attribute ? itemXML.attribute.find((attribute) => attribute.key[0] === "defense")?.value[0] : "";
             
             if (slotType || weaponType) {
               await this.itemRepository.create({
@@ -39,7 +40,8 @@ export default class PlayerSkillController {
                 armor,
                 slot: slotType,
                 weapon: weaponType,
-                attack
+                attack,
+                defense
               });
             }
           }

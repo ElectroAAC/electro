@@ -13,6 +13,7 @@ export default class ElectroItems extends BaseSchema {
       table.string('slot', 25)
       table.string('weapon', 25)
       table.string('attack', 25)
+      table.string('defense', 25)
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })
