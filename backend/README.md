@@ -129,6 +129,14 @@ $ npm run start
 
 <br>
 
+## 🕵🏾‍♂️ Routes Items
+
+| METHOD | ENDPOINT   | DESCRIPTION   |
+| :----- | :--------- | :------------ |
+| GET    | /items/xml | Loading Items |
+
+<br>
+
 ## 🕵🏾‍♂️ Routes Shop
 
 | METHOD | ENDPOINT                      | DESCRIPTION    |

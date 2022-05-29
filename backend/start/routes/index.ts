@@ -1,7 +1,6 @@
 import Route from '@ioc:Adonis/Core/Route';
-import './auth';
 import './account';
-import './highscores';
+import './auth';
 import './character';
 import './creature';
 import './dashboard/home';
@@ -10,9 +9,11 @@ import './dashboard/character';
 import './dashboard/shopCategory';
 import './dashboard/shopItem';
 import './guilds';
-import './online';
+import './highscores';
+import './items';
 import './lastkills';
 import './news';
+import './online';
 import './shop';
 
 Route.get('/', async () => {

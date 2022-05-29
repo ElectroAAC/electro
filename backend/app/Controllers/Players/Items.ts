@@ -1,12 +1,12 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { ItemService } from 'App/Services'
+import { ItemView } from 'App/Services'
 
 export default class PlayerItemsController {
-  public itemService: ItemService = new ItemService();
+  public itemView: ItemView = new ItemView();
 
   public async show(ctx: HttpContextContract) {
     try {
-      const items = await this.itemService.getCharacterEquipments(ctx.request.param('id'));
+      const items = await this.itemView.getCharacterEquipments(ctx.request.param('id'));
       
       const empty_slots = ["", "no_helmet", "no_necklace", "no_backpack", "no_armor", "no_handright", "no_handleft", "no_legs", "no_boots", "no_ring", "no_ammo"];
 
