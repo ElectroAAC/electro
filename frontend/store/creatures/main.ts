@@ -5,6 +5,7 @@ import {
   Action
 } from 'vuex-module-decorators'
 
+import { Paginate } from '@/models'
 import { $axios } from '@/utils/nuxt-instance'
 
 @Module({
@@ -15,17 +16,18 @@ import { $axios } from '@/utils/nuxt-instance'
 
 export default class Creatures extends VuexModule {
   @Action
-  public async getCreatures() {
+  public async getCreatures(payload: Paginate) {
     try {
-      return await $axios.$get('creatures')
+      return await $axios.$get(`creatures/${payload.page}/${payload.limit}`)
         .then((response) => {
           
           if (!response) 
             throw new Error(response);
 
           return {
-            data: response.data,
-            status: response.status
+            data: response.data.data,
+            status: response.status,
+            total: response.data.meta.total
           };
         })
         .catch(() => {
