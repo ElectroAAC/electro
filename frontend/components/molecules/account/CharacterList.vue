@@ -63,7 +63,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { account, character, items, skill } from '@/store'
+import { account, characterItems, skill } from '@/store'
 import { CharactersAccount } from '@/models'
 import { getVocationName } from '@/utils/methods'
 
@@ -98,7 +98,7 @@ export default Vue.extend({
 
             const promises = [
               skill.getSkills(character_id),
-              items.getItems(character_id)
+              characterItems.getItems(character_id)
             ];
 
             await Promise.all(promises);

@@ -21,7 +21,7 @@ import Vue from 'vue'
 import { 
   character,
   death,
-  items,
+  characterItems,
   skill,
   storage 
 } from '@/store'
@@ -50,7 +50,7 @@ export default Vue.extend({
       
       if (this.$character && this.$character.id) {
         const promises = [
-          items.getItems(this.$character.id),
+          characterItems.getItems(this.$character.id),
           death.getDeaths(this.$character.id),
           skill.getSkills(this.$character.id),
           storage.getStorages(this.$character.id)

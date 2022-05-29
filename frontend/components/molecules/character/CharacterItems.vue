@@ -32,14 +32,14 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { items } from '@/store'
+import { characterItems } from '@/store'
 import { Item } from '@/models'
 import { items as itemList} from '@/utils/fakeData'
 
 export default Vue.extend({
   computed: {
     $items(): Item[] {
-      return items.$items;
+      return characterItems.$items;
     },
 
     getItemList(): Object[] {

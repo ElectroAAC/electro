@@ -585,3 +585,8 @@
     bottom: 2% !important;
   }
 }
+
+.btn-item > .v-btn__content {
+  display: block !important;
+  color: var(--second-color) !important;
+}

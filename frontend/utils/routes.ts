@@ -25,6 +25,11 @@ export const routesCommunity = [
     text: "Creatures",
     to: "/creatures"
   },
+  {
+    icon: 'mdi-axe',
+    text: "Items",
+    to: "/items"
+  },
 ]
 
 export const routesGuild = [
