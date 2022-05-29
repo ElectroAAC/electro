@@ -1,3 +1,4 @@
+import Database from '@ioc:Adonis/Lucid/Database'
 import Env from '@ioc:Adonis/Core/Env'
 const fs = require('fs');
 const xml2js = require('xml2js');
@@ -5,7 +6,7 @@ const xml2js = require('xml2js');
 class CreatureView {}
 
 class Creature extends CreatureView {
-  loadCreatureXml() {
+  loadMonstersXml() {
     try {
       const jsonString = fs.readFileSync(`${Env.get('SERVER_PATH')}data/monster/monsters.xml`, 'utf8');
       let json: any = {};
@@ -20,12 +21,39 @@ class Creature extends CreatureView {
       return json.monsters;
     }
     catch (err) {
-      console.log('Error: Cannot load monsters.xml. File not found.');
+      return 'Error: Cannot load monsters.xml. File not found.';
+    }
+  }
+  
+  loadCreatureXml(path: string) {
+    try {
+      const jsonString = fs.readFileSync(`${Env.get('SERVER_PATH')}data/monster/${path}`, 'utf8');
+      let json: any = {};
+
+      xml2js.parseString(jsonString, { mergeAttrs: true }, (err, result) => {
+        if (err) {
+          throw new Error('Error: Cannot load monsters.xml. File not found.');
+        }
+
+        json = JSON.parse(JSON.stringify(result, null, 4));
+      });
+      return json;
+    }
+    catch (err) {
       return 'Error: Cannot load monsters.xml. File not found.';
     }
   }
 }
 
-class CreatureRepository extends CreatureView {}
+class CreatureRepository extends CreatureView {
+  public async create(data: Object): Promise<Number> {
+    try {
+      return await Database.table('electro_creatures').returning('id').insert(data);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
+}
 
 export { Creature, CreatureView, CreatureRepository}

@@ -12,7 +12,7 @@ export default class ElectroCreatures extends BaseSchema {
       table.integer('health', 11)
       table.integer('experience', 11)
       table.integer('look_type', 11)
-      table.integer('loot', 11)
+      table.text('loot')
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })
