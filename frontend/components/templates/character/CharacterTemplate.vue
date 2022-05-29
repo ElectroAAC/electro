@@ -2,23 +2,27 @@
   <div>
     <Title text="Characters"/>
     
-    <v-container class="main-content">
+    <div v-if="isLoading" class="text-center">
+      <Loading  style="width: 50% !important;" />
+    </div>
+
+    <v-container v-else class="main-content">
       <CharacterSearchForm v-if="!getCharacterName" />
       
-      <div v-else>
-        <div v-if="isLoading" class="text-center">
-          <Loading  style="width: 50% !important;" />
-        </div>
-
-        <Character v-else-if="$character" />
-      </div>
+      <Character v-else-if="$character" />
     </v-container>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import { character } from '@/store'
+import { 
+  character,
+  death,
+  characterItems,
+  skill,
+  storage 
+} from '@/store'
 
 export default Vue.extend({
   data() {
@@ -41,10 +45,16 @@ export default Vue.extend({
   async created() {
     if (this.getCharacterName) {
       await this.getPlayer();
+      
       if (this.$character && this.$character.id) {
-        character.getSkill(this.$character.id);
-        character.getItems(this.$character.id);
-        character.getDeaths(this.$character.id);
+        const promises = [
+          characterItems.getItems(this.$character.id),
+          death.getDeaths(this.$character.id),
+          skill.getSkills(this.$character.id),
+          storage.getStorages(this.$character.id)
+        ];
+
+        await Promise.all(promises);
       }
     }
   },
@@ -66,10 +76,12 @@ export default Vue.extend({
               position: 'top-right',
             }
           );
-          this.$router.push('/character');
+          this.$router.replace('/character');
           return;
         }
-        this.$set(this, 'isLoading', false);
+        setTimeout(() => {
+          this.$set(this, 'isLoading', false);
+        }, 300);
       } catch(err) {
         console.log(err);
       }

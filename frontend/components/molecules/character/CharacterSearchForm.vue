@@ -13,7 +13,6 @@
       dense
       append-icon="mdi-magnify"
       hide-details="auto"
-      color="cyan accent-2"
     />
     
     <v-btn
@@ -50,7 +49,7 @@ export default Vue.extend({
   methods: {
     async onSearch(this: any) {
       try {
-        this.$router.push('/character/' + this.character_name);
+        this.$router.replace('/character/' + this.character_name);
       } catch(err) {
         console.log(err);
       }

@@ -115,7 +115,7 @@ export default Vue.extend({
             }
           )
           accountRegister.changeRegistering(false)
-          this.$router.push('/accounts')
+          this.$router.replace('/accounts')
         }
           
         else

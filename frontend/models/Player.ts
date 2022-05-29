@@ -9,11 +9,22 @@ export interface Player {
 	healthmax: Number,
 	manamax: Number,
 	online: Number,
-	created: Number
+	created: Number,
+	looktype: Number,
+	lookaddons: Number,
+	lookhead: Number,
+	lookbody: Number,
+	looklegs: Number,
+	lookfeet: Number,
 }
 
 export interface Skill {
 	skillid: Number,
+	value: Number
+}
+
+export interface Storage {
+	key: Number,
 	value: Number
 }
 

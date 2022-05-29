@@ -65,7 +65,7 @@ export default Vue.extend({
             theme: "bubble",
           }
         )
-        this.$router.push('/accounts');
+        this.$router.replace('/accounts');
       }
         
       else {

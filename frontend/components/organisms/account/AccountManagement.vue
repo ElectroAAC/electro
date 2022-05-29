@@ -62,7 +62,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { account } from '@/store'
+import { account, items } from '@/store'
 
 export default Vue.extend({
   data () {
@@ -94,6 +94,9 @@ export default Vue.extend({
 
   mounted() {
     account.getChangeNameStatus();
+    if (!items.$items.length) {
+      items.getItems('all');
+    }
   }
 })
 </script>

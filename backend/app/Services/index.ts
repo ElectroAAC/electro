@@ -10,6 +10,12 @@ export {
   CharacterView 
 } from './CharacterService';
 
+export { 
+  Creature,
+  CreatureRepository,
+  CreatureView
+} from './CreatureService';
+
 export { default as DeathService } from './DeathService';
 
 export { 
@@ -31,7 +37,13 @@ export {
 } from './GuildMembershipService'
 
 export { default as HighscoresService } from './HighscoresService';
-export { default as ItemService } from './ItemService';
+
+export { 
+  Item,
+  ItemRepository,
+  ItemView
+} from './ItemService';
+
 export { default as HouseService } from './HouseService';
 
 export { 

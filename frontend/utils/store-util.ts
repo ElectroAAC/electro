@@ -1,7 +1,7 @@
 import { Store } from 'vuex';
 import { getModule } from 'vuex-module-decorators';
 
-import Auth from '@/store/auth';
+import Auth from '~/store/auth';
 
 import {
   Home as DashboardHome,
@@ -11,7 +11,7 @@ import {
   CharacterSkills as DashboardCharacterSkills,
   ShopCategory as DashboardShopCategory,
   ShopItem as DashboardShopItem
-} from '@/store/dashboard'
+} from '~/store/dashboard'
 
 import {
   News
@@ -21,10 +21,14 @@ import {
   Account,
   Register as AccountRegister,
   Character as CreateCharacter
-} from '@/store/accounts'
+} from '~/store/accounts'
 
 import { 
-  Character 
+  Character,
+  Death,
+  Items as CharacterItems,
+  Skill,
+  Storage
 } from '~/store/character'
 
 import { 
@@ -43,6 +47,14 @@ import {
 import {
   Online
 } from '~/store/online'
+
+import {
+  Creatures
+} from '~/store/creatures'
+
+import {
+  Items
+} from '~/store/items'
 
 import {
   Lastkills
@@ -70,6 +82,10 @@ let accountRegister: AccountRegister;
 let createCharacter: CreateCharacter;
 
 let character: Character;
+let death: Death;
+let characterItems: CharacterItems;
+let skill: Skill;
+let storage: Storage;
 
 let top5Players: Top5Players;
 let ranking: Ranking;
@@ -79,6 +95,10 @@ let guild: Guild;
 let guildList: GuildList;
 let inviteGuild: InviteGuild;
 let manageGuild: ManageGuild;
+
+let creatures: Creatures;
+
+let items: Items;
 
 let online: Online;
 
@@ -109,6 +129,10 @@ const initializeStores = (store: Store<any>) => {
 
   // Store Character
   character = getModule(Character, store);
+  death = getModule(Death, store);
+  characterItems = getModule(CharacterItems, store);
+  skill = getModule(Skill, store);
+  storage = getModule(Storage, store);
 
   // Store Top5Players
   top5Players = getModule(Top5Players, store);
@@ -120,6 +144,12 @@ const initializeStores = (store: Store<any>) => {
   guildList = getModule(GuildList, store);
   inviteGuild = getModule(InviteGuild, store);
   manageGuild = getModule(ManageGuild, store);
+
+  // Store Creatures
+  creatures = getModule(Creatures, store);
+
+  // Store Items
+  items = getModule(Items, store);
 
   // Store Online
   online = getModule(Online, store);
@@ -152,6 +182,10 @@ export {
   createCharacter,
 
   character,
+  death,
+  characterItems,
+  skill,
+  storage,
 
   top5Players,
   ranking,
@@ -161,6 +195,10 @@ export {
   guildList,
   inviteGuild,
   manageGuild,
+  
+  creatures,
+  
+  items,
   
   online,
 

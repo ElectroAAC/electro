@@ -5,7 +5,7 @@ export default class HighscoresService {
   public async topRankPlayers(): Promise<Object[]> {
     return await Database
       .from('players')
-      .select('id', 'name', 'level', 'vocation', 'experience')
+      .select('id', 'name', 'level', 'vocation', 'experience', 'lookhead', 'lookbody', 'looklegs', 'lookfeet', 'looktype', 'lookaddons')
       .where('deletion', '=', 0)
       .andWhere('group_id', '<', 4)
       .orderBy('experience', 'desc')
@@ -16,7 +16,7 @@ export default class HighscoresService {
     if (type === 'Experience')  
       return await Database
         .from('players')
-        .select('name', 'vocation', 'level', 'experience')
+        .select('name', 'vocation', 'level', 'experience', 'lookhead', 'lookbody', 'looklegs', 'lookfeet', 'looktype', 'lookaddons')
         .where('deletion', '=', 0)
         .andWhere('group_id', '<', 4)
         .orderBy('experience', 'desc')
@@ -25,7 +25,7 @@ export default class HighscoresService {
     else if (type === 'Magic Level')
       return await Database
         .from('players')
-        .select('name', 'vocation', 'maglevel as value', 'experience')
+        .select('name', 'vocation', 'maglevel as value', 'experience', 'lookhead', 'lookbody', 'looklegs', 'lookfeet', 'looktype', 'lookaddons')
         .where('deletion', '=', 0)
         .andWhere('group_id', '<', 4)
         .orderBy('maglevel', 'desc')
@@ -54,7 +54,7 @@ export default class HighscoresService {
       
       return await Database
         .from('players')
-        .select('name', 'vocation', `${skill} as value`)
+        .select('name', 'vocation', `${skill} as value`, 'lookhead', 'lookbody', 'looklegs', 'lookfeet', 'looktype', 'lookaddons')
         .where('players.deletion', '=', 0)
         .andWhere('players.group_id', '<', 4)
         .orderBy(skill, 'desc')

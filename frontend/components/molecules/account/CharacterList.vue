@@ -47,12 +47,8 @@
           class="bg-character-list"
           tile
         >
-          <div v-if="isLoading" class="text-center">
-            <Loading  style="width: 50% !important;" />
-          </div>
-
           <AccountCharacterInformation 
-            v-else 
+            :loading="isLoading" 
             :character="getCharacters[model]" 
           />
         </v-sheet>
@@ -63,7 +59,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { account, character } from '@/store'
+import { account, characterItems, skill } from '@/store'
 import { CharactersAccount } from '@/models'
 import { getVocationName } from '@/utils/methods'
 
@@ -72,7 +68,7 @@ export default Vue.extend({
     return {
       model: 0,
       last_value: 0,
-      isLoading: 0
+      isLoading: false
     }
   },
 
@@ -90,22 +86,24 @@ export default Vue.extend({
 
   watch: {
     async model(v): Promise<void> {
-      if (v) {
+      if (v >= 0) {
         const character_id = this.getCharacters[v].id;
         if (character_id) {
           try {
             this.$set(this, 'isLoading', true);
 
             const promises = [
-              character.getSkill(character_id),
-              character.getItems(character_id)
+              skill.getSkills(character_id),
+              characterItems.getItems(character_id)
             ];
 
             await Promise.all(promises);
           } catch (err) {
             console.log('Error: ', err);
           } finally {
-            this.$set(this, 'isLoading', false);
+            setTimeout(() => {
+              this.$set(this, 'isLoading', false);
+            }, 300)
           }
         }
       }

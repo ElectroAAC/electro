@@ -355,7 +355,6 @@
   font-family: Arial, Helvetica, sans-serif !important;
   height: 65px !important;
   transform: none !important;
-  top: -50px !important;
   right: -50px !important;
 }
 
@@ -517,9 +516,9 @@
 }
 
 .v-application a {
-  color: var(--heading-color) !important;
+  color: var(--heading-color);
   font-weight: 600 !important;
-  text-transform: uppercase !important;
+  text-transform: uppercase;
   -webkit-transition: .15s color !important;
   -o-transition: .15s color !important;
   transition: .15s color !important;
@@ -563,4 +562,31 @@
   text-transform: uppercase !important;
   transition: .15s color !important;
   text-decoration: none !important;
+}
+
+.highscores-title {
+  text-transform: none !important;
+}
+
+.character-informations {
+  background-color: var(--bg-dashboard-content-color);
+  border: 1px solid var(--second-color);
+  border-radius: 0.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .toasted-container .toasted {
+    width: 350px !important;
+    top: -15px !important;
+    border-radius: 30px !important; 
+  }
+  .toasted-container.bottom-right {
+    right: 0% !important;
+    bottom: 2% !important;
+  }
+}
+
+.btn-item > .v-btn__content {
+  display: block !important;
+  color: var(--second-color) !important;
 }

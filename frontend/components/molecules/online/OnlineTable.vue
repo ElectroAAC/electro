@@ -7,9 +7,24 @@
     disable-items-per-page
     no-data-text="No player found"
   >    
+    <!-- eslint-disable-next-line vue/valid-v-slot -->
+    <template #item.outfit="{ item }">
+      <AnimatedOutfit 
+        :look_type="item.looktype"
+        :look_addons="item.lookaddons"
+        :look_head="item.lookhead"
+        :look_body="item.lookbody"
+        :look_legs="item.looklegs"
+        :look_feet="item.lookfeet"
+      />
+    </template>
+
+    <!-- eslint-disable-next-line vue/valid-v-slot -->
     <template #item.name="{ item }">
       <NuxtLink :to="`/character/${item.name}`" class="color-green"> {{ item.name }} </NuxtLink> <br>
     </template>
+
+    <!-- eslint-disable-next-line vue/valid-v-slot -->
     <template #item.vocation="{ item }">
       {{ getVocation(item.vocation) }}
     </template>
@@ -38,12 +53,13 @@ export default Vue.extend({
   },
 
   computed: {
-    getPlayersData(this: any): Object[] {
+    getPlayersData(this: any): any[] {
       return this.players_data;
     },
     
     getHeaders(): Object[] {
       return [
+        { text: 'Outfit', value: 'outfit', align: 'center', sortable: false },
         { text: 'Name', value: 'name', align: 'center' },
         { text: 'Level', value: 'level', align: 'center' },
         { text: 'Vocation', value: 'vocation', align: 'center'},
