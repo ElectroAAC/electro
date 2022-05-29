@@ -4,11 +4,12 @@ const fs = require('fs');
 const xml2js = require('xml2js');
 
 class CreatureView {
-  async getCreatures() {
+  async getCreatures(page: number, limit: number) {
     try {
       return await Database
         .from('electro_creatures')
         .orderBy('name', 'asc')
+        .paginate(page, limit);
     } catch (err) {
       console.log(err);
       return err;

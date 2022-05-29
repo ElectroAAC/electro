@@ -122,10 +122,10 @@ $ npm run start
 
 ## 🕵🏾‍♂️ Routes Creatures
 
-| METHOD | ENDPOINT       | DESCRIPTION       |
-| :----- | :------------- | :---------------- |
-| GET    | /creatures     | Get All Creatures |
-| GET    | /creatures/xml | Loading Creatures |
+| METHOD | ENDPOINT                | DESCRIPTION       |
+| :----- | :---------------------- | :---------------- |
+| GET    | /creatures/:page/:limit | Get All Creatures |
+| GET    | /creatures/xml          | Loading Creatures |
 
 <br>
 

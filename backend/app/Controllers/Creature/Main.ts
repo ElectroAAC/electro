@@ -51,7 +51,7 @@ export default class PlayerSkillController {
 
   public async show(ctx: HttpContextContract) {
     try {
-      const creatures = await this.creatureView.getCreatures();
+      const creatures = await this.creatureView.getCreatures(ctx.request.param('page'), ctx.request.param('limit'));
 
       return ctx.response.status(200).send({ status: 200, data: creatures });
     } catch(err) {
