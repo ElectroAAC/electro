@@ -65,6 +65,11 @@ import {
   ShopCategorie
 } from '~/store/shop'
 
+import { 
+  Status,
+  Server
+} from '~/store/server';
+
 let auth: Auth;
 
 let dashboardHome: DashboardHome;
@@ -106,6 +111,9 @@ let lastkills: Lastkills;
 
 let shop: Shop;
 let shopCategorie: ShopCategorie;
+
+let status: Status;
+let server: Server;
 
 const initializeStores = (store: Store<any>) => {
   auth = getModule(Auth, store);
@@ -160,6 +168,10 @@ const initializeStores = (store: Store<any>) => {
   // Store Shop
   shop = getModule(Shop, store);
   shopCategorie = getModule(ShopCategorie, store);
+
+  // Store Server
+  status = getModule(Status, store);
+  server = getModule(Server, store);
 };
 
 export {
@@ -205,5 +217,8 @@ export {
   lastkills,
 
   shop,
-  shopCategorie
+  shopCategorie,
+
+  status,
+  server
 };
