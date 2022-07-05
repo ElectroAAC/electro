@@ -37,6 +37,22 @@ $ npm run start
 
 <br>
 
+## 🕵🏾‍♂️ Routes Status
+
+| METHOD | ENDPOINT | DESCRIPTION       |
+| :----- | :------- | :---------------- |
+| GET    | /status  | Get status server |
+
+<br>
+
+## 🕵🏾‍♂️ Routes Server
+
+| METHOD | ENDPOINT            | DESCRIPTION            |
+| :----- | :------------------ | :--------------------- |
+| GET    | /server/max-players | Get max players server |
+
+<br>
+
 ## 🕵🏾‍♂️ Routes News
 
 | METHOD | ENDPOINT                | DESCRIPTION |

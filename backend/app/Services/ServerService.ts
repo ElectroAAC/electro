@@ -24,6 +24,10 @@ class Server {
   public getPort(): Number {
     return this.getConfig().statusProtocolPort;
   }
+
+  public getMaxPlayers(): Number {
+    return this.getConfig().maxPlayers;
+  }
 }
 
 export { Server };
