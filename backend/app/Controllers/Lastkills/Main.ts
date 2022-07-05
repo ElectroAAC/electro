@@ -16,7 +16,7 @@ export default class LastKillsController {
       const playersDeath: any = await this.deathService.getLastKills(ctx.request.param('page'), ctx.request.param('limit'));
       
       if (!playersDeath.length) {
-        return ctx.response.status(404).send({ message: 'There are no recorded deaths.' });
+        return ctx.response.status(200).send({ message: 'There are no recorded deaths.' });
       }
 
       for(let death of playersDeath) {
