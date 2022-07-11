@@ -40,11 +40,11 @@ That means, we use:
 ## 👨🏾‍💻 Commits
 
 This repository follows the semantic commit pattern, with the addition of the tag [BACK] for a commit related to the backend, and [FRONT] for a commit related to the frontend. <a href="https://www.conventionalcommits.org/en/v1.0.0/#specification"> More Information </a>
+
 <br>
 
 ## 👨🏾‍💻 @TODO
 
-- Server connection to check online status
 - Account Recovery
 - Changing email and password
 - Account Logs
@@ -53,6 +53,8 @@ This repository follows the semantic commit pattern, with the addition of the ta
 - Implement easy-to-use installation method to configure server directory
 - Payment Methods (Pagseguro, Paypal, Mercado Pago, Picpay, Pix)
 - Automated tests on the backend
+- Language translation (i18n): Portuguese and Spanish
+- War System
 
 <br>
 
@@ -103,6 +105,8 @@ Pull requests should be made to the <strong>develop</strong> branch as that is t
   <ul>
     <li> <a href="https://github.com/championswimmer/vuex-module-decorators"> Vuex-module-decorators </a> </li>
     <li> <a href="https://www.tiny.cloud/docs/integrations/vue/"> TinyMCE </a> </li>
+    <li> <a href="https://vue-chartjs.org/"> VueChart.js </a> </li>
+    <li> <a href="https://www.npmjs.com/package/lottie-vuejs"> Lottie Vue </a> </li>
   </ul>
   <li> Vuetify.js </li>
   <li> Nuxt.js </li>
@@ -121,6 +125,7 @@ Pull requests should be made to the <strong>develop</strong> branch as that is t
   <ul>
     <li> <a href="https://www.npmjs.com/package/crypto-js"> Crypto </a> </li>
     <li> <a href="https://www.npmjs.com/package/js-sha1"> Js-sha1 </a> </li>
+    <li> <a href="https://nodejs.org/api/net.html"> Net </a> </li>
   </ul>
   <li> Adonis.js </li>
   <ul>
