@@ -16,9 +16,14 @@
         </NuxtLink>
       </v-col>
 
+      <div v-if="!guildList.length" class="text-center">
+        No guilds recorded.
+      </div>
+
       <div  
         v-for="(guild, index) in guildList"
         :key="index"
+        v-else
         class="single-stream-schedule-box not-streaming"
       >
         <span v-if="!$vuetify.breakpoint.mdAndDown" class="date"> LOGO </span>
@@ -32,6 +37,7 @@
     
     <v-pagination
       v-model="page"
+      class="mt-5"
       circle
       :length="total"
     ></v-pagination>

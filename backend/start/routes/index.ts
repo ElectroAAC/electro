@@ -15,6 +15,8 @@ import './lastkills';
 import './news';
 import './online';
 import './shop';
+import './status';
+import './server';
 
 Route.get('/', async () => {
   return { hello: 'world' }

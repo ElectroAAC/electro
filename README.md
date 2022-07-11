@@ -1,28 +1,102 @@
 <div align="center">
   <img src="./frontend/static/logo.png" width="300" alt="ElectroAAC">
 
-  A free and open-source Automatic Account Creator (AAC) written in Javascript Stack.
-  <br>
+A free and open-source Automatic Account Creator (AAC) written in Javascript Stack.
+<br>
 
-  ![Badge](https://img.shields.io/github/issues/ElectroAAC/electro?color=green)
-  ![Badge](https://img.shields.io/github/forks/ElectroAAC/electro)
-  ![Badge](https://img.shields.io/github/stars/ElectroAAC/electro)
-  ![Badge](https://img.shields.io/apm/l/vim-mode)
+![Badge](https://img.shields.io/github/issues/ElectroAAC/electro?color=green)
+![Badge](https://img.shields.io/github/forks/ElectroAAC/electro)
+![Badge](https://img.shields.io/github/stars/ElectroAAC/electro)
+![Badge](https://img.shields.io/apm/l/vim-mode)
+
 </div>
 
 <br>
 
-##  👨🏾‍💻 Project documentation.
+## 👨🏾‍💻 Project documentation.
+
 Learn all about the project through our documentation: <a href="https://walistonbelles1.gitbook.io/electroaac/" target="_blank"> Documentation </a>
 
 <br>
 
-##  👨🏾‍💻 Demo.
+## 👨🏾‍💻 Demo.
+
 Want to see the project better? Access our demo: <a href="http://www.electro-aac.org/" target="_blank"> Demo </a>
 
 <br>
 
-## 👨🏾‍💻 Techs 
+## 👨🏾‍💻 Branchs
+
+This project follows the framework based on git-flow, a release-based software workflow. <a href="https://platform.deloitte.com.au/articles/semantic-versioning-with-conventional-commits"> More Information </a>
+
+That means, we use:
+
+<li> <strong> Master branch</strong>, for current stable release </li>
+<li> <strong> Develop branch</strong>, for development version (next release) </li>
+<li> <strong> Feature branch</strong>, for features etc </li>
+
+<br>
+
+## 👨🏾‍💻 Commits
+
+This repository follows the semantic commit pattern, with the addition of the tag [BACK] for a commit related to the backend, and [FRONT] for a commit related to the frontend. <a href="https://www.conventionalcommits.org/en/v1.0.0/#specification"> More Information </a>
+
+<br>
+
+## 👨🏾‍💻 @TODO
+
+- Account Recovery
+- Changing email and password
+- Account Logs
+- Character Sale
+- Implement caching on the website
+- Implement easy-to-use installation method to configure server directory
+- Payment Methods (Pagseguro, Paypal, Mercado Pago, Picpay, Pix)
+- Automated tests on the backend
+- Language translation (i18n): Portuguese and Spanish
+- War System
+
+<br>
+
+## Show-Off
+
+### Home Page
+
+<img src="./assets/demo-1.png">
+
+<br>
+
+### Items Page
+
+<img src="./assets/demo-2.png">
+
+<br>
+
+### Highscores Page
+
+<img src="./assets/demo-3.png">
+
+<br>
+
+### Shop Page
+
+<img src="./assets/demo-4.png">
+
+<br>
+
+### Character View Page
+
+<img src="./assets/demo-5.png">
+
+<br>
+
+## Contributing
+
+Contributions are more than welcome.
+
+Pull requests should be made to the <strong>develop</strong> branch as that is the working branch, <strong> main </strong> is for release code.
+
+## 👨🏾‍💻 Techs
 
 <h3> Front-end </h3>
 
@@ -31,6 +105,8 @@ Want to see the project better? Access our demo: <a href="http://www.electro-aac
   <ul>
     <li> <a href="https://github.com/championswimmer/vuex-module-decorators"> Vuex-module-decorators </a> </li>
     <li> <a href="https://www.tiny.cloud/docs/integrations/vue/"> TinyMCE </a> </li>
+    <li> <a href="https://vue-chartjs.org/"> VueChart.js </a> </li>
+    <li> <a href="https://www.npmjs.com/package/lottie-vuejs"> Lottie Vue </a> </li>
   </ul>
   <li> Vuetify.js </li>
   <li> Nuxt.js </li>
@@ -49,6 +125,7 @@ Want to see the project better? Access our demo: <a href="http://www.electro-aac
   <ul>
     <li> <a href="https://www.npmjs.com/package/crypto-js"> Crypto </a> </li>
     <li> <a href="https://www.npmjs.com/package/js-sha1"> Js-sha1 </a> </li>
+    <li> <a href="https://nodejs.org/api/net.html"> Net </a> </li>
   </ul>
   <li> Adonis.js </li>
   <ul>
@@ -67,143 +144,7 @@ Want to see the project better? Access our demo: <a href="http://www.electro-aac
   <li> <a href="https://mailtrap.io/"> Mailtrap </a></li></ul>
 <br>
 
-## 👨🏾‍💻 Branchs
-
-This project follows the framework based on git-flow, a release-based software workflow. <a href="https://platform.deloitte.com.au/articles/semantic-versioning-with-conventional-commits"> More Information </a>
-
-That means, we use:
-
-<li> <strong> Master branch</strong>, for current stable release </li>
-<li> <strong> Develop branch</strong>, for development version (next release) </li>
-<li> <strong> Feature branch</strong>, for features etc </li>
-
-<br>
-
-## 👨🏾‍💻 Commits
-
-This repository follows the semantic commit pattern, with the addition of the tag [BACK] for a commit related to the backend, and [FRONT] for a commit related to the frontend. <a href="https://www.conventionalcommits.org/en/v1.0.0/#specification"> More Information </a>
-<br>
-<br>
-
-## 👨🏾‍💻 Functionalities
-### News Page
-<ul>
-  <li> [x] Show lastnews </li>
-</ul>
-
-### View character informations
-<ul>
-  <li> [x] Show character info </li>
-  <li> [x] Show character items </li>
-  <li> [x] Show character skills </li>
-  <li> [x] Show character deaths </li>
-  <li> [ ] Show character achievements </li>
-</ul>
-
-### Manage Account
-<ul>
-  <li> [x] Page Account informations </li>
-  <li> [x] List account characters </li>
-  <li> [x] Create new character </li>
-  <li> [x] Change character name </li>
-  <li> [x] Delete character </li>
-  <li> [ ] Register Account (RK) </li>
-  <li> [ ] Change Email </li>
-  <li> [ ] Change Password </li>
-  <li> [ ] Account Logs </li>
-</ul>
-
-### Highscores
-<ul>
-  <li> [x] Widget Highscores </li>
-  <li> [x] Show Highscores </li>
-  <li> [x] Create/Apply Filters </li>
-</ul>
-
-### Guilds
-<ul>
-  <li> [x] Show all Guilds </li>
-  <li> [x] View Guilds </li>
-  <li> [x] Create Guild </li>
-  <li> [x] Manage Guilds </li>
-  <ul>
-    <li> [x] Invite Player </li>
-    <li> [x] Remove Invite </li>
-    <li> [x] Promove Player </li>
-    <li> [x] Demote Player </li>
-    <li> [x] Change MOTD </li>
-    <li> [x] Change Rank </li>
-    <li> [x] Change Logo </li>
-    <li> [x] Pass Leadership </li>
-    <li> [x] Delete Guild </li>
-  </ul>
-</ul>
-
-### Online
-<ul>
-  <li> [x] Online Pages </li>
-  <li> [x] Widget Players Online </li>
-</ul>
-
-### Lastkills
-<ul>
-  <li> [x] Lastkill Page </li>
-</ul>
-
-### Download
-<ul>
-  <li> [x] Download Page </li>
-</ul>
-
-### Customize Layout
-<ul>
-  <li> [x] Customize Layout Structure</li>
-</ul>
-
-### Dashboard - ADMIN
-<ul>
-  <li> [x] Validate permissions </li>
-  <li> [x] Home Page </li>
-  <li> [x] News Page</li>
-  <ul>
-    <li> [x] Create new post </li>
-    <li> [x] List all post </li>
-    <li> [x] Edit post </li>
-    <li> [x] Delete post </li>
-  </ul>
-  <li> [x] Accounts </li>
-  <ul>
-    <li> [x] Find Account </li>
-    <li> [x] Change account information </li>
-    <li> [x] View all account characters </li>
-  </ul>
-  <li> [x] Players </li>
-  <ul>
-    <li> [x] Find Player </li>
-    <li> [x] Edit Info and Skills </li>
-  </ul>
-</ul>
-
-## Show-Off
-
-### Create Character Page
-
-<img src="./assets/create-character.gif">
-
-<br>
-
-### Dashboard - ADMIN - Home Page
-
-<img src="./assets/home.png">
-
-<br>
-
-## Contributing
-
-Contributions are more than welcome.
-
-Pull requests should be made to the <strong>develop</strong> branch as that is the working branch, <strong> main </strong> is for release code.
-## 👤 Author 
+## 👤 Author
 
 <h3> <b> Waliston Belles </b></h3>
 

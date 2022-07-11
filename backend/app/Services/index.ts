@@ -55,6 +55,14 @@ export {
 export { default as OnlineService } from './OnlineService';
 
 export { 
+  Status
+} from './StatusService';
+
+export {
+  Server
+} from './ServerService';
+
+export { 
   Skill,
   SkillView
 } from './SkillService';
