@@ -17,8 +17,6 @@ export default class PlayersWithoutGuildController {
 
       const characters_without_guild = await this.guildView.getCharactersWithoutGuild(account.id);
 
-      console.log(characters_without_guild);
-
       const characters_with_guild: any = [];
       
       characters_account.forEach((character: any) => {

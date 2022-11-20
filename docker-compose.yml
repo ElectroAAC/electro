@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+  electro-backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: /home/waliston/server_atualizado ## YOUR_SERVER_DIRECTORY example: /home/server/myserver
+        target: /home/server
+    env_file:
+      - ./backend/.env
+    environment:
+      - MYSQL_HOST=electro-database
+    ports:
+      - 3333:3333
+    depends_on:
+      - electro-database
+
+  electro-web-app:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    env_file:
+      - ./frontend/.env
+    ports:
+      - 3000:3000
+    depends_on:
+      - electro-backend
+
+  electro-database:
+    image: mysql
+    platform: linux/x86_64
+    container_name: electro-database
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'electro'
+      MYSQL_DATABASE: 'electro'
+    ports:
+      - '3308:3306'
