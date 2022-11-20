@@ -6,10 +6,10 @@
 # go to paste
 $ cd backend
 
-# Create container with MySQL
-$ docker-compose up -d
-
 # Create your .env file using .env.example as an example
+
+# Create your api_key
+$ node ace generate:key
 
 # install dependencies
 $ npm install

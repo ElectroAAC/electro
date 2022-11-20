@@ -90,6 +90,27 @@ This repository follows the semantic commit pattern, with the addition of the ta
 
 <br>
 
+## 👨🏾‍💻 Build Setup
+
+```bash
+# Create containers, the api will open on port 3333 while the web_app will be on port 3000
+$ docker-compose up --build
+
+# go to paste
+$ cd api
+
+# Create your .env file using .env.example as an example
+
+# Install Dependencies
+$ yarn install
+
+# Create database structure
+$ node ace migration:run
+$ node ace db:seed
+```
+
+<br>
+
 ## Contributing
 
 Contributions are more than welcome.
@@ -98,8 +119,9 @@ Pull requests should be made to the <strong>develop</strong> branch as that is t
 
 ## 👨🏾‍💻 Techs
 
-<h3> Front-end </h3>
+<br>
 
+<h3> Front-end </h3>
 <ul>
   <li> Vue.js </li>
   <ul>
