@@ -1,3 +1,4 @@
+import Database from '@ioc:Adonis/Lucid/Database'
 import Env from '@ioc:Adonis/Core/Env'
 const fs = require('fs');
 const https = require('https');
@@ -24,9 +25,6 @@ class Pix {
       return 'Error: Cannot load certificate. File not found.';
     }
   }
-}
-
-class PixRepository {
   public async getAuthentication(agent): Promise<Object> {
     const credentials = Buffer.from(
       `${Env.get('PIX_CLIENT_ID')}:${Env.get('PIX_CLIENT_SECRET')}`
@@ -61,6 +59,17 @@ class PixRepository {
         'Content-Type': 'application/json'
       }
     });
+  }
+}
+
+class PixRepository {
+  public async create(data: Object): Promise<Number> {
+    try {
+      return await Database.table('electro_pix_payments').returning('id').insert(data);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
   }
 }
 

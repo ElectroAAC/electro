@@ -6,7 +6,7 @@ export default class StoreValidator {
 
   public schema = schema.create({
     account_id: schema.number([ rules.required(), rules.exists({ table: 'accounts', column: 'id'})]),
-    value: schema.number()
+    value: schema.string()
   })
 
   public messages = {}

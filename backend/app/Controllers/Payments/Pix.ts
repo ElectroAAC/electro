@@ -19,7 +19,7 @@ export default class PixController {
       const cert = await this.pix.loadCertificate();
       const agent = await this.pixView.getAgent(cert);
       
-      const pixRequest = await this.pixRepository.pixRequest(agent);
+      const pixRequest = await this.pix.pixRequest(agent);
 
       const pixOptions = {
         calendario: {
@@ -34,11 +34,23 @@ export default class PixController {
 
       const cobResponse = await pixRequest.post('/v2/cob', pixOptions);
       const qrcodeResponse = await pixRequest.get(`/v2/loc/${cobResponse.data.loc.id}/qrcode`);
+      
+      await this.pixRepository.create({
+        account_id: data.account_id,
+        value: Env.get('DOUBLE_POINTS') ? parseInt(data.value) * 2 : parseInt(data.value),
+        status: 'WAITING',
+        qrcode: qrcodeResponse.data.qrcode
+      });
 
       return qrcodeResponse.data.imagemQrcode;
     } catch(err) {
       console.log('Error getQRCode: ', err);
       return ctx.response.status(400).send({ error: 'An error occurred, check the api console.'});
     }
+  }
+
+  public async webhook(ctx: HttpContextContract) {
+    console.log(ctx.request.body())
+    return 200;
   }
 }

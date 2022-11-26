@@ -25,6 +25,7 @@ export default Env.rules({
   CHANGE_NAME: Env.schema.boolean(),
   POINTS_TO_CHANGE_NAME: Env.schema.number(),
 
+  DOUBLE_POINTS: Env.schema.boolean(),
   PIX_CLIENT_ID: Env.schema.string(),
   PIX_CLIENT_SECRET: Env.schema.string(),
   PIX_ENDPOINT: Env.schema.string(),
