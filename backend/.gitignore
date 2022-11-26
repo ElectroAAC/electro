@@ -5,3 +5,6 @@ coverage
 .DS_STORE
 .env
 tmp
+
+contracts/certs/
+yarn.lock

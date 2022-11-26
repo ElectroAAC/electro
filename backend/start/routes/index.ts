@@ -14,6 +14,7 @@ import './items';
 import './lastkills';
 import './news';
 import './online';
+import './payment';
 import './shop';
 import './status';
 import './server';

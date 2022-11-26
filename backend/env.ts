@@ -23,5 +23,13 @@ export default Env.rules({
 
   CHARACTERS_PER_ACCOUNT: Env.schema.number(),
   CHANGE_NAME: Env.schema.boolean(),
-  POINTS_TO_CHANGE_NAME: Env.schema.number()
+  POINTS_TO_CHANGE_NAME: Env.schema.number(),
+
+  PIX_CLIENT_ID: Env.schema.string(),
+  PIX_CLIENT_SECRET: Env.schema.string(),
+  PIX_ENDPOINT: Env.schema.string(),
+  PIX_CERT: Env.schema.string(),
+  PIX_TIME_EXPIRATION: Env.schema.number(),
+  PIX_KEY: Env.schema.string(),
+  PIX_MESSAGE_ON_BILLING: Env.schema.string()
 })

@@ -55,6 +55,12 @@ export {
 export { default as OnlineService } from './OnlineService';
 
 export { 
+  Pix,
+  PixRepository,
+  PixView
+} from './PixService';
+
+export { 
   Status
 } from './StatusService';
 
