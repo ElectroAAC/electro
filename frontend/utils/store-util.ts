@@ -62,7 +62,9 @@ import {
 
 import {
   Shop,
-  ShopCategorie
+  ShopCategorie,
+  Payment,
+  PixPayment
 } from '~/store/shop'
 
 import { 
@@ -111,6 +113,8 @@ let lastkills: Lastkills;
 
 let shop: Shop;
 let shopCategorie: ShopCategorie;
+let payment: Payment;
+let pixPayment: PixPayment;
 
 let status: Status;
 let server: Server;
@@ -168,6 +172,8 @@ const initializeStores = (store: Store<any>) => {
   // Store Shop
   shop = getModule(Shop, store);
   shopCategorie = getModule(ShopCategorie, store);
+  payment = getModule(Payment, store);
+  pixPayment = getModule(PixPayment, store);
 
   // Store Server
   status = getModule(Status, store);
@@ -218,6 +224,8 @@ export {
 
   shop,
   shopCategorie,
+  payment,
+  pixPayment,
 
   status,
   server

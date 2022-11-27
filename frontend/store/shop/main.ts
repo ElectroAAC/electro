@@ -18,6 +18,9 @@ export default class Shop extends VuexModule {
   private cart = [];
   private checkout = false;
   private to_player_name = "";
+  private payments = {
+    pix: true
+  }
 
   public get $offers() {
     return this.offers;
@@ -33,6 +36,10 @@ export default class Shop extends VuexModule {
 
   public get $to_player_name() {
     return this.to_player_name;
+  }
+
+  public get $payments() {
+    return this.payments;
   }
 
   @Mutation
