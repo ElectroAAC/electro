@@ -42,7 +42,12 @@ export default class PixController {
         qrcode: qrcodeResponse.data.qrcode
       });
 
-      return qrcodeResponse.data.imagemQrcode;
+      const result = {
+        image: qrcodeResponse.data.imagemQrcode,
+        pix_qrcode: qrcodeResponse.data.qrcode
+      }
+
+      return ctx.response.status(200).send({ status: 200, result });
     } catch(err) {
       console.log('Error getQRCode: ', err);
       return ctx.response.status(400).send({ error: 'An error occurred, check the api console.'});
