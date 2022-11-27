@@ -51,7 +51,6 @@ This repository follows the semantic commit pattern, with the addition of the ta
 - Character Sale
 - Implement caching on the website
 - Implement easy-to-use installation method to configure server directory
-- Payment Methods (Pagseguro, Paypal, Mercado Pago, Picpay, Pix)
 - Automated tests on the backend
 - Language translation (i18n): Portuguese and Spanish
 - War System
@@ -87,27 +86,6 @@ This repository follows the semantic commit pattern, with the addition of the ta
 ### Character View Page
 
 <img src="./assets/demo-5.png">
-
-<br>
-
-## 👨🏾‍💻 Build Setup
-
-```bash
-# Create containers, the api will open on port 3333 while the web_app will be on port 3000
-$ docker-compose up --build
-
-# go to paste
-$ cd api
-
-# Create your .env file using .env.example as an example
-
-# Install Dependencies
-$ yarn install
-
-# Create database structure
-$ node ace migration:run
-$ node ace db:seed
-```
 
 <br>
 
