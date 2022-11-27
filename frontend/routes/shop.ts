@@ -1,6 +1,7 @@
 import Shop from '@/pages/shop/index.vue'
 import ShopCheckout from '@/pages/shop/checkout.vue'
 import PurchaseMade from '@/pages/shop/purchaseMade.vue'
+import ShopPayment from '@/pages/shop/payment.vue'
 
 export default [
   {
@@ -25,6 +26,14 @@ export default [
     name: 'Shop - Purchase Made',
     meta: {
       name: 'purchase-made'
+    }
+  },
+  {
+    path: '/shop/payments',
+    component: ShopPayment,
+    name: 'Shop - Payment',
+    meta: {
+      name: 'payment'
     }
   },
 ]

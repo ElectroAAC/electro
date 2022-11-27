@@ -56,6 +56,11 @@ export const routesShop = [
     text: "My Cart",
     to: "/shop/checkout"
   },
+  {
+    icon: 'mdi-currency-usd',
+    text: "Deposit",
+    to: "/shop/payments"
+  },
 ]
 
 export const routesDashboard = [

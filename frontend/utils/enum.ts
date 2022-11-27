@@ -128,3 +128,11 @@ export const achievements = [
   { value: 1, text: "Basic Quest" },
   { value: 2, text: "Intermediate Quest" },
 ]
+
+/**
+ * @value (Number):   KEY
+ * @text  (String):   ACHIEVEMENT_NAME
+ */
+export const methods_payments = [
+  { value: 1, text: "PIX" }
+]
